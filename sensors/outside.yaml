@@ -1,0 +1,7 @@
+- platform: mqtt
+    state_topic: "outside/temperature"
+    name: "Outside temperature sensor"
+
+- platform: mqtt
+    state_topic: "outside/humidity"
+    name: "Outside humidity sensor"
