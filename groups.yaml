@@ -1,0 +1,10 @@
+weather:
+  name: Weather
+  icon: mdi:weather-cloudy
+  view: yes
+  entities:
+    - sensor.waqi
+    - sun.sun
+    - sensor.outside_temperature
+    - sensor.outside_humidity
+    - sensor.yweather_temperature_min
