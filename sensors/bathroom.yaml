@@ -1,0 +1,3 @@
+- platform: mqtt
+    state_topic: "bathroom/leakage"
+    name: "Leak sensor"
