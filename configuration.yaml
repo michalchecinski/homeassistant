@@ -62,6 +62,7 @@ sensor:
 # Text to speech
 tts:
   - platform: google
+    language: 'pl'
 
 # Cloud
 cloud:
