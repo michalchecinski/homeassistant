@@ -1,0 +1,12 @@
+- alias: Pull hass configuration when Travis build succeded
+    trigger:
+      platform: state
+      entity_id: binary_sensor.travis_status
+      state: 'on'
+    action:
+      service: shell_command.pull_git_conf
+      service: logbook.log
+      data:
+        name: "Zaciągnięta konfiguracja: "
+        message: sensor.travis_status_label
+      service: homeassistant.reload_core_config
