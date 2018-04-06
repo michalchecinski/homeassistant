@@ -57,6 +57,8 @@ sun:
 
 sensor: !include_dir_merge_list sensors
 
+binary_sensor: !include_dir_merge_list binary_sensors
+
 camera:
   - platform: rpi_camera
 
