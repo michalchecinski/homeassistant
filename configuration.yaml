@@ -66,6 +66,12 @@ camera:
 tts:
   - platform: google
     language: 'pl'
+    
+device_tracker:
+  - platform: bluetooth_tracker
+    interval_seconds: 10
+    consider_home: 180
+    track_new_devices: yes
 
 # Cloud
 cloud:
