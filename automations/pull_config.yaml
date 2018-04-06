@@ -1,4 +1,4 @@
-- alias: Pull hass configuration when Travis build succeded
+  - alias: Pull hass configuration when Travis build succeded
     trigger:
       platform: state
       entity_id: binary_sensor.travis_status
