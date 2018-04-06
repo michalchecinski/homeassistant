@@ -68,10 +68,7 @@ tts:
     language: 'pl'
     
 device_tracker:
-  - platform: bluetooth_tracker
-    interval_seconds: 10
-    consider_home: 180
-    track_new_devices: yes
+  - platform: upc_connect
 
 # Cloud
 cloud:
