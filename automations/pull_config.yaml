@@ -2,7 +2,7 @@
     trigger:
       platform: state
       entity_id: binary_sensor.travis_status
-      state: 'on'
+      to: 'on'
     action:
       service: shell_command.pull_git_conf
       service: logbook.log
