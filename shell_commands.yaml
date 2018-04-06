@@ -1,1 +1,1 @@
-pull_git_conf: 'bash bash/git_pull.sh'
+pull_git_conf: 'bash home/homeassistant/.homeassistant/bash/git_pull.sh'
