@@ -5,8 +5,4 @@
       to: 'on'
     action:
       service: shell_command.pull_git_conf
-      service: logbook.log
-      data:
-        name: "Zaciągnięta konfiguracja: "
-        message: sensor.travis_status_label
       service: homeassistant.reload_core_config
