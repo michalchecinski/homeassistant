@@ -1,5 +1,5 @@
 - name: Politechnika
   latitude: 52.221201
   longitude: 21.008086
-  radius: 400
+  radius: 300
   icon: mdi:school
