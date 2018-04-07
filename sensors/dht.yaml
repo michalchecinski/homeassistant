@@ -1,6 +1,6 @@
-  platform: dht
-  sensor: DHT22
-  pin: 14
-  monitored_conditions:
-    - temperature
-    - humidity
+  - platform: dht
+    sensor: DHT11
+    pin: 14
+    monitored_conditions:
+      - temperature
+      - humidity
