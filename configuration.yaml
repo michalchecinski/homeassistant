@@ -85,7 +85,7 @@ mqtt:
   password: !secret mqtt_pass
 
 group: !include groups.yaml
-automation: !include_dir_merge_list automations
+automation: !include automations.yaml
 script: !include scripts.yaml
 zone: !include zones.yaml
 shell_command: !include shell_commands.yaml
