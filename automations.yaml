@@ -1,6 +1,7 @@
-  - alias: Pull hass configuration when Travis build succeded
+  - id: pull_config
+    alias: Pull hass configuration when Travis build succeded
     trigger:
-      platform: state
+    - platform: state
       entity_id: binary_sensor.travis_status
       to: 'on'
     action:
