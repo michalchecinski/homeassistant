@@ -3,7 +3,7 @@ weather:
   icon: mdi:weather-cloudy
   view: yes
   entities:
-    - sensor.sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
+    - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
     - sensor.waqi_krucza_warszawa_mazowieckie_poland
     - sensor.waqi_puszczy_solskiej_warszawa_mazowieckie_poland
     - sun.sun
