@@ -68,7 +68,7 @@ tts:
     language: 'pl'
     
 device_tracker:
-  - platform: upc_connect
+  #- platform: upc_connect
 
 # Cloud
 cloud:
