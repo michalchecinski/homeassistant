@@ -3,8 +3,22 @@ weather:
   icon: mdi:weather-cloudy
   view: yes
   entities:
-    - sensor.waqi
+    - sensor.sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
+    - sensor.waqi_krucza_warszawa_mazowieckie_poland
+    - sensor.waqi_puszczy_solskiej_warszawa_mazowieckie_poland
     - sun.sun
     - sensor.outside_temperature
     - sensor.outside_humidity
     - sensor.yweather_temperature_min
+    
+configuration:
+  name: Configuration
+  icon: mdi:settings
+  view: yes
+  entities:
+    - binary_sensor.travis_status
+    - sensor.travis_status_label
+    - sensor.uptime
+    - sensor.speedtest_download
+    - sensor.speedtest_upload
+    - sensor.speedtest_ping
