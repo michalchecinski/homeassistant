@@ -5,4 +5,4 @@
       to: 'on'
     action:
       service: shell_command.pull_git_conf
-      service: homeassistant.reload_core_config
+      service: homeassistant.restart
