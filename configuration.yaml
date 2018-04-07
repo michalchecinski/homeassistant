@@ -67,7 +67,7 @@ tts:
   - platform: google
     language: 'pl'
     
-device_tracker:
+#device_tracker:
   #- platform: upc_connect
 
 # Cloud
