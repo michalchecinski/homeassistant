@@ -1,5 +1,4 @@
 #!/bin/bash
 
-cd "/home/pi/homeassistant/"
+cd "/home/homeassistant/.homeassistant/"
 git pull
-sudo cp /home/pi/homeassistant/. /home/homeassistant/.homeassistant/ -rf
