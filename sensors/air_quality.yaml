@@ -2,3 +2,6 @@
   token: !secret air_token
   locations:
     - warsaw
+  stations:
+    - Marszałkowska
+    - Komunikacyjna
