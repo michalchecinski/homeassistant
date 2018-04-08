@@ -1,15 +1,36 @@
-weather:
-  name: Weather
+default_view:
+    view: yes
+    icon: mdi:home
+    entities:
+      - group.climate
+      - group.configuration
+      - camera.raspberry_pi_camera
+
+climate:
+  name: Climate
   icon: mdi:weather-cloudy
   view: yes
   entities:
+    - sun.sun
     - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
     - sensor.waqi_krucza_warszawa_mazowieckie_poland
     - sensor.waqi_puszczy_solskiej_warszawa_mazowieckie_poland
-    - sun.sun
     - sensor.outside_temperature
-    - sensor.outside_humidity
-    - sensor.yweather_temperature_min
+    - sensor.dht_sensor_humidity
+    - sensor.dht_sensor_temperature
+    - group.weather-predictions
+    
+weather-predictions:
+  name: Weather prediction
+  view: no
+  entities:
+    - sensor.weather_symbol
+    - sensor.weather_temperature
+    - sensor.weather_precipitation
+    - sensor.weather_pressure
+    - sensor.weather_humidity
+    - sensor.weather_cloudiness
+     -sensor.weather_fog
     
 configuration:
   name: Configuration
@@ -22,3 +43,15 @@ configuration:
     - sensor.speedtest_download
     - sensor.speedtest_upload
     - sensor.speedtest_ping
+    
+automations:
+  name: Automations
+  view: yes
+  entities:
+    - group.all_automations
+    
+cameras:
+  name: Cameras
+  view: yes
+  entities:
+    - camera.raspberry_pi_camera
