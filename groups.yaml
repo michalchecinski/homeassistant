@@ -4,7 +4,6 @@ default_view:
     entities:
       - group.climate
       - group.configuration
-      - camera.raspberry_pi_camera
 
 climate:
   name: Climate
@@ -21,7 +20,7 @@ climate:
     - group.forecast
     
 forecast:
-  name: Weather prediction
+  name: Weather prediction 24 hours
   view: no
   entities:
     - sensor.weather_symbol
@@ -52,6 +51,7 @@ automations:
     
 cameras:
   name: Cameras
+  icon: mdi:cctv
   view: yes
   entities:
     - camera.raspberry_pi_camera
