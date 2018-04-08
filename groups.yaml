@@ -30,7 +30,7 @@ forecast:
     - sensor.weather_humidity
     - sensor.weather_cloudiness
     - sensor.weather_fog
-    - sensor.openweathermap
+    - sensor.owm_condition
     
 configuration:
   name: Configuration
