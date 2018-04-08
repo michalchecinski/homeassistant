@@ -18,9 +18,9 @@ climate:
     - sensor.outside_temperature
     - sensor.dht_sensor_humidity
     - sensor.dht_sensor_temperature
-    - group.weather-predictions
+    - group.forecast
     
-weather-predictions:
+forecast:
   name: Weather prediction
   view: no
   entities:
