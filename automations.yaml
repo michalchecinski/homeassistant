@@ -5,6 +5,6 @@
       entity_id: binary_sensor.travis_status
       to: 'on'
     action:
-      - service: shell_command.pull_git_conf
-      - delay: '00:00:10'
-      - service: homeassistant.restart
+    - service: shell_command.pull_git_conf
+    - delay: '00:00:10'
+    - service: homeassistant.restart
