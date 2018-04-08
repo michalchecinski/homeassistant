@@ -61,6 +61,7 @@ binary_sensor: !include_dir_merge_list binary_sensors
 
 camera:
   - platform: rpi_camera
+    image_quality: 15
 
 # Text to speech
 tts:
