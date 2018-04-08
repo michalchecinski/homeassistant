@@ -30,7 +30,7 @@ weather-predictions:
     - sensor.weather_pressure
     - sensor.weather_humidity
     - sensor.weather_cloudiness
-     -sensor.weather_fog
+    - sensor.weather_fog
     
 configuration:
   name: Configuration
