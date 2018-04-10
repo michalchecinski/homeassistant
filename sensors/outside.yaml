@@ -1,7 +1,3 @@
   - platform: mqtt
     state_topic: "outside/temperature"
     name: "outside_temperature"
-
-  - platform: mqtt
-    state_topic: "outside/humidity"
-    name: "outside_humidity"
