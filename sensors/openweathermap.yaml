@@ -4,4 +4,7 @@
     longitude: !secret home_lon
     monitored_conditions:
       - weather
+      - temperature
+      - rain
+      - snow
     forecast:
