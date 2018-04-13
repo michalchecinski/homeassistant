@@ -12,8 +12,6 @@ climate:
   entities:
     - sun.sun
     - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
-    - sensor.waqi_krucza_warszawa_mazowieckie_poland
-    - sensor.waqi_puszczy_solskiej_warszawa_mazowieckie_poland
     - sensor.outside_temperature
     - sensor.dht_sensor_humidity
     - sensor.dht_sensor_temperature
