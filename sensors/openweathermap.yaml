@@ -7,4 +7,4 @@
       - temperature
       - rain
       - snow
-    forecast:
+    forecast: 12
