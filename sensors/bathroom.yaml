@@ -1,3 +1,10 @@
   - platform: mqtt
     state_topic: "bathroom/leakage"
     name: "Leak sensor"
+    expier_after: 35
+    
+  - platform: mqtt
+    state_topic: "bathroom/battery"
+    name: "Leak battery"
+    unit_of_measurement: "V"
+    icon: mdi:battery-80
