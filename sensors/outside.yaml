@@ -1,3 +1,9 @@
   - platform: mqtt
     state_topic: "outside/temperature"
     name: "outside_temperature"
+    
+  - platform: mqtt
+    state_topic: "outside/battery"
+    name: "Outside battery"
+    unit_of_measurement: "V"
+    icon: mdi:battery-80
