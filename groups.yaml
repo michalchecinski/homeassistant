@@ -38,6 +38,7 @@ configuration:
     - binary_sensor.travis_status
     - sensor.travis_status_label
     - sensor.uptime
+    - group.system
     
 automations:
   name: Automations
@@ -51,3 +52,12 @@ cameras:
   view: yes
   entities:
     - camera.raspberry_pi_camera
+    
+system:
+  name: System status
+  view: no
+  entities:
+    - sensor.processor_use
+    - sensor.load_15m
+    - sensor.memory_use_percent
+    - sensor.swap_use_percent
