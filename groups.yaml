@@ -4,6 +4,7 @@ default_view:
     entities:
       - group.climate
       - group.configuration
+      - media_player.salon
 
 climate:
   name: Climate
