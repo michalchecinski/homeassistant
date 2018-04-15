@@ -78,6 +78,11 @@ cloud:
 #ifttt:
   #key: !secret ifttt_key
 
+media_player:
+  - platform: mpd
+    host: 127.0.0.1
+    name: Salon
+  
 # MQTT
 mqtt:
   broker: 127.0.0.1
