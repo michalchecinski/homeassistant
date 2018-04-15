@@ -38,9 +38,6 @@ configuration:
     - binary_sensor.travis_status
     - sensor.travis_status_label
     - sensor.uptime
-    - sensor.speedtest_download
-    - sensor.speedtest_upload
-    - sensor.speedtest_ping
     
 automations:
   name: Automations
