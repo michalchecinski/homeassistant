@@ -1,0 +1,4 @@
+  - platform: mqtt
+    name: "Snips.ai hotword detected"
+    state_topic: "hermes/hotword/default/detected"
+    value_template: "{% if value_json.siteId %} ON {%else%} OFF {% endif %}"
