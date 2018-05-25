@@ -19,3 +19,11 @@
       data:
         topic: hermes/dialogueManager/endSession
         payload_template: "{{ 'text': 'Inside is {{ states.sensor.dht_sensor_temperature }} celsius degrees.', 'session_id': 'c96711cb-0932-458c-97bf-d0eeb3266c7e' }}"
+
+  - id: off_mopidy
+    alias: Turn mopidy off when saying via Snips
+    trigger:
+    - platform: mqtt
+      topic: hermes/dialogueManager/endSession
+    action:
+    - service: media_player.turn_off
