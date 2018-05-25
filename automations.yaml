@@ -8,3 +8,14 @@
     - service: shell_command.pull_git_conf
     - delay: '00:00:10'
     - service: homeassistant.restart
+
+  - id: temperature
+    alias: Say temperature
+    trigger:
+    - platform: mqtt
+      topic: hermes/intent/mi_checinski:temperature
+    action:
+    - service: mqtt.publish
+      data:
+        topic: hermes/dialogueManager/endSession
+        payload_template: "{{ 'text': 'Inside is {{ states.sensor.dht_sensor_temperature }} celsius degrees.', 'session_id': 'c96711cb-0932-458c-97bf-d0eeb3266c7e' }}"
