@@ -70,6 +70,9 @@ tts:
     
 device_tracker:
   - platform: upc_connect
+  - platform: google_maps
+    username: !secret gmaps_user
+    password: !secret gmaps_password
 
 # Cloud
 cloud:
