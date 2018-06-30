@@ -43,7 +43,7 @@ configuration:
     
 automations:
   name: Automations
-  icon: mdi.autorenew
+  icon: mdi:autorenew
   view: yes
   entities:
     - group.all_automations
