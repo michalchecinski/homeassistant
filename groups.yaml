@@ -6,6 +6,8 @@ default_view:
       - group.climate
       - group.configuration
       - media_player.salon
+      - group.location
+      - device_tracker.google_maps_102169435937546415265
 
 climate:
   name: Climate
@@ -41,6 +43,7 @@ configuration:
     
 automations:
   name: Automations
+  icon: mdi.autorenew
   view: yes
   entities:
     - group.all_automations
@@ -60,3 +63,10 @@ system:
     - sensor.load_15m
     - sensor.memory_use_percent
     - sensor.swap_use_percent
+    
+location:
+  name: Devices location
+  icon: mdi:location_on
+  view: yes
+  entities:
+    - device_tracker.google_maps_102169435937546415265
