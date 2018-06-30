@@ -1,1 +1,2 @@
 pull_git_conf: 'bash /home/homeassistant/.homeassistant/bash/git_pull.sh'
+restart_mopidy: 'bash /home/homeassistant/.homeassistant/bash/restart_mopidy.sh'
