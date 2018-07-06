@@ -9,3 +9,6 @@ group.configuration:
   
 switch.b3:
   friendly_name: Żelazko
+
+switch.b2:
+  friendly_name: Komputer
