@@ -59,8 +59,8 @@
       above: 95      
     action:
       - service: switch.turn_off
-        entities:
-          - switch.b2
+        data:
+          entity_id: switch.b2
       
   - id: sleep_off
     alias: Power computer on when no sleep 
@@ -71,8 +71,8 @@
       to: 'off'   
     action:
       - service: switch.turn_on
-        entities:
-          - switch.b2
+        data:
+          entity_id: switch.b2
       
   - id: alarm_on
     alias: Lights up when alarm goes off 
@@ -82,10 +82,10 @@
       from: 'off'
       to: 'on'   
     action:
-    - service: switch.turn_off
-      entities:
-        - switch.b1
-    - delay: 0:10
-    - service: switch.turn_on
-      entities:
-          - switch.b1
+      - service: switch.turn_off
+        data:
+          entity_id: switch.b1
+      - delay: '00:10:00'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.b1
