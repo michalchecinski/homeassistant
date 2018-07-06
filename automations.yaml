@@ -54,9 +54,9 @@
       from: 'off'
       to: 'on'
     condition:
-    - condition: state
-      entity_id: 'sensor.thinkpad_battery'
-      above: 95      
+      - condition: state
+        entity_id: 'sensor.thinkpad_battery'
+        above: 95      
     action:
       - service: switch.turn_off
         data:
