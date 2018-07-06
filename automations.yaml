@@ -38,10 +38,10 @@
       condition: or
       conditions:
       - condition:
-        entity_id: 'media_player.salon'
+        entity_id: media_player.salon
         state: 'off'
       - condition: state
-        entity_id: 'media_player.salon'
+        entity_id: media_player.salon
         state: 'paused'      
     action:
     - service: shell_command.restart_mopidy
