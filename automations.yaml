@@ -83,8 +83,8 @@
       to: 'on'   
     action:
     - service: switch.turn_off
-        entities:
-          - switch.b1
+      entities:
+        - switch.b1
     - delay: 0:10
     - service: switch.turn_on
         entities:
