@@ -1,0 +1,4 @@
+  - platform: mqtt
+    state_topic: "thinkpad/battery"
+    name: "Thinkpad battery"
+    unit_of_measurement: '%'
