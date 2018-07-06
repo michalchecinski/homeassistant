@@ -34,5 +34,14 @@
     - platform: time
       minutes: 00
       seconds: 00
+    conditions:
+    - condition:
+      entity_id: media_player.salon
+      state: 'off'
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: media_player.salon
+          state: 'paused'      
     action:
     - service: shell_command.restart_mopidy
