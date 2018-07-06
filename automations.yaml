@@ -76,7 +76,7 @@
     alias: Lights up when alarm goes off 
     trigger:
     - platform: state
-      entity_id: binary_sensor.sleep
+      entity_id: binary_sensor.sleep_alarm
       from: 'off'
       to: 'on'   
     action:
@@ -84,4 +84,6 @@
       state: 'on'
     - delay: 0:10
     - service: switch.b1
+      state: 'off'
+    - service: binary_sensor.sleep_alarm
       state: 'off'
