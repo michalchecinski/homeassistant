@@ -46,3 +46,20 @@
     action:
     - service: shell_command.restart_mopidy
     
+  - id: sleep_on
+    alias: Power off when sleep 
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.sleep
+      from: 'off'
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: 'sensor.thinkpad_battery'
+        above: 95      
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.b2
+      
+ 
