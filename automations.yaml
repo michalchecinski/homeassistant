@@ -50,7 +50,7 @@
     alias: Power off when sleep 
     trigger:
     - platform: state
-      entity_id: sensor.sleep
+      entity_id: binary_sensor.sleep
       from: 'off'
       to: 'on'
     condition:
@@ -65,9 +65,10 @@
     alias: Power computer on when no sleep 
     trigger:
     - platform: state
-      entity_id: sensor.sleep
+      entity_id: binary_sensor.sleep
       from: 'on'
       to: 'off'   
     action:
     - service: switch.b2
       state: 'on'
+      
