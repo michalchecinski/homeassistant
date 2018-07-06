@@ -80,10 +80,10 @@
       from: 'off'
       to: 'on'   
     action:
-    - service: switch.b1
-      state: 'on'
+    - service: switch.turn_off
+        entities:
+          - switch.b1
     - delay: 0:10
-    - service: switch.b1
-      state: 'off'
-    - service: binary_sensor.sleep_alarm
-      state: 'off'
+    - service: switch.turn_on
+        entities:
+          - switch.b1
