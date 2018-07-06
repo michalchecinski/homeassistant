@@ -1,5 +1,5 @@
   - platform: rpi_rf
-    gpio: 17
+    gpio: 15
     switches:
       A1:
         code_on: 14013452
