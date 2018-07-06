@@ -58,8 +58,9 @@
       entity_id: 'sensor.thinkpad_battery'
       above: 95      
     action:
-    - service: switch.b2
-      state: 'off'
+      - service: switch.turn_off
+        entities:
+          - switch.b2
       
   - id: sleep_off
     alias: Power computer on when no sleep 
@@ -69,8 +70,9 @@
       from: 'on'
       to: 'off'   
     action:
-    - service: switch.b2
-      state: 'on'
+      - service: switch.turn_on
+        entities:
+          - switch.b2
       
   - id: alarm_on
     alias: Lights up when alarm goes off 
