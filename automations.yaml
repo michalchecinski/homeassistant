@@ -141,3 +141,13 @@
         data:
           entity_id: input_number.led_brightness_slider
           value: 25
+
+  - id: temperature_sensor_battery_dead
+    alias: Notify when temperature sensor is not sending data
+    trigger:
+      platform: mqtt
+      topic: 'outside/temperature'
+    action:
+      - - delay: '00:05'
+      - service: ifttt.trigger
+        data: {"event":"hass_notify", "value1":"Battery dead", "value2":"Outside temperature sensor battery dead"}
