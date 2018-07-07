@@ -79,8 +79,8 @@ device_tracker:
 cloud:
 
 #IFTTT
-#ifttt:
-  #key: !secret ifttt_key
+ifttt:
+  key: !secret ifttt_key
 
 media_player:
   - platform: mpd
