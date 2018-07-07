@@ -77,3 +77,10 @@ switches:
   view: yes
   entities:
     - group.all_switches
+    
+led:
+  name: LED
+  view: yes
+  entities:
+    - switch.led
+    - input_select.led_brightness_select
