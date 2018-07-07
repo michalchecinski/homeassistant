@@ -147,17 +147,12 @@
     trigger:
       platform: mqtt
       topic: 'outside/temperature'
-    condition:
-      - condition: state
-        entity_id: script.notify_temperature_dead
-        state: 'off'
-      - delay: '00:00:10'
-      - condition: state
-        entity_id: script.notify_temperature_dead
-        state: 'on'
     action:
-      service: homeassistant.turn_on
-      entity_id: script.notify_temperature_dead
+      - service: homeassistant.turn_off
+        entity_id: script.notify_temperature_dead
+      - delay: '00:00:10'
+      - service: homeassistant.turn_off
+        entity_id: script.notify_temperature_dead
 
   - id: update_notification
     alias: Notification when hass update available
