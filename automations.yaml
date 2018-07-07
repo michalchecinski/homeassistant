@@ -151,5 +151,5 @@
       - delay: '00:30:00'
       - service: script.ifttt_notify
         data_template:
-          value1: "Battery dead",
+          value1: "Battery dead"
           value2: "Outside temperature sensor battery dead"
