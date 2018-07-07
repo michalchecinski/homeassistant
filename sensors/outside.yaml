@@ -1,6 +1,7 @@
   - platform: mqtt
     state_topic: "outside/temperature"
-    name: "outside_temperature"
+    name: "Temperature outside"
+    unit_of_measurement: "°C"
     
   - platform: mqtt
     state_topic: "outside/battery"
