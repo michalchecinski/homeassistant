@@ -1,0 +1,16 @@
+input_select:
+  led_brightness:
+    name: LED brightness
+    options:
+      - 100%
+      - 50%
+      - 25%
+    initial: '100%'
+
+input_number:
+  bedroom_brightness:
+    name: LED brightness
+    initial: 50
+    min: 0
+    max: 50
+    step: 1
