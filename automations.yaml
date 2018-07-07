@@ -89,3 +89,15 @@
       - service: switch.turn_on
         data:
           entity_id: switch.b2
+          
+  - id: iron_off_when_away
+    alias: Turn off iron switch when leaving home
+    trigger:
+    - platform: state
+      entity_id: device_tracker.google_maps_102169435937546415265
+      from: 'home'
+      to: 'not_home'   
+    action:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.b3
