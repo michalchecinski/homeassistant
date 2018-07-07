@@ -147,12 +147,13 @@
     trigger:
       platform: mqtt
       topic: 'outside/temperature'
+    condition:
+      - condition: state
+        entity_id: script.notify_temperature_dead
+        state: 'off'
     action:
-      - delay: '00:30:00'
-      - service: script.ifttt_notify
-        data_template:
-          value1: "Battery dead"
-          value2: "Outside temperature sensor battery dead"
+      service: homeassistant.turn_on
+      entity_id: script.notify_temperature_dead
 
   - id: update_notification
     alias: Notification when hass update available
