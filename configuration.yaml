@@ -101,4 +101,19 @@ zone: !include zones.yaml
 shell_command: !include shell_commands.yaml
 
 #input
-!include inputs.yaml
+input_select:
+  led_brightness_select:
+    name: LED brightness
+    options:
+      - 100%
+      - 50%
+      - 25%
+    initial: '100%'
+
+input_number:
+  led_brightness_slider:
+    name: LED brightness
+    initial: 50
+    min: 0
+    max: 50
+    step: 1
