@@ -149,10 +149,12 @@
       topic: 'outside/temperature'
     action:
       - service: homeassistant.turn_off
-        entity_id: script.notify_temperature_dead
+        data:
+          entity_id: script.notify_temperature_dead
       - delay: '00:00:10'
       - service: homeassistant.turn_on
-        entity_id: script.notify_temperature_dead
+        data:
+          entity_id: script.notify_temperature_dead
 
   - id: update_notification
     alias: Notification when hass update available
