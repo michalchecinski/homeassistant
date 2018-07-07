@@ -12,3 +12,6 @@ switch.b3:
 
 switch.b1:
   friendly_name: Komputer
+  
+group.all_switches:
+  hidden: false
