@@ -148,6 +148,6 @@
       platform: mqtt
       topic: 'outside/temperature'
     action:
-      - - delay: '00:05'
+      - delay: '00:05'
       - service: ifttt.trigger
         data: {"event":"hass_notify", "value1":"Battery dead", "value2":"Outside temperature sensor battery dead"}
