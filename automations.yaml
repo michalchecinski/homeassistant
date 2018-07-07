@@ -101,3 +101,31 @@
       - service: switch.turn_off
         data:
           entity_id: switch.b3
+
+          
+  - id: led_100
+    alias: LED brightness 100%
+    trigger:
+      platform: state
+      entity_id: input_select.led_brightness_select
+      to: 100%
+    action:
+      - service: shell_command.led_brightness_100
+      
+  - id: led_50
+    alias: LED brightness 50%
+    trigger:
+      platform: state
+      entity_id: input_select.led_brightness_select
+      to: 50%
+    action:
+      - service: shell_command.led_brightness_50
+      
+  - id: led_25
+    alias: LED brightness 25%
+    trigger:
+      platform: state
+      entity_id: input_select.led_brightness_select
+      to: 25%
+    action:
+      - service: shell_command.led_brightness_25
