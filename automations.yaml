@@ -153,3 +153,14 @@
         data_template:
           value1: "Battery dead"
           value2: "Outside temperature sensor battery dead"
+
+  - id: update_notification
+    alias: Notification when hass update available
+    trigger:
+      - platform: state
+        entity_id: updater.updater
+    action:
+      - service: script.ifttt_notify
+        data_template:
+          value1: "Update"
+          value2: "There is a new Home Assistant release available."
