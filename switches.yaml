@@ -13,3 +13,6 @@
       B3:
         code_on: 7691276
         code_off: 7691275
+      led:
+        code_on: 6670849
+        code_off: 6670849
