@@ -151,6 +151,11 @@
       - condition: state
         entity_id: script.notify_temperature_dead
         state: 'off'
+      - delay:
+        seconds: 10
+      - condition: state
+        entity_id: script.notify_temperature_dead
+        state: 'on'
     action:
       service: homeassistant.turn_on
       entity_id: script.notify_temperature_dead
