@@ -16,7 +16,7 @@ climate:
   entities:
     - sun.sun
     - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
-    - sensor.outside_temperature
+    - sensor.temperature_outside
     - sensor.dht_sensor_humidity
     - sensor.dht_sensor_temperature
     - group.forecast
