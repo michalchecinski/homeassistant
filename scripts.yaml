@@ -2,3 +2,13 @@
     sequence:
       - service: ifttt.trigger
         data_template: {"event":"hass_notify", "value1":"{{ value1 }}", "value2":"{{ value2 }}"}
+
+  notify_temperature:
+    alias: "Send notification when outside temperature sensor isn't sending data after 30 minutes"
+    sequence:
+      - delay:
+          minutes: 30
+      - service: script.ifttt_notify
+        data_template:
+          value1: "Battery dead"
+          value2: "Outside temperature sensor battery dead"
