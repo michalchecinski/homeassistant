@@ -76,7 +76,4 @@ switches:
   icon: mdi:flash
   view: yes
   entities:
-    - switch.a1
-    - switch.b1
-    - switch.b2
-    - switch.b3
+    - group.all_switches
