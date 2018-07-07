@@ -1,5 +1,5 @@
 input_select:
-  led_brightness:
+  led_brightness_select:
     name: LED brightness
     options:
       - 100%
@@ -8,7 +8,7 @@ input_select:
     initial: '100%'
 
 input_number:
-  bedroom_brightness:
+  led_brightness_slider:
     name: LED brightness
     initial: 50
     min: 0
