@@ -113,7 +113,12 @@ input_select:
 input_number:
   led_brightness_slider:
     name: LED brightness
-    initial: 50
-    min: 0
-    max: 50
-    step: 1
+    initial: 100
+    min: 20
+    max: 100
+    step: 20
+
+input_boolean:
+  michal_home:
+    name: Michal at home
+    initial: off
