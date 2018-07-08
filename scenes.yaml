@@ -1,2 +1,4 @@
   - name: Romantic
     entities:
+      switch.led: on
+      input_select.led_brightness_select: '25%'       

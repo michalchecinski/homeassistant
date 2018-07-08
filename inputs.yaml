@@ -10,7 +10,7 @@ input_select:
 input_number:
   led_brightness_slider:
     name: LED brightness
-    initial: 50
-    min: 0
-    max: 50
-    step: 1
+    initial: 100
+    min: 10
+    max: 100
+    step: 20
