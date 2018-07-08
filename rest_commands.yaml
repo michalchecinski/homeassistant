@@ -1,4 +1,4 @@
   play_ed_playlist:
     url: "http://192.168.0.100:6680/mopidy/rpc"
     method: "POST"
-    payload: ‘[{"jsonrpc":"2.0","id":1,"method":"core.tracklist.clear"},{"jsonrpc":"2.0","id":2,"method":"core.tracklist.add","params":{"uri":"spotify:user:checin:playlist:Ed"}},{"jsonrpc":"2.0","method":"core.playback.play","id":3}]’
+    payload: ‘[{"jsonrpc":"2.0","id":1,"method":"core.tracklist.clear"},{"jsonrpc":"2.0","id":2,"method":"core.tracklist.add","params":{"uri":"spotify:user:checin:playlist:6zCAgAu64rijpx4WiDoOKM"}},{"jsonrpc":"2.0","method":"core.playback.play","id":3}]’
