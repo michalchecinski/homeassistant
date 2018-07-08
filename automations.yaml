@@ -94,10 +94,7 @@
       from: 'on'
       to: 'off'   
     action:
-      - service: switch.turn_off
-        data:
-          entity_id: switch.b3
-
+      - service: script.away_home
 
   - id: away
     alias: Turn off off boolean when leaving home
