@@ -52,7 +52,11 @@
     - platform: state
       entity_id: binary_sensor.sleep
       from: 'off'
-      to: 'on'      
+      to: 'on'
+    condition:
+      condition: state
+      entity_id: input_boolean.michal_home
+      state: 'on'      
     action:
       - service: switch.turn_off
         data:
@@ -64,7 +68,11 @@
     - platform: state
       entity_id: binary_sensor.sleep
       from: 'on'
-      to: 'off'   
+      to: 'off'  
+    condition:
+      condition: state
+      entity_id: input_boolean.michal_home
+      state: 'on' 
     action:
       - service: switch.turn_on
         data:
