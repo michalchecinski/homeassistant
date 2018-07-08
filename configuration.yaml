@@ -99,7 +99,7 @@ automation: !include automations.yaml
 script: !include scripts.yaml
 zone: !include zones.yaml
 shell_command: !include shell_commands.yaml
-scene: !include scenes.yaml
+#scene: !include scenes.yaml
 
 #input
 input_select:
