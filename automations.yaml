@@ -52,11 +52,7 @@
     - platform: state
       entity_id: binary_sensor.sleep
       from: 'off'
-      to: 'on'
-#    condition:
-#      - condition: state
-#        entity_id: 'sensor.thinkpad_battery'
-#        above: 95      
+      to: 'on'      
     action:
       - service: switch.turn_off
         data:
@@ -82,11 +78,11 @@
       from: 'off'
       to: 'on'   
     action:
-      - service: switch.turn_off
+      - service: switch.turn_on
         data:
           entity_id: switch.b2
       - delay: '00:10:00'
-      - service: switch.turn_on
+      - service: switch.turn_off
         data:
           entity_id: switch.b2
           
@@ -94,14 +90,36 @@
     alias: Turn off iron switch when leaving home
     trigger:
     - platform: state
-      entity_id: device_tracker.google_maps_102169435937546415265
-      from: 'home'
-      to: 'not_home'   
+      entity_id: input_boolean.michal_home
+      from: 'on'
+      to: 'off'   
     action:
       - service: switch.turn_off
         data:
           entity_id: switch.b3
 
+
+  - id: away
+    alias: Turn off off boolean when leaving home
+    trigger:
+    - platform: state
+      entity_id: device_tracker.google_maps_102169435937546415265
+      to: 'not_home'
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.michal_home
+
+  - id: at_home
+    alias: Turn on boolean when at home
+    trigger:
+    - platform: state
+      entity_id: device_tracker.google_maps_102169435937546415265
+      to: 'home'
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.michal_home
           
   - id: led_100
     alias: LED brightness 100%
