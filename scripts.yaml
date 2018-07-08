@@ -12,3 +12,13 @@
     sequence:
       - service: ifttt.trigger
         data_template: {"event":"hass_notify", "value1":"{{ value1 }}", "value2":"{{ value2 }}"}
+
+  away_home:
+    alias: "Script for leaving home"
+    sequence:
+      - service: switch.turn_off
+        data:
+          entity_id: switch.b3, switch.led
+      - service: media_player.media_pause
+        data:
+          entity_id: media_player.salon
