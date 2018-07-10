@@ -101,6 +101,7 @@ zone: !include zones.yaml
 shell_command: !include shell_commands.yaml
 #scene: !include scenes.yaml
 rest_command: !include rest_commands.yaml
+light: !include lights.yaml
 
 #input
 input_select:
