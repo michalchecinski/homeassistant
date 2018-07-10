@@ -253,17 +253,17 @@
         entity_id: input_boolean.vacation_mode
 
 # Turn off Vacation Mode when Home
-- id: vacation_off
-  alias: Vacation - Turn off when Home
-  trigger:
-    - platform: state
-      entity_id: input_boolean.michal_home
-      from: 'off'
-      to: 'on'
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_home_away
-#      state: 'off'
-  action:
-    - service: homeassistant.turn_off
-      entity_id: input_boolean.vacation_mode
+  - id: vacation_off
+    alias: Vacation - Turn off when Home
+    trigger:
+      - platform: state
+        entity_id: input_boolean.michal_home
+        from: 'off'
+        to: 'on'
+#    condition:
+#      - condition: state
+#        entity_id: input_boolean.disable_home_away
+#        state: 'off'
+    action:
+      - service: homeassistant.turn_off
+        entity_id: input_boolean.vacation_mode
