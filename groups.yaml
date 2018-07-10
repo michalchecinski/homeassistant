@@ -43,14 +43,6 @@ configuration:
     - group.all_scripts
     - group.all_automations
     
-automations:
-  name: Automations
-  icon: mdi:autorenew
-  view: yes
-  entities:
-    - group.all_automations
-    - group.all_scripts
-    
 cameras:
   name: Cameras
   icon: mdi:cctv
