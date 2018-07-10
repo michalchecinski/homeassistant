@@ -93,6 +93,9 @@
       - service: switch.turn_off
         data:
           entity_id: switch.b1
+      - service: binary_sensor.turn_off
+        data:
+          entity_id: binary_sensor.sleep_alarm
           
   - id: iron_off_when_away
     alias: Turn off iron switch when leaving home
