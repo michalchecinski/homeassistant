@@ -66,13 +66,6 @@ system:
     - sensor.load_15m
     - sensor.memory_use_percent
     - sensor.swap_use_percent
-    
-location:
-  name: Devices location
-  icon: mdi:location
-  view: yes
-  entities:
-    - device_tracker.google_maps_102169435937546415265
 
 #switches:
 #  name: Switches
