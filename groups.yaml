@@ -40,6 +40,8 @@ configuration:
     - sensor.travis_status_label
     - sensor.uptime
     - group.system
+    - group.all_automations
+    - group.all_scripts
     
 automations:
   name: Automations
