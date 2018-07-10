@@ -72,12 +72,12 @@ location:
   entities:
     - device_tracker.google_maps_102169435937546415265
 
-switches:
-  name: Switches
-  icon: mdi:flash
-  view: yes
-  entities:
-    - group.all_switches
+#switches:
+#  name: Switches
+#  icon: mdi:flash
+#  view: yes
+#  entities:
+#    - group.all_switches
     
 led:
   name: LED

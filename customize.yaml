@@ -15,6 +15,13 @@ switch.b1:
   
 group.all_switches:
   hidden: false
+  view: yes
+  icon: mdi:flash
 
 group.all_scripts:
   hidden: false
+
+group.all_lights:
+  hidden: false
+  view: yes
+  icon: mdi:lightbulb
