@@ -120,7 +120,4 @@ input_number:
     max: 100
     step: 20
 
-input_boolean:
-  michal_home:
-    name: Michal at home
-    initial: off
+input_boolean: !include input_boolean.yaml
