@@ -11,7 +11,7 @@ switch.b3:
   friendly_name: Żelazko
 
 switch.b1:
-  friendly_name: Komputer
+  friendly_name: Lampka przy łóżku
   
 group.all_switches:
   hidden: false
