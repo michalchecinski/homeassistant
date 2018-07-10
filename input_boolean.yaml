@@ -1,3 +1,7 @@
   michal_home:
     name: Michal at home
     initial: off
+
+  vacation_mode:
+    name: Vacation mode
+    initial: off
