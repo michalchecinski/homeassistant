@@ -97,7 +97,7 @@
     action:
       - service: switch.turn_off
         data:
-          entity_id: switch.b2
+          entity_id: switch.b2, switch.b1
 
 # Automation after wake up
   - id: sleep_off
