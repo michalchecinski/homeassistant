@@ -60,7 +60,7 @@
     action:
       - service: switch.turn_off
         data:
-          entity_id: switch.b1
+          entity_id: switch.b2
       
   - id: sleep_off
     alias: Power computer on when no sleep 
@@ -76,7 +76,7 @@
     action:
       - service: switch.turn_on
         data:
-          entity_id: switch.b1
+          entity_id: switch.b2
       
   - id: alarm_on
     alias: Lights up when alarm goes off 
@@ -88,11 +88,11 @@
     action:
       - service: switch.turn_on
         data:
-          entity_id: switch.b2
+          entity_id: switch.b1
       - delay: '00:10:00'
       - service: switch.turn_off
         data:
-          entity_id: switch.b2
+          entity_id: switch.b1
           
   - id: iron_off_when_away
     alias: Turn off iron switch when leaving home
