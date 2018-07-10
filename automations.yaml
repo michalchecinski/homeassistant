@@ -1,3 +1,4 @@
+
 ############################################
 #  Home assistant maintanance automations  #
 ############################################
@@ -247,9 +248,9 @@
           value1: "Update"
           value2: "There is a new Home Assistant release available."
 
-#################################################################
-## Vacation Mode Automations
-#################################################################
+###############################
+#  Vacation Mode Automations  #
+###############################
 
 # Turn on Vacation Mode when Gone 24 Hours
 - id: vacation_on
