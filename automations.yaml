@@ -253,23 +253,23 @@
 ###############################
 
 # Turn on Vacation Mode when Gone 24 Hours
-- id: vacation_on
-  alias: Vacation - Turn on when Gone 24 Hours
-  trigger:
-    - platform: state
-      entity_id: input_boolean.michal_home
-      state: 'off'
-      for:
-        hours: 24
-        minutes: 0
-        seconds: 0
-#  condition:
-#    - condition: state
-#      entity_id: input_boolean.disable_home_away
-#      state: 'off'
-  action:
-    - service: homeassistant.turn_on
-      entity_id: input_boolean.vacation_mode
+  - id: vacation_on
+    alias: Vacation - Turn on when Gone 24 Hours
+    trigger:
+      - platform: state
+        entity_id: input_boolean.michal_home
+        state: 'off'
+        for:
+          hours: 24
+          minutes: 0
+          seconds: 0
+#    condition:
+#      - condition: state
+#        entity_id: input_boolean.disable_home_away
+#        state: 'off'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: input_boolean.vacation_mode
 
 # Turn off Vacation Mode when Home
 - id: vacation_off
