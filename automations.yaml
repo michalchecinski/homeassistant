@@ -1,9 +1,9 @@
 
-############################################
-#  Home assistant maintanance automations  #
-############################################
+ ############################################
+ #  Home assistant maintanance automations  #
+ ############################################
 
-#Pull config when travis build succedeed
+ #Pull config when travis build succedeed
   - id: pull_config
     alias: Pull hass configuration when Travis build succeded
     trigger:
