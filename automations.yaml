@@ -1,3 +1,8 @@
+############################################
+#  Home assistant maintanance automations  #
+############################################
+
+#Pull config when travis build succedeed
   - id: pull_config
     alias: Pull hass configuration when Travis build succeded
     trigger:
@@ -9,6 +14,31 @@
     - delay: '00:00:10'
     - service: homeassistant.restart
 
+# Restart mopidy service every hour when it's no playing
+  - id: restart_mopidy
+    alias: Restart mopidy service 
+    trigger:
+    - platform: time
+      minutes: 00
+      seconds: 00
+    condition:
+      condition: or
+      conditions:
+      - condition: state
+        entity_id: 'media_player.salon'
+        state: 'off'
+      - condition: state
+        entity_id: 'media_player.salon'
+        state: 'paused'      
+    action:
+    - service: shell_command.restart_mopidy
+
+
+#######################
+#  Snips automations  #
+#######################
+
+# Saying current temperature via snips
   - id: temperature
     alias: Say temperature
     trigger:
@@ -20,6 +50,7 @@
         topic: hermes/dialogueManager/endSession
         payload_template: "{{ 'text': 'Inside is {{ states.sensor.dht_sensor_temperature }} celsius degrees.', 'session_id': 'c96711cb-0932-458c-97bf-d0eeb3266c7e' }}"
 
+# Turn off mopidy when snips is saying
   - id: off_mopidy
     alias: Turn mopidy off when saying via Snips
     trigger:
@@ -46,6 +77,12 @@
     action:
     - service: shell_command.restart_mopidy
     
+
+##################################################################    
+#  Sleep automations (now fired by Sleep As Android and Tasker)  #
+##################################################################
+
+# Automation when going into sleep
   - id: sleep_on
     alias: Power off when sleep 
     trigger:
@@ -60,7 +97,8 @@
       - service: switch.turn_off
         data:
           entity_id: switch.b2
-      
+
+# Automation after wake up
   - id: sleep_off
     alias: Power computer on when no sleep 
     trigger:
@@ -76,7 +114,8 @@
       - service: switch.turn_on
         data:
           entity_id: switch.b2
-      
+
+# Automation when alarm is ringing
   - id: alarm_on
     alias: Lights up when alarm goes off 
     trigger:
@@ -106,6 +145,11 @@
     action:
       - service: script.away_home
 
+###############################################
+#  Set input boolean if user at home or away  #
+###############################################
+
+# Away home
   - id: away
     alias: Turn off off boolean when leaving home
     trigger:
@@ -117,6 +161,7 @@
         data:
           entity_id: input_boolean.michal_home
 
+# At home
   - id: at_home
     alias: Turn on boolean when at home
     trigger:
@@ -127,7 +172,11 @@
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.michal_home
-          
+
+########################################################
+#  Led brightness automations (fired by input_select)  #
+########################################################   
+
   - id: led_100
     alias: LED brightness 100%
     trigger:
@@ -166,7 +215,12 @@
         data:
           entity_id: input_number.led_brightness_slider
           value: 25
+          
+##############################
+#  Notification automations  #
+##############################
 
+# Notify when outside temperature sensor is dead
   - id: temperature_sensor_battery_dead
     alias: Notify when temperature sensor is not sending data
     trigger:
@@ -181,6 +235,7 @@
         data:
           entity_id: script.notify_temperature_dead
 
+# Notify when new home assistant version is live
   - id: update_notification
     alias: Notification when hass update available
     trigger:
