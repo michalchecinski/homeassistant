@@ -51,7 +51,6 @@
     trigger:
     - platform: state
       entity_id: binary_sensor.sleep
-      from: 'off'
       to: 'on'
     condition:
       condition: state
