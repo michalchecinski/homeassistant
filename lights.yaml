@@ -1,12 +1,14 @@
   - platform: template
     lights:
-      theater_lights:
+      led_lights:
         friendly_name: "LED"
         turn_on:
           service: switch.turn_on
+          data:
             entity_id: switch.led
         turn_off:
           service: switch.turn_off
+          data:
             entity_id: switch.led
         set_level:
           service: script.theater_lights_level
