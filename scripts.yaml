@@ -22,3 +22,11 @@
       - service: media_player.media_pause
         data:
           entity_id: media_player.salon
+
+  wake_up:
+    alias: "Script waking up"
+    sequence:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.b1
+      - service: rest_command.play_wakeup_playlist
