@@ -303,9 +303,8 @@
         to: 'playing'
     condition:
       - condition: state
-        data:
-          entity_id: switch.stereo_switch
-          state: 'off'
+        entity_id: switch.stereo_switch
+        state: 'off'
     action:
       service: switch.toggle
       data:
@@ -329,9 +328,8 @@
           seconds: 0
     condition:
       - condition: state
-        data:
-          entity_id: switch.stereo_switch
-          state: 'off'
+        entity_id: switch.stereo_switch
+        state: 'off'
     action:
       service: switch.toggle
       data:
