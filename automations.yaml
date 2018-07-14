@@ -281,7 +281,7 @@
     trigger:
       - platform: state
         entity_id: media_player.salon
-          to: 'playing'
+        to: 'playing'
     condition:
       - condition: state
         data:
