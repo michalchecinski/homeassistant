@@ -108,6 +108,7 @@
       - service: switch.turn_on
         data:
           entity_id: switch.b1
+      - service: rest_command.play_wakeup_playlist
       - delay: '00:00:10'
       - service: homeassistant.turn_off
         data:
