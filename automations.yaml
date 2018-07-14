@@ -288,3 +288,28 @@
       - service: homeassistant.turn_off
         data:
           entity_id: input_boolean.vacation_mode
+
+
+###################################
+#  Livingroom stereo automations  #
+###################################
+
+# Turn on stereo when Mopidy starts to play
+  - id: stereo_on_mopidy
+    alias: Turn on stereo system when mopidy starts to play
+    trigger:
+      - platform: state
+        entity_id: media_player.salon
+        to: 'paused'
+        for:
+          minutes: 10
+          seconds: 0
+    condition:
+      - condition: state
+        data:
+          entity_id: switch.stereo_switch
+          state: 'off'
+    action:
+      service: switch.toggle
+      data:
+        entity_id: switch.stereo_switch
