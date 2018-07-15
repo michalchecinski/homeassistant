@@ -322,6 +322,9 @@
         data:
           entity_id: switch.stereo_switch
       - delay: '00:00:05'
+      - service: media_player.media_previous_track
+        data:
+          entity_id: media_player.salon
       - service: media_player.media_play
         data:
           entity_id: media_player.salon 
