@@ -310,14 +310,14 @@
       - platform: state
         entity_id: media_player.salon
         to: 'paused'
-        #for:
-         # hours: 0
-         # minutes: 10
-         # seconds: 0
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
     condition:
       - condition: state
         entity_id: switch.stereo_switch
-        state: 'off'
+        state: 'on'
     action:
       service: switch.toggle
       data:
