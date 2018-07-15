@@ -162,6 +162,10 @@
       - service: input_boolean.turn_off
         data:
           entity_id: input_boolean.michal_home
+      - service: script.ifttt_notify
+        data_template:
+          value1: "Wyszedłeś z domu"
+          value2: "Home assistant wykrył, że wyszedłeś z domu."
 
 # At home
   - id: at_home
@@ -174,6 +178,10 @@
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.michal_home
+      - service: script.ifttt_notify
+        data_template:
+          value1: "Wszedłeś do domu"
+          value2: "Home assistant wykrył, że jesteś w domu."
 
 ########################################################
 #  Led brightness automations (fired by input_select)  #
