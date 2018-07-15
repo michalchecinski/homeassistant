@@ -296,16 +296,16 @@
         entity_id: switch.stereo_switch
         state: 'off'
     action:
-      service: media_player.media_pause
-      data:
-        entity_id: media_player.salon 
-      service: switch.toggle
-      data:
-        entity_id: switch.stereo_switch
-      delay: '00:00:05'
-      service: media_player.media_play
-      data:
-        entity_id: media_player.salon 
+      - service: media_player.media_pause
+        data:
+          entity_id: media_player.salon 
+      - service: switch.toggle
+        data:
+          entity_id: switch.stereo_switch
+      - delay: '00:00:05'
+      - service: media_player.media_play
+        data:
+          entity_id: media_player.salon 
 
 # Turn stereo off after 10 minutes of inactivity
   - id: stereo_off_10_minutes_no_mopidy
