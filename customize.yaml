@@ -6,6 +6,9 @@ group.climate:
   
 group.configuration:
   hidden: false
+
+group.location:
+  hidden: false
   
 switch.b3:
   friendly_name: Żelazko
