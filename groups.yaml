@@ -53,7 +53,7 @@ bedroom:
   view: yes
   icon: mdi:hotel
   entities:
-    - lights.bed_lamp
+    - light.bed_lamp
     
 configuration:
   name: Configuration
