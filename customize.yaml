@@ -1,5 +1,8 @@
 group.all_automations:
   hidden: false
+
+switch.stereo_switch
+  icon: mdi:speaker
   
 switch.b3:
   friendly_name: Żelazko
