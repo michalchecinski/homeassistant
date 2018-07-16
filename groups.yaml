@@ -4,7 +4,6 @@ default_view:
     entities:
       - group.all_devices
       - group.weather_sensors
-      - group.configuration
       - media_player.salon
       - group.location
 
