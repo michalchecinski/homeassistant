@@ -41,7 +41,7 @@
 
 # Saying current temperature via snips
   - id: temperature
-    alias: Say temperature
+    alias: Snips - say temperature
     trigger:
     - platform: mqtt
       topic: hermes/intent/mi_checinski:temperature
@@ -53,7 +53,7 @@
 
 # Turn off mopidy when snips is saying
   - id: off_mopidy
-    alias: Turn mopidy off when saying via Snips
+    alias: Snips - Turn mopidy off when Snips saying
     trigger:
     - platform: mqtt
       topic: hermes/dialogueManager/endSession
@@ -85,7 +85,7 @@
 
 # Automation when going into sleep
   - id: sleep_on
-    alias: Power off when sleep 
+    alias: Sleep - power off 
     trigger:
     - platform: state
       entity_id: binary_sensor.sleep
@@ -101,7 +101,7 @@
 
 # Automation after wake up
   - id: sleep_off
-    alias: Power computer on when no sleep 
+    alias: Sleep - awake 
     trigger:
     - platform: state
       entity_id: binary_sensor.sleep
@@ -118,7 +118,7 @@
 
 # Automation when alarm is ringing
   - id: alarm_on
-    alias: Lights up when alarm goes off 
+    alias: Sleep - alarm goes off 
     trigger:
     - platform: state
       entity_id: binary_sensor.sleep_alarm
@@ -136,16 +136,6 @@
       - service: switch.turn_off
         data:
           entity_id: switch.b1
-          
-  - id: iron_off_when_away
-    alias: Turn off iron switch when leaving home
-    trigger:
-    - platform: state
-      entity_id: input_boolean.michal_home
-      from: 'on'
-      to: 'off'   
-    action:
-      - service: script.away_home
 
 ###############################################
 #  Set input boolean if user at home or away  #
@@ -153,7 +143,7 @@
 
 # Away home
   - id: away
-    alias: Turn off off boolean when leaving home
+    alias: Presence - turn off boolean when leaving home
     trigger:
     - platform: state
       entity_id: device_tracker.google_maps_102169435937546415265
@@ -169,7 +159,7 @@
 
 # At home
   - id: at_home
-    alias: Turn on boolean when at home
+    alias: Presence - turn on boolean when at home
     trigger:
     - platform: state
       entity_id: device_tracker.google_maps_102169435937546415265
@@ -183,12 +173,27 @@
           value1: "Wszedłeś do domu"
           value2: "Home assistant wykrył, że jesteś w domu."
 
+########################
+# Presence automations #
+########################
+
+# Fire away home script when leaving home
+  - id: away_home_script
+    alias: Presence - away home
+    trigger:
+    - platform: state
+      entity_id: input_boolean.michal_home
+      from: 'on'
+      to: 'off'   
+    action:
+      - service: script.away_home
+
 ########################################################
 #  Led brightness automations (fired by input_select)  #
 ########################################################   
 
   - id: led_100
-    alias: LED brightness 100%
+    alias: LED - brightness 100%
     trigger:
       platform: state
       entity_id: input_select.led_brightness_select
@@ -201,7 +206,7 @@
           value: 100
       
   - id: led_50
-    alias: LED brightness 50%
+    alias: LED - brightness 50%
     trigger:
       platform: state
       entity_id: input_select.led_brightness_select
@@ -214,7 +219,7 @@
           value: 50
       
   - id: led_25
-    alias: LED brightness 25%
+    alias: LED - brightness 25%
     trigger:
       platform: state
       entity_id: input_select.led_brightness_select
@@ -232,7 +237,7 @@
 
 # Notify when outside temperature sensor is dead
   - id: temperature_sensor_battery_dead
-    alias: Notify when temperature sensor is not sending data
+    alias: Notification - temperature sensor is not sending data
     trigger:
       platform: mqtt
       topic: 'outside/temperature'
@@ -247,7 +252,7 @@
 
 # Notify when new home assistant version is live
   - id: update_notification
-    alias: Notification when hass update available
+    alias: Notification - hass update available
     trigger:
       - platform: state
         entity_id: updater.updater
@@ -263,7 +268,7 @@
 
 # Turn on Vacation Mode when Gone 24 Hours
   - id: vacation_on
-    alias: Vacation - Turn on when Gone 24 Hours
+    alias: Vacation - turn on when Gone 24 Hours
     trigger:
       platform: state
       entity_id: input_boolean.michal_home
@@ -283,7 +288,7 @@
 
 # Turn off Vacation Mode when Home
   - id: vacation_off
-    alias: Vacation - Turn off when Home
+    alias: Vacation - turn off when Home
     trigger:
       platform: state
       entity_id: input_boolean.michal_home
@@ -305,7 +310,7 @@
 
 # Turn on stereo when Mopidy starts to play
   - id: stereo_on_mopidy
-    alias: Turn on stereo system when mopidy starts to play
+    alias: Livingroom stereo - turn on when mopidy starts to play
     trigger:
       - platform: state
         entity_id: media_player.salon
@@ -328,7 +333,7 @@
 
 # Turn stereo off after 10 minutes of inactivity
   - id: stereo_off_10_minutes_no_mopidy
-    alias: Turn stereo off when mopidy not playing for 10 minutes
+    alias: Livingroom stereo - turn off when mopidy not playing for 10 minutes
     trigger:
       - platform: state
         entity_id: media_player.salon
