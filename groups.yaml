@@ -60,10 +60,8 @@ configuration:
   icon: mdi:settings
   view: yes
   entities:
-    - binary_sensor.travis_status
-    - sensor.travis_status_label
-    - sensor.uptime
     - group.system
+    - group.hass_details
     - group.all_automations
     - group.all_scripts
     
@@ -90,3 +88,11 @@ system:
     - sensor.load_15m
     - sensor.memory_use_percent
     - sensor.swap_use_percent
+
+hass_details:
+  name: Hass details
+  view: no
+  entities:
+    - binary_sensor.travis_status
+    - sensor.travis_status_label
+    - sensor.uptime
