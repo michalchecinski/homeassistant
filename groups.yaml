@@ -45,6 +45,7 @@ living-room:
   entities:
     - media_player.salon
     - switch.b3
+    - switch.stereo_switch
     - light.led
     - group.dht
 
