@@ -30,3 +30,23 @@
         data:
           entity_id: switch.b1
       - service: rest_command.play_wakeup_playlist
+
+  say:
+    alias: Stereo TTS
+    sequence:
+      - service: switch.toggle
+        data:
+          entity_id: switch.stereo_switch
+      - delay: '00:00:05'
+      - service: media_player.volume_set
+        data_template:
+          entity_id: media_player.salon
+          volume_level: "{{ volume }}"
+      - service: tts.google
+        data_template:
+          entity_id: media_player.salon
+          message: "{{ what }}"
+      - delay: '00:00:25'
+      - service: switch.toggle
+        data:
+          entity_id: switch.stereo_switch
