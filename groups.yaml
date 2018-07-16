@@ -17,8 +17,7 @@ climate:
     - sun.sun
     - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
     - sensor.temperature_outside
-    - sensor.dht_sensor_humidity
-    - sensor.dht_sensor_temperature
+    - group.dht
     - group.forecast
     
 dht:
@@ -54,7 +53,7 @@ bedroom:
   view: yes
   icon: mdi:hotel
   entities:
-    - switch.b1
+    - lights.bed_lamp
     
 configuration:
   name: Configuration
