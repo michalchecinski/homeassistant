@@ -9,16 +9,7 @@ group.configuration:
 
 group.location:
   hidden: false
-  
-switch.b3:
-  friendly_name: Żelazko
 
-switch.b1:
-  hidden: true
-
-switch.led:
-  hidden: true
-  
 group.all_switches:
   hidden: false
   view: yes
@@ -31,3 +22,12 @@ group.all_lights:
   hidden: false
   view: yes
   icon: mdi:lightbulb
+  
+switch.b3:
+  friendly_name: Żelazko
+
+switch.b1:
+  hidden: true
+
+switch.led:
+  hidden: true
