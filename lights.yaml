@@ -14,3 +14,16 @@
           service: script.theater_lights_level
           data_template:
             brightness: "{{ brightness }}"
+
+  - platform: template
+    lights:
+      bed_lamp:
+        friendly_name: "Bed lamp"
+        turn_on:
+          service: switch.turn_on
+          data:
+            entity_id: switch.b1
+        turn_off:
+          service: switch.turn_off
+          data:
+            entity_id: switch.b1
