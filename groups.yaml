@@ -21,6 +21,13 @@ climate:
     - sensor.dht_sensor_temperature
     - group.forecast
     
+dht:
+  name: DHT in living room
+  view: no
+  entities:
+    - sensor.dht_sensor_humidity
+    - sensor.dht_sensor_temperature
+
 forecast:
   name: Weather prediction 24 hours
   view: no
@@ -30,6 +37,23 @@ forecast:
     - sensor.owm_snow
     - sensor.owm_temperature
     - sensor.owm_forecast
+
+living-room:
+  name: Living room
+  view: yes
+  icon: mdi:sofa
+  entities:
+    - media_player.salon
+    - switch.b3
+    - light.led
+    - group.dht
+
+bedroom:
+  name: Bedroom
+  view: yes
+  icon: mdi:hotel
+  entities:
+    - switch.b1
     
 configuration:
   name: Configuration
@@ -49,6 +73,14 @@ cameras:
   view: yes
   entities:
     - camera.raspberry_pi_camera
+
+test:
+  name: test
+  icon: mdi:test-tube
+  view: yes
+  entities:
+    - switch.led
+    - input_select.led_brightness_select
     
 system:
   name: System status
@@ -58,11 +90,3 @@ system:
     - sensor.load_15m
     - sensor.memory_use_percent
     - sensor.swap_use_percent
-    
-test:
-  name: test
-  icon: mdi:test-tube
-  view: yes
-  entities:
-    - switch.led
-    - input_select.led_brightness_select
