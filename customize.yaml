@@ -11,7 +11,10 @@ switch.b3:
   friendly_name: Żelazko
 
 switch.b1:
-  friendly_name: Lampka przy łóżku
+  hidden: true
+
+switch.led:
+  hidden: true
   
 group.all_switches:
   hidden: false
