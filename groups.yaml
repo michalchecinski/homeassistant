@@ -59,8 +59,9 @@ system:
     - sensor.memory_use_percent
     - sensor.swap_use_percent
     
-led:
-  name: LED
+test:
+  name: test
+  icon: mdi:test-tube
   view: yes
   entities:
     - switch.led
