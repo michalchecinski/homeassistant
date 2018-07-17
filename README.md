@@ -17,13 +17,14 @@ Except Home Assistant I've got also other software services running on RPi:
 
 ## Devices
 ### Outlets / Switches
-| Device          | Quantity | Connection | Description                                                                      |
-| --------------- | -------- | ---------- | -------------------------------------------------------------------------------- |
-| REV-Ritter L842 | 2        | RF433MHz   | -                                                                                |
-| MQTT Switch     | 1        | Wi-Fi (MQTT)     | Switch for controlling stereo system. It is build on Wemos D1 mini and IR diode. |
+| Device          | Quantity | Connection   | Description                                                                      |
+| --------------- | -------- | ------------ | -------------------------------------------------------------------------------- |
+| REV-Ritter L842 | 2        | RF433MHz     | -                                                                                |
+| MQTT Switch     | 1        | Wi-Fi (MQTT) | Switch for controlling stereo system. It is build on Wemos D1 mini and IR diode. |
 
 ### Lights
 Those lights are based on switches in HA configutration, because they are controlled by RF codes.
+
 | Device    | Quantity | Connection | Description |
 | --------- | -------- | ---------- | ----------- |
 | LED strip | 1        | RF433MHz   | -           |
