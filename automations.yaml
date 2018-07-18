@@ -426,3 +426,26 @@
       - service: input_boolean.turn_off
         data:
           entity_id: input_boolean.was_playing
+
+##########################
+# Returning home actions #
+##########################
+
+# Turn on all lights for two minutes when went into home after sunset
+- alias: 'Turn Off Outside Lights'
+    trigger:
+      - platform: state
+        entity_id: input_boolean.michal_home
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: sun
+        after: sunset
+        after_offset: "-1:00:00"
+    action:
+      - delay: '00:02:30'
+      - service: homeassistant.turn_on
+        entity_id: group.all_lights
+      - delay: '00:02:00'
+      - service: homeassistant.turn_off
+        entity_id: group.all_lights
