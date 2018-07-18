@@ -412,8 +412,9 @@
 # Returning home actions #
 ##########################
 
-# Turn on all lights for two minutes when went into home after sunset
-- alias: 'Turn Off Outside Lights'
+# Turn on all lights for two minutes when enter into dark home (after sunset)
+  - id: went_dark_home
+    alias: 'Lights - turn on when entering dark house (after sunset)'
     trigger:
       - platform: state
         entity_id: input_boolean.michal_home
