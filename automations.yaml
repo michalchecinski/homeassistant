@@ -399,7 +399,7 @@
     condition:
       - condition: state
         entity_id: input_boolean.was_playing
-        state: on
+        state: 'on'
     action:
       - service: media_player.media_play
         data:
