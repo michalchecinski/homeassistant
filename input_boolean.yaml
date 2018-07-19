@@ -5,3 +5,7 @@
   vacation_mode:
     name: Vacation mode
     initial: off
+
+  vacation_mode:
+    name: Guest mode
+    initial: on
