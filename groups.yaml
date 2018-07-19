@@ -101,4 +101,11 @@ weather_sensors:
   entities:
     - sensor.dht_sensor_humidity
     - sensor.dht_sensor_temperature
-    - sensor.temperature_outside  
+    - sensor.temperature_outside
+
+inputs:
+  name: Manual settings
+  view: no
+  entities:
+    - input_boolean.guest_mode
+    - input_boolean.vacation_mode
