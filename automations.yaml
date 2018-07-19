@@ -476,7 +476,7 @@
         entity_id: automation.sleep__alarm_goes_off, automation.sleep__awake,  automation.sleep__power_off
 
 # Turn on sleep automations when guest mode disabled
- - id: guest_mode_off
+  - id: guest_mode_off
     alias: Guest mode - turn off
     trigger:
       - platform: state
