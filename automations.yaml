@@ -464,7 +464,6 @@
 ##########################
 
 # Turn off sleep automations when guest mode enabled
-
   - id: guest_mode_on
     alias: Guest mode - turn on
     trigger:
