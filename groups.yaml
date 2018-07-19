@@ -62,6 +62,7 @@ configuration:
     - group.hass_details
     - group.all_automations
     - group.all_scripts
+    - group.inputs
     
 cameras:
   name: Cameras
