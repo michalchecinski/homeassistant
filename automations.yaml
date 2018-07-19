@@ -450,3 +450,32 @@
       - delay: '00:02:00'
       - service: homeassistant.turn_off
         entity_id: group.all_lights
+
+##########################
+# Guest mode automations #
+##########################
+
+# Turn off sleep automations when guest mode enabled
+
+  - id: guest_mode_on
+    alias: Guest mode - turn on
+    trigger:
+      - platform: state
+        entity_id: input_boolean.guest_mode
+        from: 'off'
+        to: 'on'
+    action:
+      - service: homeassistant.turn_off
+        entity_id: automation.sleep__alarm_goes_off, automation.sleep__awake,  automation.sleep__power_off
+
+# Turn on sleep automations when guest mode disabled
+ - id: guest_mode_off
+    alias: Guest mode - turn off
+    trigger:
+      - platform: state
+        entity_id: input_boolean.guest_mode
+        from: 'on'
+        to: 'off'
+    action:
+      - service: homeassistant.turn_on
+        entity_id: automation.sleep__alarm_goes_off, automation.sleep__awake,  automation.sleep__power_off
