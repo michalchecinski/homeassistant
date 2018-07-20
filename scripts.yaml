@@ -58,3 +58,12 @@
       - service: switch.toggle
         data:
           entity_id: switch.stereo_switch
+
+  romantic:
+    alias: Romantic
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.rtv_led
+      - service: rest_command.play_love_playlist
+      
