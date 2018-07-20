@@ -5,11 +5,14 @@
   vacation_mode:
     name: Vacation mode
     initial: off
+    icon: mdi:sunglasses
 
   guest_mode:
     name: Guest mode
     initial: off
+    icon: mdi:account-multiple
   
   romantic_mode:
     name: Romantic mode
     initial: off
+    icon: mdi:heart
