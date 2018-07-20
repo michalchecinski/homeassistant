@@ -70,7 +70,7 @@
           entity_id: switch.stereo_switch
       - service: rest_command.play_love_playlist
 
-   romantic_off:
+  romantic_off:
     alias: Romantic off
     sequence:
       - service: light.turn_off
