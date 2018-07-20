@@ -1,4 +1,4 @@
   - name: Romantic
     entities:
-      switch.led: on
-      input_select.led_brightness_select: '25%'       
+      light.rtv_led: on   
+      switch.stereo_switch: on
