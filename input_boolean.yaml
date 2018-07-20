@@ -9,3 +9,7 @@
   guest_mode:
     name: Guest mode
     initial: off
+  
+  romantic_mode:
+    name: Romantic mode
+    initial: off
