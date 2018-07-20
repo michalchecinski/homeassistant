@@ -255,7 +255,7 @@
         entity_id: input_boolean.michal_home
         to: 'off'
         for:
-          hours: 24
+          hours: 15
           minutes: 0
           seconds: 0
       - platform: state
