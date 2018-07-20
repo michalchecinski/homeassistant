@@ -59,8 +59,8 @@
         data:
           entity_id: switch.stereo_switch
 
-  romantic:
-    alias: Romantic
+  romantic_on:
+    alias: Romantic on
     sequence:
       - service: light.turn_on
         data:
@@ -69,4 +69,20 @@
         data:
           entity_id: switch.stereo_switch
       - service: rest_command.play_love_playlist
+
+   romantic_off:
+    alias: Romantic off
+    sequence:
+      - service: light.turn_off
+        data:
+          entity_id: light.rtv_led
+      - service: switch.turn_off
+        data:
+          entity_id: switch.stereo_switch
+      - service: media_player.media_pause
+        data:
+          entity_id: media_player.salon
+      - service: media_player.clear_playlist
+        data:
+          entity_id: media_player.salon
       
