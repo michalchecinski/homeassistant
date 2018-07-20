@@ -471,3 +471,29 @@
       - service: automation.turn_on
         data:
           entity_id: automation.sleep__alarm_goes_off, automation.sleep__awake, automation.sleep__power_off
+
+########################
+# Romantic automations #
+########################
+
+# Turn on romantic
+  - id: romantic_on
+    alias: Romantic - turn on
+    trigger:
+      - platform: state
+        entity_id: input_boolean.romantic_mode
+        from: 'off'
+        to: 'on'
+    action:
+      - service: script.romantic_on
+
+# Turn off romantic
+  - id: romantic_off
+    alias: Romantic - turn off
+    trigger:
+      - platform: state
+        entity_id: input_boolean.romantic_mode
+        from: 'on'
+        to: 'off'
+    action:
+      - service: script.romantic_off
