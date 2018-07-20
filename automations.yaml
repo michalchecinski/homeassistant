@@ -251,13 +251,17 @@
   - id: vacation_on
     alias: Vacation - turn on when Gone 24 Hours
     trigger:
-      platform: state
-      entity_id: input_boolean.michal_home
-      to: 'off'
-      for:
-        hours: 24
-        minutes: 0
-        seconds: 0
+      - platform: state
+        entity_id: input_boolean.michal_home
+        to: 'off'
+        for:
+          hours: 24
+          minutes: 0
+          seconds: 0
+      - platform: state
+        entity_id: input_boolean.vacation_mode
+        from: 'on'
+        to: 'off'
 #    condition:
 #      - condition: state
 #        entity_id: input_boolean.disable_home_away
@@ -275,10 +279,14 @@
   - id: vacation_off
     alias: Vacation - turn off when Home
     trigger:
-      platform: state
-      entity_id: input_boolean.michal_home
-      from: 'off'
-      to: 'on'
+      - platform: state
+        entity_id: input_boolean.michal_home
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: input_boolean.vacation_mode
+        from: 'on'
+        to: 'off'
 #    condition:
 #      - condition: state
 #        entity_id: input_boolean.disable_home_away
