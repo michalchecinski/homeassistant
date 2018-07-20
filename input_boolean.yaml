@@ -6,6 +6,6 @@
     name: Vacation mode
     initial: off
 
-  vacation_mode:
+  guest_mode:
     name: Guest mode
     initial: off
