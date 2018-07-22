@@ -436,7 +436,7 @@
     alias: Phone - ringing pause music playback
     trigger:
       - platform: state
-        entity_id: binary_sensor.phone_call
+        entity_id: binary_sensor.phonecall
         from: 'off'
         to: 'on'
     condition:
@@ -456,7 +456,7 @@
     alias: Phone - resume music after
     trigger:
       - platform: state
-        entity_id: binary_sensor.phone_call
+        entity_id: binary_sensor.phonecall
         from: 'off'
         to: 'on'
     condition:
