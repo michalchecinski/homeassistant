@@ -105,6 +105,7 @@ weather_sensors:
     - sensor.temperature_outside
 
 inputs:
+  control: hidden
   name: Manual settings
   view: no
   entities:
