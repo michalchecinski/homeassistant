@@ -21,3 +21,6 @@
     name: Sleep
     initial: off
     icon: mdi:hotel
+
+  was_playing:
+    initial: off
