@@ -88,7 +88,7 @@
     alias: Sleep - power off 
     trigger:
     - platform: state
-      entity_id: binary_sensor.sleep
+      entity_id: input_boolean.sleep
       to: 'on'
     condition:
       condition: state
@@ -104,7 +104,7 @@
     alias: Sleep - awake 
     trigger:
     - platform: state
-      entity_id: binary_sensor.sleep
+      entity_id: input_boolean.sleep
       from: 'on'
       to: 'off'  
     condition:
