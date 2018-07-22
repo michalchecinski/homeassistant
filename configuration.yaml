@@ -74,6 +74,7 @@ device_tracker:
   - platform: google_maps
     username: !secret gmaps_user
     password: !secret gmaps_password
+  - platform: bluetooth_tracker
 
 # Cloud
 cloud:
