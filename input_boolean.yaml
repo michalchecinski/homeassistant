@@ -16,3 +16,8 @@
     name: Romantic mode
     initial: off
     icon: mdi:heart
+
+  sleep:
+    name: Sleep
+    initial: off
+    icon: mdi:hotel
