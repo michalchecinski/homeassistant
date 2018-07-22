@@ -116,18 +116,46 @@
         data:
           entity_id: switch.b2
 
-# Automation when alarm is ringing
-  - id: alarm_on
-    alias: Sleep - alarm goes off 
+# Alarm is ringing - guest off
+  - id: alarm_on_no_guests
+    alias: Sleep - alarm goes off guests
     trigger:
     - platform: state
       entity_id: binary_sensor.sleep_alarm
-      to: 'on'   
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
     action:
       - service: light.turn_on
         data:
           entity_id: light.bed_lamp
       - service: rest_command.play_wakeup_playlist
+      - delay: '00:00:10'
+      - service: homeassistant.turn_off
+        data:
+          entity_id: binary_sensor.sleep_alarm
+      - delay: '00:05:00'
+      - service: light.turn_off
+        data:
+          entity_id: light.bed_lamp
+
+  # Alarm is ringing - guest on
+  - id: alarm_on_guests
+    alias: Sleep - alarm goes off no guests
+    trigger:
+    - platform: state
+      entity_id: binary_sensor.sleep_alarm
+      to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'on'
+    action:
+      - service: light.turn_on
+        data:
+          entity_id: light.bed_lamp
       - delay: '00:00:10'
       - service: homeassistant.turn_off
         data:
