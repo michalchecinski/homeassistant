@@ -2,7 +2,7 @@
     alias: "Send notification when outside temperature sensor isn't sending data after 30 minutes"
     sequence:
       - delay:
-          minutes: 30
+          minutes: 46
       - service: script.ifttt_notify
         data_template:
           value1: "Battery dead"
