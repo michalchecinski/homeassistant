@@ -1,5 +1,6 @@
   notify_temperature_dead:
     alias: "Send notification when outside temperature sensor isn't sending data after 30 minutes"
+    initial_state: False
     sequence:
       - delay:
           minutes: 30
