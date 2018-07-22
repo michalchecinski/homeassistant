@@ -437,7 +437,6 @@
     trigger:
       - platform: state
         entity_id: binary_sensor.phonecall
-        from: 'off'
         to: 'on'
     condition:
       - condition: state
@@ -457,8 +456,7 @@
     trigger:
       - platform: state
         entity_id: binary_sensor.phonecall
-        from: 'off'
-        to: 'on'
+        to: 'off'
     condition:
       - condition: state
         entity_id: input_boolean.was_playing
