@@ -112,3 +112,4 @@ inputs:
     - input_boolean.guest_mode
     - input_boolean.vacation_mode
     - input_boolean.romantic_mode
+    - input_boolean.sleep
