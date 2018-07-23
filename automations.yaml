@@ -66,7 +66,7 @@
 
 # Automation when going into sleep
   - id: sleep_on
-    alias: Sleep - power off 
+    alias: Sleep - going into sleep 
     trigger:
     - platform: state
       entity_id: input_boolean.sleep
@@ -78,7 +78,10 @@
     action:
       - service: switch.turn_off
         data:
-          entity_id: switch.b2, light.bed_lamp, switch.stereo_switch, light.rtv_led
+          entity_id: switch.b2, switch.stereo_switch
+      - service: light.turn_off
+        data:
+          entity_id: light.bed_lamp, light.rtv_led
 
 # Automation after wake up
   - id: sleep_off
