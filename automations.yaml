@@ -419,7 +419,7 @@
         after: '09:00'
         before: '22:00'
     action:
-      - delay: '00:05:00'
+      - delay: '00:01:00'
       - service: script.turn_on
         entity_id: script.say
         data:
@@ -486,7 +486,6 @@
         after: sunset
         after_offset: "-1:00:00"
     action:
-      - delay: '00:02:30'
       - service: homeassistant.turn_on
         data:
           entity_id: group.all_lights
