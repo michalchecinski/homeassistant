@@ -13,6 +13,8 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
 
+# Enables recorder
+recorder:
 
 # Enables the frontend
 frontend:
