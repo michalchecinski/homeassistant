@@ -2,6 +2,7 @@
     filter:
       exclude_entities:
         - switch.led
+        - group.livingroom
     entity_config:
-      script.romantic_on:
+      input_boolean.romantic_mode:
         name: you know what
