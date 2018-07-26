@@ -1,0 +1,7 @@
+  google_actions:
+    filter:
+      exclude_entities:
+        - switch.led
+    entity_config:
+      script.romantic_on:
+        name: you know what
