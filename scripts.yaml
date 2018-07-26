@@ -65,9 +65,6 @@
       - service: light.turn_on
         data:
           entity_id: light.rtv_led
-      - service: switch.turn_on
-        data:
-          entity_id: switch.stereo_switch
       - service: rest_command.play_love_playlist
 
   romantic_off:
