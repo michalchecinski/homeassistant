@@ -13,7 +13,33 @@
     action:
     - service: shell_command.pull_git_conf
     - delay: '00:00:10'
+    - service: script.ifttt_notify
+        data_template:
+          value1: "HA pulled config"
+          value2: "Home assistant pull config"
     - service: homeassistant.restart
+
+  - id: ha_start
+    alias: HA - started
+    trigger:
+    -  platform: homeassistant
+       event: start
+    action:
+    - service: script.ifttt_notify
+      data_template:
+        value1: "HA started"
+        value2: "Home assistant started"
+
+  - id: ha_shutdown
+    alias: HA - shutdown
+    trigger:
+    -  platform: homeassistant
+       event: shutdown
+    action:
+    - service: script.ifttt_notify
+      data_template:
+        value1: "HA shutdown"
+        value2: "Home assistant shutdown"
 
 # Restart mopidy service every hour when it's no playing
   - id: restart_mopidy
