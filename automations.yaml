@@ -14,9 +14,9 @@
     - service: shell_command.pull_git_conf
     - delay: '00:00:10'
     - service: script.ifttt_notify
-        data_template:
-          value1: "HA pulled config"
-          value2: "Home assistant pull config"
+      data_template:
+        value1: "HA pulled config"
+        value2: "Home assistant pull config"
     - service: homeassistant.restart
 
 # Notify when HA started
