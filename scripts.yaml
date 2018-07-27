@@ -18,7 +18,11 @@
     sequence:
       - service: switch.turn_off
         data:
-          entity_id: switch.b3, light.led, light.bed_lamp, switch.stereo_switch
+          entity_id: 
+            - switch.b3
+            - light.led
+            - light.bed_lamp
+            - switch.stereo_switch
       - service: media_player.media_pause
         data:
           entity_id: media_player.salon
