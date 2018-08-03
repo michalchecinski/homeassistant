@@ -440,6 +440,9 @@
       service: switch.toggle
       data:
         entity_id: switch.stereo_switch
+      service: media_player.clear_playlist
+      data:
+        entity_id: media_player.salon
 
 ##################################
 # Audio Notification Automations #
