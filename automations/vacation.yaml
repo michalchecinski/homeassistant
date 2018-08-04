@@ -1,0 +1,54 @@
+###############################
+#  Vacation Mode Automations  #
+###############################
+
+# Turn on Vacation Mode when Gone 24 Hours
+  - id: vacation_on
+    alias: Vacation - turn on when Gone 24 Hours
+    trigger:
+      - platform: state
+        entity_id: input_boolean.michal_home
+        to: 'off'
+        for:
+          hours: 15
+          minutes: 0
+          seconds: 0
+      - platform: state
+        entity_id: input_boolean.vacation_mode
+        from: 'on'
+        to: 'off'
+#    condition:
+#      - condition: state
+#        entity_id: input_boolean.disable_home_away
+#        state: 'off'
+    action:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: input_boolean.vacation_mode
+      - service: script.ifttt_notify
+        data_template:
+          message: "HA wyjechałeś na wakacje"
+
+# Turn off Vacation Mode when Home
+  - id: vacation_off
+    alias: Vacation - turn off when Home
+    trigger:
+      - platform: state
+        entity_id: input_boolean.michal_home
+        from: 'off'
+        to: 'on'
+      - platform: state
+        entity_id: input_boolean.vacation_mode
+        from: 'on'
+        to: 'off'
+#    condition:
+#      - condition: state
+#        entity_id: input_boolean.disable_home_away
+#        state: 'off'
+    action:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: input_boolean.vacation_mode
+      - service: script.ifttt_notify
+        data_template:
+          message: "HA Wróciłeś z wakacji"

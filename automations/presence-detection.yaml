@@ -1,0 +1,34 @@
+###############################################
+#  Set input boolean if user at home or away  #
+###############################################
+
+# Away home
+  - id: away
+    alias: Presence - turn off boolean when leaving home
+    trigger:
+    - platform: state
+      entity_id: device_tracker.google_maps_102169435937546415265
+      to: 'not_home'
+      for: '00:00:30'
+    action:
+      - service: input_boolean.turn_off
+        data:
+          entity_id: input_boolean.michal_home
+      - service: script.ifttt_notify
+        data_template:
+          message: "Home assistant wykrył, że wyszedłeś z domu."
+
+# At home
+  - id: at_home
+    alias: Presence - turn on boolean when at home
+    trigger:
+    - platform: state
+      entity_id: device_tracker.google_maps_102169435937546415265
+      to: 'home'
+    action:
+      - service: input_boolean.turn_on
+        data:
+          entity_id: input_boolean.michal_home
+      - service: script.ifttt_notify
+        data_template:
+          message: "Home assistant wykrył, że jesteś w domu."

@@ -1,0 +1,56 @@
+##############################
+#  Notification automations  #
+##############################
+
+# Notify when outside temperature sensor is dead
+  - id: temperature_sensor_battery_dead
+    alias: Notification - temperature sensor is not sending data
+    trigger:
+      platform: mqtt
+      topic: 'outside/temperature'
+    action:
+      - service: homeassistant.turn_off
+        data:
+          entity_id: script.notify_temperature_dead
+      - delay: '00:00:10'
+      - service: homeassistant.turn_on
+        data:
+          entity_id: script.notify_temperature_dead
+
+# Notify when new home assistant version is live
+  - id: update_notification
+    alias: Notification - HA update available
+    trigger:
+      - platform: state
+        entity_id: updater.updater
+    action:
+      - service: script.ifttt_notify
+        data_template:
+          message: "There is a new Home Assistant {{ states('updater.updater') }} release available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
+      - service: persistent_notification.create
+        data:
+          title: "Update Available"
+          message: "Home Assistant {{ states('updater.updater') }} is available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
+          notification_id: "update_available"
+
+# Notify when HA started
+  - id: ha_start
+    alias: Notification - HA started
+    trigger:
+    -  platform: homeassistant
+       event: start
+    action:
+    - service: script.ifttt_notify
+      data_template:
+        message: "Home assistant started"
+
+# Notify when HA shutdown
+  - id: ha_shutdown
+    alias: Notification - HA shutdown
+    trigger:
+    -  platform: homeassistant
+       event: shutdown
+    action:
+    - service: script.ifttt_notify
+      data_template:
+        message: "Home assistant shutdown"
