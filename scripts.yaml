@@ -10,7 +10,7 @@
   ifttt_notify:
     sequence:
       - service: ifttt.trigger
-        data_template: {"event":"hass_notify", "message":"{{ value1 }}", "info":"{{ value2 }}"}
+        data_template: {"event":"hass_notify", "value1":"{{ message }}", "value2":"{{ info }}"}
 
   away_home:
     alias: "Script for leaving home"
