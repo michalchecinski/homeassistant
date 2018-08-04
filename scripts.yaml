@@ -5,13 +5,12 @@
           minutes: 46
       - service: script.ifttt_notify
         data_template:
-          value1: "Battery dead"
-          value2: "Outside temperature sensor battery dead"
+          message: "Outside temperature battery dead"
   
   ifttt_notify:
     sequence:
       - service: ifttt.trigger
-        data_template: {"event":"hass_notify", "value1":"{{ value1 }}", "value2":"{{ value2 }}"}
+        data_template: {"event":"hass_notify", "message":"{{ value1 }}", "info":"{{ value2 }}"}
 
   away_home:
     alias: "Script for leaving home"

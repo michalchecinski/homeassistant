@@ -15,8 +15,7 @@
     - delay: '00:00:10'
     - service: script.ifttt_notify
       data_template:
-        value1: "HA pulled config"
-        value2: "Home assistant pull config"
+        message: "HA pulled config"
     - service: homeassistant.restart
 
 # Notify when HA started
@@ -28,8 +27,7 @@
     action:
     - service: script.ifttt_notify
       data_template:
-        value1: "HA started"
-        value2: "Home assistant started"
+        message: "Home assistant started"
 
 # Notify when HA shutdown
   - id: ha_shutdown
@@ -40,8 +38,7 @@
     action:
     - service: script.ifttt_notify
       data_template:
-        value1: "HA shutdown"
-        value2: "Home assistant shutdown"
+        message: "Home assistant shutdown"
 
 # Restart mopidy service every hour when it's no playing
   - id: restart_mopidy
@@ -216,8 +213,7 @@
           entity_id: input_boolean.michal_home
       - service: script.ifttt_notify
         data_template:
-          value1: "Wyszedłeś z domu"
-          value2: "Home assistant wykrył, że wyszedłeś z domu."
+          message: "Home assistant wykrył, że wyszedłeś z domu."
 
 # At home
   - id: at_home
@@ -232,8 +228,7 @@
           entity_id: input_boolean.michal_home
       - service: script.ifttt_notify
         data_template:
-          value1: "Wszedłeś do domu"
-          value2: "Home assistant wykrył, że jesteś w domu."
+          message: "Home assistant wykrył, że jesteś w domu."
 
 ########################
 # Presence automations #
@@ -321,8 +316,7 @@
     action:
       - service: script.ifttt_notify
         data_template:
-          value1: "Update"
-          value2: "There is a new Home Assistant {{ states('updater.updater') }} release available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
+          message: "There is a new Home Assistant {{ states('updater.updater') }} release available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
       - service: persistent_notification.create
         data:
           title: "Update Available"
@@ -358,8 +352,7 @@
           entity_id: input_boolean.vacation_mode
       - service: script.ifttt_notify
         data_template:
-          value1: "Wakacje"
-          value2: "Wyjechałeś na wakacje i hass to wykrył"
+          message: "HA wyjechałeś na wakacje"
 
 # Turn off Vacation Mode when Home
   - id: vacation_off
@@ -383,8 +376,7 @@
           entity_id: input_boolean.vacation_mode
       - service: script.ifttt_notify
         data_template:
-          value1: "Wakacje"
-          value2: "Wróciłeś z wakacji i hass to wykrył"
+          message: "HA Wróciłeś z wakacji"
 
 
 ###################################
