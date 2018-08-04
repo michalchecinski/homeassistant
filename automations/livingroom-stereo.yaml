@@ -1,0 +1,56 @@
+###################################
+#  Livingroom stereo automations  #
+###################################
+
+# Turn on stereo when Mopidy starts to play
+  - id: stereo_on_mopidy
+    alias: Livingroom stereo - turn on when mopidy starts to play
+    trigger:
+      - platform: state
+        entity_id: media_player.salon
+        to: 'playing'
+    condition:
+      - condition: state
+        entity_id: switch.stereo_switch
+        state: 'off'
+    action:
+      - service: media_player.media_pause
+        data:
+          entity_id: media_player.salon 
+      - service: switch.toggle
+        data:
+          entity_id: switch.stereo_switch
+      - delay: '00:00:05'
+      - service: media_player.media_play
+        data:
+          entity_id: media_player.salon 
+
+# Turn stereo off after 10 minutes of inactivity
+  - id: stereo_off_10_minutes_no_mopidy
+    alias: Livingroom stereo - turn off when mopidy not playing for 10 minutes
+    trigger:
+      - platform: state
+        entity_id: media_player.salon
+        to: 'off'
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
+      - platform: state
+        entity_id: media_player.salon
+        to: 'paused'
+        for:
+          hours: 0
+          minutes: 10
+          seconds: 0
+    condition:
+      - condition: state
+        entity_id: switch.stereo_switch
+        state: 'on'
+    action:
+      service: switch.toggle
+      data:
+        entity_id: switch.stereo_switch
+      service: media_player.clear_playlist
+      data:
+        entity_id: media_player.salon
