@@ -17,7 +17,7 @@
       - service: media_player.media_pause
         data:
           entity_id: media_player.salon 
-      - service: switch.toggle
+      - service: switch.turn_on
         data:
           entity_id: switch.stereo_switch
       - delay: '00:00:05'
@@ -32,10 +32,6 @@
       - platform: state
         entity_id: media_player.salon
         to: 'off'
-        for:
-          hours: 0
-          minutes: 10
-          seconds: 0
       - platform: state
         entity_id: media_player.salon
         to: 'paused'
@@ -48,7 +44,7 @@
         entity_id: switch.stereo_switch
         state: 'on'
     action:
-      service: switch.toggle
+      service: switch.switch.turn_off
       data:
         entity_id: switch.stereo_switch
       service: media_player.clear_playlist
