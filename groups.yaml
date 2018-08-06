@@ -41,6 +41,7 @@ living-room:
   icon: mdi:sofa
   entities:
     - media_player.salon
+    - weblink.mopidy
     - switch.b3
     - switch.stereo_switch
     - light.rtv_led
@@ -59,6 +60,7 @@ configuration:
   view: yes
   entities:
     - group.system
+    - weblink.router
     - group.hass_details
     - group.all_automations
     - group.all_scripts
