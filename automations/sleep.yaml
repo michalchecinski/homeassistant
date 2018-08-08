@@ -70,7 +70,7 @@
     alias: Sleep - alarm goes off no guests
     trigger:
     - platform: state
-      entity_id: binary_sensor.sleep_alarm
+      entity_id: input_boolean.sleep_alarm
       to: 'on'
     condition:
       - condition: state
@@ -83,7 +83,7 @@
       - delay: '00:00:10'
       - service: homeassistant.turn_off
         data:
-          entity_id: binary_sensor.sleep_alarm
+          entity_id: input_boolean.sleep_alarm
       - delay: '00:05:00'
       - service: light.turn_off
         data:
