@@ -22,5 +22,8 @@
     initial: off
     icon: mdi:hotel
 
+  sleep_alarm:
+    initial: off
+
   was_playing:
     initial: off
