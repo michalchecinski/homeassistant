@@ -14,7 +14,7 @@
     alias: Random time - night minute
     trigger:
       - platform: time
-        hour: 21
+        hours: 21
         minutes: 55
         seconds: 00
     action:
