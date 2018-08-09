@@ -1,4 +1,6 @@
 # Home assistant configuration
+[PL](https://github.com/michalchecinski/homeassistant/blob/master/README_PL.md) | [EN](https://github.com/michalchecinski/homeassistant/blob/master/README.md)
+
 [![Build Status](https://travis-ci.org/michalchecinski/homeassistant.svg?branch=master)](https://travis-ci.org/michalchecinski/homeassistant)
 
 Here's my [Home Assistant](https://www.home-assistant.io/) configuration. It's rather simple for now, but I constantly add new components and devices to it.
