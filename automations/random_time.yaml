@@ -1,0 +1,24 @@
+  - id: random_hour_minutes
+    alias: Random time - minutes
+    trigger:
+      - platform: time
+        minutes: 0
+        seconds: 00
+    action:
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.random_minute
+          value: '{{ (range(1, 59)|random) }}'
+  
+  - id: random_night_hour
+    alias: Random time - night hour
+    trigger:
+      - platform: time
+        hour: 20
+        minutes: 55
+        seconds: 00
+    action:
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.random_night_hour
+          value: '{{ (range(21, 22)|random) }}'
