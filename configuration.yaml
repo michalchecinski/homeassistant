@@ -116,12 +116,5 @@ input_select:
       - 25%
     initial: '100%'
 
-input_number:
-  led_brightness_slider:
-    name: LED brightness
-    initial: 100
-    min: 20
-    max: 100
-    step: 20
-
+input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
