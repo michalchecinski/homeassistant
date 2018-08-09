@@ -9,16 +9,16 @@
         data_template:
           entity_id: input_number.random_minute
           value: '{{ (range(1, 59)|random) }}'
-  
-  - id: random_night_hour
-    alias: Random time - night hour
+
+  - id: random_night_minute
+    alias: Random time - night minute
     trigger:
       - platform: time
-        hour: 20
+        hour: 21
         minutes: 55
         seconds: 00
     action:
       - service: input_number.set_value
         data_template:
-          entity_id: input_number.random_night_hour
-          value: '{{ (range(21, 22)|random) }}'
+          entity_id: input_number.random_night_minute
+          value: '{{ (range(0, 45)|random) }}'
