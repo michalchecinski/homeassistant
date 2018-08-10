@@ -32,6 +32,10 @@
       - platform: state
         entity_id: media_player.salon
         to: 'off'
+        for:
+          hours: 0
+          minutes: 5
+          seconds: 0
       - platform: state
         entity_id: media_player.salon
         to: 'paused'
