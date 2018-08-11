@@ -116,5 +116,5 @@ input_select:
       - 25%
     initial: '100%'
 
-input_number: !include input_number.yaml
+#input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
