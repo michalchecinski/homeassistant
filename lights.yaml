@@ -10,10 +10,6 @@
           service: switch.turn_off
           data:
             entity_id: switch.led
-        set_level:
-          service: script.theater_lights_level
-          data_template:
-            brightness: "{{ brightness }}"
 
   - platform: template
     lights:
