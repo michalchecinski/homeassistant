@@ -51,6 +51,3 @@
       - service: switch.turn_off
         data:
           entity_id: switch.stereo_switch
-      - service: media_player.clear_playlist
-        data:
-          entity_id: media_player.salon
