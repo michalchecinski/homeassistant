@@ -1,29 +1,5 @@
-  exclude:
+  include:
     domains:
-      - updater
-      - automation
-      - device_tracker
-      - group
-      - scene
-      - script
-      - weblink
-      - rest_command
-    entities:
-      - sun.sun
-      - zone.home
-      - zone.politechnika
-      - sensor.time
-      - sensor.processor_use
-      - sensor.load_15m
-      - sensor.memory_use_percent
-      - sensor.swap_use_percent
-      - sensor.uptime
-      - sensor.travis_status_label
-      - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
-      - sensor.yr_weather_cloudiness
-      - sensor.yr_weather_fog
-      - sensor.yr_weather_humidity
-      - sensor.yr_weather_precipitation
-      - sensor.yr_weather_pressure
-      - sensor.yr_weather_symbol
-      - sensor.yr_weather_temperature
+      - input_boolean
+      - input_number
+      - input_select
