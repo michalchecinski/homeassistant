@@ -14,7 +14,7 @@ homeassistant:
   customize: !include customize.yaml
 
 # Enables recorder
-recorder:
+recorder: !include recorder.yaml
 
 # Enables the frontend
 frontend:
