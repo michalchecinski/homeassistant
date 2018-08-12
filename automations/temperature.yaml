@@ -1,0 +1,27 @@
+  - id: outside_temp_down_significantly
+    alias: Temperature outside - significant down 
+    trigger:
+      - platform: time
+        hours: 7
+        minutes: 11
+        seconds: 00
+    condition:
+      condition: template
+      value_template: "{{ (states.sensor.temperature_outside.state) | float <= (states.input_number.last_morning_temp.state) | float - 7 }}"
+    action:
+      - service: script.ifttt_notify
+        data_template:
+          message: "Temperatura spadła znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}} C; dzisiaj {{(states.sensor.temperature_outside.state)}} C"
+
+  - id: log_outside_temp
+    alias: Temperature outside - log
+    trigger:
+      - platform: time
+        hours: 7
+        minutes: 12
+        seconds: 00
+    action:
+      - service: input_number.set_value
+        data_template:
+          entity_id: input_number.random_night_minute
+          value: "{{ (states.sensor.temperature_outside.state) | float }}"
