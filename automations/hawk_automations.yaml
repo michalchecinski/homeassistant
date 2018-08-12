@@ -9,3 +9,10 @@
         state: 'off'
     action:
       - service: rest_commands.play_hawk
+      - delay: '00:02:00'
+      - service: media_player.clear_playlist
+        data:
+          entity_id: media_player.salon
+      - service: switch.turn_off
+        data:
+          entity_id: switch.stereo_switch
