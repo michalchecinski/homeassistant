@@ -12,3 +12,8 @@
     url: "http://192.168.0.100:6680/mopidy/rpc"
     method: "POST"
     payload: '[{"jsonrpc":"2.0","id":1,"method":"core.tracklist.clear"},{"jsonrpc":"2.0","id":2,"method":"core.tracklist.add","params":{"uri":"spotify:track:0Tel1fmuCxEFV6wBLXsEdk"}},{"jsonrpc":"2.0","id":2,"method":"core.mixer.set_volume","params":{"volume":30}},{"jsonrpc":"2.0","method":"core.playback.play","id":3}]'
+
+  play_hawk:
+    url: "http://192.168.0.100:6680/mopidy/rpc"
+    method: "POST"
+    payload: '[{"jsonrpc":"2.0","id":1,"method":"core.tracklist.clear"},{"jsonrpc":"2.0","id":2,"method":"core.tracklist.add","params":{"uri":"yt:https://www.youtube.com/watch?v=VINO0miNXDo"}},{"jsonrpc":"2.0","id":2,"method":"core.mixer.set_volume","params":{"volume":100}},{"jsonrpc":"2.0","method":"core.playback.play","id":3}]'

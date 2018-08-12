@@ -1,0 +1,11 @@
+  - id: hawk
+    alias: Hawk noises at random times
+    trigger:
+      - platform: template
+        value_template: "{{ (now().minute) | int == (states.input_number.random_minute.state) | int }}"
+    condition:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'off'
+    action:
+      - service: rest_commands.play_hawk
