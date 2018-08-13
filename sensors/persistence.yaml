@@ -1,0 +1,8 @@
+  - platform: persistence
+    entities:
+      - input_boolean.michal_home
+      - input_boolean.vacation_mode
+      - input_boolean.guest_mode
+      - input_boolean.romantic_mode
+      - input_boolean.sleep
+      - input_boolean.was_playing
