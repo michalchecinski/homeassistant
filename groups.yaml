@@ -65,6 +65,7 @@ configuration:
     - group.all_automations
     - group.all_scripts
     - group.inputs
+    - sensor.persistence
     
 cameras:
   name: Cameras
