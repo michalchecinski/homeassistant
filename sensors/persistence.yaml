@@ -6,3 +6,4 @@
       - input_boolean.romantic_mode
       - input_boolean.sleep
       - input_boolean.was_playing
+      - script.notify_temperature_dead
