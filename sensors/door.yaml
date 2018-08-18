@@ -1,0 +1,11 @@
+  - platform: mqtt
+    state_topic: "hallway/door"
+    name: "Door"
+    payload_on: "ON"
+    payload_off: "OFF"
+    
+  - platform: mqtt
+    state_topic: "hallway/door/battery"
+    name: "Door battery"
+    unit_of_measurement: "mV"
+    icon: mdi:battery-80
