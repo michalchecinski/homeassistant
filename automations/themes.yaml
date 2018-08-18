@@ -1,0 +1,26 @@
+# Set dark theme for the night
+- id: theme_night
+  alias: 'Theme - set dark theme for night'
+  initial_state: True
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: "-1:00:00"
+  action:
+    - service: frontend.set_theme
+      data:
+        name: 'dark_theme'
+        
+        
+# Set default theme for the day
+- id: theme_day
+  alias: 'Theme - set default theme for day'
+  initial_state: True
+  trigger:
+    - platform: sun
+      event: sunrise
+      offset: "-0:30:00"
+  action:
+    - service: frontend.set_theme
+      data:
+        name: 'default'
