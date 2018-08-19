@@ -1,11 +1,13 @@
   - id: led_autoheal
     alias: LED - autoheal
     trigger:
-      platform: state
-      entity_id: light.rtv_led
-      to: 'on'
+      - platform: state
+        entity_id: light.rtv_led
+        to: 'on'
+      - platform: state
+        entity_id: light.rtv_led
+        to: 'off'
     action:
-      - delay: '00:00:01'
       - service: switch.turn_on
         entity_id: switch.led_fix
       - delay: '00:00:05'
