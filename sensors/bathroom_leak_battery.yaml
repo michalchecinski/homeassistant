@@ -1,9 +1,5 @@
   - platform: mqtt
-    state_topic: "bathroom/leak"
-    name: "Leak sensor"
-    
-  - platform: mqtt
     state_topic: "bathroom/leak/battery"
-    name: "Leak battery"
+    name: "Bathroom leak battery"
     unit_of_measurement: "mV"
     icon: mdi:battery-80
