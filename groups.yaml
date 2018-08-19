@@ -53,6 +53,20 @@ bedroom:
   icon: mdi:hotel
   entities:
     - light.bed_lamp
+
+bathroom:
+  name: Bathroom
+  view: yes
+  icon: mdi:shower-head
+  entities:
+    - binary_sensor.leak
+
+hallway:
+  name: Hallway
+  view: yes
+  icon: mdi:door
+  entities:
+    - binary_sensor.door
     
 configuration:
   name: Configuration
@@ -65,22 +79,14 @@ configuration:
     - group.all_automations
     - group.all_scripts
     - group.inputs
-    - sensor.persistence
+    - group.battery
     
-cameras:
-  name: Cameras
-  icon: mdi:cctv
-  view: yes
-  entities:
-    - camera.raspberry_pi_camera
-
-test:
-  name: test
-  icon: mdi:test-tube
-  view: yes
-  entities:
-    - switch.led
-    - input_select.led_brightness_select
+# cameras:
+#   name: Cameras
+#   icon: mdi:cctv
+#   view: yes
+#   entities:
+#     - camera.
     
 system:
   name: System status
@@ -90,6 +96,13 @@ system:
     - sensor.load_15m
     - sensor.memory_use_percent
     - sensor.swap_use_percent
+
+battery:
+  name: Battery sensors
+  view: no
+  entities:
+    - sensor.door_battery
+    - sensor.bathroom_leak_battery
 
 hass_details:
   name: Hass details
