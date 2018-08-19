@@ -59,14 +59,14 @@ bathroom:
   view: yes
   icon: mdi:shower-head
   entities:
-    - binary_sensor.leak
+    - binary_sensor.bathroom_leak
 
 hallway:
   name: Hallway
   view: yes
   icon: mdi:door
   entities:
-    - binary_sensor.door
+    - binary_sensor.front_door
     
 configuration:
   name: Configuration

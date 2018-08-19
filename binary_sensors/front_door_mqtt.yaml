@@ -1,5 +1,5 @@
   - platform: mqtt
     state_topic: "hallway/door"
-    name: "Door"
+    name: "front door mqtt"
     payload_on: "ON"
     payload_off: "OFF"
