@@ -10,11 +10,18 @@
           service: switch.turn_off
           data:
             entity_id: switch.led
+        icon_template: >
+          '{%- if is_state('switch.led', 'on') -%}
+            mdi:led-on
+          {%- else -%}
+            mdi:led-outline
+          {%- endif -%}'
 
   - platform: template
     lights:
       bed_lamp:
         friendly_name: "Bed lamp"
+        icon_template: mdi:lamp
         turn_on:
           service: switch.turn_on
           data:
