@@ -13,7 +13,7 @@
         data_template:
           message: "Temperatura spadła znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}} C; dzisiaj {{(states.sensor.temperature_outside.state)}} C"
 
-  - id: log_outside_temp
+  - id: outside_temp_log
     alias: Temperature outside - log
     trigger:
       - platform: time
@@ -24,4 +24,21 @@
       - service: input_number.set_value
         data_template:
           entity_id: input_number.random_night_minute
-          value: "{{ (states.sensor.temperature_outside.state) | float }}"
+          value: "{{ (states.sensor.last_morning_temp.state) | float }}"
+
+  - id: outside_temp_open_window
+    alias: Temperature outside - is lower than indoors - open windows
+    trigger:
+      - platform: template
+        value_template: "{{ (states.sensor.temperature_outside.state) | float <= (states.sensor.dht_sensor_temperature.state) | float - 5 and (states.sensor.temperature_outside.state) | float >= 15 }}"
+    condition:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.sleep
+        state: 'off'
+    action:
+      - service: script.ifttt_notify
+        data_template:
+          message: "Otwórz okna. Na zewnątrz jest chłodniej. Out: {{ (states.sensor.temperature_outside.state) | float }}. In: {{ (states.sensor.dht_sensor_temperature.state) | float }}"
