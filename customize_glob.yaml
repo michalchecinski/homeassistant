@@ -1,0 +1,11 @@
+  "sensor.*leak*":
+    templates:
+      rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
+  
+  "sensor.*door*":
+    templates:
+      rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
+
+  "sensor.*window*":
+    templates:
+      rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
