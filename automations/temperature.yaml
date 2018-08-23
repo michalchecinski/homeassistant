@@ -38,6 +38,8 @@
       - condition: state
         entity_id: input_boolean.sleep
         state: 'off'
+      - condition: template
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.temperature_outside__is_lower_than_indoors__open_windows.attributes.last_triggered) | int > 3600 }}'
     action:
       - service: script.ifttt_notify
         data_template:
