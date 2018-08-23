@@ -1,12 +1,24 @@
 secrets.yaml
+known_devices.yaml
+
+# HA stuff
 .HA_VERSION
 .google_maps_location_sharing.cookies
 .uuid
+.cloud/
+
 deps/
+tts/
+
+# DBs and logs
 home-assistant.log
 home-assistant_v2.db
-known_devices.yaml
 home-assistant_v2.db-shm
 home-assistant_v2.db-wal
+
+# Persistence file of persistence sensor
 persistence.json
+
+# Python files
 __pycache__/
+*.py[cod]
