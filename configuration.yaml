@@ -28,6 +28,8 @@ http:
   api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: !secret base_url
+  ip_ban_enabled: True
+  login_attempts_threshold: 5
   #ssl_certificate: !secret ssl_certificate_path        
   #ssl_key: !secret ssl_private_key
 
@@ -86,6 +88,9 @@ media_player:
   - platform: mpd
     host: 127.0.0.1
     name: Salon
+  - platform: spotify
+    client_id: !secret spotify_client
+    client_secret: !secret spotify_secret
   
 # MQTT
 mqtt:
