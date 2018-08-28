@@ -1,10 +1,10 @@
 # Groups
 group.all_automations:
   hidden: false
-  
+
 group.climate:
   hidden: false
-  
+
 group.configuration:
   hidden: false
 
