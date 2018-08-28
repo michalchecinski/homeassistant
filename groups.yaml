@@ -4,7 +4,7 @@ default_view:
     entities:
       - group.all_devices
       - group.weather_sensors
-      - media_player.salon
+      - media_player.spotify
       - group.location
 
 climate:
@@ -41,6 +41,7 @@ living-room:
   icon: mdi:sofa
   entities:
     - media_player.salon
+    - media_player.spotify
     - weblink.mopidy
     - switch.b3
     - switch.stereo_switch
