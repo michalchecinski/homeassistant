@@ -74,7 +74,7 @@
           shuffle: true
       - service: script.spotify_play_playlist
         data_template:
-          playlist: ""
+          playlist: "spotify:user:checin:playlist:6f4TfHpSuNFBaJnWxfqE2w"
 
   romantic_off:
     alias: Romantic off
