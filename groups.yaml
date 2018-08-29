@@ -40,7 +40,6 @@ living-room:
   view: yes
   icon: mdi:sofa
   entities:
-    - media_player.salon
     - media_player.spotify
     - weblink.mopidy
     - switch.b3
