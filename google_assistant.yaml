@@ -6,6 +6,7 @@
   entity_config:
     input_boolean.romantic_mode:
       name: you know what
+      expose: true
     switch.b3:
       name: iron
       aliases:
