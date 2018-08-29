@@ -7,6 +7,9 @@
     input_boolean.romantic_mode:
       name: you know what
       expose: true
+    input_boolean.romantic_dance_mode:
+      name: you know what light
+      expose: true
     switch.b3:
       name: iron
       aliases:
