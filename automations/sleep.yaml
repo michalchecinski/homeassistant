@@ -55,7 +55,9 @@
       - service: light.turn_on
         data:
           entity_id: light.bed_lamp
-      - service: rest_command.play_wakeup_playlist
+      - service: script.spotify_play_playlist
+        data_template:
+          playlist: spotify:user:checin:playlist:1ukjrLqn5FTUHjqQHjPgbJ
       - delay: '00:00:10'
       - service: homeassistant.turn_off
         data:
