@@ -110,7 +110,7 @@
           entity_id: media_player.spotify
           source: stereo
       - service: media_player.play_media
-        data:
+        data_template:
           entity_id: media_player.spotify
           media_content_type: playlist
           media_content_id: "{{ playlist }}"
@@ -123,7 +123,7 @@
           entity_id: media_player.spotify
           source: stereo
       - service: media_player.play_media
-        data:
+        data_template:
           entity_id: media_player.spotify
           media_content_type: music
           media_content_id: "{{ song }}"
