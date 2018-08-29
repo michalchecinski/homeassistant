@@ -19,11 +19,3 @@
       expose: false
     switch.led_fix:
       expose: false
-    sensor.dht_sensor_temperature:
-      expose: true
-      type: climate
-      name: Temperature inside
-    sensor.temperature_outside:
-      expose: true
-      type: climate
-      name: Temperature outside
