@@ -105,7 +105,7 @@
   spotify_play_playlist:
     alias: Spotify play playlist
     sequence:
-      - serice: media_player.select_source
+      - service: media_player.select_source
         data:
           - entity_id: media_player.spotify
           - source: stereo
@@ -118,7 +118,7 @@
   spotify_play_song:
     alias: Spotify play song
     sequence:
-      - serice: media_player.select_source
+      - service: media_player.select_source
         data:
           - entity_id: media_player.spotify
           - source: stereo
