@@ -36,10 +36,6 @@
     trigger:
       - platform: template
         value_template: "{{ state_attr('media_player.spotify', 'source') != 'stereo' }}"
-        for:
-          hours: 0
-          minutes: 2
-          seconds: 0
       - platform: state
         entity_id: media_player.spotify
         to: 'off'
