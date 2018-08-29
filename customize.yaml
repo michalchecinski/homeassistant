@@ -33,3 +33,7 @@ switch.b1:
 
 switch.led:
   hidden: true
+
+# Input booleans
+input_boolean.fake_heater:
+  hidden: true

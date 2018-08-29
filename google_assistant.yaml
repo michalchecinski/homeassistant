@@ -19,3 +19,9 @@
       expose: false
     switch.led_fix:
       expose: false
+    climate.living_room:
+      expose: true
+      name: Living room temperature
+    climate.outside:
+      expose: true
+      name: Outside temperature
