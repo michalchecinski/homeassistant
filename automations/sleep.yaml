@@ -55,6 +55,10 @@
       - service: light.turn_on
         data:
           entity_id: light.bed_lamp
+      - service: media_player.shuffle_set
+        data:
+          entity_id: media_player.spotify
+          shuffle: true
       - service: script.spotify_play_playlist
         data_template:
           playlist: spotify:user:checin:playlist:1ukjrLqn5FTUHjqQHjPgbJ

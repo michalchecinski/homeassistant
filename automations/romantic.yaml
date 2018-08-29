@@ -23,3 +23,25 @@
         to: 'off'
     action:
       - service: script.romantic_off
+
+# Turn on romantic dance
+  - id: romantic_dance_on
+    alias: Romantic dance - turn on
+    trigger:
+      - platform: state
+        entity_id: input_boolean.romantic_dance_mode
+        from: 'off'
+        to: 'on'
+    action:
+      - service: script.romantic_dance_on
+
+# Turn off romantic dance
+  - id: romantic_dance_off
+    alias: Romantic dance - turn off
+    trigger:
+      - platform: state
+        entity_id: input_boolean.romantic_dance_mode
+        from: 'on'
+        to: 'off'
+    action:
+      - service: script.romantic_off

@@ -68,7 +68,13 @@
       - service: light.turn_on
         data:
           entity_id: light.rtv_led
-      - service: rest_command.play_love_playlist
+      - service: media_player.shuffle_set
+        data:
+          entity_id: media_player.spotify
+          shuffle: true
+      - service: script.spotify_play_playlist
+        data_template:
+          playlist: ""
 
   romantic_off:
     alias: Romantic off
@@ -81,8 +87,43 @@
           entity_id: switch.stereo_switch
       - service: media_player.media_pause
         data:
-          entity_id: media_player.salon
+          entity_id: media_player.spotify
       - service: media_player.clear_playlist
         data:
-          entity_id: media_player.salon
-      
+          entity_id: media_player.spotify
+
+  romantic_dance_on:
+    alias: Romantic dance on
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.rtv_led
+      - service: script.spotify_play_song
+        data_template:
+          song: "spotify:track:3INIKdp8Md2XggLz95Rn6v"
+
+  spotify_play_playlist:
+    alias: Spotify play playlist
+    sequence:
+      - serice: media_player.select_source
+        data:
+          - entity_id: media_player.spotify
+          - source: stereo
+      - service: media_player.play_media
+        data:
+          - entity_id: media_player.spotify
+          - media_content_type: playlist
+          - media_content_id: "{{ playlist }}"
+
+  spotify_play_song:
+    alias: Spotify play song
+    sequence:
+      - serice: media_player.select_source
+        data:
+          - entity_id: media_player.spotify
+          - source: stereo
+      - service: media_player.play_media
+        data:
+          - entity_id: media_player.spotify
+          - media_content_type: music
+          - media_content_id: "{{ song }}"
