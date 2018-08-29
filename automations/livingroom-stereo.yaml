@@ -2,46 +2,50 @@
 #  Livingroom stereo automations  #
 ###################################
 
-# Turn on stereo when Mopidy starts to play
-  - id: stereo_on_mopidy
-    alias: Livingroom stereo - turn on when mopidy starts to play
+# Turn on stereo when Spotify starts to play on stereo
+  - id: stereo_on_spotify
+    alias: Livingroom stereo - turn on when spotify on stereo starts to play
     trigger:
       - platform: state
-        entity_id: media_player.salon
+        entity_id: media_player.spotify
         to: 'playing'
     condition:
-      - condition: state
-        entity_id: switch.stereo_switch
-        state: 'off'
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: switch.stereo_switch
+          state: 'off'
+        - condition:
+          condition: template
+          value_template: "{{ state_attr('media_player.spotify', 'source') == 'stereo' }}"
     action:
       - service: media_player.media_pause
         data:
-          entity_id: media_player.salon 
+          entity_id: media_player.spotify 
       - service: switch.turn_on
         data:
           entity_id: switch.stereo_switch
       - delay: '00:00:05'
       - service: media_player.media_play
         data:
-          entity_id: media_player.salon 
+          entity_id: media_player.spotify 
 
-# Turn stereo off after 10 minutes of inactivity
-  - id: stereo_off_10_minutes_no_mopidy
-    alias: Livingroom stereo - turn off when mopidy not playing for 10 minutes
+# Turn stereo off after 2 minutes of inactivity
+  - id: stereo_off_2_minutes_no_spotify
+    alias: Livingroom stereo - turn off when spotify not playing on stereo for 2 minutes
     trigger:
+      - platform: template
+        value_template: "{{ state_attr('media_player.spotify', 'source') != 'stereo' }}"
+        for:
+          hours: 0
+          minutes: 2
+          seconds: 0
       - platform: state
-        entity_id: media_player.salon
+        entity_id: media_player.spotify
         to: 'off'
         for:
           hours: 0
           minutes: 5
-          seconds: 0
-      - platform: state
-        entity_id: media_player.salon
-        to: 'paused'
-        for:
-          hours: 0
-          minutes: 10
           seconds: 0
     condition:
       - condition: state
