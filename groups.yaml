@@ -41,7 +41,6 @@ living-room:
   icon: mdi:sofa
   entities:
     - media_player.spotify
-    - weblink.mopidy
     - switch.b3
     - switch.stereo_switch
     - light.rtv_led
