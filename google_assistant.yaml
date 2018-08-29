@@ -8,12 +8,10 @@
       name: you know what
       expose: true
     input_boolean.romantic_dance_mode:
-      name: you know what light
+      name: it's time
       expose: true
     switch.b3:
       name: iron
-      aliases:
-        - żelazko
       room: livingroom
     switch.led:
       expose: false
