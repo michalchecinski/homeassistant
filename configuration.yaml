@@ -109,6 +109,8 @@ rest_command: !include rest_commands.yaml
 light: !include lights.yaml
 weblink: !include weblink.yaml
 
+google_assistant: !include google_assistant.yaml
+
 #input
 input_select:
   led_brightness_select:
