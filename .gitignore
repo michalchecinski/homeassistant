@@ -22,3 +22,7 @@ persistence.json
 # Python files
 __pycache__/
 *.py[cod]
+
+.spotify-token-cache
+.storage/
+git_pull.log
