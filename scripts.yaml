@@ -43,7 +43,7 @@
           entity_id: light.bed_lamp
 
   say:
-    alias: Stereo TTS
+    alias: Google Home TTS
     sequence:
       - service: switch.toggle
         data:
