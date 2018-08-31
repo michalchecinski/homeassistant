@@ -16,13 +16,6 @@ home-assistant_v2.db
 home-assistant_v2.db-shm
 home-assistant_v2.db-wal
 
-# Persistence file of persistence sensor
-persistence.json
-
-# Python files
-__pycache__/
-*.py[cod]
-
 .spotify-token-cache
 .storage/
 git_pull.log
