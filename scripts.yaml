@@ -45,22 +45,14 @@
   say:
     alias: Google Home TTS
     sequence:
-      - service: switch.toggle
-        data:
-          entity_id: switch.stereo_switch
-      - delay: '00:00:05'
       - service: media_player.volume_set
         data_template:
-          entity_id: media_player.salon
+          entity_id:  media_player.living_room_speaker
           volume_level: "{{ volume }}"
       - service: tts.google
         data_template:
-          entity_id: media_player.salon
+          entity_id:  media_player.living_room_speaker
           message: "{{ what }}"
-      - delay: '00:00:25'
-      - service: switch.toggle
-        data:
-          entity_id: switch.stereo_switch
 
   romantic_on:
     alias: Romantic on
