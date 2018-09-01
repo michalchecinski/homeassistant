@@ -34,3 +34,5 @@
     name: Fake Heater
     icon: mdi:toggle-switch-off
     initial: off
+
+  play_on_stereo:
