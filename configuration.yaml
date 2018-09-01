@@ -115,6 +115,12 @@ weblink: !include weblink.yaml
 
 google_assistant: !include google_assistant.yaml
 
+# Calendar
+google:
+  client_id: !secret google_client_id
+  client_secret: !secret google_client_secret
+
+
 #input
 input_select:
   led_brightness_select:

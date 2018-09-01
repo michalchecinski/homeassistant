@@ -4,6 +4,7 @@
   agent_user_id: !secret google_assistant_agent_user_id
   api_key: !secret google_assistant_opengraph
   entity_config:
+    # Input booleans
     input_boolean.romantic_mode:
       name: you know what
       expose: true
@@ -16,6 +17,8 @@
       aliases:
         - play it on stereo
         - play stereo
+        - play it stereo
+    # Switches
     switch.b3:
       name: iron
       room: livingroom
@@ -25,6 +28,7 @@
       expose: false
     switch.led_fix:
       expose: false
+    # Climate 
     climate.living_room:
       expose: true
       name: Living room temperature
