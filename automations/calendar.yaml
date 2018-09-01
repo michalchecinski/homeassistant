@@ -1,0 +1,15 @@
+  - id: to_lublin_calendar
+    alias: Calendar - to lublin - set vacation on
+    trigger:
+      - platform: state
+        entity_id:  calendar.to_lublin
+        from: 'off'
+        to: 'on'
+    condition:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'off'
+    action:
+      - service: homeassistant.turn_on
+        data:
+          entity_id: input_boolean.vacation_mode

@@ -25,9 +25,6 @@
       - service: homeassistant.turn_on
         data:
           entity_id: input_boolean.vacation_mode
-      - service: script.ifttt_notify
-        data_template:
-          message: "HA wyjechałeś na wakacje"
 
 # Turn off Vacation Mode when Home
   - id: vacation_off
@@ -49,6 +46,27 @@
       - service: homeassistant.turn_off
         data:
           entity_id: input_boolean.vacation_mode
+
+  - id: vacation_on_notification
+    alias: Vacation - on notify
+    trigger:
+      - platform: state
+        entity_id: input_boolean.vacation_mode
+        from: 'off'
+        to: 'on'
+    action:
+      - service: script.ifttt_notify
+        data_template:
+          message: "HA wyjechałeś na wakacje"
+
+  - id: vacation_off_notification
+    alias: Vacation - off notify
+    trigger:
+      - platform: state
+        entity_id: input_boolean.vacation_mode
+        from: 'on'
+        to: 'off'
+    action:
       - service: script.ifttt_notify
         data_template:
           message: "HA Wróciłeś z wakacji"
