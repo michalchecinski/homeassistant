@@ -15,8 +15,7 @@
         - condition: state
           entity_id: switch.stereo_switch
           state: 'off'
-        - condition:
-          condition: template
+        - condition: template
           value_template: "{{ state_attr('media_player.spotify', 'source') == 'stereo' }}"
     action:
       - service: media_player.media_pause
