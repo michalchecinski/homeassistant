@@ -10,6 +10,12 @@
     input_boolean.romantic_dance_mode:
       name: it's time
       expose: true
+    input_boolean.play_on_stereo:
+      name: play on stereo
+      expose: true
+      aliases:
+        - play it on stereo
+        - play stereo
     switch.b3:
       name: iron
       room: livingroom
