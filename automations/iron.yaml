@@ -1,20 +1,26 @@
-# Turn offf iron after 40 minutes of use
-  - id: iron_off
-    alias: Iron - turn off after 40 minutes of use
+# Iron turned on
+  - id: iron_turned_on
+    alias: Iron - turned on
     trigger:
       - platform: state
         entity_id: switch.b3
         from: 'off'
         to: 'on'
     action:
-      - delay: '00:40:00'
-      - service: switch.turn_off
+      - service: homeassistant.turn_on
         data:
-          entity_id: switch.b3
-      - service: script.turn_on
-        entity_id: script.say
+          entity_id: script.iron_turn_off
+
+
+# Iron turned on
+  - id: iron_turned_off
+    alias: Iron - turned off
+    trigger:
+      - platform: state
+        entity_id: switch.b3
+        from: 'on'
+        to: 'off'
+    action:
+      - service: homeassistant.turn_off
         data:
-          variables:
-            volume: '0.8'
-            what: 'Żelazko wyłączone'
-        
+          entity_id: script.iron_turn_off

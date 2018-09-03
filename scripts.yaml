@@ -146,3 +146,17 @@
           data:
             entity_id: switch.led
 
+  iron_turn_off:
+    alias: "Turn off iron after 20 minutes of use"
+    sequence:
+      - delay:
+          minutes: 20
+      - service: switch.turn_off
+        data:
+          entity_id: switch.b3
+      - service: script.turn_on
+        entity_id: script.say
+        data:
+          variables:
+            volume: '0.8'
+            what: 'Żelazko wyłączone'
