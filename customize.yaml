@@ -37,3 +37,10 @@ switch.led:
 # Input booleans
 input_boolean.fake_heater:
   hidden: true
+
+# Scripts
+script.iron_turn_off:
+  initial_state: off
+
+script.notify_temperature_dead:
+  initial_state: off
