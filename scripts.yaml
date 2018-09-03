@@ -127,3 +127,22 @@
           entity_id: media_player.spotify
           media_content_type: music
           media_content_id: "{{ song }}"
+
+  rtv_led_off:
+    sequence:
+      - condition: state
+        entity_id: switch.led
+        state: 'on'
+      - service: switch.turn_off
+          data:
+            entity_id: switch.led
+
+  rtv_led_on:
+    sequence:
+      - condition: state
+        entity_id: switch.led
+        state: 'off'
+      - service: switch.turn_on
+          data:
+            entity_id: switch.led
+

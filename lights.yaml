@@ -3,13 +3,9 @@
       rtv_led:
         friendly_name: "Livingroom LED"
         turn_on:
-          service: switch.turn_on
-          data:
-            entity_id: switch.led
+          service: script.rtv_led_on
         turn_off:
-          service: switch.turn_off
-          data:
-            entity_id: switch.led
+          service: scritp.rtv_led_off
         icon_template: >-
           {% if is_state('switch.led', 'on') %}
             mdi:led-on
