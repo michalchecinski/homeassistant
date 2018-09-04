@@ -2,10 +2,10 @@
     alias: LED - autoheal
     trigger:
       - platform: state
-        entity_id: light.rtv_led
+        entity_id: switch.led
         to: 'on'
       - platform: state
-        entity_id: light.rtv_led
+        entity_id: switch.led
         to: 'off'
     action:
       - service: switch.turn_on
