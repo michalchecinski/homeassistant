@@ -6,15 +6,7 @@
           service: script.rtv_led_on
         turn_off:
           service: scritp.rtv_led_off
-        icon_template: >-
-          {% if is_state('switch.led', 'on') %}
-            mdi:led-on
-          {% else %}
-            mdi:led-outline
-          {% endif %}
-
-  - platform: template
-    lights:
+        icon_template: mdi:led-outline
       bed_lamp:
         friendly_name: "Bed lamp"
         icon_template: mdi:lamp

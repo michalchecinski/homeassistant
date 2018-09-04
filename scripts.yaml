@@ -19,12 +19,9 @@
         data:
           entity_id: 
             - switch.b3
-            - light.led
+            - light.rtv_led
             - light.bed_lamp
             - switch.stereo_switch
-      - service: media_player.media_pause
-        data:
-          entity_id: media_player.salon
 
   wake_up:
     alias: "Script waking up"
@@ -129,6 +126,7 @@
           media_content_id: "{{ song }}"
 
   rtv_led_off:
+    alias: "rtv led off"
     sequence:
       - condition: state
         entity_id: switch.led
@@ -137,6 +135,7 @@
         entity_id: switch.led
 
   rtv_led_on:
+    alias: "rtv led on"
     sequence:
       - condition: state
         entity_id: switch.led
