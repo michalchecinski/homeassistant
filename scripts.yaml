@@ -158,3 +158,23 @@
           variables:
             volume: '0.8'
             what: 'Żelazko wyłączone'
+
+  stereo_on:
+    alias: "Stereo on"
+    sequence:
+      - condition: state
+        entity_id: switch.stereo_mqtt
+        state: 'off'
+      - service: switch.turn_on
+        data:
+          entity_id: switch.stereo_mqtt
+
+  stereo_off:
+    alias: "Stereo off"
+    sequence:
+      - condition: state
+        entity_id: switch.stereo_mqtt
+        state: 'on'
+      - service: switch.turn_off
+        data:
+          entity_id: switch.stereo_mqtt
