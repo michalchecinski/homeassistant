@@ -123,13 +123,13 @@ google:
 
 #input
 input_select:
-  led_brightness_select:
-    name: LED brightness
+  michal_status:
+    name: Michał status
     options:
-      - 100%
-      - 50%
-      - 25%
-    initial: '100%'
+     - using computer
+     - watching TV
+     - at home
+     - away
 
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
