@@ -13,7 +13,7 @@
         data_template: {"event":"hass_notify", "value1":"{{ message }}", "value2":"{{ info }}"}
 
   away_home:
-    alias: "Script for leaving home"
+    alias: "Leaving home"
     sequence:
       - service: switch.turn_off
         data:
