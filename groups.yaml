@@ -140,7 +140,7 @@ thinkpad:
   - sensor.thinkpad_battery_life
 
 status:
- control: hidden
+  control: hidden
   name: Status
   view: no
   entities:
