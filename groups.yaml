@@ -2,10 +2,9 @@ default_view:
     view: yes
     icon: mdi:home
     entities:
-      - group.all_devices
+      - group.status
       - group.weather_sensors
       - media_player.spotify
-      - group.location
 
 climate:
   name: Climate
@@ -52,6 +51,7 @@ bedroom:
   icon: mdi:hotel
   entities:
     - light.bed_lamp
+    - group.thinkpad
 
 bathroom:
   name: Bathroom
@@ -75,7 +75,6 @@ configuration:
     - group.system
     - weblink.router
     - group.hass_details
-    - group.all_automations
     - group.all_scripts
     - group.inputs
     - group.battery
@@ -130,3 +129,22 @@ inputs:
     - input_boolean.romantic_dance_mode
     - input_boolean.vacation_mode
     - input_boolean.sleep
+
+thinkpad:
+  control: hidden
+  name: THINKPAD status
+  view: no
+  entities:
+  - binary_sensor.thinkpad_charging
+  - sensor.thinkpad_battery_charge_status
+  - sensor.thinkpad_battery_life
+
+status:
+ control: hidden
+  name: Status
+  view: no
+  entities:
+  - device_tracker.google_maps_102169435937546415265
+  - input_select.michal_status
+  - input_boolean.vacation_mode
+  - input_boolean.guest_mode
