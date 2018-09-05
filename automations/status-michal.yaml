@@ -1,0 +1,21 @@
+  - id: michal_status_computer
+    alias: Michal status - at computer
+    trigger:
+      platform: mqtt
+      topic: THINKPAD/#
+    condition:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.michal_status
+          option: 'using computer'
+      - service: homeassistant.turn_off
+        data:
+          entity_id: script.not_at_computer
+      - delay: '00:00:10'
+      - service: homeassistant.turn_on
+        data:
+          entity_id: script.not_at_computer

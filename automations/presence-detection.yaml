@@ -14,6 +14,10 @@
       - service: input_boolean.turn_off
         data:
           entity_id: input_boolean.michal_home
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.michal_status
+          option: 'away'
       - service: script.ifttt_notify
         data_template:
           message: "Home assistant wykrył, że wyszedłeś z domu."
@@ -29,6 +33,10 @@
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.michal_home
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.michal_status
+          option: 'at home'
       - service: script.ifttt_notify
         data_template:
           message: "Home assistant wykrył, że jesteś w domu."
