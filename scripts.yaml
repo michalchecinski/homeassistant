@@ -12,6 +12,22 @@
       - service: ifttt.trigger
         data_template: {"event":"hass_notify", "value1":"{{ message }}", "value2":"{{ info }}"}
 
+  notify_thinkpad:
+    sequence:
+      - service: mqtt.publish
+        data_template:
+          payload: "{{ message }}"
+          topic: THINKPAD/toast
+          retain: true
+
+  notify_thinkpad_tts:
+    sequence:
+      - service: mqtt.publish
+        data_template:
+          payload: "{{ message }}"
+          topic: THINKPAD/tts
+          retain: true
+
   away_home:
     alias: "Leaving home"
     sequence:
