@@ -19,3 +19,35 @@
       - service: homeassistant.turn_on
         data:
           entity_id: script.not_at_computer
+
+  - id: michal_status_tv
+    alias: Michal status - tv
+    trigger:
+      - platform: state
+        entity_id: media_player.lg_webos_smart_tv
+        to: 'playing'
+    condition:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.michal_status
+          option: 'watching TV'
+
+  - id: michal_status_not_tv
+    alias: Michal status - not tv
+    trigger:
+      - platform: state
+        entity_id: media_player.lg_webos_smart_tv
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.michal_status
+          option: 'at home'
