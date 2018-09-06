@@ -40,6 +40,7 @@ living-room:
   icon: mdi:sofa
   entities:
     - media_player.spotify
+    - media_player.lg_webos_smart_tv
     - switch.b3
     - switch.stereo_switch
     - light.rtv_led
