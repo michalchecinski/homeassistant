@@ -1,0 +1,7 @@
+  michal_status:
+    name: Michał status
+    options:
+     - using computer
+     - watching TV
+     - at home
+     - away

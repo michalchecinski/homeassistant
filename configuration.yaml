@@ -66,12 +66,6 @@ sun:
 
 wake_on_lan:
 
-sensor: !include_dir_merge_list sensors
-
-switch: !include switches.yaml
-
-binary_sensor: !include_dir_merge_list binary_sensors
-
 # Text to speech
 tts:
   - platform: google
@@ -108,6 +102,10 @@ mqtt:
   username: !secret mqtt_user
   password: !secret mqtt_pass
 
+sensor: !include_dir_merge_list sensors
+binary_sensor: !include_dir_merge_list binary_sensors
+switch: !include switches.yaml
+light: !include lights.yaml
 group: !include groups.yaml
 automation: !include_dir_merge_list automations
 script: !include scripts.yaml
@@ -115,8 +113,13 @@ zone: !include zones.yaml
 #shell_command: !include shell_commands.yaml
 #scene: !include scenes.yaml
 rest_command: !include rest_commands.yaml
-light: !include lights.yaml
 weblink: !include weblink.yaml
+climate: !include climate.yaml
+
+#input
+input_select: !include input_select.yaml
+input_number: !include input_number.yaml
+input_boolean: !include input_boolean.yaml
 
 google_assistant: !include google_assistant.yaml
 
@@ -124,34 +127,6 @@ google_assistant: !include google_assistant.yaml
 google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
-
-
-#input
-input_select:
-  michal_status:
-    name: Michał status
-    options:
-     - using computer
-     - watching TV
-     - at home
-     - away
-
-input_number: !include input_number.yaml
-input_boolean: !include input_boolean.yaml
-
-climate:
-  - platform: generic_thermostat
-    name: Living Room
-    heater: input_boolean.fake_heater
-    target_sensor: sensor.dht_sensor_temperature
-    initial_operation_mode: "off"
-    target_temp: 21
-  - platform: generic_thermostat
-    name: Outside
-    heater: input_boolean.fake_heater
-    target_sensor: sensor.temperature_outside
-    initial_operation_mode: "off"
-    target_temp: 21
 
 # netatmo:
 #   api_key: netatmo_id
