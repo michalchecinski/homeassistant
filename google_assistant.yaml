@@ -32,6 +32,9 @@
     climate.living_room:
       expose: true
       name: Living room temperature
+      aliases:
+        - Living room temperature
+        - inside temperature
     climate.outside:
       expose: true
       name: Outside temperature
