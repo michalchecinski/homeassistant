@@ -75,9 +75,10 @@ configuration:
     - group.system
     - weblink.router
     - group.hass_details
-    - group.all_scripts
     - group.inputs
     - group.battery
+    - sensor.db_size
+    - group.all_scripts
     
 # cameras:
 #   name: Cameras
