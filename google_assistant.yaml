@@ -35,6 +35,7 @@
       aliases:
         - Living room temperature
         - inside temperature
+      room: livingroom
     climate.outside:
       expose: true
       name: Outside temperature
