@@ -148,3 +148,9 @@ climate:
     initial_operation_mode: "off"
     target_temp: 21
 
+netatmo:
+  api_key: netatmo_id
+  secret_key: netatmo_secret
+  username: netatmo_username
+  password: netatmo_password
+
