@@ -7,3 +7,15 @@
       - input_select
       - switch
       - light
+    entities:
+      - media_player.lg_webos_smart_tv
+  exclude:
+    domains:
+      - updater
+      - automation
+      - device_tracker
+      - group
+      - scene
+      - script
+    entities:
+      - sun.sun
