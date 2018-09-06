@@ -1,0 +1,7 @@
+- platform: sql
+  queries:
+    - name: DB size
+      db_url: !secret db_url
+      query: 'SELECT table_schema "database", Round(Sum(data_length + index_length) / 1024, 1) "value" FROM information_schema.tables WHERE table_schema="hass" GROUP BY table_schema;'
+      column: 'value'
+      unit_of_measurement: kB
