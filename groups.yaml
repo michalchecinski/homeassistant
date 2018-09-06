@@ -148,3 +148,11 @@ status:
   - input_select.michal_status
   - input_boolean.vacation_mode
   - input_boolean.guest_mode
+
+usage:
+  name: Usage
+  view: no
+  entities:
+  - sensor.using_computer_today
+  - sensor.using_computer_week
+  - sensor.using_computer_month
