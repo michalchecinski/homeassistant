@@ -155,6 +155,9 @@ usage:
   name: Usage
   view: no
   entities:
-  - sensor.using_computer_today
-  - sensor.using_computer_week
-  - sensor.using_computer_month
+  # - sensor.using_computer_today
+  # - sensor.using_computer_week
+  # - sensor.using_computer_month
+  - sensor.watching_tv_today
+  - sensor.watching_tv_week
+  - sensor.watching_tv_month
