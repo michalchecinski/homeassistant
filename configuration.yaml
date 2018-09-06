@@ -64,6 +64,8 @@ map:
 # Track the sun
 sun:
 
+wake_on_lan:
+
 sensor: !include_dir_merge_list sensors
 
 switch: !include switches.yaml
@@ -89,12 +91,15 @@ ifttt:
   key: !secret ifttt_key
 
 media_player:
-  - platform: mpd
-    host: 127.0.0.1
-    name: Salon
   - platform: spotify
     client_id: !secret spotify_client
     client_secret: !secret spotify_secret
+
+  - platform: webostv
+    turn_on_action:
+      service: wake_on_lan.send_magic_packet
+      data:
+        mac: !secret lg_mac
   
 # MQTT
 mqtt:
