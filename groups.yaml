@@ -162,3 +162,6 @@ usage:
   - sensor.watching_tv_today
   - sensor.watching_tv_week
   - sensor.watching_tv_month
+  - sensor.at_home_today
+  - sensor.at_home_week
+  - sensor.at_home_month
