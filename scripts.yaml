@@ -193,16 +193,3 @@
       - service: switch.turn_off
         data:
           entity_id: switch.stereo_mqtt
-
-  not_at_computer:
-    alias: "Michal not at the computer"
-    sequence:
-      - delay: 
-          minutes: 2
-      - condition: state
-        entity_id: input_boolean.michal_home
-        state: 'on'
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.michal_status
-          option: 'at home'
