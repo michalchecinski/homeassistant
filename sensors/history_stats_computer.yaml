@@ -1,6 +1,6 @@
   - platform: history_stats
     name: Using computer today
-    entity_id: input_select.michal_status
+    entity_id: binary_sensor.thinkpad
     state: 'using computer'
     type: time
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
@@ -8,7 +8,7 @@
 
   - platform: history_stats
     name: Using computer week
-    entity_id: input_select.michal_status
+    entity_id: binary_sensor.thinkpad
     state: 'using computer'
     type: time
     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
@@ -16,7 +16,7 @@
 
   - platform: history_stats
     name: Using computer month
-    entity_id: input_select.michal_status
+    entity_id: binary_sensor.thinkpad
     state: 'using computer'
     type: time
     start: '{{ as_timestamp( now().replace(day=1).replace(hour=0).replace(minute=0).replace(second=0) ) }}'
