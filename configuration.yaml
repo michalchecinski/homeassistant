@@ -76,6 +76,9 @@ device_tracker:
     username: !secret gmaps_user
     password: !secret gmaps_password
   - platform: upc_connect
+    new_device_defaults:
+      track_new_devices: True
+      hide_if_away: False
 
 # Cloud
 cloud: !include cloud.yaml
