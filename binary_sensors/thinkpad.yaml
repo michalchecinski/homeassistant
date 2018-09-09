@@ -4,8 +4,13 @@
     payload_on: "Online"
     payload_off: "Offline"
 
-  - platform: mqtt
-    state_topic: "THINKPAD/"
-    name: "Thinkpad"
-    payload_on: "on"
-    payload_off: "off"
+  # - platform: mqtt
+  #   state_topic: "THINKPAD/"
+  #   name: "Thinkpad"
+  #   payload_on: "on"
+  #   payload_off: "off"
+
+  - platform: template
+    sensors:
+      Thinkpad:
+        value_template: {{ is_state('device_tracker.thinkpad', 'home') }}
