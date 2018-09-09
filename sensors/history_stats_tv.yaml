@@ -1,6 +1,6 @@
   - platform: history_stats
     name: Watching tv today
-    entity_id: media_player.lg_webos_smart_tv
+    entity_id: media_player.tv
     state: 'playing'
     type: time
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
@@ -8,7 +8,7 @@
 
   - platform: history_stats
     name: Watching tv week
-    entity_id: media_player.lg_webos_smart_tv
+    entity_id: media_player.tv
     state: 'playing'
     type: time
     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
@@ -16,7 +16,7 @@
 
   - platform: history_stats
     name: Watching tv month
-    entity_id: media_player.lg_webos_smart_tv
+    entity_id: media_player.tv
     state: 'playing'
     type: time
     start: '{{ as_timestamp( now().replace(day=1).replace(hour=0).replace(minute=0).replace(second=0) ) }}'

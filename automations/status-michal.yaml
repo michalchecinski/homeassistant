@@ -34,7 +34,7 @@
     alias: Michal status - tv
     trigger:
       - platform: state
-        entity_id: media_player.lg_webos_smart_tv
+        entity_id: media_player.tv
         to: 'playing'
     condition:
       - condition: state
@@ -50,7 +50,7 @@
     alias: Michal status - not tv
     trigger:
       - platform: state
-        entity_id: media_player.lg_webos_smart_tv
+        entity_id: media_player.tv
         to: 'off'
     condition:
       - condition: state

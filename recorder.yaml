@@ -8,7 +8,7 @@
       - switch
       - light
     entities:
-      - media_player.lg_webos_smart_tv
+      - media_player.tv
   exclude:
     domains:
       - updater
