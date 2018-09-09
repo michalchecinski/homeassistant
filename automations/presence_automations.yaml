@@ -4,7 +4,7 @@
 
 # Fire away home script when leaving home
   - id: away_home_script
-    alias: Presence - away home
+    alias: Presence automations - away home
     trigger:
     - platform: state
       entity_id: input_boolean.michal_home
