@@ -1,8 +1,9 @@
   - id: michal_status_computer
     alias: Michal status - at computer
     trigger:
-      platform: mqtt
-      topic: THINKPAD/#
+      - platform: state
+        entity_id: binary_sensor.thinkpad
+        to: 'on'
     condition:
       - condition: state
         entity_id: input_boolean.michal_home
@@ -12,13 +13,22 @@
         data:
           entity_id: input_select.michal_status
           option: 'using computer'
-      - service: homeassistant.turn_off
+
+  - id: michal_status_not_computer
+    alias: Michal status - not at computer
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.thinkpad
+        to: 'off'
+    condition:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on'
+    action:
+      - service: input_select.select_option
         data:
-          entity_id: script.not_at_computer
-      - delay: '00:00:10'
-      - service: homeassistant.turn_on
-        data:
-          entity_id: script.not_at_computer
+          entity_id: input_select.michal_status
+          option: 'at home'
 
   - id: michal_status_tv
     alias: Michal status - tv
