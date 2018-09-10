@@ -1,14 +1,14 @@
   purge_keep_days: 5
   db_url: !secret db_url
-  include:
-    domains:
-      - input_boolean
-      - input_number
-      - input_select
-      - switch
-      - light
-    entities:
-      - media_player.tv
+  # include:
+  #   domains:
+  #     - input_boolean
+  #     - input_number
+  #     - input_select
+  #     - switch
+  #     - light
+  #   entities:
+  #     - media_player.tv
   exclude:
     domains:
       - updater
@@ -19,3 +19,4 @@
       - script
     entities:
       - sun.sun
+      - media_player.spotify
