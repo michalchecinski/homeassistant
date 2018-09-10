@@ -35,7 +35,7 @@
         to: 'home'
       - platform: state
         entity_id: device_tracker.nexus
-        state: 'home'
+        to: 'home'
     action:
       - service: input_boolean.turn_on
         data:
