@@ -92,4 +92,26 @@
       - service: home_assistant.turn_off
         data:
           entity_id: input_boolean.play_on_stereo
-    
+
+
+  - id: play_on_stereo_coming_home
+    alias: Livingroom stereo - play spotify on stereo when coming home
+    trigger:
+      - platform: state
+        entity_id: input_boolean.michal_home
+        from: 'off'
+        to: 'on'
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: "{{ state_attr('media_player.spotify', 'source') == 'Nexus 5X' }}"
+        - condition: state
+          entity_id: media_player.spotify
+          state: 'playing'
+    action:
+      - delay: '00:02:00'
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.spotify
+          source: stereo
