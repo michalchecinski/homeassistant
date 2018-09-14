@@ -1,7 +1,7 @@
   - platform: history_stats
     name: Using computer today
     entity_id: binary_sensor.thinkpad
-    state: 'using computer'
+    state: 'on'
     type: time
     start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
     end: '{{ now() }}'
@@ -9,7 +9,7 @@
   - platform: history_stats
     name: Using computer week
     entity_id: binary_sensor.thinkpad
-    state: 'using computer'
+    state: 'on'
     type: time
     start: '{{ as_timestamp( now().replace(hour=0).replace(minute=0).replace(second=0) ) - now().weekday() * 86400 }}'
     end: '{{ now() }}'
@@ -17,7 +17,7 @@
   - platform: history_stats
     name: Using computer month
     entity_id: binary_sensor.thinkpad
-    state: 'using computer'
+    state: 'on'
     type: time
     start: '{{ as_timestamp( now().replace(day=1).replace(hour=0).replace(minute=0).replace(second=0) ) }}'
     end: '{{ now() }}'
