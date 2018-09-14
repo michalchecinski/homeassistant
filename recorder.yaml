@@ -17,6 +17,35 @@
       - group
       - scene
       - script
+      - calendar
+      - zone
+      - weblink
     entities:
       - sun.sun
       - media_player.spotify
+      - sensor.date
+      - sensor.time
+      - sensor.yr_weather_cloudiness
+      - sensor.yr_weather_fog
+      - sensor.yr_weather_humidity
+      - sensor.yr_weather_precipitation
+      - sensor.yr_weather_pressure
+      - sensor.yr_weather_symbol
+      - sensor.yr_weather_temperature
+      - sensor.owm_condition
+      - sensor.owm_rain
+      - sensor.owm_snow
+      - sensor.owm_temperature
+      - sensor.owm_forecast
+      - sensor.waqi_bydgoszczwarszawska_poland
+      - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
+      - sensor.waqi_krucza_warszawa_mazowieckie_poland
+      - sensor.waqi_puszczy_solskiej_warszawa_mazowieckie_poland
+      - sensor.waqi_tostoja_warszawa_mazowieckie_poland
+      - sensor.commute_to_home
+      - sensor.processor_use
+      - sensor.load_15m
+      - sensor.memory_use_percent
+      - sensor.swap_use_percent
+      - binary_sensor.travis_status
+
