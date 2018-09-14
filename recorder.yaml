@@ -48,4 +48,6 @@
       - sensor.memory_use_percent
       - sensor.swap_use_percent
       - binary_sensor.travis_status
+      - input_number.random_minute
+      - input_number.random_night_minute
 
