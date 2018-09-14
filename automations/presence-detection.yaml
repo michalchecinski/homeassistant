@@ -22,9 +22,6 @@
         data:
           entity_id: input_select.michal_status
           option: 'away'
-      - service: script.ifttt_notify
-        data_template:
-          message: "Home assistant wykrył, że wyszedłeś z domu."
 
 # At home
   - id: at_home
@@ -44,6 +41,3 @@
         data:
           entity_id: input_select.michal_status
           option: 'at home'
-      - service: script.ifttt_notify
-        data_template:
-          message: "Home assistant wykrył, że jesteś w domu."
