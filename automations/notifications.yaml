@@ -67,7 +67,7 @@
   - id: hotification_coming_home
     alias: Notification - coming home
     trigger:
-    -  platform: state
+      - platform: state
         entity_id: input_boolean.michal_home
         from: 'off'
         to: 'on'
@@ -80,7 +80,7 @@
   - id: hotification_leaving_home
     alias: Notification - leaving home
     trigger:
-    -  platform: state
+      - platform: state
         entity_id: input_boolean.michal_home
         from: 'on'
         to: 'off'
