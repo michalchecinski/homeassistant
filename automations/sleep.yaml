@@ -25,9 +25,17 @@
       from: 'on'
       to: 'off'  
     condition:
-      condition: state
-      entity_id: input_boolean.michal_home
-      state: 'on' 
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.michal_home
+          state: 'on' 
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: 'off'
+        - condition: time
+          after: '05:00:00'
+          before: '13:00:00'
     action:
       - delay: '00:04:00'
       - service: media_player.shuffle_set
