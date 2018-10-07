@@ -70,10 +70,6 @@
           hours: 0
           minutes: 5
           seconds: 0
-    condition:
-      - condition: state
-        entity_id: switch.stereo_switch
-        state: 'on'
     action:
       - service: switch.turn_off
         data:
