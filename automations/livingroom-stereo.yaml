@@ -17,6 +17,7 @@
           state: 'off'
         - condition: template
           value_template: "{{ state_attr('media_player.spotify', 'source') == 'stereo' }}"
+
     action:
       - service: media_player.media_pause
         data:
@@ -64,7 +65,7 @@
         value_template: "{{ state_attr('media_player.spotify', 'source') != 'stereo' }}"
       - platform: state
         entity_id: media_player.spotify
-        to: 'off'
+        to: 'paused'
         for:
           hours: 0
           minutes: 5
