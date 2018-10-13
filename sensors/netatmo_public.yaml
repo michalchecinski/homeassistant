@@ -1,0 +1,13 @@
+  - platform: netatmo_public
+    areas:
+      - lat_ne: 52.189144
+        lon_ne: 20.953836
+        lat_sw: 52.247712
+        lon_sw: 21.038236
+        monitored_conditions:
+          - temperature
+          - pressure
+          - humidity
+          - rain
+          - windstrength
+          - guststrength
