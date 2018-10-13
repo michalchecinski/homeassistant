@@ -77,7 +77,7 @@
       - service: media_player.volume_set
         data:
           entity_id: media_player.spotify
-          volume_level: 0.3
+          volume_level: 0.2
       - service: media_player.shuffle_set
         data:
           entity_id: media_player.spotify
@@ -115,13 +115,13 @@
       - service: media_player.volume_set
         data:
           entity_id: media_player.spotify
-          volume_level: 0.2
+          volume_level: 0.1
       - service: script.spotify_play_song
         data_template:
           song: "spotify:track:0Tel1fmuCxEFV6wBLXsEdk"
-      - service: light.turn_on
-        data:
-          entity_id: light.rtv_led
+      # - service: light.turn_on
+      #   data:
+      #     entity_id: light.rtv_led
 
   spotify_play_playlist:
     alias: Spotify play playlist
