@@ -112,3 +112,25 @@
         data:
           entity_id: media_player.spotify
           source: stereo
+
+ - id: max_stero_volume_when_on
+    alias: Livingroom stereo - max volume when on
+    trigger:
+      - platform: state
+        entity_id: switch.stereo_switch
+        from: 'off'
+        to: 'on'
+    # condition:
+    #   condition: and
+    #   conditions:
+    #     - condition: template
+    #       value_template: "{{ state_attr('media_player.spotify', 'source') == 'stereo' }}"
+    #     - condition: state
+    #       entity_id: media_player.spotify
+    #       state: 'playing'
+    action:
+      service: mqtt.publish
+      data:
+        topic: "stereo/volume/max"
+        payload: ""
+
