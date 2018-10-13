@@ -2,10 +2,10 @@
     lights:
       rtv_led:
         friendly_name: "Livingroom LED"
+        turn_off:
+          service: script.rtv_led_off
         turn_on:
           service: script.rtv_led_on
-        turn_off:
-          service: scritp.rtv_led_off
         icon_template: mdi:led-outline
       bed_lamp:
         friendly_name: "Bed lamp"
