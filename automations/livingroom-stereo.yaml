@@ -113,7 +113,7 @@
           entity_id: media_player.spotify
           source: stereo
 
- - id: max_stero_volume_when_on
+  - id: max_stero_volume_when_on
     alias: Livingroom stereo - max volume when on
     trigger:
       - platform: state
