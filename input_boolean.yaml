@@ -28,6 +28,8 @@
   sleep_alarm:
     initial: off
 
+  bedtime:
+
   was_playing:
 
   fake_heater:
