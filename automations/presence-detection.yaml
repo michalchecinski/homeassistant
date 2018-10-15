@@ -41,3 +41,17 @@
         data:
           entity_id: input_select.michal_status
           option: 'at home'
+
+# Extended home
+  - id: extended_home
+    alias: Presence - turn on boolean when at home
+    trigger:
+      - platform: state
+        entity_id: device_tracker.google_maps_102169435937546415265
+        from: 'not_home'
+        to: 'extended_home'
+    action:
+      - service: input_select.select_option
+        data:
+          entity_id: input_select.michal_status
+          option: 'near home'
