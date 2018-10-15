@@ -1,0 +1,5 @@
+  - name: extended home
+    latitude: !secret home_lat
+    longitude: !secret home_lon
+    radius: 600
+    icon: mdi:home-map-marker
