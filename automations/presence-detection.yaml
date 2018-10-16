@@ -8,8 +8,10 @@
     trigger:
     - platform: state
       entity_id: device_tracker.google_maps_102169435937546415265
-      from: 'home'
-      #to: 'not_home'
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.google_maps_102169435937546415265
+      to: 'extended home'
       for: '00:00:30'
       # condition:
       #   - condition: state
