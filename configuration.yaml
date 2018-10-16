@@ -139,3 +139,6 @@ netatmo:
   username: netatmo_username
   password: netatmo_password
 
+
+proximity: !include proximity.yaml
+

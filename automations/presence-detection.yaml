@@ -13,7 +13,7 @@
       # condition:
       #   - condition: state
       #     entity_id: device_tracker.nexus
-      #     state: 'not home'
+      #     state: 'not_home'
     action:
       - service: input_boolean.turn_off
         data:
@@ -49,7 +49,7 @@
       - platform: state
         entity_id: device_tracker.google_maps_102169435937546415265
         from: 'not_home'
-        to: 'extended_home'
+        to: 'extended home'
     action:
       - service: input_select.select_option
         data:
