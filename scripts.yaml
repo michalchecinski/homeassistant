@@ -90,6 +90,8 @@
       - service: script.spotify_play_playlist
         data_template:
           playlist: "spotify:user:checin:playlist:6f4TfHpSuNFBaJnWxfqE2w"
+      - condition: sun
+        after: sunset
       - service: light.turn_on
         data:
           entity_id: light.rtv_led
@@ -128,9 +130,11 @@
       - service: script.spotify_play_song
         data_template:
           song: "spotify:track:0Tel1fmuCxEFV6wBLXsEdk"
-      # - service: light.turn_on
-      #   data:
-      #     entity_id: light.rtv_led
+      - condition: sun
+        after: sunset
+      - service: light.turn_on
+        data:
+          entity_id: light.rtv_led
 
   spotify_play_playlist:
     alias: Spotify play playlist
