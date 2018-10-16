@@ -44,12 +44,23 @@
 
 # Extended home
   - id: extended_home
-    alias: Presence - turn on boolean when at home
+    alias: Presence - extended home
     trigger:
-      - platform: state
-        entity_id: device_tracker.google_maps_102169435937546415265
-        from: 'not_home'
-        to: 'extended home'
+      platform: numeric_state
+      entity_id: proximity.home
+      below: 5
+      above: 1
+    condition:
+      condition: and
+      conditions:
+        # Heading home
+        - condition: template
+          value_template: '{{ states.proximity.home.attributes.dir_of_travel == "towards" }}'
+
+        # Michal away home
+        - condition: state
+          entity_id: input_select.michal_status
+          state: 'away'
     action:
       - service: input_select.select_option
         data:
