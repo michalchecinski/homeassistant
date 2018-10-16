@@ -133,11 +133,11 @@ google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
 
-netatmo:
-  api_key: netatmo_id
-  secret_key: netatmo_secret
-  username: netatmo_username
-  password: netatmo_password
+# netatmo:
+#   api_key: netatmo_id
+#   secret_key: netatmo_secret
+#   username: netatmo_username
+#   password: netatmo_password
 
 
 proximity: !include proximity.yaml
