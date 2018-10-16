@@ -11,16 +11,16 @@
       - service: switch.turn_off
         entity_id: switch.led_fix
 
-  - id: led_autoheal_off
-    alias: LED - autoheal off
-    trigger:
-      - platform: state
-        entity_id: switch.led
-        to: 'off'
-    action:
-      - delay: '00:00:10'
-      - service: switch.turn_on
-        entity_id: switch.led_fix
-      - delay: '00:00:05'
-      - service: switch.turn_off
-        entity_id: switch.led_fix
+  # - id: led_autoheal_off
+  #   alias: LED - autoheal off
+  #   trigger:
+  #     - platform: state
+  #       entity_id: switch.led
+  #       to: 'off'
+  #   action:
+  #     - delay: '00:00:10'
+  #     - service: switch.turn_on
+  #       entity_id: switch.led_fix
+  #     - delay: '00:00:05'
+  #     - service: switch.turn_off
+  #       entity_id: switch.led_fix
