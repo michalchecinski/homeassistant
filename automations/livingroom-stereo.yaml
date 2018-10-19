@@ -131,6 +131,6 @@
     action:
       service: mqtt.publish
       data:
-        topic: "stereo/volume/max"
-        payload: ""
+        topic: "stereo/volume/up"
+        payload: "7"
 
