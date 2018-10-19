@@ -1,0 +1,41 @@
+  away_home:
+    alias: "Leaving home"
+    sequence:
+      - service: switch.turn_off
+        data:
+          entity_id: 
+            - switch.b3
+            - light.rtv_led
+            - light.bed_lamp
+            - switch.stereo_switch
+
+  wake_up:
+    alias: "Script waking up"
+    sequence:
+      - service: light.turn_on
+        data:
+          entity_id: light.bed_lamp
+      - service: rest_command.play_wakeup_playlist
+      - delay: '00:00:10'
+      - service: homeassistant.turn_off
+        data:
+          entity_id: binary_sensor.sleep_alarm
+      - delay: '00:05:00'
+      - service: light.turn_off
+        data:
+          entity_id: light.bed_lamp
+
+  iron_turn_off:
+    alias: "Turn off iron after 20 minutes of use"
+    sequence:
+      - delay:
+          minutes: 20
+      - service: switch.turn_off
+        data:
+          entity_id: switch.b3
+      - service: script.turn_on
+        entity_id: script.say
+        data:
+          variables:
+            volume: '0.8'
+            what: 'Żelazko wyłączone'

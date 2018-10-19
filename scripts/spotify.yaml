@@ -1,0 +1,31 @@
+  spotify_play_playlist:
+    alias: Spotify play playlist
+    sequence:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.stereo_switch
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.spotify
+          source: stereo
+      - service: media_player.play_media
+        data_template:
+          entity_id: media_player.spotify
+          media_content_type: playlist
+          media_content_id: "{{ playlist }}"
+
+  spotify_play_song:
+    alias: Spotify play song
+    sequence:
+      - service: switch.turn_on
+        data:
+          entity_id: switch.stereo_switch
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.spotify
+          source: stereo
+      - service: media_player.play_media
+        data_template:
+          entity_id: media_player.spotify
+          media_content_type: music
+          media_content_id: "{{ song }}"
