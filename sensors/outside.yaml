@@ -6,7 +6,7 @@
   - platform: template
     sensors:
       temperature_outside:
-        name: "Temperature outside"
+        friendly_name: "Temperature outside"
         value_template: "{{ states.sensor.owm_temperature.state }}"
         unit_of_measurement: "°C"
 
