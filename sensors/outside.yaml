@@ -4,10 +4,10 @@
   #   unit_of_measurement: "°C"
 
   - platform: template
-      sensors:
-        name: "Temperature outside"
-        value_template: "{{ states.sensor.owm_temperature.state }}"
-        unit_of_measurement: "°C"
+    sensors:
+      name: "Temperature outside"
+      value_template: "{{ states.sensor.owm_temperature.state }}"
+      unit_of_measurement: "°C"
 
     
   - platform: mqtt
