@@ -113,7 +113,7 @@ switch: !include switches.yaml
 light: !include lights.yaml
 group: !include groups.yaml
 automation: !include_dir_merge_list automations
-script: !include_dir_merge_list scripts
+script: !include scripts.yaml
 zone: !include zones.yaml
 shell_command: !include shell_commands.yaml
 #scene: !include scenes.yaml
