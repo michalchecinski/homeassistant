@@ -19,9 +19,12 @@
     switch.b3:
       name: iron
       room: livingroom
-    switch.stereo_switch:
+    switch.stereo:
       name: stereo
       room: livingroom
+      aliases:
+        - stereo
+        - stereo switch
     switch.led:
       expose: false
     switch.b1:

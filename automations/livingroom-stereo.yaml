@@ -13,7 +13,7 @@
       condition: and
       conditions:
         - condition: state
-          entity_id: switch.stereo_switch
+          entity_id: switch.stereo
           state: 'off'
         - condition: template
           value_template: "{{ state_attr('media_player.spotify', 'source') == 'stereo' }}"
@@ -24,7 +24,7 @@
           entity_id: media_player.spotify 
       - service: switch.turn_on
         data:
-          entity_id: switch.stereo_switch
+          entity_id: switch.stereo
       - delay: '00:00:05'
       - service: media_player.media_play
         data:
@@ -40,7 +40,7 @@
       condition: and
       conditions:
         - condition: state
-          entity_id: switch.stereo_switch
+          entity_id: switch.stereo
           state: 'off'
         - condition: state
           entity_id: media_player.spotify
@@ -51,7 +51,7 @@
           entity_id: media_player.spotify 
       - service: switch.turn_on
         data:
-          entity_id: switch.stereo_switch
+          entity_id: switch.stereo
       - delay: '00:00:05'
       - service: media_player.media_play
         data:
@@ -73,7 +73,7 @@
     action:
       - service: switch.turn_off
         data:
-          entity_id: switch.stereo_switch
+          entity_id: switch.stereo
 
   - id: play_on_stereo
     alias: Livingroom stereo - play spotify on stereo
@@ -117,7 +117,7 @@
     alias: Livingroom stereo - max volume when on
     trigger:
       - platform: state
-        entity_id: switch.stereo_switch
+        entity_id: switch.stereo
         from: 'off'
         to: 'on'
     # condition:
@@ -133,5 +133,5 @@
       - service: mqtt.publish
         data:
           topic: "stereo/volume/up"
-          payload: 7
+          payload: 10
 

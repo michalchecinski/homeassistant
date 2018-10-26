@@ -3,7 +3,7 @@
     sequence:
       - service: switch.turn_on
         data:
-          entity_id: switch.stereo_switch
+          entity_id: switch.stereo
       - service: media_player.select_source
         data:
           entity_id: media_player.spotify
@@ -19,7 +19,7 @@
     sequence:
       - service: switch.turn_on
         data:
-          entity_id: switch.stereo_switch
+          entity_id: switch.stereo
       - service: media_player.select_source
         data:
           entity_id: media_player.spotify

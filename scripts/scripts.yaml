@@ -7,7 +7,7 @@
             - switch.b3
             - light.rtv_led
             - light.bed_lamp
-            - switch.stereo_switch
+            - switch.stereo
 
   wake_up:
     alias: "Script waking up"

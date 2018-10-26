@@ -15,4 +15,4 @@
           entity_id: media_player.salon
       - service: switch.turn_off
         data:
-          entity_id: switch.stereo_switch
+          entity_id: switch.stereo

@@ -1,4 +1,4 @@
   - name: Romantic
     entities:
       light.rtv_led: on   
-      switch.stereo_switch: on
+      switch.stereo: on
