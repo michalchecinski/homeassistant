@@ -129,8 +129,9 @@
     #       entity_id: media_player.spotify
     #       state: 'playing'
     action:
-      service: mqtt.publish
-      data:
-        topic: "stereo/volume/up"
-        payload: 7
+      - delay: '00:00:10'
+      - service: mqtt.publish
+        data:
+          topic: "stereo/volume/up"
+          payload: 7
 
