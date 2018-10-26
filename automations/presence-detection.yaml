@@ -52,7 +52,7 @@
       platform: numeric_state
       entity_id: proximity.home
       below: 5
-      above: 1
+      above: 0
     condition:
       condition: and
       conditions:
@@ -60,10 +60,10 @@
         - condition: template
           value_template: '{{ states.proximity.home.attributes.dir_of_travel == "towards" }}'
 
-        # Michal away home
-        - condition: state
-          entity_id: input_select.michal_status
-          state: 'away'
+        # # Michal away home
+        # - condition: state
+        #   entity_id: input_select.michal_status
+        #   state: 'away'
     action:
       - service: input_select.select_option
         data:
