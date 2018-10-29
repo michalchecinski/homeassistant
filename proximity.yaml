@@ -1,7 +1,7 @@
 home: 
     devices:
       - device_tracker.google_maps_102169435937546415265
-    tolerance: 50
-    unit_of_measurement: km
+    tolerance: 30
+    unit_of_measurement: m
     ignored_zones:
       - politechnika
