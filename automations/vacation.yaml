@@ -13,10 +13,6 @@
           hours: 15
           minutes: 0
           seconds: 0
-      - platform: state
-        entity_id: input_boolean.vacation_mode
-        from: 'on'
-        to: 'off'
 #    condition:
 #      - condition: state
 #        entity_id: input_boolean.disable_home_away
@@ -34,10 +30,6 @@
         entity_id: input_boolean.michal_home
         from: 'off'
         to: 'on'
-      - platform: state
-        entity_id: input_boolean.vacation_mode
-        from: 'on'
-        to: 'off'
 #    condition:
 #      - condition: state
 #        entity_id: input_boolean.disable_home_away
