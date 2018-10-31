@@ -10,13 +10,20 @@
         entity_id: input_boolean.phonecall
         to: 'on'
     condition:
-      - condition: state
-        entity_id: media_player.salon
-        state: 'playing'
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: media_player.spotify 
+          state: 'playing'
+        # - condition: template
+        #   value_template: "{{ state_attr('media_player.spotify', 'source') == 'stereo' }}"
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: 'off'
     action:
       - service: media_player.media_pause
         data:
-          entity_id: media_player.salon
+          entity_id: media_player.spotify 
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.was_playing
@@ -35,7 +42,7 @@
     action:
       - service: media_player.media_play
         data:
-          entity_id: media_player.salon 
+          entity_id: media_player.spotify 
       - service: input_boolean.turn_off
         data:
           entity_id: input_boolean.was_playing
