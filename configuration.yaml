@@ -77,6 +77,9 @@ device_tracker:
     password: !secret gmaps_password
     max_gps_accuracy: 200
     interval_seconds: 30
+  - platform: bluetooth_tracker
+    interval_seconds: 30
+    consider_home: 180
   - platform: upc_connect
     new_device_defaults:
       track_new_devices: True
