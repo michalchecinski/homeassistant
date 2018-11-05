@@ -75,6 +75,7 @@ device_tracker:
   - platform: google_maps
     username: !secret gmaps_user
     password: !secret gmaps_password
+    max_gps_accuracy: 200
   - platform: upc_connect
     new_device_defaults:
       track_new_devices: True
