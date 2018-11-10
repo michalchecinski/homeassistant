@@ -57,9 +57,6 @@
   say:
     alias: Google Home TTS
     sequence:
-      - condition: state
-        entity_id: input_boolean.guest_mode
-        state: 'off'
       - service: media_player.volume_set
         data_template:
           entity_id:  media_player.living_room_speaker
