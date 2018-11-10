@@ -3,6 +3,7 @@ default_view:
     icon: mdi:home
     entities:
       - group.status
+      - group.michal_home
       - group.weather_sensors
       - media_player.spotify
 
@@ -166,3 +167,11 @@ usage:
   - sensor.at_home_today
   - sensor.at_home_week
   - sensor.at_home_month
+
+michal_home:
+  control: hidden
+  name: michal home
+  view: no
+  entities:
+  - device_tracker.google_maps_102169435937546415265
+  - device_tracker.oneplus_6t
