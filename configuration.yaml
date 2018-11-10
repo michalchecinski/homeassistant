@@ -78,7 +78,7 @@ device_tracker:
     max_gps_accuracy: 200
     interval_seconds: 10
   - platform: bluetooth_tracker
-    consider_home: 180
+    consider_home: 30
   - platform: upc_connect
     new_device_defaults:
       track_new_devices: True
