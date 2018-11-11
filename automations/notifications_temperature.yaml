@@ -23,8 +23,8 @@
     action:
       - service: input_number.set_value
         data_template:
-          entity_id: input_number.random_night_minute
-          value: "{{ (states.sensor.last_morning_temp.state) | float }}"
+          entity_id: input_number.last_morning_temp
+          value: "{{ (states.sensor.temperature_outside.state) | float }}"
 
   - id: outside_temp_open_window
     alias: Temperature outside notification - is lower than indoors - open windows
