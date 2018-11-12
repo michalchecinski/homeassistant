@@ -9,7 +9,7 @@
         to: 'on'
       - platform: state
         entity_id: input_select.michal_status
-        option: 'away'
+        to: 'away'
     condition:
       condition: and
       conditions:
