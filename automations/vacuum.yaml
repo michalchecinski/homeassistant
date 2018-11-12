@@ -8,8 +8,8 @@
         entity_id: binary_sensor.event_hour
         to: 'on'
       - platform: state
-          entity_id: input_select.michal_status
-          option: 'away'
+        entity_id: input_select.michal_status
+        option: 'away'
     condition:
       condition: and
       conditions:
