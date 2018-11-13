@@ -5,9 +5,6 @@
         entity_id: binary_sensor.event_hour_offset
         to: 'on'
       - platform: state
-        entity_id: binary_sensor.event_hour
-        to: 'on'
-      - platform: state
         entity_id: input_select.michal_status
         to: 'away'
     condition:
