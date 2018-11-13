@@ -55,19 +55,27 @@ bedroom:
     - light.bed_lamp
     - group.thinkpad
 
-bathroom:
-  name: Bathroom
+security:
+  name: Security
   view: yes
-  icon: mdi:shower-head
+  icon: mdi:alarm-light
   entities:
     - binary_sensor.bathroom_leak
-
-hallway:
-  name: Hallway
-  view: yes
-  icon: mdi:door
-  entities:
     - binary_sensor.front_door
+
+# bathroom:
+#   name: Bathroom
+#   view: yes
+#   icon: mdi:shower-head
+#   entities:
+#     - binary_sensor.bathroom_leak
+
+# hallway:
+#   name: Hallway
+#   view: yes
+#   icon: mdi:door
+#   entities:
+#     - binary_sensor.front_door
     
 configuration:
   name: Configuration
@@ -78,11 +86,26 @@ configuration:
     - weblink.router
     - group.hass_details
     - group.inputs
-    - group.battery
+#   - group.battery
     - group.usage
     - sensor.db_size
-    - group.all_scripts
-    
+
+automation_view:
+    name: Automation
+    icon: mdi:auto-fix
+    view: true
+    entities:
+      - group.all_automations
+      - group.all_scripts
+
+test:
+  name: Test
+  icon: mdi:test-tube
+  view: yes
+  entities:
+    - binary_sensor.event_hour
+    - binary_sensor.event_hour_offset
+
 # cameras:
 #   name: Cameras
 #   icon: mdi:cctv
