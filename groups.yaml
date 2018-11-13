@@ -140,9 +140,6 @@ thinkpad:
   view: no
   entities:
   - binary_sensor.thinkpad
-  - binary_sensor.thinkpad_charging
-  - sensor.thinkpad_battery_charge_status
-  - sensor.thinkpad_battery_life
 
 status:
   control: hidden
