@@ -13,10 +13,15 @@
       entity_id: device_tracker.google_maps_102169435937546415265
       to: 'extended home'
       for: '00:00:30'
-      # condition:
-      #   - condition: state
-      #     entity_id: device_tracker.nexus
-      #     state: 'not_home'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: device_tracker.oneplus
+          state: 'not_home'
+        - condition: state
+          entity_id: input_boolean.sleep
+          state: 'off'
     action:
       - service: input_boolean.turn_off
         data:
@@ -34,7 +39,7 @@
         entity_id: device_tracker.google_maps_102169435937546415265
         to: 'home'
       - platform: state
-        entity_id: device_tracker.nexus
+        entity_id: device_tracker.oneplus
         to: 'home'
     action:
       - service: input_boolean.turn_on
