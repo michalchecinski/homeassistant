@@ -227,3 +227,15 @@
         state: 'off'
       - service: switch.turn_on
         entity_id: switch.led
+
+  force_led_off:
+    alias: "force led off"
+    sequence:
+      - service: switch.turn_off
+        entity_id: switch.led
+
+  force_led_on:
+    alias: "force led on"
+    sequence:
+      - service: switch.turn_on
+        entity_id: switch.led
