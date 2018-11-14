@@ -39,10 +39,10 @@
     trigger:
     -  platform: homeassistant
        event: start
-    condition:
-      - condition: state
-        entity_id: input_boolean.michal_home
-        state: 'off'
+    # condition:
+    #   - condition: state
+    #     entity_id: input_boolean.michal_home
+    #     state: 'off'
     action:
       - service: script.ifttt_notify
         data_template:
