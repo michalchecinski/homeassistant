@@ -13,7 +13,6 @@ group.all_devices:
 
 group.all_switches:
   hidden: false
-  view: yes
   icon: mdi:flash
 
 group.all_scripts:
@@ -21,7 +20,6 @@ group.all_scripts:
 
 group.all_lights:
   hidden: false
-  view: yes
   icon: mdi:lightbulb
   
 # Switches

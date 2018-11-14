@@ -85,9 +85,19 @@ configuration:
     - weblink.router
     - group.hass_details
     - group.inputs
-#   - group.battery
+    # - group.battery
     - group.usage
     - sensor.db_size
+
+power:
+  name: Power
+  icon: mdi:flash
+  view: true
+  entities:
+    - group.all_switches
+    - group.all_lights
+    - script.force_led_on
+    - script.force_led_off
 
 automation_view:
     name: Automation
