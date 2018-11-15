@@ -49,8 +49,8 @@
       data_template:
         message: "Vacuum off"
     - service: homeassistant.turn_off
-        data:
-          entity_id: script.vacuum_start
+      data_template:
+        entity_id: script.vacuum_start
 
   - id: vacuum_finished
     alias: Vacuum - finished
