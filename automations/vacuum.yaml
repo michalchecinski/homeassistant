@@ -34,8 +34,8 @@
       data_template:
         message: "Vacuum on"
     - service: homeassistant.turn_on
-        data:
-          entity_id: script.vacuum_start
+      data_template:
+        entity_id: script.vacuum_start
 
 
  - id: vacuum_off
