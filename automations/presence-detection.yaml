@@ -12,6 +12,9 @@
     - platform: state
       entity_id: device_tracker.google_maps_102169435937546415265
       to: 'extended home'
+    - platform: state
+      entity_id: device_tracker.google_maps_102169435937546415265
+      to: 'Politechnika'
     condition:
       condition: and
       conditions:
