@@ -228,6 +228,8 @@
       - service: switch.turn_on
         entity_id: switch.led
 
+
+# delete after new led driver
   force_led_off:
     alias: "force led off"
     sequence:
@@ -239,3 +241,9 @@
     sequence:
       - service: switch.turn_on
         entity_id: switch.led
+
+# vacuum simulation - delete after real vacuum comes
+  vacuum_start:
+    sequence:
+      - delay:
+          hours: 2
