@@ -38,7 +38,7 @@
         entity_id: script.vacuum_start
 
 
- - id: vacuum_off
+  - id: vacuum_off
     alias: Vacuum - off
     trigger:
       - platform: state
