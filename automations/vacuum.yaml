@@ -48,6 +48,7 @@
     - service: script.ifttt_notify
       data_template:
         message: "Vacuum off"
+    - delay: '00:00:03'
     - service: homeassistant.turn_off
       data_template:
         entity_id: script.vacuum_start
@@ -60,7 +61,7 @@
         to: 'off'
     condition:
       - condition: template
-        value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.vacuum__off.attributes.last_triggered) | int > 30 }}'
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.vacuum__off.attributes.last_triggered) | int > 40 }}'
     action:
     - service: input_boolean.turn_on
       data_template:
