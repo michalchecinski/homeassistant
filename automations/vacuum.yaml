@@ -42,7 +42,7 @@
     alias: Vacuum - off
     trigger:
       - platform: state
-        entity_id: input_select.michal_home
+        entity_id: input_boolean.michal_home
         to: 'on'
     action:
     - service: script.ifttt_notify
