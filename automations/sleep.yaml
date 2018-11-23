@@ -143,3 +143,11 @@
       # - service: input_boolean.turn_on
       #   data:
       #     entity.id: input_boolean.sleep_alarm
+      - service: input_number.set_value
+        data:
+          entity_id: input_number.alarm_hour
+          value: -1
+      - service: input_number.set_value
+        data:
+          entity_id: input_number.alarm_minute
+          value: -1

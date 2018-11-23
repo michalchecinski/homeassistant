@@ -7,3 +7,5 @@
   last_morning_temp:
     min: -30
     max: 60
+  alarm_hour:
+  alarm_minute:
