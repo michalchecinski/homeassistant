@@ -126,13 +126,13 @@
     trigger:
       - platform: template
         value_template: "{% if states.input_number.alarm_hour.state | int == now().hour | int and states.input_number.alarm_minute.state | int == now().minute | int %}true{% endif %}"
-    condition:
-      condition: and
-      conditions:
-        - condition: template
-          value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__alarm_goes_off_no_guests.attributes.last_triggered) | int > 43200 }}'
-        - condition: template
-          value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__alarm_goes_off_guests.attributes.last_triggered) | int > 43200 }}'
+    # condition:
+    #   condition: and
+    #   conditions:
+    #     - condition: template
+    #       value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__alarm_goes_off_no_guests.attributes.last_triggered) | int > 43200 }}'
+    #     - condition: template
+    #       value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__alarm_goes_off_guests.attributes.last_triggered) | int > 43200 }}'
     action:
       - delay: '00:05:00'
       - service: persistent_notification.create
