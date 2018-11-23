@@ -120,3 +120,26 @@
       - service: automation.trigger
         data:
           entity.id: automation.temperature_bathroom__shower
+
+  - id: alarm_time
+    alias: Sleep - time to wake up
+    trigger:
+      - platform: template
+        value_template: "{{ states.input_number.alarm_hour.state == now().hour and states.input_number.alarm_minute.state == now().minute }}"
+    condition:
+      condition: and
+      conditions:
+        - condition: template
+          value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__alarm_goes_off_no_guests.attributes.last_triggered) | int > 43200 }}'
+        - condition: template
+          value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__alarm_goes_off_guests.attributes.last_triggered) | int > 43200 }}'
+    action:
+      - delay: '00:05:00'
+      - service: persistent_notification.create
+        data:
+          title: "Budzik zadzwoniłby automatycznie"
+          message: "{{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
+          notification_id: "update_available"
+      # - service: input_boolean.turn_on
+      #   data:
+      #     entity.id: input_boolean.sleep_alarm
