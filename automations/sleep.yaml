@@ -125,7 +125,7 @@
     alias: Sleep - time to wake up
     trigger:
       - platform: template
-        value_template: "{{ states.input_number.alarm_hour.state == now().hour and states.input_number.alarm_minute.state == now().minute }}"
+        value_template: "{{ states.input_number.alarm_hour.state | int == now().hour | int and states.input_number.alarm_minute.state | int == now().minute | int }}"
     condition:
       condition: and
       conditions:
