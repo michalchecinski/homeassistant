@@ -112,7 +112,7 @@ test:
   icon: mdi:test-tube
   view: yes
   entities:
-    - binary_sensor.event_hour
+    - binary_sensor.sleep_alarm
     - binary_sensor.event_hour_offset
 
 # cameras:

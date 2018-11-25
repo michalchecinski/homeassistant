@@ -126,6 +126,7 @@
     trigger:
       - platform: state
         entity_id: binary_sensor.sleep_alarm
+        from: 'off'
         to: 'on'
     condition:
       condition: and
@@ -140,9 +141,9 @@
           title: "Budzik zadzwoniłby automatycznie"
           message: "{{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
           notification_id: "update_available"
-      # - service: input_boolean.turn_on
-      #   data:
-      #     entity.id: input_boolean.sleep_alarm
+      - service: input_boolean.turn_on
+        data:
+          entity.id: input_boolean.sleep_alarm
       - service: input_number.set_value
         data:
           entity_id: input_number.alarm_hour
