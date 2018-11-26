@@ -13,9 +13,9 @@
         - condition: state
           entity_id: binary_sensor.event_hour_offset
           state: 'on'
-        - condition: state
-          entity_id: input_select.michal_status
-          state: 'away'
+        # - condition: state
+        #   entity_id: input_select.michal_status
+        #   state: 'away'
         # - condition: or
         #   conditions:
         #   - condition: template
