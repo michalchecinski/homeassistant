@@ -67,6 +67,7 @@ views:
           - sun.sun
         card:
           type: glance
+          title: Sun
 
       - type: entities
         title: Smog
@@ -75,6 +76,7 @@ views:
           - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
         card:
           type: glance
+          title: Smog
       
       - type: entities
         title: Temperature
@@ -85,6 +87,7 @@ views:
           - sensor.dht_sensor_temperature
         card:
           type: glance
+          title: Temperature
 
       - type: entities
         title: OWM weather
@@ -140,8 +143,12 @@ views:
         title: Hass details
         show_header_toggle: true
         entities:
+          - binary_sensor.travis_status
           - sensor.travis_status_label
           - sensor.uptime
+        card:
+          type: glance
+          title: Hass details
 
       - type: entities
         title: System status
