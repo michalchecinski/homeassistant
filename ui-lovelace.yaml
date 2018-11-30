@@ -65,12 +65,16 @@ views:
         show_header_toggle: true
         entities:
           - sun.sun
+        card:
+          type: glance
 
       - type: entities
         title: Smog
         show_header_toggle: false
         entities:
           - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
+        card:
+          type: glance
       
       - type: entities
         title: Temperature
@@ -79,6 +83,8 @@ views:
           - sensor.temperature_outside
           - sensor.dht_sensor_humidity
           - sensor.dht_sensor_temperature
+        card:
+          type: glance
 
       - type: entities
         title: OWM weather
