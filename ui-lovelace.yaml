@@ -1,0 +1,228 @@
+title: My Lovely Home Automation
+views:
+
+  - title: Home
+    cards:
+      - type: entity-filter
+        title: Michał state
+        show_header_toggle: true
+        entities:
+          - device_tracker.google_maps_102169435937546415265
+          - device_tracker.oneplus
+          - group.michal_home
+        state_filter:
+          - 'home'
+        card:
+          type: glance
+          title: Michał
+
+      - type: entities
+        title: Proximity
+        show_header_toggle: true
+        entities:
+          - proximity.home
+
+      - type: entities
+        title: Input Select
+        show_header_toggle: true
+        entities:
+          - input_select.michal_status
+          - input_boolean.guest_mode
+
+
+  - title: Living room
+    cards:
+      - type: media-control
+        entity: media_player.living_room_speaker
+
+      - type: media-control
+        entity: media_player.spotify
+
+      - type: media-control
+        entity: media_player.tv
+
+      - type: entities
+        title: DHT in living room
+        entities:
+          - group.dht
+
+      - type: entities
+        title: Switches
+        show_header_toggle: true
+        entities:
+          - switch.b3
+          - switch.stereo
+
+      - type: entities
+        title: Light
+        show_header_toggle: true
+        entities:
+          - light.rtv_led
+
+  - title: Climate
+    cards:
+      - type: entities
+        title: Sun
+        show_header_toggle: true
+        entities:
+          - sun.sun
+
+      - type: entities
+        title: Smog
+        show_header_toggle: false
+        entities:
+          - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
+          - sensor.waqi_krucza_warszawa_mazowieckie_poland
+      
+      - type: entities
+        title: Temperature
+        show_header_toggle: false
+        entities:
+          - sensor.temperature_outside
+          - sensor.dht_sensor_humidity
+          - sensor.dht_sensor_temperature
+
+      - type: entities
+        title: OWM weather
+        show_header_toggle: false
+        entities:
+          - sensor.owm_condition
+          - sensor.owm_rain
+          - sensor.owm_snow
+          - sensor.owm_temperature
+
+      - type: weather-forecast
+        entity: sensor.owm_forecast
+
+      - type: entities
+        title: YR weather
+        show_header_toggle: false
+        entities:
+          - sensor.yr_weather_cloudiness
+          - sensor.yr_weather_fog
+          - sensor.yr_weather_humidity
+          - sensor.yr_weather_precipitation
+          - sensor.yr_weather_pressure
+          - sensor.yr_weather_symbol
+          - sensor.yr_weather_temperature
+
+
+      - type: entities
+        title: Groups
+        show_header_toggle: true
+        entities:
+          - group.all_automations
+          - group.all_devices
+          - group.all_lights
+          - group.all_scripts
+          - group.all_switches
+          - group.automation_view
+          - group.battery
+          - group.bedroom
+          - group.calendar
+          - group.climate
+          - group.configuration
+          - group.default_view
+          
+          - group.forecast
+          - group.hass_details
+          - group.inputs
+          - group.livingroom
+          
+          - group.power
+          - group.security
+          - group.status
+          - group.system
+          - group.test
+          - group.thinkpad
+          - group.usage
+          - group.weather_sensors
+
+  - title: Bedroom
+    cards:
+      - type: entities
+        title: Lights
+        show_header_toggle: true
+        entities:
+          - light.bed_lamp
+
+      - type: entities
+        title: THINKPAD status
+        show_header_toggle: false
+        entities:
+          - binary_sensor.thinkpad
+
+  - title: Config
+    cards:
+      - type: entities
+        title: Usage
+        show_header_toggle: true
+        entities:
+          - sensor.at_home_today
+          - sensor.at_home_week
+          - sensor.at_home_month
+          - sensor.using_computer_today
+          - sensor.using_computer_week
+          - sensor.using_computer_month
+          - sensor.watching_tv_today
+          - sensor.watching_tv_week
+          - sensor.watching_tv_month
+
+      - type: entities
+        title: Hass details
+        show_header_toggle: true
+        entities:
+          - sensor.travis_status_label
+          - sensor.uptime
+
+      - type: entities
+        title: System status
+        show_header_toggle: true
+        entities:
+          - sensor.processor_use
+          - sensor.load_15m
+          - sensor.memory_use_percent
+          - sensor.swap_use_percent
+
+      - type: entities
+        title: Manual input
+        show_header_toggle: false
+        entities:
+          - input_boolean.guest_mode
+          - input_boolean.guests_arriving_mode
+          - input_boolean.romantic_dance_mode
+          - input_boolean.romantic_mode
+          - input_boolean.sleep
+          - input_boolean.vacation_mode
+
+      - type: entities
+        title: Sensors
+        show_header_toggle: true
+        entities:
+          - sensor.bathroom_leak_battery
+          - sensor.door_battery
+          - sensor.outside_battery
+
+      - type: entities
+        title: Switchs
+        show_header_toggle: true
+        entities:
+          - switch.a1
+          - switch.b1
+          - switch.b2
+          - switch.b3
+          - switch.led
+          - switch.led_fix
+          - switch.stereo
+          - switch.stereo_mqtt
+
+  - title: Power
+    cards:
+      - type: entities
+        title: Usage
+        show_header_toggle: true
+        entities:
+          - group.all_switches
+          - group.all_lights
+          - script.force_led_on
+          - script.force_led_off
