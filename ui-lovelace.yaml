@@ -3,38 +3,35 @@ views:
 
   - title: Home
     cards:
-      - type: entity-filter
+      - type: entities
         title: Michał state
-        show_header_toggle: true
+        show_header_toggle: false
         entities:
           - device_tracker.google_maps_102169435937546415265
           - device_tracker.oneplus
           - group.michal_home
-        state_filter:
-          - 'home'
+          - proximity.home
         card:
           type: glance
-          title: Michał
+          title: Michal state       
 
       - type: entities
-        title: Proximity
-        show_header_toggle: true
-        entities:
-          - proximity.home
-
-      - type: entities
-        title: Input Select
-        show_header_toggle: true
+        title: Michal state
+        show_header_toggle: false
         entities:
           - input_select.michal_status
           - input_boolean.guest_mode
 
+      - type: entities
+        title: Temperature
+        show_header_toggle: false
+        entities:
+          - sensor.temperature_outside
+          - sensor.dht_sensor_temperature
+
 
   - title: Living room
     cards:
-      - type: media-control
-        entity: media_player.living_room_speaker
-
       - type: media-control
         entity: media_player.spotify
 
@@ -42,9 +39,11 @@ views:
         entity: media_player.tv
 
       - type: entities
-        title: DHT in living room
+        title: DHT
+        show_header_toggle: false
         entities:
-          - group.dht
+          - sensor.dht_sensor_humidity
+          - sensor.dht_sensor_temperature
 
       - type: entities
         title: Switches
@@ -72,7 +71,6 @@ views:
         show_header_toggle: false
         entities:
           - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
-          - sensor.waqi_krucza_warszawa_mazowieckie_poland
       
       - type: entities
         title: Temperature
@@ -91,9 +89,6 @@ views:
           - sensor.owm_snow
           - sensor.owm_temperature
 
-      - type: weather-forecast
-        entity: sensor.owm_forecast
-
       - type: entities
         title: YR weather
         show_header_toggle: false
@@ -103,40 +98,7 @@ views:
           - sensor.yr_weather_humidity
           - sensor.yr_weather_precipitation
           - sensor.yr_weather_pressure
-          - sensor.yr_weather_symbol
           - sensor.yr_weather_temperature
-
-
-      - type: entities
-        title: Groups
-        show_header_toggle: true
-        entities:
-          - group.all_automations
-          - group.all_devices
-          - group.all_lights
-          - group.all_scripts
-          - group.all_switches
-          - group.automation_view
-          - group.battery
-          - group.bedroom
-          - group.calendar
-          - group.climate
-          - group.configuration
-          - group.default_view
-          
-          - group.forecast
-          - group.hass_details
-          - group.inputs
-          - group.livingroom
-          
-          - group.power
-          - group.security
-          - group.status
-          - group.system
-          - group.test
-          - group.thinkpad
-          - group.usage
-          - group.weather_sensors
 
   - title: Bedroom
     cards:
@@ -203,8 +165,10 @@ views:
           - sensor.door_battery
           - sensor.outside_battery
 
+  - title: Power
+    cards:
       - type: entities
-        title: Switchs
+        title: Switches
         show_header_toggle: true
         entities:
           - switch.a1
@@ -215,14 +179,9 @@ views:
           - switch.led_fix
           - switch.stereo
           - switch.stereo_mqtt
-
-  - title: Power
-    cards:
       - type: entities
-        title: Usage
+        title: Force led
         show_header_toggle: true
         entities:
-          - group.all_switches
-          - group.all_lights
           - script.force_led_on
           - script.force_led_off
