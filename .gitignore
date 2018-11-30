@@ -19,3 +19,6 @@ home-assistant_v2.db-wal
 .spotify-token-cache
 .storage/
 git_pull.log
+
+# docker stuff
+docker_files
