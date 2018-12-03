@@ -18,9 +18,9 @@ homeassistant:
    - type: homeassistant
    - type: legacy_api_password
    - type: trusted_networks
-     trusted_networks:
-      - 127.0.0.1
-      - 192.168.0.0/24
+    #  trusted_networks:
+    #   - 127.0.0.1
+    #   - 192.168.0.0/24
 
 # Enables recorderrecorder
 recorder: !include recorder.yaml
