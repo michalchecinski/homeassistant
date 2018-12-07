@@ -7,7 +7,7 @@
       B1:
         code_on: 7721996
         code_off: 7721995
-        signal_repetitions: 20
+        signal_repetitions: 30
       B2:
         code_on: 7697412
         code_off: 7697411
