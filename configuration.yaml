@@ -86,7 +86,7 @@ device_tracker:
     interval_seconds: 10
   - platform: bluetooth_tracker
   - platform: upc_connect
-    consider_home: 30
+    consider_home: 0
     new_device_defaults:
       track_new_devices: True
       hide_if_away: False
