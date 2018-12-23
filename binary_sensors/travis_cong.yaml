@@ -3,3 +3,10 @@
     resource: https://api.travis-ci.org/repos/michalchecinski/homeassistant/builds
     scan_interval: 60
     value_template: "{{ value_json[0].result|int(1) == 0 }}"
+
+  - platform: template
+    sensors:
+      newest_commit:
+        friendly_name: "Newest commit"
+        value_template: >-
+          {{ is_state('sensor.git_last_commit', 'states.sensor.travis_build_commit.state') }}
