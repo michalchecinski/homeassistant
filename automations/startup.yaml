@@ -4,12 +4,12 @@
       - platform: homeassistant
         event: start
     condition:
-    condition: or  # 'when dark' condition: either after sunset or before sunrise
-    conditions:
-      - condition: sun
-        after: sunset
-      - condition: sun
-        before: sunrise
+      condition: or  # 'when dark' condition: either after sunset or before sunrise
+      conditions:
+        - condition: sun
+          after: sunset
+        - condition: sun
+          before: sunrise
     action:
       - service: frontend.set_theme
         data:
