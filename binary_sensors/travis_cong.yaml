@@ -9,4 +9,4 @@
       newest_commit:
         friendly_name: "Newest commit"
         value_template: >-
-          {{ is_state('sensor.git_last_commit', 'states.sensor.travis_build_commit.state') }}
+          {{ states.sensor.git_last_commit.state == states.sensor.travis_build_commit.state }}

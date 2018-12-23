@@ -145,7 +145,7 @@ hass_details:
   entities:
     - binary_sensor.travis_status
     - sensor.travis_status_label
-    - sensor.newest_commit
+    - binary_sensor.newest_commit
     - sensor.uptime
 
 weather_sensors:
