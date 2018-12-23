@@ -16,6 +16,12 @@
         - condition: state
           entity_id: input_boolean.michal_home
           state: 'off'
+        - condition: state
+          entity_id: input_boolean.vacation_mode
+          state: 'off'
+        - condition: state
+          entity_id: 'binary_sensor.workday_sensor'
+          state: 'on'
         - condition: or
           conditions:
           - condition: template
@@ -33,6 +39,34 @@
     - service: script.ifttt_notify
       data_template:
         message: "Vacuum on"
+    - service: homeassistant.turn_on
+      data_template:
+        entity_id: script.vacuum_start
+
+  - id: vacuum_vacation_on
+    alias: Vacuum - vacation on
+    trigger:
+      platform: time
+      at: '11:30:00'
+    condition:
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: 'binary_sensor.workday_sensor'
+          state: 'on'
+        - condition: state
+          entity_id: input_boolean.michal_home
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.vacation_mode
+          state: 'on'
+    action:
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id: input_boolean.vacuum_finished
+    - service: script.ifttt_notify
+      data_template:
+        message: "Vacuum vacation on"
     - service: homeassistant.turn_on
       data_template:
         entity_id: script.vacuum_start
