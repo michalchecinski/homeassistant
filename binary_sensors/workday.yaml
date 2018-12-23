@@ -1,0 +1,4 @@
+- platform: workday
+  country: PL
+  workdays: [mon, tue, wed, thu, fri, sat]
+  excludes: [sun, holiday]
