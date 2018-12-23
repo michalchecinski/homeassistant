@@ -75,11 +75,10 @@
   - id: vacuum_vacation_coming_home_on
     alias: Vacuum - on coming home vacation
     trigger:
-      trigger:
-      platform: numeric_state
-      entity_id: proximity.home
-      below: 100000
-      above: 20000
+      - platform: numeric_state
+        entity_id: proximity.home
+        below: 100000
+        above: 20000
     condition:
       condition: and
       conditions:
