@@ -3,3 +3,19 @@
     resource: https://api.travis-ci.org/repos/michalchecinski/homeassistant/builds
     scan_interval: 60
     value_template: "{{ value_json[0].number }}"
+
+  - platform: rest
+    name: Travis Build Commit
+    resource: https://api.travis-ci.org/repos/michalchecinski/homeassistant/builds
+    scan_interval: 60
+    value_template: "{{ value_json[0].commit }}"
+
+  # - platform: rest
+  #   name: Travis Build Commit Message
+  #   resource: https://api.travis-ci.org/repos/michalchecinski/homeassistant/builds
+  #   scan_interval: 60
+  #   value_template: "{{ value_json[0].message }}"
+
+  - platform: command_line
+    name: Git last commit
+    command: "cd /home/homeassistant/.homeassistant/ && git rev-parse HEAD"
