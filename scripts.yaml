@@ -245,5 +245,8 @@
 # vacuum simulation - delete after real vacuum comes
   vacuum_start:
     sequence:
+      - service: input_boolean.turn_off
+        data_template:
+          entity_id: input_boolean.vacuum_finished
       - delay:
           hours: 2
