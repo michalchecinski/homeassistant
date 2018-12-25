@@ -15,7 +15,7 @@
         value_template: >-
           {% if is_state('binary_sensor.newest_commit', 'off')
            and is_state('binary_sensor.travis_status', 'on') %}
-           true
-        {% else %}
-           false
-        {% endif %}
+            true
+          {% else %}
+            false
+          {% endif %}
