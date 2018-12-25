@@ -143,6 +143,7 @@ hass_details:
   name: Hass details
   view: no
   entities:
+    - binary_sensor.needs_update
     - binary_sensor.travis_status
     - sensor.travis_status_label
     - binary_sensor.newest_commit
