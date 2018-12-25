@@ -1,8 +1,8 @@
-  - platform: rest
-    name: Travis Status Label
-    resource: https://api.travis-ci.org/repos/michalchecinski/homeassistant/builds
-    scan_interval: 60
-    value_template: "{{ value_json[0].number }}"
+  # - platform: rest
+  #   name: Travis Status Label
+  #   resource: https://api.travis-ci.org/repos/michalchecinski/homeassistant/builds
+  #   scan_interval: 60
+  #   value_template: "{{ value_json[0].number }}"
 
   - platform: rest
     name: Travis Build Commit
