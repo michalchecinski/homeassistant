@@ -54,9 +54,14 @@
       entity_id: input_boolean.sleep_alarm
       to: 'on'
     condition:
-      - condition: state
-        entity_id: input_boolean.guest_mode
-        state: 'off'
+      condition: and
+      conditions:
+        - condition: state
+          entity_id: input_boolean.guest_mode
+          state: 'off'
+        - condition: state
+          entity_id: input_boolean.michal_home
+          state: 'on'
     action:
       - service: light.turn_on
         data:
@@ -144,11 +149,11 @@
       - service: input_boolean.turn_on
         data:
           entity.id: input_boolean.sleep_alarm
-      - service: input_number.set_value
-        data:
-          entity_id: input_number.alarm_hour
-          value: -1
-      - service: input_number.set_value
-        data:
-          entity_id: input_number.alarm_minute
-          value: -1
+      # - service: input_number.set_value
+      #   data:
+      #     entity_id: input_number.alarm_hour
+      #     value: -1
+      # - service: input_number.set_value
+      #   data:
+      #     entity_id: input_number.alarm_minute
+      #     value: -1

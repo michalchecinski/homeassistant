@@ -88,6 +88,7 @@ configuration:
     # - group.battery
     - group.usage
     - sensor.db_size
+    - group.alarm_settings
 
 power:
   name: Power
@@ -207,3 +208,12 @@ michal_home:
   entities:
   - device_tracker.google_maps_102169435937546415265
   - device_tracker.oneplus
+
+alarm_settings:
+  control: hidden
+  name: alarm settings
+  view: no
+  entities:
+  - input_number.alarm_hour
+  - input_number.alarm_minute
+  - binary_sensor.sleep_alarm
