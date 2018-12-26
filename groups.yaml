@@ -82,7 +82,6 @@ configuration:
   view: yes
   entities:
     - group.system
-    - weblink.router
     - group.hass_details
     - group.inputs
     # - group.battery
