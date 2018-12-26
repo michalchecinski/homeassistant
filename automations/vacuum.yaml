@@ -20,7 +20,7 @@
           entity_id: input_boolean.vacation_mode
           state: 'off'
         - condition: state
-          entity_id: 'binary_sensor.workday_sensor'
+          entity_id: 'binary_sensor.vacuum_day'
           state: 'on'
         - condition: or
           conditions:
@@ -49,7 +49,7 @@
       condition: and
       conditions:
         - condition: state
-          entity_id: 'binary_sensor.workday_sensor'
+          entity_id: 'binary_sensor.vacuum_day'
           state: 'on'
         - condition: state
           entity_id: input_boolean.michal_home
@@ -80,7 +80,7 @@
         - condition: template
           value_template: '{{ states.proximity.home.attributes.dir_of_travel == "towards" }}'
         - condition: state
-          entity_id: 'binary_sensor.workday_sensor'
+          entity_id: 'binary_sensor.vacuum_day'
           state: 'on'
         - condition: state
           entity_id: input_boolean.michal_home
@@ -100,7 +100,6 @@
     - service: homeassistant.turn_on
       data_template:
         entity_id: script.vacuum_start
-
 
 
   - id: vacuum_off

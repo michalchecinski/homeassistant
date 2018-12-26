@@ -114,7 +114,7 @@ test:
   entities:
     - binary_sensor.sleep_alarm
     - binary_sensor.event_hour_offset
-    - binary_sensor.workday_sensor
+    - binary_sensor.vacuum_day
 
 # cameras:
 #   name: Cameras

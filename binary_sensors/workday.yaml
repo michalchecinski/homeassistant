@@ -1,4 +1,5 @@
 - platform: workday
+  name: vacuum day
   country: PL
   workdays: [mon, tue, wed, thu, fri, sat]
   excludes: [sun, holiday]
