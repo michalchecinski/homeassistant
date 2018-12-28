@@ -1,0 +1,25 @@
+# Notify when come home
+  - id: hotification_coming_home
+    alias: Notification - coming home
+    trigger:
+      - platform: state
+        entity_id: input_boolean.michal_home
+        from: 'off'
+        to: 'on'
+    action:
+      - service: script.ifttt_notify
+        data_template:
+          message: "Home assistant wykrył, że jesteś w domu."
+
+# Notify when come home
+  - id: hotification_leaving_home
+    alias: Notification - leaving home
+    trigger:
+      - platform: state
+        entity_id: input_boolean.michal_home
+        from: 'on'
+        to: 'off'
+    action:
+      - service: script.ifttt_notify
+        data_template:
+          message: "Home assistant wykrył, że wyszedłeś z domu."
