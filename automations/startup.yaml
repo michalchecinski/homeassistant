@@ -1,5 +1,5 @@
   - id: ha_start
-    alias: Notification - HA started
+    alias: Theme - HA started
     trigger:
       - platform: homeassistant
         event: start
