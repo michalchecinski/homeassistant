@@ -1,8 +1,1 @@
 pull_git_conf: 'bash /home/homeassistant/.homeassistant/bash/git_pull.sh'
-restart_mopidy: 'bash /home/homeassistant/.homeassistant/bash/restart_mopidy.sh'
-led_brightness_25: 'rpi-rf_send -g 15 6670857'
-led_brightness_50: 'rpi-rf_send -g 15 6670856'
-led_brightness_100: 'rpi-rf_send -g 15 6670855'
-led_brightness_up: 'rpi-rf_send -g 15 6670853'
-led_brightness_down: 'rpi-rf_send -g 15 6670854'
-led_blink_fix: 'rpi-rf_send -g 15 6670852'
