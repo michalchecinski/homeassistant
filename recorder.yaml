@@ -44,6 +44,8 @@
       - sensor.commute_to_home
       - sensor.processor_use
       - sensor.load_15m
+      - sensor.load_5m
+      - sensor.load_1m
       - sensor.memory_use_percent
       - sensor.swap_use_percent
       - binary_sensor.travis_status
