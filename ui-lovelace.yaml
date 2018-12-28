@@ -2,18 +2,16 @@ title: My Lovely Home Automation
 views:
 
   - title: Home
+    icon: mdi:home
     cards:
-      - type: entities
+      - type: glance
         title: Michał state
         show_header_toggle: false
         entities:
           - device_tracker.google_maps_102169435937546415265
           - device_tracker.oneplus
           - group.michal_home
-          - proximity.home
-        card:
-          type: glance
-          title: Michal state       
+          - proximity.home     
 
       - type: entities
         title: Michal state
@@ -21,6 +19,7 @@ views:
         entities:
           - input_select.michal_status
           - input_boolean.guest_mode
+          - input_boolean.vacation_mode
 
       - type: entities
         title: Temperature
@@ -31,6 +30,7 @@ views:
 
 
   - title: Living room
+    icon: mdi:sofa
     cards:
       - type: media-control
         entity: media_player.spotify
@@ -60,34 +60,25 @@ views:
 
   - title: Climate
     cards:
-      - type: entities
+      - type: glance
         title: Sun
         show_header_toggle: true
         entities:
           - sun.sun
-        card:
-          type: glance
-          title: Sun
 
-      - type: entities
+      - type: glance
         title: Smog
         show_header_toggle: false
         entities:
           - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
-        card:
-          type: glance
-          title: Smog
       
-      - type: entities
+      - type: glance
         title: Temperature
         show_header_toggle: false
         entities:
           - sensor.temperature_outside
           - sensor.dht_sensor_humidity
           - sensor.dht_sensor_temperature
-        card:
-          type: glance
-          title: Temperature
 
       - type: entities
         title: OWM weather
@@ -110,6 +101,7 @@ views:
           - sensor.yr_weather_temperature
 
   - title: Bedroom
+    icon: mdi:hotel
     cards:
       - type: entities
         title: Lights
@@ -117,47 +109,69 @@ views:
         entities:
           - light.bed_lamp
 
-      - type: entities
+      - type: glance
         title: THINKPAD status
         show_header_toggle: false
         entities:
           - binary_sensor.thinkpad
 
   - title: Config
+    icon: mdi:home-assistant
     cards:
-      - type: entities
-        title: Usage
-        show_header_toggle: true
-        entities:
-          - sensor.at_home_today
-          - sensor.at_home_week
-          - sensor.at_home_month
-          - sensor.using_computer_today
-          - sensor.using_computer_week
-          - sensor.using_computer_month
-          - sensor.watching_tv_today
-          - sensor.watching_tv_week
-          - sensor.watching_tv_month
+      - type: vertical-stack
+        cards:
+          - type: glance
+            title: At home
+            entities:
+              - sensor.at_home_today
+              - sensor.at_home_week
+              - sensor.at_home_month
+          - type: glance
+            title: Using computer
+            entities:
+              - sensor.using_computer_today
+              - sensor.using_computer_week
+              - sensor.using_computer_month
+          - type: glance
+            title: Watching tv
+            entities:
+              - sensor.watching_tv_today
+              - sensor.watching_tv_week
+              - sensor.watching_tv_month
 
-      - type: entities
+      - type: glance
         title: Hass details
-        show_header_toggle: true
         entities:
+          - binary_sensor.needs_update
           - binary_sensor.travis_status
-          - sensor.travis_status_label
+          - binary_sensor.newest_commit
           - sensor.uptime
-        card:
-          type: glance
-          title: Hass details
-
-      - type: entities
-        title: System status
-        show_header_toggle: true
-        entities:
-          - sensor.processor_use
-          - sensor.load_15m
-          - sensor.memory_use_percent
-          - sensor.swap_use_percent
+          
+      - type: vertical-stack
+        cards:
+          - type: glance
+            title: Server Load
+            entities:
+              - entity: sensor.load_1m
+                icon: mdi:speedometer
+              - entity: sensor.load_5m
+                icon: mdi:speedometer
+              - entity: sensor.load_15m
+                icon: mdi:speedometer
+          - type: horizontal-stack
+            cards:
+              - type: sensor
+                entity: sensor.processor_use
+                name: Processor
+                hours_to_show: 24
+                graph: line
+                detail: 1
+              - type: sensor
+                entity: sensor.memory_use_percent
+                name: Memory
+                hours_to_show: 24
+                graph: line
+                detail: 1
 
       - type: entities
         title: Manual input
@@ -165,20 +179,43 @@ views:
         entities:
           - input_boolean.guest_mode
           - input_boolean.guests_arriving_mode
-          - input_boolean.romantic_dance_mode
-          - input_boolean.romantic_mode
           - input_boolean.sleep
           - input_boolean.vacation_mode
+          - input_boolean.romantic_dance_mode
+          - input_boolean.romantic_mode
 
       - type: entities
-        title: Sensors
+        title: Batteries
         show_header_toggle: true
         entities:
           - sensor.bathroom_leak_battery
           - sensor.door_battery
           - sensor.outside_battery
 
+      - type: entities
+        title: Home Assistant Stats
+        show_header_toggle: false
+        entities:
+          - entity: sensor.tracker_count
+            icon: mdi:cellphone-link
+            name: Number of Network Devices
+          - entity: sensor.lights_count
+            icon: mdi:lightbulb
+          - entity: sensor.binary_sensor_count
+            icon: mdi:nintendo-switch
+          - entity: sensor.switch_count
+            icon: mdi:toggle-switch
+          - entity: sensor.automation_count
+            icon: mdi:home-assistant
+          - entity: sensor.script_count
+            icon: mdi:script-text-outline
+          - entity: sensor.sensor_count
+            icon: mdi:gauge
+          - entity: sensor.zwave_count
+            icon: mdi:z-wave
+
   - title: Power
+    icon: mdi:flash
     cards:
       - type: entities
         title: Switches
