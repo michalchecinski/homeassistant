@@ -1,4 +1,4 @@
-- platform: template
+  - platform: template
     sensors:
       sensor_count:
         friendly_name: 'Number of Sensors'
