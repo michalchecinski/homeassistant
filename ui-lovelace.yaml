@@ -58,6 +58,21 @@ views:
         entities:
           - light.rtv_led
 
+  - title: Bedroom
+    icon: mdi:hotel
+    cards:
+      - type: glance
+        title: Lights
+        show_header_toggle: true
+        entities:
+          - light.bed_lamp
+
+      - type: glance
+        title: THINKPAD status
+        show_header_toggle: false
+        entities:
+          - binary_sensor.thinkpad
+
   - title: Climate
     cards:
       - type: glance
@@ -100,24 +115,29 @@ views:
           - sensor.yr_weather_pressure
           - sensor.yr_weather_temperature
 
-  - title: Bedroom
-    icon: mdi:hotel
-    cards:
-      - type: entities
-        title: Lights
-        show_header_toggle: true
-        entities:
-          - light.bed_lamp
-
-      - type: glance
-        title: THINKPAD status
-        show_header_toggle: false
-        entities:
-          - binary_sensor.thinkpad
-
   - title: Config
     icon: mdi:home-assistant
     cards:
+
+      - type: entities
+        title: Manual input
+        show_header_toggle: false
+        entities:
+          - input_boolean.guest_mode
+          - input_boolean.guests_arriving_mode
+          - input_boolean.sleep
+          - input_boolean.vacation_mode
+          - input_boolean.romantic_dance_mode
+          - input_boolean.romantic_mode
+
+      - type: glance
+        title: Hass details
+        entities:
+          - binary_sensor.needs_update
+          - binary_sensor.travis_status
+          - binary_sensor.newest_commit
+          - sensor.uptime
+
       - type: vertical-stack
         cards:
           - type: glance
@@ -139,14 +159,6 @@ views:
               - sensor.watching_tv_week
               - sensor.watching_tv_month
 
-      - type: glance
-        title: Hass details
-        entities:
-          - binary_sensor.needs_update
-          - binary_sensor.travis_status
-          - binary_sensor.newest_commit
-          - sensor.uptime
-          
       - type: vertical-stack
         cards:
           - type: glance
@@ -173,24 +185,13 @@ views:
                 graph: line
                 detail: 1
 
-      - type: entities
-        title: Manual input
-        show_header_toggle: false
-        entities:
-          - input_boolean.guest_mode
-          - input_boolean.guests_arriving_mode
-          - input_boolean.sleep
-          - input_boolean.vacation_mode
-          - input_boolean.romantic_dance_mode
-          - input_boolean.romantic_mode
-
-      - type: entities
-        title: Batteries
-        show_header_toggle: true
-        entities:
-          - sensor.bathroom_leak_battery
-          - sensor.door_battery
-          - sensor.outside_battery
+      # - type: entities
+      #   title: Batteries
+      #   show_header_toggle: true
+      #   entities:
+      #     - sensor.bathroom_leak_battery
+      #     - sensor.door_battery
+      #     - sensor.outside_battery
 
       - type: entities
         title: Home Assistant Stats
@@ -217,18 +218,24 @@ views:
   - title: Power
     icon: mdi:flash
     cards:
-      - type: entities
+      - type: glance
         title: Switches
         show_header_toggle: true
         entities:
-          - switch.a1
-          - switch.b1
-          - switch.b2
+          # - switch.a1
+          # - switch.b1
+          # - switch.b2
           - switch.b3
-          - switch.led
-          - switch.led_fix
           - switch.stereo
-          - switch.stereo_mqtt
+
+      - type: glance
+        title: Lights
+        show_header_toggle: true
+        entities:
+          - light.bed_lamp
+          - light.rtv_led
+          - switch.led_fix
+
       - type: entities
         title: Force led
         show_header_toggle: true
