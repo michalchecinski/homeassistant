@@ -1,11 +1,14 @@
-  "sensor.*leak*":
+  "binary_sensor.*_leak":
+    device_class: moisture
     templates:
       rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
   
-  "sensor.*door*":
+  "binary_sensor.*_door":
+    device_class: door
     templates:
       rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
 
-  "sensor.*window*":
+  "sensor.*_window":
+    device_class: window
     templates:
       rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
