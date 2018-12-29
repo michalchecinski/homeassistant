@@ -1,7 +1,7 @@
   - platform: template
     lights:
       rtv_led:
-        friendly_name: "Livingroom LED"
+        friendly_name: "RTV LED"
         turn_off:
           service: script.rtv_led_off
         turn_on:
