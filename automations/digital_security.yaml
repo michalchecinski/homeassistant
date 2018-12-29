@@ -23,5 +23,5 @@
     action:
       - service: script.ifttt_notify
         data_template:
-          info: New device: {{trigger.event.data.entity_id}}
-          message: New device
+          info: "New device: {{trigger.event.data.entity_id}}"
+          message: "New device"
