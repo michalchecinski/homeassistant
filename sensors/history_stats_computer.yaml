@@ -1,5 +1,5 @@
   - platform: history_stats
-    name: Using computer today
+    name: computer today
     entity_id: binary_sensor.thinkpad
     state: 'on'
     type: time
@@ -7,7 +7,7 @@
     end: '{{ now() }}'
 
   - platform: history_stats
-    name: Using computer week
+    name: computer week
     entity_id: binary_sensor.thinkpad
     state: 'on'
     type: time
@@ -15,7 +15,7 @@
     end: '{{ now() }}'
 
   - platform: history_stats
-    name: Using computer month
+    name: computer month
     entity_id: binary_sensor.thinkpad
     state: 'on'
     type: time

@@ -1,5 +1,5 @@
   - platform: history_stats
-    name: At home today
+    name: home today
     entity_id: input_boolean.michal_home
     state: 'on'
     type: time
@@ -7,7 +7,7 @@
     end: '{{ now() }}'
 
   - platform: history_stats
-    name: At home week
+    name: home week
     entity_id: input_boolean.michal_home
     state: 'on'
     type: time
@@ -15,7 +15,7 @@
     end: '{{ now() }}'
 
   - platform: history_stats
-    name: At home month
+    name: home month
     entity_id: input_boolean.michal_home
     state: 'on'
     type: time

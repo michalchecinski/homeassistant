@@ -190,15 +190,15 @@ usage:
   name: Usage
   view: no
   entities:
-  - sensor.using_computer_today
-  - sensor.using_computer_week
-  - sensor.using_computer_month
-  - sensor.watching_tv_today
-  - sensor.watching_tv_week
-  - sensor.watching_tv_month
-  - sensor.at_home_today
-  - sensor.at_home_week
-  - sensor.at_home_month
+  - sensor.computer_today
+  - sensor.computer_week
+  - sensor.computer_month
+  - sensor.tv_today
+  - sensor.tv_week
+  - sensor.tv_month
+  - sensor.home_today
+  - sensor.home_week
+  - sensor.home_month
 
 michal_home:
   control: hidden

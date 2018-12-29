@@ -143,21 +143,21 @@ views:
           - type: glance
             title: At home
             entities:
-              - sensor.at_home_today
-              - sensor.at_home_week
-              - sensor.at_home_month
+              - sensor.home_today
+              - sensor.home_week
+              - sensor.home_month
           - type: glance
             title: Using computer
             entities:
-              - sensor.using_computer_today
-              - sensor.using_computer_week
-              - sensor.using_computer_month
+              - sensor.computer_today
+              - sensor.computer_week
+              - sensor.computer_month
           - type: glance
             title: Watching tv
             entities:
-              - sensor.watching_tv_today
-              - sensor.watching_tv_week
-              - sensor.watching_tv_month
+              - sensor.tv_today
+              - sensor.tv_week
+              - sensor.tv_month
 
       - type: vertical-stack
         cards:

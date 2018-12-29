@@ -1,5 +1,5 @@
   - platform: history_stats
-    name: Watching tv today
+    name: tv today
     entity_id: media_player.tv
     state: 'playing'
     type: time
@@ -7,7 +7,7 @@
     end: '{{ now() }}'
 
   - platform: history_stats
-    name: Watching tv week
+    name: tv week
     entity_id: media_player.tv
     state: 'playing'
     type: time
@@ -15,7 +15,7 @@
     end: '{{ now() }}'
 
   - platform: history_stats
-    name: Watching tv month
+    name: tv month
     entity_id: media_player.tv
     state: 'playing'
     type: time
