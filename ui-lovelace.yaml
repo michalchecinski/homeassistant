@@ -92,26 +92,6 @@ views:
           - sensor.dht_sensor_humidity
           - sensor.dht_sensor_temperature
 
-      - type: entities
-        title: OWM weather
-        show_header_toggle: false
-        entities:
-          - sensor.owm_condition
-          - sensor.owm_rain
-          - sensor.owm_snow
-          - sensor.owm_temperature
-
-      - type: entities
-        title: YR weather
-        show_header_toggle: false
-        entities:
-          - sensor.yr_weather_cloudiness
-          - sensor.yr_weather_fog
-          - sensor.yr_weather_humidity
-          - sensor.yr_weather_precipitation
-          - sensor.yr_weather_pressure
-          - sensor.yr_weather_temperature
-
   - title: Config
     icon: mdi:home-assistant
     cards:
