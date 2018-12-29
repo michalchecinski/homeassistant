@@ -45,12 +45,13 @@ views:
           - sensor.dht_sensor_humidity
           - sensor.dht_sensor_temperature
 
-      - type: entities
+      - type: glance
         title: Switches
         show_header_toggle: true
         entities:
           - switch.b3
           - switch.stereo
+        columns: 2
 
       - type: entities
         title: Light
@@ -67,7 +68,7 @@ views:
         entities:
           - light.bed_lamp
 
-      - type: glance
+      - type: entities
         title: THINKPAD status
         show_header_toggle: false
         entities:
@@ -76,16 +77,12 @@ views:
   - title: Climate
     cards:
       - type: glance
-        title: Sun
+        title: Sun / Smog
         show_header_toggle: true
         entities:
           - sun.sun
-
-      - type: glance
-        title: Smog
-        show_header_toggle: false
-        entities:
           - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
+        columns: 2  
       
       - type: glance
         title: Temperature
