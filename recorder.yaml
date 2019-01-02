@@ -19,6 +19,7 @@
       - calendar
       - zone
       - weblink
+      - proximity
     entities:
       - sun.sun
       - media_player.spotify
@@ -49,6 +50,9 @@
       - sensor.memory_use_percent
       - sensor.swap_use_percent
       - binary_sensor.travis_status
+      - binary_sensor.needs_update
+      - sensor.newest_commit
+      - sensor.travis_build_commit
       - input_number.random_minute
       - input_number.random_night_minute
 
