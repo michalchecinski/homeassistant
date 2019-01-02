@@ -12,17 +12,16 @@ climate:
   view: yes
   entities:
     - sun.sun
-    - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
     - sensor.temperature_outside
-    - group.dht
+    - group.livingroom_conditions
     - group.forecast
     
-dht:
-  name: DHT in living room
+livingroom_conditions:
+  name: Conditions in living room
   view: no
   entities:
-    - sensor.dht_sensor_humidity
-    - sensor.dht_sensor_temperature
+    - sensor.livingroom_temperature
+    - sensor.livingroom_humidity
 
 forecast:
   name: Weather prediction 24 hours
@@ -44,7 +43,7 @@ living-room:
     - switch.b3
     - switch.stereo
     - light.rtv_led
-    - group.dht
+    - group.livingroom_conditions
 
 bedroom:
   name: Bedroom
@@ -152,8 +151,8 @@ weather_sensors:
   name: Weather sensors
   view: no
   entities:
-    - sensor.dht_sensor_humidity
-    - sensor.dht_sensor_temperature
+    - sensor.livingroom_humidity
+    - sensor.livingroom_temperature
     - sensor.temperature_outside
 
 inputs:

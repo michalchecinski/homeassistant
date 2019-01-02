@@ -1,7 +1,7 @@
   - platform: generic_thermostat
     name: Living Room
     heater: input_boolean.fake_heater
-    target_sensor: sensor.dht_sensor_temperature
+    target_sensor: sensor.livingroom_temperature
     initial_operation_mode: "off"
     target_temp: 21
   - platform: generic_thermostat

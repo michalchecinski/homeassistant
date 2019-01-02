@@ -12,7 +12,7 @@
     - service: mqtt.publish
       data:
         topic: hermes/dialogueManager/endSession
-        payload_template: "{{ 'text': 'Inside is {{ states.sensor.dht_sensor_temperature }} celsius degrees.', 'session_id': 'c96711cb-0932-458c-97bf-d0eeb3266c7e' }}"
+        payload_template: "{{ 'text': 'Inside is {{ states.sensor.livingroom_temperature }} celsius degrees.', 'session_id': 'c96711cb-0932-458c-97bf-d0eeb3266c7e' }}"
 
 # Turn off mopidy when snips is saying
   - id: off_mopidy

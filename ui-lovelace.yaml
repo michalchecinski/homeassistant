@@ -26,7 +26,7 @@ views:
         show_header_toggle: false
         entities:
           - sensor.temperature_outside
-          - sensor.dht_sensor_temperature
+          - sensor.livingroom_temperature
 
 
   - title: Living room
@@ -39,11 +39,11 @@ views:
         entity: media_player.tv
 
       - type: entities
-        title: DHT
+        title: Livingroom conditions
         show_header_toggle: false
         entities:
-          - sensor.dht_sensor_humidity
-          - sensor.dht_sensor_temperature
+          - sensor.livingroom_humidity
+          - sensor.livingroom_temperature
 
       - type: glance
         title: Switches
@@ -88,8 +88,8 @@ views:
         show_header_toggle: false
         entities:
           - sensor.temperature_outside
-          - sensor.dht_sensor_humidity
-          - sensor.dht_sensor_temperature
+          - sensor.livingroom_humidity
+          - sensor.livingroom_temperature
 
   - title: Power
     icon: mdi:flash
