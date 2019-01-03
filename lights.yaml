@@ -1,12 +1,5 @@
   - platform: template
     lights:
-      rtv_led:
-        friendly_name: "RTV LED"
-        turn_off:
-          service: script.rtv_led_off
-        turn_on:
-          service: script.rtv_led_on
-        icon_template: mdi:led-outline
       bed_lamp:
         friendly_name: "Bed lamp"
         icon_template: mdi:lamp
@@ -18,3 +11,8 @@
           service: switch.turn_off
           data:
             entity_id: switch.b1
+  
+  - platform: mqtt
+    name: rtv led
+    command_topic: "livingroom/livingroomleddht/cmnd/POWER"
+    icon_template: mdi:led-outline
