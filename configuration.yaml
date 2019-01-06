@@ -92,9 +92,6 @@ device_tracker:
       track_new_devices: True
       hide_if_away: False
 
-# Cloud
-cloud: !include cloud.yaml
-
 #IFTTT
 ifttt:
   key: !secret ifttt_key
