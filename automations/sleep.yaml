@@ -48,7 +48,7 @@
 
 # Alarm is ringing - guest off
   - id: alarm_on_no_guests
-    alias: Sleep - alarm goes off guests
+    alias: Sleep - alarm goes off no guests
     trigger:
     - platform: state
       entity_id: input_boolean.sleep_alarm
@@ -84,7 +84,7 @@
 
   # Alarm is ringing - guest on
   - id: alarm_on_guests
-    alias: Sleep - alarm goes off no guests
+    alias: Sleep - alarm goes off guests
     trigger:
     - platform: state
       entity_id: input_boolean.sleep_alarm
