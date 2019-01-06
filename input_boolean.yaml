@@ -37,8 +37,6 @@
     icon: mdi:toggle-switch-off
     initial: off
 
-  play_on_stereo:
-
   shower_time:
 
   phonecall:
