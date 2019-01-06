@@ -14,13 +14,6 @@
       B3:
         code_on: 7691276
         code_off: 7691275
-      led:
-        code_on: 6670849
-        code_off: 6670849
-        signal_repetitions: 2
-      led_fix:
-        code_on: 6670852
-        code_off: 0
 
   - platform: mqtt
     name: "Stereo mqtt"
