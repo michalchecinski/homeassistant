@@ -9,22 +9,6 @@
             - light.bed_lamp
             - switch.stereo
 
-  wake_up:
-    alias: "Script waking up"
-    sequence:
-      - service: light.turn_on
-        data:
-          entity_id: light.bed_lamp
-      - service: rest_command.play_wakeup_playlist
-      - delay: '00:00:10'
-      - service: homeassistant.turn_off
-        data:
-          entity_id: binary_sensor.sleep_alarm
-      - delay: '00:05:00'
-      - service: light.turn_off
-        data:
-          entity_id: light.bed_lamp
-
   iron_turn_off:
     alias: "Turn off iron after 20 minutes of use"
     sequence:
@@ -40,14 +24,14 @@
             volume: '0.8'
             what: 'Żelazko wyłączone'
 
-  notify_temperature_dead:
-    alias: "Send notification when outside temperature sensor isn't sending data after 30 minutes"
-    sequence:
-      - delay:
-          minutes: 46
-      - service: script.ifttt_notify
-        data_template:
-          message: "Outside temperature battery dead"
+  # notify_temperature_dead:
+  #   alias: "Send notification when outside temperature sensor isn't sending data after 30 minutes"
+  #   sequence:
+  #     - delay:
+  #         minutes: 46
+  #     - service: script.ifttt_notify
+  #       data_template:
+  #         message: "Outside temperature battery dead"
   
   ifttt_notify:
     sequence:
@@ -71,21 +55,21 @@
           entity_id:  media_player.living_room_speaker
           volume_level: 0.5
 
-  notify_thinkpad:
-    sequence:
-      - service: mqtt.publish
-        data_template:
-          payload: "{{ message }}"
-          topic: THINKPAD/toast
-          retain: true
+  # notify_thinkpad:
+  #   sequence:
+  #     - service: mqtt.publish
+  #       data_template:
+  #         payload: "{{ message }}"
+  #         topic: THINKPAD/toast
+  #         retain: true
 
-  notify_thinkpad_tts:
-    sequence:
-      - service: mqtt.publish
-        data_template:
-          payload: "{{ message }}"
-          topic: THINKPAD/tts
-          retain: true
+  # notify_thinkpad_tts:
+  #   sequence:
+  #     - service: mqtt.publish
+  #       data_template:
+  #         payload: "{{ message }}"
+  #         topic: THINKPAD/tts
+  #         retain: true
 
   romantic_on:
     alias: Romantic on
@@ -210,37 +194,6 @@
         data:
           entity_id: switch.stereo_mqtt
 
-  rtv_led_off:
-    alias: "rtv led off"
-    sequence:
-      - condition: state
-        entity_id: switch.led
-        state: 'on'
-      - service: switch.turn_off
-        entity_id: switch.led
-
-  rtv_led_on:
-    alias: "rtv led on"
-    sequence:
-      - condition: state
-        entity_id: switch.led
-        state: 'off'
-      - service: switch.turn_on
-        entity_id: switch.led
-
-
-# delete after new led driver
-  force_led_off:
-    alias: "force led off"
-    sequence:
-      - service: switch.turn_off
-        entity_id: switch.led
-
-  force_led_on:
-    alias: "force led on"
-    sequence:
-      - service: switch.turn_on
-        entity_id: switch.led
 
 # vacuum simulation - delete after real vacuum comes
   vacuum_start:
