@@ -79,22 +79,6 @@
         data:
           entity_id: switch.stereo
 
-  - id: play_on_stereo
-    alias: Livingroom stereo - play spotify on stereo
-    trigger:
-      - platform: state
-        entity_id: input_boolean.play_on_stereo
-        to: 'on'
-    action:
-      - service: media_player.select_source
-        data:
-          entity_id: media_player.spotify
-          source: stereo
-      - service: home_assistant.turn_off
-        data:
-          entity_id: input_boolean.play_on_stereo
-
-
   - id: play_on_stereo_coming_home
     alias: Livingroom stereo - play spotify on stereo when coming home
     trigger:
