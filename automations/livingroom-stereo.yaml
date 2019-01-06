@@ -90,7 +90,7 @@
       condition: and
       conditions:
         - condition: template
-          value_template: "{{ state_attr('media_player.spotify', 'source') == 'Nexus 5X' }}"
+          value_template: "{{ state_attr('media_player.spotify', 'source') == 'OnePlus 6T' }}"
         - condition: state
           entity_id: media_player.spotify
           state: 'playing'
@@ -100,6 +100,9 @@
         data:
           entity_id: media_player.spotify
           source: stereo
+      - service: media_player.media_play
+        data:
+          entity_id: media_player.spotify
 
   - id: max_stero_volume_when_on
     alias: Livingroom stereo - max volume when on
