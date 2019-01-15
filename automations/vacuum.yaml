@@ -10,9 +10,9 @@
     condition:
       condition: and
       conditions:
-        - condition: state
-          entity_id: binary_sensor.event_hour_offset
-          state: 'on'
+        # - condition: state
+        #   entity_id: binary_sensor.event_hour_offset
+        #   state: 'on'
         - condition: state
           entity_id: input_boolean.michal_home
           state: 'off'
