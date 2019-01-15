@@ -84,9 +84,6 @@
         data:
           entity_id: input_select.michal_status
           option: 'near home'
-      - service: script.ifttt_notify
-        data_template:
-          message: "HA: zbliżasz sie do domu"
 
   # From not home to extended home
   # in case upper automation failed
