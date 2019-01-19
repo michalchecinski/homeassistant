@@ -13,10 +13,17 @@
           hours: 20
           minutes: 0
           seconds: 0
-#    condition:
-#      - condition: state
-#        entity_id: input_boolean.disable_home_away
-#        state: 'off'
+      - platform: numeric_state
+        entity_id: proximity.home
+        above: 20000
+        for:
+          hours: 5
+          minutes: 0
+          seconds: 0
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
     action:
       - service: homeassistant.turn_on
         data:
