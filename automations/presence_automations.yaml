@@ -11,4 +11,4 @@
       from: 'on'
       to: 'off'   
     action:
-      - service: script.away_home
+      - service: script.off_all

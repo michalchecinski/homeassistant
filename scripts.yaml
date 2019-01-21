@@ -1,5 +1,5 @@
-  away_home:
-    alias: "Leaving home"
+  off_all:
+    alias: "Turn off all"
     sequence:
       - service: switch.turn_off
         data:
