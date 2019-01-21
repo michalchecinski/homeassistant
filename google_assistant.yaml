@@ -1,5 +1,10 @@
   project_id: !secret google_assistant_project_id
   api_key: !secret google_assistant_opengraph
+  exposed_domains:
+    - switch
+    - light
+    - media_player
+    - climate
   entity_config:
     # Input booleans
     input_boolean.romantic_mode:
@@ -7,6 +12,9 @@
       expose: true
     input_boolean.romantic_dance_mode:
       name: it's time
+      expose: true
+    input_boolean.sleep:
+      name: sleep
       expose: true
       
     # Switches
@@ -19,12 +27,28 @@
       aliases:
         - stereo
         - stereo switch
-    switch.led:
-      expose: false
     switch.b1:
       expose: false
-    switch.led_fix:
-      expose: false
+
+    # Lights
+    light.bed_lamp:
+      room: bedroom
+      name: Bed lamp    
+    light.rtv_led:
+      room: livingroom
+      name: RTV LED
+    # light.tv_led:
+    #   room: livingroom
+    #   name: TV LED
+    
+    # Scripts
+    script.off_all:
+      expose: true
+      name: Turn off all
+      aliases:
+        - turn off all
+        - all off
+        - off all
     # Climate 
     climate.living_room:
       expose: true
