@@ -112,13 +112,12 @@
         entity_id: input_boolean.michal_home
         to: 'on'
     action:
-    - service: script.ifttt_notify
-      data_template:
-        message: "Vacuum off"
-    - delay: '00:00:03'
     - service: homeassistant.turn_off
       data_template:
         entity_id: script.vacuum_start
+    - service: script.ifttt_notify
+      data_template:
+        message: "Vacuum off"
 
   - id: vacuum_finished
     alias: Vacuum - finished
