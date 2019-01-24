@@ -1,7 +1,7 @@
   - id: random_hour_minutes
     alias: Random time - minutes
     trigger:
-      - platform: time
+      - platform: time_pattern
         minutes: 0
         seconds: 00
     action:
@@ -13,7 +13,7 @@
   - id: random_night_minute
     alias: Random time - night minute
     trigger:
-      - platform: time
+      - platform: time_pattern
         hours: 21
         minutes: 55
         seconds: 00

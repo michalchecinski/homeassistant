@@ -1,7 +1,7 @@
   - id: outside_temp_down_significantly
     alias: Temperature outside notification - significant down 
     trigger:
-      - platform: time
+      - platform: time_pattern
         hours: 7
         minutes: 11
         seconds: 00
@@ -16,7 +16,7 @@
   - id: outside_temp_log
     alias: Temperature outside notification - log
     trigger:
-      - platform: time
+      - platform: time_pattern
         hours: 7
         minutes: 12
         seconds: 00
