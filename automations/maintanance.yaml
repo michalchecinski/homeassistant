@@ -11,7 +11,9 @@
       from: 'off'
       to: 'on'
       for:
-        seconds: 10
+        hours: 0
+        minutes: 0
+        seconds: 5
     action:
     - service: shell_command.pull_git_conf
     - delay: '00:00:05'
