@@ -1,21 +1,4 @@
-default_view:
-    view: yes
-    icon: mdi:home
-    entities:
-      - group.status
-      - group.weather_sensors
-      - media_player.spotify
-
-climate:
-  name: Climate
-  icon: mdi:weather-cloudy
-  view: yes
-  entities:
-    - sun.sun
-    - sensor.temperature_outside
-    - group.livingroom_conditions
-    - group.forecast
-    
+  
 livingroom_conditions:
   name: Conditions in living room
   view: no
@@ -23,129 +6,12 @@ livingroom_conditions:
     - sensor.livingroom_temperature
     - sensor.livingroom_humidity
 
-forecast:
-  name: Weather prediction 24 hours
-  view: no
-  entities:
-    - sensor.owm_condition
-    - sensor.owm_rain
-    - sensor.owm_snow
-    - sensor.owm_temperature
-    - sensor.owm_forecast
-
-living-room:
-  name: Living room
-  view: yes
-  icon: mdi:sofa
-  entities:
-    - media_player.spotify
-    - media_player.tv
-    - switch.b3
-    - switch.stereo
-    - light.rtv_led
-    - group.livingroom_conditions
-
-bedroom:
-  name: Bedroom
-  view: yes
-  icon: mdi:hotel
-  entities:
-    - light.bed_lamp
-    - group.thinkpad
-
-security:
-  name: Security
-  view: yes
-  icon: mdi:alarm-light
-  entities:
-    - binary_sensor.bathroom_leak
-    - binary_sensor.front_door
-
-# bathroom:
-#   name: Bathroom
-#   view: yes
-#   icon: mdi:shower-head
-#   entities:
-#     - binary_sensor.bathroom_leak
-
-# hallway:
-#   name: Hallway
-#   view: yes
-#   icon: mdi:door
-#   entities:
-#     - binary_sensor.front_door
-    
-configuration:
-  name: Configuration
-  icon: mdi:settings
-  view: yes
-  entities:
-    - group.system
-    - group.hass_details
-    - group.inputs
-    # - group.battery
-    - group.usage
-    - sensor.db_size
-    - group.alarm_settings
-
-power:
-  name: Power
-  icon: mdi:flash
-  view: true
-  entities:
-    - group.all_switches
-    - group.all_lights
-    - script.force_led_on
-    - script.force_led_off
-
-automation_view:
-    name: Automation
-    icon: mdi:auto-fix
-    view: true
-    entities:
-      - group.all_automations
-      - group.all_scripts
-
-test:
-  name: Test
-  icon: mdi:test-tube
-  view: yes
-  entities:
-    - binary_sensor.sleep_alarm
-    - binary_sensor.event_hour_offset
-    - binary_sensor.vacuum_day
-
-# cameras:
-#   name: Cameras
-#   icon: mdi:cctv
-#   view: yes
-#   entities:
-#     - camera.
-    
-system:
-  name: System status
-  view: no
-  entities:
-    - sensor.processor_use
-    - sensor.load_15m
-    - sensor.memory_use_percent
-    - sensor.swap_use_percent
-
 battery:
   name: Battery sensors
   view: no
   entities:
     - sensor.door_battery
     - sensor.bathroom_leak_battery
-
-hass_details:
-  name: Hass details
-  view: no
-  entities:
-    - binary_sensor.needs_update
-    - binary_sensor.travis_status
-    - binary_sensor.newest_commit
-    - sensor.uptime
 
 weather_sensors:
   name: Weather sensors
@@ -167,38 +33,6 @@ inputs:
     - input_boolean.vacation_mode
     - input_boolean.sleep
 
-thinkpad:
-  control: hidden
-  name: THINKPAD status
-  view: no
-  entities:
-  - binary_sensor.thinkpad
-
-status:
-  control: hidden
-  name: Status
-  view: no
-  entities:
-  - device_tracker.google_maps_102169435937546415265
-  - device_tracker.oneplus
-  - input_select.michal_status
-  - input_boolean.vacation_mode
-  - input_boolean.guest_mode
-
-usage:
-  name: Usage
-  view: no
-  entities:
-  - sensor.computer_today
-  - sensor.computer_week
-  - sensor.computer_month
-  - sensor.tv_today
-  - sensor.tv_week
-  - sensor.tv_month
-  - sensor.home_today
-  - sensor.home_week
-  - sensor.home_month
-
 michal_home:
   control: hidden
   name: michal home
@@ -206,12 +40,3 @@ michal_home:
   entities:
   - device_tracker.google_maps_102169435937546415265
   - device_tracker.oneplus
-
-alarm_settings:
-  control: hidden
-  name: alarm settings
-  view: no
-  entities:
-  - input_number.alarm_hour
-  - input_number.alarm_minute
-  - binary_sensor.sleep_alarm
