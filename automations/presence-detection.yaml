@@ -6,24 +6,24 @@
   - id: away
     alias: Presence - turn off boolean when leaving home
     trigger:
-    - platform: state
-      entity_id: device_tracker.oneplus
-      to: 'not_home'
     # - platform: state
-    #   entity_id: device_tracker.google_maps_102169435937546415265
+    #   entity_id: device_tracker.oneplus
     #   to: 'not_home'
-    # - platform: state
-    #   entity_id: device_tracker.google_maps_102169435937546415265
-    #   to: 'extended home'
-    # - platform: state
-    #   entity_id: device_tracker.google_maps_102169435937546415265
-    #   to: 'Politechnika'
+    - platform: state
+      entity_id: device_tracker.google_maps_102169435937546415265
+      to: 'not_home'
+    - platform: state
+      entity_id: device_tracker.google_maps_102169435937546415265
+      to: 'extended home'
+    - platform: state
+      entity_id: device_tracker.google_maps_102169435937546415265
+      to: 'Politechnika'
     condition:
       condition: and
       conditions:
-        # - condition: state
-        #   entity_id: device_tracker.oneplus
-        #   state: 'not_home'
+        - condition: state
+          entity_id: device_tracker.oneplus
+          state: 'not_home'
         - condition: state
           entity_id: input_boolean.sleep
           state: 'off'
