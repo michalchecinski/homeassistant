@@ -16,7 +16,7 @@
     name: rtv led
     command_topic: "livingroom/livingroomleddht/cmnd/POWER1"
     icon_template: mdi:led-outline
-    state_topic: "livingroom/livingroomleddht/STATE"
+    state_topic: "livingroom/livingroomleddht/RESULT"
     value_template: "{{ value_json.POWER1 }}"
     availability_topic: "livingroom/livingroomleddht/LWT"
     payload_available: "Online"
@@ -26,7 +26,7 @@
     name: tv led
     command_topic: "livingroom/livingroomleddht/cmnd/POWER2"
     icon_template: mdi:led-outline
-    state_topic: "livingroom/livingroomleddht/STATE"
+    state_topic: "livingroom/livingroomleddht/RESULT"
     value_template: "{{ value_json.POWER2 }}"
     availability_topic: "livingroom/livingroomleddht/LWT"
     payload_available: "Online"
