@@ -92,8 +92,8 @@
       - service: script.spotify_play_playlist
         data_template:
           playlist: "spotify:user:checin:playlist:6f4TfHpSuNFBaJnWxfqE2w"
-      - condition: sun
-        after: sunset
+      # - condition: sun
+      #   after: sunset
       - service: light.turn_on
         data:
           entity_id: light.rtv_led
@@ -136,8 +136,8 @@
         data:
           entity_id: media_player.spotify
           volume_level: "0.15"
-      - condition: sun
-        after: sunset
+      # - condition: sun
+      #   after: sunset
       - service: light.turn_on
         data:
           entity_id: light.rtv_led
