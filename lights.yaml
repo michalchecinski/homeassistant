@@ -31,3 +31,24 @@
     availability_topic: "tele/livingroomled/LWT"
     payload_available: "Online"
     payload_not_available: "Offline"
+
+
+  - platform: mqtt
+    name: desk led
+    command_topic: "cmnd/bedroomled/POWER1"
+    icon_template: mdi:led-outline
+    state_topic: "stat/bedroomled/RESULT"
+    value_template: "{{ value_json.POWER1 }}"
+    availability_topic: "tele/bedroomled/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
+
+  - platform: mqtt
+    name: monitor led
+    command_topic: "cmnd/bedroomled/POWER2"
+    icon_template: mdi:led-outline
+    state_topic: "stat/bedroomled/RESULT"
+    value_template: "{{ value_json.POWER2 }}"
+    availability_topic: "tele/bedroomled/LWT"
+    payload_available: "Online"
+    payload_not_available: "Offline"
