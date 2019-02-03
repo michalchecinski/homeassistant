@@ -14,20 +14,20 @@
   
   - platform: mqtt
     name: rtv led
-    command_topic: "livingroom/livingroomleddht/cmnd/POWER1"
+    command_topic: "cmnd/livingroomled/POWER1"
     icon_template: mdi:led-outline
-    state_topic: "livingroom/livingroomleddht/RESULT"
+    state_topic: "stat/livingroomled/RESULT"
     value_template: "{{ value_json.POWER1 }}"
-    availability_topic: "livingroom/livingroomleddht/LWT"
+    availability_topic: "tele/livingroomled/LWT"
     payload_available: "Online"
     payload_not_available: "Offline"
 
   - platform: mqtt
     name: tv led
-    command_topic: "livingroom/livingroomleddht/cmnd/POWER2"
+    command_topic: "cmnd/livingroomled/POWER2"
     icon_template: mdi:led-outline
-    state_topic: "livingroom/livingroomleddht/RESULT"
+    state_topic: "stat/livingroomled/RESULT"
     value_template: "{{ value_json.POWER2 }}"
-    availability_topic: "livingroom/livingroomleddht/LWT"
+    availability_topic: "tele/livingroomled/LWT"
     payload_available: "Online"
     payload_not_available: "Offline"
