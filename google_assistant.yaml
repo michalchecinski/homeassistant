@@ -62,6 +62,12 @@
       aliases:
         - Living room temperature
         - inside temperature
+    climate.bed_room:
+      expose: true
+      name: Bed room temperature
+      aliases:
+        - Bed room temperature
+        - inside temperature
       room: livingroom
     climate.outside:
       expose: true
