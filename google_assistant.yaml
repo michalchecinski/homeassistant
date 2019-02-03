@@ -37,9 +37,15 @@
     light.rtv_led:
       room: livingroom
       name: RTV LED
-    # light.tv_led:
-    #   room: livingroom
-    #   name: TV LED
+    light.tv_led:
+      room: livingroom
+      name: TV LED
+    light.desk_led:
+      room: bedroom
+      name: desk LED
+    light.monitor_led:
+      room: bedroom
+      name: monitor LED
     
     # Scripts
     script.off_all:
