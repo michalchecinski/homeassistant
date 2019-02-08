@@ -1,13 +1,11 @@
   off_all:
     alias: "Turn off all"
     sequence:
-      - service: switch.turn_off
+      - service: home_assistant.turn_off
         data:
           entity_id: 
-            - switch.b3
-            - light.rtv_led
-            - light.bed_lamp
-            - switch.stereo
+            - group.all_switches
+            - group.all_lights
 
   iron_turn_off:
     alias: "Turn off iron after 20 minutes of use"
