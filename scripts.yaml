@@ -4,7 +4,11 @@
       - service: homeassistant.turn_off
         data:
           entity_id: 
-            - group.all_switches
+            - switch.a1
+            - switch.b1
+            - switch.b2
+            - switch.b3
+            - switch.stereo
             - group.all_lights
 
   iron_turn_off:
