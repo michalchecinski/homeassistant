@@ -11,9 +11,10 @@
         from: 'off'
         to: 'on'
     condition:
-      - condition: sun
-        after: sunset
-        after_offset: "-1:00:00"
+      - condition: numeric_state
+        entity_id: sun.sun
+        value_template: "{{ state.attributes.elevation }}"
+        below: -4.0
     action:
       - service: homeassistant.turn_on
         data:
