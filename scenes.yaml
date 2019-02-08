@@ -1,4 +1,10 @@
   - name: Romantic
     entities:
-      light.rtv_led: on   
-      switch.stereo: on
+      light.rtv_led: true
+      light.tv_led: false
+      switch.stereo: true
+
+  - name: Movie
+    entities:
+      light.tv_led: true   
+      light.rtv_led: false
