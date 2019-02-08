@@ -10,7 +10,7 @@
     #   entity_id: device_tracker.oneplus
     #   to: 'not_home'
     - platform: state
-      entity_id: michal_home
+      entity_id: group.michal_home
       to: 'not_home'
     - platform: state
       entity_id: device_tracker.google_maps_102169435937546415265
@@ -52,7 +52,7 @@
       #   entity_id: device_tracker.google_maps_102169435937546415265
       #   to: 'home'
       - platform: state
-        entity_id: michal_home
+        entity_id: group.michal_home
         to: 'home'
     action:
       - service: input_boolean.turn_on
