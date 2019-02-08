@@ -1,0 +1,6 @@
+  - platform: min_max
+    name: Inside temperature
+    type: mean
+    entity_ids:
+      - sensor.bedroom_temperature
+      - sensor.livingroom_temperature

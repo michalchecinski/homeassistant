@@ -10,6 +10,14 @@
     target_sensor: sensor.bedroom_temperature
     initial_operation_mode: "off"
     target_temp: 21
+
+  - platform: generic_thermostat
+    name: inside
+    heater: input_boolean.fake_heater
+    target_sensor: sensor.inside_temperature
+    initial_operation_mode: "off"
+    target_temp: 21
+
   - platform: generic_thermostat
     name: Outside
     heater: input_boolean.fake_heater
