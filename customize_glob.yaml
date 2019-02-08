@@ -15,3 +15,9 @@
     
   "light.*led":
     icon: mdi:led-outline
+
+  "sensor.*temperature*":
+    device_class: temperature
+
+  "sensor.*humidity*":
+    device_class: humidity
