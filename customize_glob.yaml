@@ -21,3 +21,9 @@
 
   "sensor.humidity*":
     device_class: humidity
+
+  "sensor.*temperature":
+    device_class: temperature
+
+  "sensor.*humidity":
+    device_class: humidity
