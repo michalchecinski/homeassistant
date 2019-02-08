@@ -1,38 +1,3 @@
-  
-livingroom_conditions:
-  name: Conditions in living room
-  view: no
-  entities:
-    - sensor.livingroom_temperature
-    - sensor.livingroom_humidity
-
-battery:
-  name: Battery sensors
-  view: no
-  entities:
-    - sensor.door_battery
-    - sensor.bathroom_leak_battery
-
-weather_sensors:
-  name: Weather sensors
-  view: no
-  entities:
-    - sensor.livingroom_humidity
-    - sensor.livingroom_temperature
-    - sensor.temperature_outside
-
-inputs:
-  control: hidden
-  name: Manual settings
-  view: no
-  entities:
-    - input_boolean.guest_mode
-    - input_boolean.guests_arriving_mode
-    - input_boolean.romantic_mode
-    - input_boolean.romantic_dance_mode
-    - input_boolean.vacation_mode
-    - input_boolean.sleep
-
 michal_home:
   control: hidden
   name: michal home
