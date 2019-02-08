@@ -8,3 +8,8 @@
     entities:
       light.tv_led: true   
       light.rtv_led: false
+
+  - name: Work
+    entities:
+      light.desk_led: true   
+      light.monitor_led: true
