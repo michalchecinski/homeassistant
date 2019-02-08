@@ -29,23 +29,48 @@
         - stereo switch
     switch.b1:
       expose: false
+    switch.a1:
+      expose: false
+    switch.b2:
+      expose: false
+    switch.stereo_mqtt:
+      expose: false
+
+    # Media players
+    media_player.spotify:
+      expose: false
 
     # Lights
     light.bed_lamp:
       room: bedroom
-      name: Bed lamp    
+      name: Bed lamp
+      aliases:
+        - Bed lamp
+        - bed light
     light.rtv_led:
       room: livingroom
       name: RTV LED
+      aliases:
+        - RTV LED
+        - rtv light
     light.tv_led:
       room: livingroom
       name: TV LED
+      aliases:
+        - TV LED
+        - tv light
     light.desk_led:
       room: bedroom
       name: desk LED
+      aliases:
+        - desk LED
+        - desk light
     light.monitor_led:
       room: bedroom
       name: monitor LED
+      aliases:
+        - monitor LED
+        - monitor light
     
     # Scripts
     script.off_all:
@@ -55,23 +80,18 @@
         - turn off all
         - all off
         - off all
+        - all
     # Climate 
     climate.inside:
       expose: true
       name: Inside temperature
-      aliases:
-        - inside temperature
     climate.living_room:
       expose: true
-      name: Inside temperature
-      aliases:
-        - Living room temperature
+      name: Living room temperature
       room: livingroom
     climate.bed_room:
       expose: true
       name: Bed room temperature
-      aliases:
-        - Bed room temperature
       room: bedroom
     climate.outside:
       expose: true
