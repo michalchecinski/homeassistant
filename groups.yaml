@@ -6,3 +6,11 @@ michal_home:
   - device_tracker.google_maps_102169435937546415265
   - device_tracker.oneplus
   - device_tracker.64a2f9f18b04
+
+bedroom_lights:
+  name: bedroom lights
+  view: no
+  entities:
+  - light.bed_lamp
+  - light.monitor_led
+  - light.desk.led
