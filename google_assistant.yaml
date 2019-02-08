@@ -39,6 +39,8 @@
     # Media players
     media_player.spotify:
       expose: false
+    media_player.tv:
+      expose: true
 
     # Lights
     light.bed_lamp:
