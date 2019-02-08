@@ -13,3 +13,8 @@
     entities:
       light.desk_led: true   
       light.monitor_led: true
+
+  - name: Work off
+    entities:
+      light.desk_led: false   
+      light.monitor_led: false
