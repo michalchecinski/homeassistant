@@ -1,0 +1,32 @@
+# Turn on tv led when tv on after sunset
+  - id: tv_led_on_tv_on
+    alias: 'Lights - turn on tv led when tv on and after sunset'
+    trigger:
+      - platform: state
+        entity_id: media_player.tv
+        from: 'off'
+        to: 'on'
+    condition:
+      condition: numeric_state
+      entity_id: sun.sun
+      value_template: "{{ state.attributes.elevation }}"
+      below: -4.0        
+    action:
+      - service: scene.turn_on
+        entity_id: scene.movie
+
+# Turn on tv led when tv on after sunset
+  - id: tv_led_on_sunset
+    alias: 'Lights - turn on tv led when sunset and tv is on'
+    trigger:
+      platform: numeric_state
+      entity_id: sun.sun
+      value_template: "{{ state.attributes.elevation }}"
+      below: -4.0
+    condition:
+      - condition: state
+        entity_id: media_player.tv
+        state: 'on'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.movie
