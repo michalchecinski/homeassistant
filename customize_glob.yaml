@@ -12,3 +12,6 @@
     device_class: window
     templates:
       rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
+    
+  "light.*led":
+    icon: mdi:led-outline
