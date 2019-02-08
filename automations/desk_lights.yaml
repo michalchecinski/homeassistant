@@ -1,0 +1,41 @@
+  - id: desk_leds_on_computer_on
+    alias: 'Lights - turn on desk leds when computer on and after sunset'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.thinkpad
+        from: 'off'
+        to: 'on'
+    condition:
+      condition: numeric_state
+      entity_id: sun.sun
+      value_template: "{{ state.attributes.elevation }}"
+      below: -4.0        
+    action:
+      - service: scene.turn_on
+        entity_id: scene.work
+
+  - id: desk_leds_on_sunset
+    alias: 'Lights - turn on desk leds when sunset and computer is on'
+    trigger:
+      platform: numeric_state
+      entity_id: sun.sun
+      value_template: "{{ state.attributes.elevation }}"
+      below: -4.0
+    condition:
+      - condition: state
+        entity_id: binary_sensor.thinkpad
+        state: 'on'
+    action:
+      - service: scene.turn_on
+        entity_id: scene.work
+
+  - id: desk_leds_off_computer_off
+    alias: 'Lights - turn off desk leds when computer off'
+    trigger:
+      - platform: state
+        entity_id: binary_sensor.thinkpad
+        from: 'off'
+        to: 'on'      
+    action:
+      - service: scene.turn_on
+        entity_id: scene.work_off
