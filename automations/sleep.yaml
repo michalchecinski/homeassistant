@@ -65,7 +65,7 @@
     action:
       - service: light.turn_on
         data:
-          entity_id: light.bed_lamp
+          entity_id: group.bedroom_lights
       - service: media_player.shuffle_set
         data:
           entity_id: media_player.spotify
@@ -80,7 +80,7 @@
       - delay: '00:05:00'
       - service: light.turn_off
         data:
-          entity_id: light.bed_lamp
+          entity_id: group.bedroom_lights
 
   # Alarm is ringing - guest on
   - id: alarm_on_guests
@@ -96,7 +96,7 @@
     action:
       - service: light.turn_on
         data:
-          entity_id: light.bed_lamp
+          entity_id: group.bedroom_lights
       - delay: '00:00:10'
       - service: homeassistant.turn_off
         data:
@@ -104,7 +104,7 @@
       - delay: '00:05:00'
       - service: light.turn_off
         data:
-          entity_id: light.bed_lamp
+          entity_id: group.bedroom_lights
 
   - id: time_to_sleep
     alias: Sleep - time to sleep
@@ -144,6 +144,7 @@
       - service: input_boolean.turn_on
         data:
           entity_id: input_boolean.sleep_alarm
+      - delay: 01:00
       - service: input_boolean.turn_off
         data:
           entity_id: input_boolean.sleep
