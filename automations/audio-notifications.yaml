@@ -41,4 +41,4 @@
         data:
           variables:
             volume: '1'
-            what: 'Budzik nastawiony na {{ states('sensor.alarm_time') }}'
+            what: "Budzik nastawiony na {{ states('sensor.alarm_time') }}"
