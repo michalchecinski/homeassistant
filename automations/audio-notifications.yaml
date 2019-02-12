@@ -23,7 +23,7 @@
             volume: '1'
             what: 'Witaj w domu, Michał'
 
-# Welcome when arrive at home
+
   - id: sleep_audio
     alias: Audio Notification - sleep
     trigger:
@@ -41,4 +41,4 @@
         data:
           variables:
             volume: '1'
-            what: 'Budzik nastawiony na {{ states.sensor.alarm_time.state }}'
+            what: 'Budzik nastawiony na {{ states('sensor.alarm_time') }}'
