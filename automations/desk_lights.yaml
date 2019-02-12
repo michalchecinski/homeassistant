@@ -5,6 +5,9 @@
         entity_id: binary_sensor.thinkpad
         from: 'off'
         to: 'on'
+      - platform: state
+        entity_id: input_select.michal_status
+        to: "using computer"
     condition:
       condition: numeric_state
       entity_id: sun.sun
@@ -34,8 +37,8 @@
     trigger:
       - platform: state
         entity_id: binary_sensor.thinkpad
-        from: 'off'
-        to: 'on'      
+        from: 'on'
+        to: 'off'      
     action:
       - service: scene.turn_on
         entity_id: scene.work_off
