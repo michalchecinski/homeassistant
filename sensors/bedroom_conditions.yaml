@@ -1,16 +1,16 @@
   - platform: mqtt
-    state_topic: 'tele/bedroomled/SENSOR'
+    state_topic: 'tele/bedroomdeskled/SENSOR'
     name: 'Bedroom Temperature'
     value_template: "{{ value_json.DHT11.Temperature }}"
     unit_of_measurement: "°C"
-    availability_topic: "tele/bedroomled/LWT"
+    availability_topic: "tele/bedroomdeskled/LWT"
     payload_available: "Online"
     payload_not_available: "Offline"
   - platform: mqtt
-    state_topic: 'tele/bedroomled/SENSOR'
+    state_topic: 'tele/bedroomdeskled/SENSOR'
     name: 'Bedroom Humidity'
     value_template: "{{ value_json.DHT11.Humidity }}"
     unit_of_measurement: "%"
-    availability_topic: "tele/bedroomled/LWT"
+    availability_topic: "tele/bedroomdeskled/LWT"
     payload_available: "Online"
     payload_not_available: "Offline"
