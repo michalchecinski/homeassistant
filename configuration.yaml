@@ -71,6 +71,9 @@ map:
 # Track the sun
 sun:
 
+# System health component
+system_health:
+
 wake_on_lan:
 
 # Text to speech
