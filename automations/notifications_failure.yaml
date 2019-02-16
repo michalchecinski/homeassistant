@@ -17,6 +17,25 @@
       data_template:
         message: "You haven't been at home for 14 hours is it true?"
 
+  - id: failure_guest_mode
+    alias: Failure - guest mode for 36 hours
+    trigger:
+      - platform: state
+        entity_id: input_boolean.guest_mode
+        to: 'on'
+        for:
+          hours: 36
+          minutes: 0
+          seconds: 0
+    condition:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
+    action:
+    - service: script.ifttt_notify
+      data_template:
+        message: "Do you still have guests?"
+
   - id: failure_at_home
     alias: Failure - at home for 24 hours
     trigger:
