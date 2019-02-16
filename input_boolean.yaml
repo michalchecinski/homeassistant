@@ -9,9 +9,9 @@
     name: Guest mode
     icon: mdi:account-multiple
 
-  guests_arriving_mode:
-    name: Guest arriving mode
-    icon: mdi:door-open
+  # guests_arriving_mode:
+  #   name: Guest arriving mode
+  #   icon: mdi:door-open
   
   romantic_mode:
     name: Romantic mode
@@ -37,7 +37,7 @@
     icon: mdi:toggle-switch-off
     initial: off
 
-  shower_time:
+  # shower_time:
 
   phonecall:
 
