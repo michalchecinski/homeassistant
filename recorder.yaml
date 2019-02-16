@@ -1,4 +1,4 @@
-  purge_keep_days: 7
+  purge_keep_days: 5
   db_url: !secret db_url
   # include:
   #   domains:
@@ -20,6 +20,8 @@
       - zone
       - weblink
       - proximity
+      - input_number
+      - media_player
     entities:
       - sun.sun
       - media_player.spotify
@@ -53,6 +55,4 @@
       - binary_sensor.needs_update
       - sensor.newest_commit
       - sensor.travis_build_commit
-      - input_number.random_minute
-      - input_number.random_night_minute
 
