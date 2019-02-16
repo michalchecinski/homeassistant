@@ -29,3 +29,13 @@
     action:
       - service: scene.turn_on
         entity_id: scene.movie
+
+  - id: tv_led_off_tv_off
+    alias: 'Lights - turn off tv led when tv off'
+    trigger:
+      - platform: state
+        entity_id: media_player.tv
+        to: 'off'      
+    action:
+      - service: light.turn_off
+        entity_id: light.tv_led
