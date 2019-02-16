@@ -27,10 +27,6 @@
           hours: 36
           minutes: 0
           seconds: 0
-    condition:
-      - condition: state
-        entity_id: input_boolean.vacation_mode
-        state: 'off'
     action:
     - service: script.ifttt_notify
       data_template:
