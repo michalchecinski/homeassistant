@@ -1,9 +1,9 @@
-  random_night_minute:
-    min: 0
-    max: 59
-  random_minute:
-    min: 0
-    max: 59
+  # random_night_minute:
+  #   min: 0
+  #   max: 59
+  # random_minute:
+  #   min: 0
+  #   max: 59
   last_morning_temp:
     min: -30
     max: 60
