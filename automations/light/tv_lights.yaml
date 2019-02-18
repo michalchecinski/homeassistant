@@ -9,7 +9,7 @@
       condition: numeric_state
       entity_id: sun.sun
       value_template: "{{ state.attributes.elevation }}"
-      below: -4.0        
+      below: -3.0        
     action:
       - service: scene.turn_on
         entity_id: scene.movie
@@ -21,7 +21,7 @@
       platform: numeric_state
       entity_id: sun.sun
       value_template: "{{ state.attributes.elevation }}"
-      below: -4.0
+      below: -3.0
     condition:
       - condition: state
         entity_id: media_player.tv
