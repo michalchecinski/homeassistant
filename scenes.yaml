@@ -4,6 +4,11 @@
       light.tv_led: false
       switch.stereo: true
 
+  - name: Normal livingroom
+    entities:
+      light.rtv_led: false
+      light.tv_led: false
+
   - name: Movie
     entities:
       light.tv_led: true   
