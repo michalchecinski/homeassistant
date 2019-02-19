@@ -1,0 +1,15 @@
+- alias: "Tasmota - sync state on HA start-up"
+  trigger:
+    platform: homeassistant
+    event: start
+  action:
+    - service: mqtt.publish
+      data:
+        topic: "cmnd/sonoffs/state"
+        payload: ""
+    - service: mqtt.publish
+      data:
+        topic: cmnd/sonoffs/POWER
+    - service: mqtt.publish
+      data:
+        topic: cmnd/sonoffs/POWER2
