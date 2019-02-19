@@ -38,7 +38,10 @@
       - platform: state
         entity_id: binary_sensor.thinkpad
         from: 'on'
-        to: 'off'      
+        to: 'off'
+      - platform: state
+        entity_id: input_select.michal_status
+        from: "using computer"   
     action:
       - service: scene.turn_on
         entity_id: scene.work_off
