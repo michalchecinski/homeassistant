@@ -11,10 +11,9 @@
         from: 'off'
         to: 'on'
     condition:
-      - condition: numeric_state
-        entity_id: sun.sun
-        value_template: "{{ state.attributes.elevation }}"
-        below: -4.0
+      - condition: state
+        entity_id: binary_sensor.dark
+        state: 'on'
     action:
       - service: homeassistant.turn_on
         data:

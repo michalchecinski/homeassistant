@@ -6,10 +6,9 @@
         entity_id: media_player.tv
         to: 'playing'
     condition:
-      condition: numeric_state
-      entity_id: sun.sun
-      value_template: "{{ state.attributes.elevation }}"
-      below: -3.0        
+      - condition: state
+        entity_id: binary_sensor.dark
+        state: 'on'       
     action:
       - service: scene.turn_on
         entity_id: scene.movie
@@ -18,10 +17,9 @@
   - id: tv_led_on_sunset
     alias: 'Lights - turn on tv led when sunset and tv is on'
     trigger:
-      platform: numeric_state
-      entity_id: sun.sun
-      value_template: "{{ state.attributes.elevation }}"
-      below: -3.0
+      - platform: state
+        entity_id: binary_sensor.dark
+        to: 'on'
     condition:
       - condition: state
         entity_id: media_player.tv
