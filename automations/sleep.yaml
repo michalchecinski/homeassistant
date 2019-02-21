@@ -20,10 +20,10 @@
 - id: sleep_off
   alias: Sleep - awake
   trigger:
-  - platform: state
-    entity_id: input_boolean.sleep
-    from: 'on'
-    to: 'off'
+    - platform: state
+      entity_id: input_boolean.sleep
+      from: 'on'
+      to: 'off'
   condition:
     condition: and
     conditions:
