@@ -110,7 +110,7 @@
       entity_id: input_boolean.michal_home
       to: 'on'
   condition:
-    - platform: state
+    - condition: state
       entity_id: script.vacuum_start
       state: 'on'
   action:
