@@ -1,32 +1,32 @@
 # Turn on tv led when tv on after sunset
-  - id: tv_led_on_tv_on
-    alias: 'Lights - turn on tv led when tv on and after sunset'
-    trigger:
-      - platform: state
-        entity_id: media_player.tv
-        to: 'playing'
-      - platform: state
+- id: tv_led_on_tv_on
+  alias: 'Lights - turn on tv led when tv on and after sunset'
+  trigger:
+    - platform: state
+      entity_id: media_player.tv
+      to: 'playing'
+    - platform: state
+      entity_id: binary_sensor.dark
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
         entity_id: binary_sensor.dark
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: binary_sensor.dark
-          state: 'on'
-        - condition: state
-          entity_id: media_player.tv
-          state: 'playing'
-    action:
-      - service: scene.turn_on
-        entity_id: scene.movie
-
-  - id: tv_led_off_tv_off
-    alias: 'Lights - turn off tv led when tv off'
-    trigger:
-      - platform: state
+        state: 'on'
+      - condition: state
         entity_id: media_player.tv
-        to: 'off'      
-    action:
-      - service: light.turn_off
-        entity_id: light.tv_led
+        state: 'playing'
+  action:
+    - service: scene.turn_on
+      entity_id: scene.movie
+
+- id: tv_led_off_tv_off
+  alias: 'Lights - turn off tv led when tv off'
+  trigger:
+    - platform: state
+      entity_id: media_player.tv
+      to: 'off'      
+  action:
+    - service: light.turn_off
+      entity_id: light.tv_led

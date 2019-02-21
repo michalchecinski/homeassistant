@@ -1,16 +1,16 @@
-  - platform: mqtt
-    state_topic: 'tele/livingroomled/SENSOR'
-    name: 'Livingroom Temperature'
-    value_template: "{{ value_json.DHT11.Temperature }}"
-    unit_of_measurement: "°C"
-    availability_topic: "tele/livingroomled/LWT"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-  - platform: mqtt
-    state_topic: 'tele/livingroomled/SENSOR'
-    name: 'Livingroom Humidity'
-    value_template: "{{ value_json.DHT11.Humidity }}"
-    unit_of_measurement: "%"
-    availability_topic: "tele/livingroomled/LWT"
-    payload_available: "Online"
-    payload_not_available: "Offline"
+- platform: mqtt
+  state_topic: 'tele/livingroomled/SENSOR'
+  name: 'Livingroom Temperature'
+  value_template: "{{ value_json.DHT11.Temperature }}"
+  unit_of_measurement: "°C"
+  availability_topic: "tele/livingroomled/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+- platform: mqtt
+  state_topic: 'tele/livingroomled/SENSOR'
+  name: 'Livingroom Humidity'
+  value_template: "{{ value_json.DHT11.Humidity }}"
+  unit_of_measurement: "%"
+  availability_topic: "tele/livingroomled/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"

@@ -3,85 +3,87 @@
 ###############################
 
 # Turn on Vacation Mode when Gone 24 Hours
-  - id: vacation_on
-    alias: Vacation - turn on when Gone 24 Hours
-    trigger:
-      - platform: state
-        entity_id: input_boolean.michal_home
-        to: 'off'
-        for:
-          hours: 20
-          minutes: 0
-          seconds: 0
-      - platform: numeric_state
-        entity_id: proximity.home
-        above: 20000
-        for:
-          hours: 5
-          minutes: 0
-          seconds: 0
-    condition:
-      - condition: state
+- id: vacation_on
+  alias: Vacation - turn on when Gone 24 Hours
+  trigger:
+    - platform: state
+      entity_id: input_boolean.michal_home
+      to: 'off'
+      for:
+        hours: 20
+        minutes: 0
+        seconds: 0
+    - platform: numeric_state
+      entity_id: proximity.home
+      above: 20000
+      for:
+        hours: 5
+        minutes: 0
+        seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      data:
         entity_id: input_boolean.vacation_mode
-        state: 'off'
-    action:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: input_boolean.vacation_mode
 
 # Turn off Vacation Mode when Home
-  - id: vacation_off
-    alias: Vacation - turn off when Home
-    trigger:
-      - platform: state
-        entity_id: input_boolean.michal_home
-        from: 'off'
-        to: 'on'
+
+- id: vacation_off
+  alias: Vacation - turn off when Home
+  trigger:
+    - platform: state
+      entity_id: input_boolean.michal_home
+      from: 'off'
+      to: 'on'
 #    condition:
 #      - condition: state
 #        entity_id: input_boolean.disable_home_away
 #        state: 'off'
-    action:
-      - service: homeassistant.turn_off
-        data:
-          entity_id: input_boolean.vacation_mode
-
-  - id: vacation_on_notification
-    alias: Vacation - on notify
-    trigger:
-      - platform: state
+  action:
+    - service: homeassistant.turn_off
+      data:
         entity_id: input_boolean.vacation_mode
-        from: 'off'
-        to: 'on'
-    action:
-      - service: script.ifttt_notify
-        data_template:
-          message: "HA wyjechałeś na wakacje"
 
-  - id: vacation_off_notification
-    alias: Vacation - off notify
-    trigger:
-      - platform: state
+
+- id: vacation_on_notification
+  alias: Vacation - on notify
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+      from: 'off'
+      to: 'on'
+  action:
+    - service: script.ifttt_notify
+      data_template:
+        message: "HA wyjechałeś na wakacje"
+
+- id: vacation_off_notification
+  alias: Vacation - off notify
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+      from: 'on'
+      to: 'off'
+  action:
+    - service: script.ifttt_notify
+      data_template:
+        message: "HA Wróciłeś z wakacji"
+
+- id: to_lublin_calendar
+  alias: Calendar - to lublin - set vacation on
+  trigger:
+    - platform: state
+      entity_id:  calendar.to_lublin
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.michal_home
+      state: 'off'
+  action:
+    - service: homeassistant.turn_on
+      data:
         entity_id: input_boolean.vacation_mode
-        from: 'on'
-        to: 'off'
-    action:
-      - service: script.ifttt_notify
-        data_template:
-          message: "HA Wróciłeś z wakacji"
-
-  - id: to_lublin_calendar
-    alias: Calendar - to lublin - set vacation on
-    trigger:
-      - platform: state
-        entity_id:  calendar.to_lublin
-        from: 'off'
-        to: 'on'
-    condition:
-      - condition: state
-        entity_id: input_boolean.michal_home
-        state: 'off'
-    action:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: input_boolean.vacation_mode

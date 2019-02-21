@@ -1,44 +1,43 @@
-  michal_home:
-    name: Michal at home
+michal_home:
+  name: Michal at home
 
-  vacation_mode:
-    name: Vacation mode
-    icon: mdi:sunglasses
+vacation_mode:
+  name: Vacation mode
+  icon: mdi:sunglasses
 
-  guest_mode:
-    name: Guest mode
-    icon: mdi:account-multiple
+guest_mode:
+  name: Guest mode
+  icon: mdi:account-multiple
+# guests_arriving_mode:
+#   name: Guest arriving mode
+#   icon: mdi:door-open
 
-  # guests_arriving_mode:
-  #   name: Guest arriving mode
-  #   icon: mdi:door-open
-  
-  romantic_mode:
-    name: Romantic mode
-    icon: mdi:heart
+romantic_mode:
+  name: Romantic mode
+  icon: mdi:heart
 
-  romantic_dance_mode:
-    name: Romantic dance mode
-    icon: mdi:account-heart
+romantic_dance_mode:
+  name: Romantic dance mode
+  icon: mdi:account-heart
 
-  sleep:
-    name: Sleep
-    icon: mdi:hotel
+sleep:
+  name: Sleep
+  icon: mdi:hotel
 
-  sleep_alarm:
-    initial: off
+sleep_alarm:
+  initial: off
 
-  bedtime:
+bedtime:
 
-  was_playing:
+was_playing:
 
-  fake_heater:
-    name: Fake Heater
-    icon: mdi:toggle-switch-off
-    initial: off
+fake_heater:
+  name: Fake Heater
+  icon: mdi:toggle-switch-off
+  initial: off
 
-  # shower_time:
+# shower_time:
 
-  phonecall:
+phonecall:
 
-  vacuum_finished:
+vacuum_finished:

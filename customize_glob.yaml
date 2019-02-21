@@ -1,29 +1,29 @@
-  "binary_sensor.*_leak":
-    device_class: moisture
-    templates:
-      rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
-  
-  "binary_sensor.*_door":
-    device_class: door
-    templates:
-      rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
+"binary_sensor.*_leak":
+  device_class: moisture
+  templates:
+    rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
 
-  "sensor.*_window":
-    device_class: window
-    templates:
-      rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
-    
-  "light.*led":
-    icon: mdi:led-outline
+"binary_sensor.*_door":
+  device_class: door
+  templates:
+    rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
 
-  "sensor.temperature*":
-    device_class: temperature
+"sensor.*_window":
+  device_class: window
+  templates:
+    rgb_color: "if (state === 'on') return [251, 210, 41]; else return [54, 95, 140];"
 
-  "sensor.humidity*":
-    device_class: humidity
+"light.*led":
+  icon: mdi:led-outline
 
-  "sensor.*temperature":
-    device_class: temperature
+"sensor.temperature*":
+  device_class: temperature
 
-  "sensor.*humidity":
-    device_class: humidity
+"sensor.humidity*":
+  device_class: humidity
+
+"sensor.*temperature":
+  device_class: temperature
+
+"sensor.*humidity":
+  device_class: humidity

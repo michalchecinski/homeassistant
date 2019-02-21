@@ -1,41 +1,40 @@
-  # Set dark theme for the night
-  - id: theme_night
-    alias: 'Theme - set dark theme for night'
-    initial_state: True
-    trigger:
-      - platform: sun
-        event: sunset
-    action:
-      - service: frontend.set_theme
-        data:
-          name: 'dark_theme'
-          
-          
-  # Set default theme for the day
-  - id: theme_day
-    alias: 'Theme - set default theme for day'
-    initial_state: True
-    trigger:
-      - platform: sun
-        event: sunrise
-    action:
-      - service: frontend.set_theme
-        data:
-          name: 'default'
+# Set dark theme for the night
+- id: theme_night
+  alias: 'Theme - set dark theme for night'
+  initial_state: True
+  trigger:
+    - platform: sun
+      event: sunset
+  action:
+    - service: frontend.set_theme
+      data:
+        name: 'dark_theme'
 
-  - id: ha_start
-    alias: Theme - HA started
-    trigger:
-      - platform: homeassistant
-        event: start
-    condition:
-      condition: or  # 'when dark' condition: either after sunset or before sunrise
-      conditions:
-        - condition: sun
-          after: sunset
-        - condition: sun
-          before: sunrise
-    action:
-      - service: frontend.set_theme
-        data:
-          name: 'dark_theme'
+# Set default theme for the day
+- id: theme_day
+  alias: 'Theme - set default theme for day'
+  initial_state: True
+  trigger:
+    - platform: sun
+      event: sunrise
+  action:
+    - service: frontend.set_theme
+      data:
+        name: 'default'
+
+- id: ha_start
+  alias: Theme - HA started
+  trigger:
+    - platform: homeassistant
+      event: start
+  condition:
+    condition: or  # 'when dark' condition: either after sunset or before sunrise
+    conditions:
+      - condition: sun
+        after: sunset
+      - condition: sun
+        before: sunrise
+  action:
+    - service: frontend.set_theme
+      data:
+        name: 'dark_theme'

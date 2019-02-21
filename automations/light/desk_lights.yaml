@@ -1,39 +1,39 @@
-  - id: desk_leds_on
-    alias: 'Lights - turn on desk leds when computer on and after sunset'
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.thinkpad
-        from: 'off'
-        to: 'on'
-      - platform: state
-        entity_id: input_select.michal_status
-        to: "using computer"
-      - platform: state
+- id: desk_leds_on
+  alias: 'Lights - turn on desk leds when computer on and after sunset'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.thinkpad
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: input_select.michal_status
+      to: "using computer"
+    - platform: state
+      entity_id: binary_sensor.dark
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
         entity_id: binary_sensor.dark
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: binary_sensor.dark
-          state: 'on'
-        - condition: state
-          entity_id: input_select.michal_status
-          state: "using computer"
-    action:
-      - service: scene.turn_on
-        entity_id: scene.work
-
-  - id: desk_leds_off
-    alias: 'Lights - turn off desk leds when computer off'
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.thinkpad
-        from: 'on'
-        to: 'off'
-      - platform: state
+        state: 'on'
+      - condition: state
         entity_id: input_select.michal_status
-        from: "using computer"   
-    action:
-      - service: scene.turn_on
-        entity_id: scene.work_off
+        state: "using computer"
+  action:
+    - service: scene.turn_on
+      entity_id: scene.work
+
+- id: desk_leds_off
+  alias: 'Lights - turn off desk leds when computer off'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.thinkpad
+      from: 'on'
+      to: 'off'
+    - platform: state
+      entity_id: input_select.michal_status
+      from: "using computer"   
+  action:
+    - service: scene.turn_on
+      entity_id: scene.work_off

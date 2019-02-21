@@ -10,8 +10,8 @@
   #   payload_on: "on"
   #   payload_off: "off"
 
-  - platform: template
-    sensors:
-      thinkpad:
-        value_template: >-
-          {{ is_state('device_tracker.thinkpad', 'home') }}
+- platform: template
+  sensors:
+    thinkpad:
+      value_template: >-
+        {{ is_state('device_tracker.thinkpad', 'home') }}

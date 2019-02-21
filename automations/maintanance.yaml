@@ -3,24 +3,24 @@
  ############################################
 
  #Pull config when travis build succedeed
-  - id: pull_config
-    alias: HA - Pull config when Travis build succeded
-    trigger:
-    - platform: state
-      entity_id: binary_sensor.needs_update
-      from: 'off'
-      to: 'on'
-      for:
-        hours: 0
-        minutes: 0
-        seconds: 5
-    action:
-    - service: shell_command.pull_git_conf
-    - delay: '00:00:05'
-    - service: script.ifttt_notify
-      data_template:
-        message: "HA pulled config"
-    - service: homeassistant.restart
+- id: pull_config
+  alias: HA - Pull config when Travis build succeded
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.needs_update
+    from: 'off'
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+  action:
+  - service: shell_command.pull_git_conf
+  - delay: '00:00:05'
+  - service: script.ifttt_notify
+    data_template:
+      message: "HA pulled config"
+  - service: homeassistant.restart
 
 # # Restart mopidy service every hour when it's no playing
 #   - id: restart_mopidy

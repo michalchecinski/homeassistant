@@ -1,89 +1,89 @@
-  - id: michal_status_computer
-    alias: Michal status - at computer
-    trigger:
-      - platform: state
+- id: michal_status_computer
+  alias: Michal status - at computer
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.thinkpad
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.michal_home
+      state: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.michal_status
+        option: 'using computer'
+
+- id: michal_status_not_computer
+  alias: Michal status - not at computer
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.thinkpad
+      to: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.michal_home
+      state: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.michal_status
+        option: 'at home'
+
+- id: michal_status_tv
+  alias: Michal status - tv
+  trigger:
+    - platform: state
+      entity_id: media_player.tv
+      to: 'playing'
+  condition:
+    - condition: state
+      entity_id: input_boolean.michal_home
+      state: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.michal_status
+        option: 'watching TV'
+
+- id: michal_status_not_tv_home
+  alias: Michal status - not tv
+  trigger:
+    - platform: state
+      entity_id: media_player.tv
+      to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on'
+      - condition: state
         entity_id: binary_sensor.thinkpad
-        to: 'on'
-    condition:
+        state: 'off'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.michal_status
+        option: 'at home'
+
+- id: michal_status_not_tv_computer
+  alias: Michal status - not tv
+  trigger:
+    - platform: state
+      entity_id: media_player.tv
+      to: 'off'
+  condition:
+    condition: and
+    conditions:
       - condition: state
         entity_id: input_boolean.michal_home
         state: 'on'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.michal_status
-          option: 'using computer'
-
-  - id: michal_status_not_computer
-    alias: Michal status - not at computer
-    trigger:
-      - platform: state
+      - condition: state
         entity_id: binary_sensor.thinkpad
-        to: 'off'
-    condition:
-      - condition: state
-        entity_id: input_boolean.michal_home
         state: 'on'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.michal_status
-          option: 'at home'
-
-  - id: michal_status_tv
-    alias: Michal status - tv
-    trigger:
-      - platform: state
-        entity_id: media_player.tv
-        to: 'playing'
-    condition:
-      - condition: state
-        entity_id: input_boolean.michal_home
-        state: 'on'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.michal_status
-          option: 'watching TV'
-
-  - id: michal_status_not_tv_home
-    alias: Michal status - not tv
-    trigger:
-      - platform: state
-        entity_id: media_player.tv
-        to: 'off'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.michal_home
-          state: 'on'
-        - condition: state
-          entity_id: binary_sensor.thinkpad
-          state: 'off'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.michal_status
-          option: 'at home'
-
-  - id: michal_status_not_tv_computer
-    alias: Michal status - not tv
-    trigger:
-      - platform: state
-        entity_id: media_player.tv
-        to: 'off'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.michal_home
-          state: 'on'
-        - condition: state
-          entity_id: binary_sensor.thinkpad
-          state: 'on'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.michal_status
-          option: 'using computer'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.michal_status
+        option: 'using computer'

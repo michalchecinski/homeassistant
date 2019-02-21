@@ -18,47 +18,47 @@
   #         entity_id: script.notify_temperature_dead
 
 # Notify when new home assistant version is live
-  - id: update_notification
-    alias: Notification - HA update available
-    trigger:
-      - platform: state
-        entity_id: updater.updater
-    action:
-      - service: script.ifttt_notify
-        data_template:
-          message: "There is a new Home Assistant {{ states('updater.updater') }} release available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
-      - service: persistent_notification.create
-        data:
-          title: "Update Available"
-          message: "Home Assistant {{ states('updater.updater') }} is available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
-          notification_id: "update_available"
-
-# Notify when HA started
-  - id: ha_start
-    alias: Notification - HA started
-    trigger:
-    -  platform: homeassistant
-       event: start
-    # condition:
-    #   - condition: state
-    #     entity_id: input_boolean.michal_home
-    #     state: 'off'
-    action:
-      - service: script.ifttt_notify
-        data_template:
-          message: "Home assistant started"
-
-# Notify when HA shutdown
-  - id: ha_shutdown
-    alias: Notification - HA shutdown
-    trigger:
-    -  platform: homeassistant
-       event: shutdown
-    condition:
-      - condition: state
-        entity_id: input_boolean.michal_home
-        state: 'off'
-    action:
+- id: update_notification
+  alias: Notification - HA update available
+  trigger:
+    - platform: state
+      entity_id: updater.updater
+  action:
     - service: script.ifttt_notify
       data_template:
-        message: "Home assistant shutdown"
+        message: "There is a new Home Assistant {{ states('updater.updater') }} release available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
+    - service: persistent_notification.create
+      data:
+        title: "Update Available"
+        message: "Home Assistant {{ states('updater.updater') }} is available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
+        notification_id: "update_available"
+
+# Notify when HA started
+- id: ha_start
+  alias: Notification - HA started
+  trigger:
+  -  platform: homeassistant
+     event: start
+  # condition:
+  #   - condition: state
+  #     entity_id: input_boolean.michal_home
+  #     state: 'off'
+  action:
+    - service: script.ifttt_notify
+      data_template:
+        message: "Home assistant started"
+
+# Notify when HA shutdown
+- id: ha_shutdown
+  alias: Notification - HA shutdown
+  trigger:
+  -  platform: homeassistant
+     event: shutdown
+  condition:
+    - condition: state
+      entity_id: input_boolean.michal_home
+      state: 'off'
+  action:
+  - service: script.ifttt_notify
+    data_template:
+      message: "Home assistant shutdown"

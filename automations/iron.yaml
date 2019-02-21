@@ -1,26 +1,26 @@
 # Iron turned on
-  - id: iron_turned_on
-    alias: Iron - turned on
-    trigger:
-      - platform: state
-        entity_id: switch.b3
-        from: 'off'
-        to: 'on'
-    action:
-      - service: homeassistant.turn_on
-        data:
-          entity_id: script.iron_turn_off
+- id: iron_turned_on
+  alias: Iron - turned on
+  trigger:
+    - platform: state
+      entity_id: switch.b3
+      from: 'off'
+      to: 'on'
+  action:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: script.iron_turn_off
 
 
 # Iron turned on
-  - id: iron_turned_off
-    alias: Iron - turned off
-    trigger:
-      - platform: state
-        entity_id: switch.b3
-        from: 'on'
-        to: 'off'
-    action:
-      - service: homeassistant.turn_off
-        data:
-          entity_id: script.iron_turn_off
+- id: iron_turned_off
+  alias: Iron - turned off
+  trigger:
+    - platform: state
+      entity_id: switch.b3
+      from: 'on'
+      to: 'off'
+  action:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: script.iron_turn_off

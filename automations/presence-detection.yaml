@@ -3,105 +3,104 @@
 ###############################################
 
 # Away home
-  - id: away
-    alias: Presence - turn off boolean when leaving home
-    trigger:
-    # - platform: state
-    #   entity_id: device_tracker.oneplus
-    #   to: 'not_home'
-    - platform: state
-      entity_id: group.michal_home
-      to: 'not_home'
-    - platform: state
-      entity_id: device_tracker.google_maps_102169435937546415265
-      to: 'extended home'
-    - platform: state
-      entity_id: device_tracker.google_maps_102169435937546415265
-      to: 'Politechnika'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: device_tracker.oneplus
-          state: 'not_home'
-        - condition: state
-          entity_id: input_boolean.sleep
-          state: 'off'
-        # - condition: or
-        #   conditions:
-        #     - condition: state
-        #       entity_id: input_boolean.sleep
-        #       state: 'off'
-        #     - condition: time
-        #       before: '7:30:00'
-        #       after: '21:00:00'
-    action:
-      - service: input_boolean.turn_off
-        data:
-          entity_id: input_boolean.michal_home
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.michal_status
-          option: 'away'
+- id: away
+  alias: Presence - turn off boolean when leaving home
+  trigger:
+  # - platform: state
+  #   entity_id: device_tracker.oneplus
+  #   to: 'not_home'
+  - platform: state
+    entity_id: group.michal_home
+    to: 'not_home'
+  - platform: state
+    entity_id: device_tracker.google_maps_102169435937546415265
+    to: 'extended home'
+  - platform: state
+    entity_id: device_tracker.google_maps_102169435937546415265
+    to: 'Politechnika'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: device_tracker.oneplus
+        state: 'not_home'
+      - condition: state
+        entity_id: input_boolean.sleep
+        state: 'off'
+      # - condition: or
+      #   conditions:
+      #     - condition: state
+      #       entity_id: input_boolean.sleep
+      #       state: 'off'
+      #     - condition: time
+      #       before: '7:30:00'
+      #       after: '21:00:00'
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.michal_home
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.michal_status
+        option: 'away'
 
 # At home
-  - id: at_home
-    alias: Presence - turn on boolean when at home
-    trigger:
-      - platform: state
-        entity_id: device_tracker.google_maps_102169435937546415265
-        to: 'home'
-        for: '00:02:00'
-      - platform: state
-        entity_id: device_tracker.oneplus
-        to: 'home'
-    action:
-      - service: input_boolean.turn_on
-        data:
-          entity_id: input_boolean.michal_home
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.michal_status
-          option: 'at home'
+- id: at_home
+  alias: Presence - turn on boolean when at home
+  trigger:
+    - platform: state
+      entity_id: device_tracker.google_maps_102169435937546415265
+      to: 'home'
+      for: '00:02:00'
+    - platform: state
+      entity_id: device_tracker.oneplus
+      to: 'home'
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.michal_home
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.michal_status
+        option: 'at home'
 
 # Heading home
-  - id: heading_home
-    alias: Presence - heading home
-    trigger:
-      platform: numeric_state
-      entity_id: proximity.home
-      below: 2000
-      above: 100
-    condition:
-      condition: and
-      conditions:
-        # Heading home
-        - condition: template
-          value_template: '{{ states.proximity.home.attributes.dir_of_travel == "towards" }}'
-
-        # # Michal away home
-        # - condition: state
-        #   entity_id: input_select.michal_status
-        #   state: 'away'
-    action:
-      - service: input_select.select_option
-        data:
-          entity_id: input_select.michal_status
-          option: 'near home'
+- id: heading_home
+  alias: Presence - heading home
+  trigger:
+    platform: numeric_state
+    entity_id: proximity.home
+    below: 2000
+    above: 100
+  condition:
+    condition: and
+    conditions:
+      # Heading home
+      - condition: template
+        value_template: '{{ states.proximity.home.attributes.dir_of_travel == "towards" }}'
+      # # Michal away home
+      # - condition: state
+      #   entity_id: input_select.michal_status
+      #   state: 'away'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.michal_status
+        option: 'near home'
 
   # From not home to extended home
   # in case upper automation failed
-  - id: extended_home
-    alias: Presence - extended home - heading home
-    trigger:
-      - platform: state
-        entity_id: device_tracker.google_maps_102169435937546415265
-        from: 'not_home'
-        to: 'extended home'
-    condition:
-      - condition: template
-        value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.presence__heading_home.attributes.last_triggered) | int > 400 }}'
-    action:
-      - service: automation.trigger
-        data:
-          entity.id: automation.presence__heading_home
+- id: extended_home
+  alias: Presence - extended home - heading home
+  trigger:
+    - platform: state
+      entity_id: device_tracker.google_maps_102169435937546415265
+      from: 'not_home'
+      to: 'extended home'
+  condition:
+    - condition: template
+      value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.presence__heading_home.attributes.last_triggered) | int > 400 }}'
+  action:
+    - service: automation.trigger
+      data:
+        entity.id: automation.presence__heading_home

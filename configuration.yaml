@@ -15,12 +15,12 @@ homeassistant:
   customize_glob: !include customize_glob.yaml
 
   auth_providers:
-   - type: homeassistant
-   - type: legacy_api_password
-   - type: trusted_networks
-    #  trusted_networks:
-    #   - 127.0.0.1
-    #   - 192.168.0.0/24
+    - type: homeassistant
+    - type: legacy_api_password
+    - type: trusted_networks
+      # trusted_networks:
+      #   - 127.0.0.1
+      #   - 192.168.0.0/24
 
 # Enables recorderrecorder
 recorder: !include recorder.yaml
@@ -36,10 +36,10 @@ http:
   api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: !secret base_url
-  ip_ban_enabled: True
+  ip_ban_enabled: true
   login_attempts_threshold: 5
-  #ssl_certificate: !secret ssl_certificate_path        
-  #ssl_key: !secret ssl_private_key
+  # ssl_certificate: !secret ssl_certificate_path        
+  # ssl_key: !secret ssl_private_key
   trusted_networks:
     - 127.0.0.1
     - 192.168.0.0/24
@@ -80,7 +80,7 @@ wake_on_lan:
 tts:
   - platform: google
     language: 'pl'
-    
+
 device_tracker:
   - platform: google_maps
     username: !secret gmaps_user
@@ -94,8 +94,8 @@ device_tracker:
   - platform: upc_connect
     consider_home: 0
     new_device_defaults:
-      track_new_devices: True
-      hide_if_away: False
+      track_new_devices: true
+      hide_if_away: false
 
 #IFTTT
 ifttt:
@@ -113,7 +113,7 @@ media_player:
       service: wake_on_lan.send_magic_packet
       data:
         mac: !secret lg_mac
-  
+
 # MQTT
 mqtt:
   broker: 127.0.0.1
@@ -135,7 +135,7 @@ rest_command: !include rest_commands.yaml
 weblink: !include weblink.yaml
 climate: !include climate.yaml
 
-#input
+# input
 input_select: !include input_select.yaml
 input_number: !include input_number.yaml
 input_boolean: !include input_boolean.yaml
@@ -153,6 +153,4 @@ google:
 #   username: netatmo_username
 #   password: netatmo_password
 
-
 proximity: !include proximity.yaml
-

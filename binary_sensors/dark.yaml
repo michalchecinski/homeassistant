@@ -1,18 +1,18 @@
-  - platform: template
-    sensors:
-      dark:
-        friendly_name: 'Dark'
-        value_template: >
-          {%- if is_state("input_boolean.sleep","off") and is_state("group.michal_home","home") -%}
-            {%- if (states.sun.sun.attributes.elevation | int < 5 ) -%}
-              True
-            {%- elif ( (states.sun.sun.attributes.elevation | int < 25) and (states.sensor.dark_sky_cloud_coverage.state | int > 65)) -%}
-              True
-            {%- elif (states.sensor.dark_sky_cloud_coverage.state | int > 90) -%}
-              True
-            {%- else -%}
-              False
-            {%- endif -%}
+- platform: template
+  sensors:
+    dark:
+      friendly_name: 'Dark'
+      value_template: >
+        {%- if is_state("input_boolean.sleep","off") and is_state("group.michal_home","home") -%}
+          {%- if (states.sun.sun.attributes.elevation | int < 5 ) -%}
+            True
+          {%- elif ( (states.sun.sun.attributes.elevation | int < 25) and (states.sensor.dark_sky_cloud_coverage.state | int > 65)) -%}
+            True
+          {%- elif (states.sensor.dark_sky_cloud_coverage.state | int > 90) -%}
+            True
           {%- else -%}
             False
           {%- endif -%}
+        {%- else -%}
+          False
+        {%- endif -%}

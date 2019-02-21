@@ -5,7 +5,7 @@ services:
     image: homeassistant/home-assistant:latest
     container_name: "hass"
     restart: always
-    volumes: 
+    volumes:
       - .\:/config
     ports:
       - 8123:8123

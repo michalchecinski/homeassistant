@@ -1,46 +1,46 @@
-  - id: outside_temp_down_significantly
-    alias: Temperature outside notification - significant down 
-    trigger:
-      - platform: time_pattern
-        hours: 7
-        minutes: 11
-        seconds: 00
-    condition:
-      condition: template
-      value_template: "{{ (states.sensor.temperature_outside.state) | float <= (states.input_number.last_morning_temp.state) | float - 5 }}"
-    action:
-      - service: script.ifttt_notify
-        data_template:
-          message: "Temperatura spadła znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}} C; dzisiaj {{(states.sensor.temperature_outside.state)}} C"
+- id: outside_temp_down_significantly
+  alias: Temperature outside notification - significant down 
+  trigger:
+    - platform: time_pattern
+      hours: 7
+      minutes: 11
+      seconds: 00
+  condition:
+    condition: template
+    value_template: "{{ (states.sensor.temperature_outside.state) | float <= (states.input_number.last_morning_temp.state) | float - 5 }}"
+  action:
+    - service: script.ifttt_notify
+      data_template:
+        message: "Temperatura spadła znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}} C; dzisiaj {{(states.sensor.temperature_outside.state)}} C"
 
-  - id: outside_temp_log
-    alias: Temperature outside notification - log
-    trigger:
-      - platform: time_pattern
-        hours: 7
-        minutes: 12
-        seconds: 00
-    action:
-      - service: input_number.set_value
-        data_template:
-          entity_id: input_number.last_morning_temp
-          value: "{{ (states.sensor.temperature_outside.state) | float }}"
+- id: outside_temp_log
+  alias: Temperature outside notification - log
+  trigger:
+    - platform: time_pattern
+      hours: 7
+      minutes: 12
+      seconds: 00
+  action:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.last_morning_temp
+        value: "{{ (states.sensor.temperature_outside.state) | float }}"
 
-  - id: outside_temp_open_window
-    alias: Temperature outside notification - is lower than indoors - open windows
-    trigger:
-      - platform: template
-        value_template: "{{ (states.sensor.temperature_outside.state) | float <= (states.sensor.livingroom_temperature.state) | float - 5 and (states.sensor.temperature_outside.state) | float >= 15 }}"
-    condition:
-      - condition: state
-        entity_id: input_boolean.michal_home
-        state: 'on'
-      - condition: state
-        entity_id: input_boolean.sleep
-        state: 'off'
-      - condition: template
-        value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.temperature_outside__is_lower_than_indoors__open_windows.attributes.last_triggered) | int > 3600 }}'
-    action:
-      - service: script.ifttt_notify
-        data_template:
-          message: "Otwórz okna. Na zewnątrz jest chłodniej. Out: {{ (states.sensor.temperature_outside.state) | float }}. In: {{ (states.sensor.livingroom_temperature.state) | float }}"
+- id: outside_temp_open_window
+  alias: Temperature outside notification - is lower than indoors - open windows
+  trigger:
+    - platform: template
+      value_template: "{{ (states.sensor.temperature_outside.state) | float <= (states.sensor.livingroom_temperature.state) | float - 5 and (states.sensor.temperature_outside.state) | float >= 15 }}"
+  condition:
+    - condition: state
+      entity_id: input_boolean.michal_home
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.sleep
+      state: 'off'
+    - condition: template
+      value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.temperature_outside__is_lower_than_indoors__open_windows.attributes.last_triggered) | int > 3600 }}'
+  action:
+    - service: script.ifttt_notify
+      data_template:
+        message: "Otwórz okna. Na zewnątrz jest chłodniej. Out: {{ (states.sensor.temperature_outside.state) | float }}. In: {{ (states.sensor.livingroom_temperature.state) | float }}"

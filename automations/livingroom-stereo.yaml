@@ -3,125 +3,123 @@
 ###################################
 
 # Turn on stereo when Spotify starts to play on stereo
-  - id: stereo_on_spotify
-    alias: Livingroom stereo - turn on when spotify on stereo starts to play
-    trigger:
-      - platform: state
+- id: stereo_on_spotify
+  alias: Livingroom stereo - turn on when spotify on stereo starts to play
+  trigger:
+    - platform: state
+      entity_id: media_player.spotify
+      to: 'playing'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: switch.stereo
+        state: 'off'
+      - condition: template
+        value_template: "{{ state_attr('media_player.spotify', 'source') == 'stereo' }}"
+  action:
+    - service: media_player.media_pause
+      data:
+        entity_id: media_player.spotify 
+    - service: switch.turn_on
+      data:
+        entity_id: switch.stereo
+    - delay: '00:00:05'
+    - service: media_player.volume_set
+      data:
         entity_id: media_player.spotify
-        to: 'playing'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: switch.stereo
-          state: 'off'
-        - condition: template
-          value_template: "{{ state_attr('media_player.spotify', 'source') == 'stereo' }}"
-
-    action:
-      - service: media_player.media_pause
-        data:
-          entity_id: media_player.spotify 
-      - service: switch.turn_on
-        data:
-          entity_id: switch.stereo
-      - delay: '00:00:05'
-      - service: media_player.volume_set
-        data:
-          entity_id: media_player.spotify
-          volume_level: 0.4
-      - service: media_player.media_play
-        data:
-          entity_id: media_player.spotify
+        volume_level: 0.4
+    - service: media_player.media_play
+      data:
+        entity_id: media_player.spotify
 
 # Turn on stereo when Spotify starts to play on stereo
-  - id: stereo_on_spotify_source
-    alias: Livingroom stereo - turn on when spotify output set to stereo
-    trigger:
-      - platform: template
-        value_template: "{{ states.media_player.spotify.attributes.source == 'stereo' }}"
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: switch.stereo
-          state: 'off'
-        - condition: state
-          entity_id: media_player.spotify
-          state: 'playing'
-    action:
-      - service: media_player.media_pause
-        data:
-          entity_id: media_player.spotify 
-      - service: switch.turn_on
-        data:
-          entity_id: switch.stereo
-      - delay: '00:00:05'
-      - service: media_player.media_play
-        data:
-          entity_id: media_player.spotify 
+- id: stereo_on_spotify_source
+  alias: Livingroom stereo - turn on when spotify output set to stereo
+  trigger:
+    - platform: template
+      value_template: "{{ states.media_player.spotify.attributes.source == 'stereo' }}"
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: switch.stereo
+        state: 'off'
+      - condition: state
+        entity_id: media_player.spotify
+        state: 'playing'
+  action:
+    - service: media_player.media_pause
+      data:
+        entity_id: media_player.spotify 
+    - service: switch.turn_on
+      data:
+        entity_id: switch.stereo
+    - delay: '00:00:05'
+    - service: media_player.media_play
+      data:
+        entity_id: media_player.spotify 
 
 # Turn stereo off after 2 minutes of inactivity
-  - id: stereo_off_2_minutes_no_spotify
-    alias: Livingroom stereo - turn off when spotify not playing on stereo for 2 minutes
-    trigger:
-      - platform: template
-        value_template: "{{ state_attr('media_player.spotify', 'source') != 'stereo' }}"
-      - platform: state
-        entity_id: media_player.spotify
-        to: 'paused'
-        for:
-          hours: 0
-          minutes: 5
-          seconds: 0
-    action:
-      - service: switch.turn_off
-        data:
-          entity_id: switch.stereo
-
-  - id: play_on_stereo_coming_home
-    alias: Livingroom stereo - play spotify on stereo when coming home
-    trigger:
-      - platform: state
-        entity_id: input_boolean.michal_home
-        from: 'off'
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-        - condition: template
-          value_template: "{{ state_attr('media_player.spotify', 'source') == 'OnePlus 6T' }}"
-        - condition: state
-          entity_id: media_player.spotify
-          state: 'playing'
-    action:
-      - service: media_player.select_source
-        data:
-          entity_id: media_player.spotify
-          source: stereo
-      - service: media_player.media_play
-        data:
-          entity_id: media_player.spotify
-
-  - id: max_stero_volume_when_on
-    alias: Livingroom stereo - max volume when on
-    trigger:
-      - platform: state
+- id: stereo_off_2_minutes_no_spotify
+  alias: Livingroom stereo - turn off when spotify not playing on stereo for 2 minutes
+  trigger:
+    - platform: template
+      value_template: "{{ state_attr('media_player.spotify', 'source') != 'stereo' }}"
+    - platform: state
+      entity_id: media_player.spotify
+      to: 'paused'
+      for:
+        hours: 0
+        minutes: 5
+        seconds: 0
+  action:
+    - service: switch.turn_off
+      data:
         entity_id: switch.stereo
-        from: 'off'
-        to: 'on'
-    # condition:
-    #   condition: and
-    #   conditions:
-    #     - condition: template
-    #       value_template: "{{ state_attr('media_player.spotify', 'source') == 'stereo' }}"
-    #     - condition: state
-    #       entity_id: media_player.spotify
-    #       state: 'playing'
-    action:
-      - delay: '00:00:10'
-      - service: mqtt.publish
-        data:
-          topic: "stereo/volume/up"
-          payload: 10
+- id: play_on_stereo_coming_home
+  alias: Livingroom stereo - play spotify on stereo when coming home
+  trigger:
+    - platform: state
+      entity_id: input_boolean.michal_home
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: "{{ state_attr('media_player.spotify', 'source') == 'OnePlus 6T' }}"
+      - condition: state
+        entity_id: media_player.spotify
+        state: 'playing'
+  action:
+    - service: media_player.select_source
+      data:
+        entity_id: media_player.spotify
+        source: stereo
+    - service: media_player.media_play
+      data:
+        entity_id: media_player.spotify
+
+- id: max_stero_volume_when_on
+  alias: Livingroom stereo - max volume when on
+  trigger:
+    - platform: state
+      entity_id: switch.stereo
+      from: 'off'
+      to: 'on'
+  # condition:
+  #   condition: and
+  #   conditions:
+  #     - condition: template
+  #       value_template: "{{ state_attr('media_player.spotify', 'source') == 'stereo' }}"
+  #     - condition: state
+  #       entity_id: media_player.spotify
+  #       state: 'playing'
+  action:
+    - delay: '00:00:10'
+    - service: mqtt.publish
+      data:
+        topic: "stereo/volume/up"
+        payload: 10
 

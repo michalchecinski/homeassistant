@@ -1,21 +1,21 @@
-  - platform: rest
-    name: Travis Status
-    resource: https://api.travis-ci.org/repos/michalchecinski/homeassistant/builds
-    scan_interval: 60
-    value_template: "{{ value_json[0].result|int(1) == 0 }}"
+- platform: rest
+  name: Travis Status
+  resource: https://api.travis-ci.org/repos/michalchecinski/homeassistant/builds
+  scan_interval: 60
+  value_template: "{{ value_json[0].result|int(1) == 0 }}"
 
-  - platform: template
-    sensors:
-      newest_commit:
-        friendly_name: "Newest commit"
-        value_template: >-
-          {{ states.sensor.git_last_commit.state == states.sensor.travis_build_commit.state }}
-      needs_update:
-        friendly_name: "Needs update"
-        value_template: >-
-          {% if is_state('binary_sensor.newest_commit', 'off')
-           and is_state('binary_sensor.travis_status', 'on') %}
-            true
-          {% else %}
-            false
-          {% endif %}
+- platform: template
+  sensors:
+    newest_commit:
+      friendly_name: "Newest commit"
+      value_template: >-
+        {{ states.sensor.git_last_commit.state == states.sensor.travis_build_commit.state }}
+    needs_update:
+      friendly_name: "Needs update"
+      value_template: >-
+        {% if is_state('binary_sensor.newest_commit', 'off')
+         and is_state('binary_sensor.travis_status', 'on') %}
+          true
+        {% else %}
+          false
+        {% endif %}

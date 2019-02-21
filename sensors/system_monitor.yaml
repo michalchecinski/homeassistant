@@ -1,8 +1,8 @@
-  - platform: systemmonitor
-    resources:
-      - type: memory_use_percent
-      - type: processor_use
-      - type: swap_use_percent
-      - type: load_15m
-      - type: load_5m
-      - type: load_1m
+- platform: systemmonitor
+  resources:
+    - type: memory_use_percent
+    - type: processor_use
+    - type: swap_use_percent
+    - type: load_15m
+    - type: load_5m
+    - type: load_1m

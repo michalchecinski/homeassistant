@@ -3,148 +3,148 @@
 ##################################################################
 
 # Automation when going into sleep
-  - id: sleep_on
-    alias: Sleep - going into sleep 
-    trigger:
-    - platform: state
-      entity_id: input_boolean.sleep
-      to: 'on'
-    condition:
-      condition: state
-      entity_id: input_boolean.michal_home
-      state: 'on'
-    action:
-      - service: script.off_all
+- id: sleep_on
+  alias: Sleep - going into sleep 
+  trigger:
+  - platform: state
+    entity_id: input_boolean.sleep
+    to: 'on'
+  condition:
+    condition: state
+    entity_id: input_boolean.michal_home
+    state: 'on'
+  action:
+    - service: script.off_all
 
 # Automation after wake up
-  - id: sleep_off
-    alias: Sleep - awake 
-    trigger:
-    - platform: state
-      entity_id: input_boolean.sleep
-      from: 'on'
-      to: 'off'  
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.michal_home
-          state: 'on' 
-        - condition: state
-          entity_id: input_boolean.guest_mode
-          state: 'off'
-        - condition: time
-          after: '05:00:00'
-          before: '13:00:00'
-    action:
-      - delay: '00:04:00'
-      - service: media_player.shuffle_set
-        data:
-          entity_id: media_player.spotify
-          shuffle: true
-      - service: script.spotify_play_playlist
-        data_template:
-          playlist: "{{ ['spotify:user:spotify:playlist:37i9dQZF1DX6FpuSJJgdDF','spotify:user:spotify:playlist:37i9dQZF1DXdd3gw5QVjt9', 'spotify:user:spotify:playlist:37i9dQZF1DX5dJCW6dyCUe']|random }}"
-
-# Alarm is ringing - guest off
-  - id: alarm_on_no_guests
-    alias: Sleep - alarm goes off no guests
-    trigger:
-    - platform: state
-      entity_id: input_boolean.sleep_alarm
-      to: 'on'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.guest_mode
-          state: 'off'
-        - condition: state
-          entity_id: input_boolean.michal_home
-          state: 'on'
-    action:
-      - service: light.turn_on
-        data:
-          entity_id: group.bedroom_lights
-      - service: media_player.shuffle_set
-        data:
-          entity_id: media_player.spotify
-          shuffle: true
-      - service: script.spotify_play_playlist
-        data_template:
-          playlist: spotify:user:checin:playlist:1ukjrLqn5FTUHjqQHjPgbJ
-      - delay: '00:00:10'
-      - service: homeassistant.turn_off
-        data:
-          entity_id: input_boolean.sleep_alarm
-      - delay: '00:05:00'
-      - service: light.turn_off
-        data:
-          entity_id: group.bedroom_lights
-
-  # Alarm is ringing - guest on
-  - id: alarm_on_guests
-    alias: Sleep - alarm goes off guests
-    trigger:
-    - platform: state
-      entity_id: input_boolean.sleep_alarm
-      to: 'on'
-    condition:
+- id: sleep_off
+  alias: Sleep - awake 
+  trigger:
+  - platform: state
+    entity_id: input_boolean.sleep
+    from: 'on'
+    to: 'off'  
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on' 
       - condition: state
         entity_id: input_boolean.guest_mode
+        state: 'off'
+      - condition: time
+        after: '05:00:00'
+        before: '13:00:00'
+  action:
+    - delay: '00:04:00'
+    - service: media_player.shuffle_set
+      data:
+        entity_id: media_player.spotify
+        shuffle: true
+    - service: script.spotify_play_playlist
+      data_template:
+        playlist: "{{ ['spotify:user:spotify:playlist:37i9dQZF1DX6FpuSJJgdDF','spotify:user:spotify:playlist:37i9dQZF1DXdd3gw5QVjt9', 'spotify:user:spotify:playlist:37i9dQZF1DX5dJCW6dyCUe']|random }}"
+
+# Alarm is ringing - guest off
+- id: alarm_on_no_guests
+  alias: Sleep - alarm goes off no guests
+  trigger:
+  - platform: state
+    entity_id: input_boolean.sleep_alarm
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.michal_home
         state: 'on'
-    action:
-      - service: light.turn_on
-        data:
-          entity_id: group.bedroom_lights
-      - delay: '00:00:10'
-      - service: homeassistant.turn_off
-        data:
-          entity_id: input_boolean.sleep_alarm
-      - delay: '00:05:00'
-      - service: light.turn_off
-        data:
-          entity_id: group.bedroom_lights
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: group.bedroom_lights
+    - service: media_player.shuffle_set
+      data:
+        entity_id: media_player.spotify
+        shuffle: true
+    - service: script.spotify_play_playlist
+      data_template:
+        playlist: spotify:user:checin:playlist:1ukjrLqn5FTUHjqQHjPgbJ
+    - delay: '00:00:10'
+    - service: homeassistant.turn_off
+      data:
+        entity_id: input_boolean.sleep_alarm
+    - delay: '00:05:00'
+    - service: light.turn_off
+      data:
+        entity_id: group.bedroom_lights
 
-  - id: time_to_sleep
-    alias: Sleep - time to sleep
-    trigger:
-      - platform: state
-        entity_id: input_boolean.bedtime
-        to: 'on'
-    condition:
-      condition: and
-      conditions:
-        - condition: state
-          entity_id: input_boolean.guest_mode
-          state: 'off'
-        - condition: template
-          value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__time_to_sleep.attributes.last_triggered) | int > 3600 }}'
-    action:
-      - delay: '00:10:00'
-      - service: automation.trigger
-        data:
-          entity.id: automation.temperature_bathroom__shower
+# Alarm is ringing - guest on
+- id: alarm_on_guests
+  alias: Sleep - alarm goes off guests
+  trigger:
+  - platform: state
+    entity_id: input_boolean.sleep_alarm
+    to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.guest_mode
+      state: 'on'
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: group.bedroom_lights
+    - delay: '00:00:10'
+    - service: homeassistant.turn_off
+      data:
+        entity_id: input_boolean.sleep_alarm
+    - delay: '00:05:00'
+    - service: light.turn_off
+      data:
+        entity_id: group.bedroom_lights
 
-  - id: alarm_time
-    alias: Sleep - time to wake up
-    trigger:
-      - platform: state
-        entity_id: binary_sensor.sleep_alarm
-        from: 'off'
-        to: 'on'
-    # condition:
-    #   condition: and
-    #   conditions:
-    #     - condition: template
-    #       value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__alarm_goes_off_no_guests.attributes.last_triggered) | int > 43200 }}'
-    #     - condition: template
-    #       value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__alarm_goes_off_guests.attributes.last_triggered) | int > 43200 }}'
-    action:
-      - service: input_boolean.turn_on
-        data:
-          entity_id: input_boolean.sleep_alarm
-      - delay: 01:00
-      - service: input_boolean.turn_off
-        data:
-          entity_id: input_boolean.sleep
+- id: time_to_sleep
+  alias: Sleep - time to sleep
+  trigger:
+    - platform: state
+      entity_id: input_boolean.bedtime
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+      - condition: template
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__time_to_sleep.attributes.last_triggered) | int > 3600 }}'
+  action:
+    - delay: '00:10:00'
+    - service: automation.trigger
+      data:
+        entity.id: automation.temperature_bathroom__shower
+
+- id: alarm_time
+  alias: Sleep - time to wake up
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.sleep_alarm
+      from: 'off'
+      to: 'on'
+  # condition:
+  #   condition: and
+  #   conditions:
+  #     - condition: template
+  #       value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__alarm_goes_off_no_guests.attributes.last_triggered) | int > 43200 }}'
+  #     - condition: template
+  #       value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__alarm_goes_off_guests.attributes.last_triggered) | int > 43200 }}'
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.sleep_alarm
+    - delay: 01:00
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.sleep

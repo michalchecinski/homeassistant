@@ -1,11 +1,11 @@
-  - name: extended home
-    latitude: !secret home_lat
-    longitude: !secret home_lon
-    radius: 800
-    icon: mdi:home-map-marker
-  
-  - name: Politechnika
-    latitude: 52.221201
-    longitude: 21.008086
-    radius: 300
-    icon: mdi:school
+- name: extended home
+  latitude: !secret home_lat
+  longitude: !secret home_lon
+  radius: 800
+  icon: mdi:home-map-marker
+
+- name: Politechnika
+  latitude: 52.221201
+  longitude: 21.008086
+  radius: 300
+  icon: mdi:school

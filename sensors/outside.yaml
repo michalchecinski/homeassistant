@@ -1,17 +1,17 @@
-  - platform: mqtt
-    state_topic: "outside/temperature"
-    name: "Temperature outside sensor"
-    unit_of_measurement: "°C"
+- platform: mqtt
+  state_topic: "outside/temperature"
+  name: "Temperature outside sensor"
+  unit_of_measurement: "°C"
 
-  - platform: template
-    sensors:
-      temperature_outside:
-        friendly_name: "Temperature outside"
-        value_template: "{{ states.sensor.owm_temperature.state }}"
-        unit_of_measurement: "°C"
+- platform: template
+  sensors:
+    temperature_outside:
+      friendly_name: "Temperature outside"
+      value_template: "{{ states.sensor.owm_temperature.state }}"
+      unit_of_measurement: "°C"
 
-  # - platform: mqtt
-  #   state_topic: "outside/battery"
-  #   name: "Outside battery"
-  #   unit_of_measurement: "V"
-  #   icon: mdi:battery-80
+# - platform: mqtt
+#   state_topic: "outside/battery"
+#   name: "Outside battery"
+#   unit_of_measurement: "V"
+#   icon: mdi:battery-80

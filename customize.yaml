@@ -21,7 +21,7 @@ group.all_scripts:
 group.all_lights:
   hidden: false
   icon: mdi:lightbulb
-  
+
 # Switches
 switch.b3:
   friendly_name: Żelazko
