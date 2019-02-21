@@ -1,5 +1,5 @@
 - id: outside_temp_down_significantly
-  alias: Temperature outside notification - significant down 
+  alias: Temperature outside notification - significant down
   trigger:
     - platform: time_pattern
       hours: 7

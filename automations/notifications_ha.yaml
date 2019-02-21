@@ -37,8 +37,8 @@
 - id: ha_start
   alias: Notification - HA started
   trigger:
-  -  platform: homeassistant
-     event: start
+    - platform: homeassistant
+      event: start
   # condition:
   #   - condition: state
   #     entity_id: input_boolean.michal_home
@@ -52,13 +52,13 @@
 - id: ha_shutdown
   alias: Notification - HA shutdown
   trigger:
-  -  platform: homeassistant
-     event: shutdown
+    - platform: homeassistant
+      event: shutdown
   condition:
     - condition: state
       entity_id: input_boolean.michal_home
       state: 'off'
   action:
-  - service: script.ifttt_notify
-    data_template:
-      message: "Home assistant shutdown"
+    - service: script.ifttt_notify
+      data_template:
+        message: "Home assistant shutdown"

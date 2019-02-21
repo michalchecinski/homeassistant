@@ -6,25 +6,25 @@
 - id: pull_config
   alias: HA - Pull config when Travis build succeded
   trigger:
-  - platform: state
-    entity_id: binary_sensor.needs_update
-    from: 'off'
-    to: 'on'
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 5
+    - platform: state
+      entity_id: binary_sensor.needs_update
+      from: 'off'
+      to: 'on'
+      for:
+        hours: 0
+        minutes: 0
+        seconds: 5
   action:
-  - service: shell_command.pull_git_conf
-  - delay: '00:00:05'
-  - service: script.ifttt_notify
-    data_template:
-      message: "HA pulled config"
-  - service: homeassistant.restart
+    - service: shell_command.pull_git_conf
+    - delay: '00:00:05'
+    - service: script.ifttt_notify
+      data_template:
+        message: "HA pulled config"
+    - service: homeassistant.restart
 
 # # Restart mopidy service every hour when it's no playing
 #   - id: restart_mopidy
-#     alias: Mopidy - Restart mopidy service 
+#     alias: Mopidy - Restart mopidy service
 #     trigger:
 #     - platform: time
 #       minutes: 00
@@ -37,6 +37,6 @@
 #         state: 'off'
 #       - condition: state
 #         entity_id: 'media_player.salon'
-#         state: 'paused'      
+#         state: 'paused'
 #     action:
 #     - service: shell_command.restart_mopidy

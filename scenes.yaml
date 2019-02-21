@@ -1,25 +1,25 @@
-  - name: Romantic
-    entities:
-      light.rtv_led: true
-      light.tv_led: false
-      switch.stereo: true
+- name: Romantic
+  entities:
+    light.rtv_led: true
+    light.tv_led: false
+    switch.stereo: true
 
-  - name: Normal livingroom
-    entities:
-      light.rtv_led: false
-      light.tv_led: false
+- name: Normal livingroom
+  entities:
+    light.rtv_led: false
+    light.tv_led: false
 
-  - name: Movie
-    entities:
-      light.tv_led: true
-      light.rtv_led: false
+- name: Movie
+  entities:
+    light.tv_led: true
+    light.rtv_led: false
 
-  - name: Work
-    entities:
-      light.desk_led: false
-      light.monitor_led: true
+- name: Work
+  entities:
+    light.desk_led: false
+    light.monitor_led: true
 
-  - name: Work off
-    entities:
-      light.desk_led: false
-      light.monitor_led: false
+- name: Work off
+  entities:
+    light.desk_led: false
+    light.monitor_led: false

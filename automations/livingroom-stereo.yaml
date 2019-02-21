@@ -20,7 +20,7 @@
   action:
     - service: media_player.media_pause
       data:
-        entity_id: media_player.spotify 
+        entity_id: media_player.spotify
     - service: switch.turn_on
       data:
         entity_id: switch.stereo
@@ -51,14 +51,14 @@
   action:
     - service: media_player.media_pause
       data:
-        entity_id: media_player.spotify 
+        entity_id: media_player.spotify
     - service: switch.turn_on
       data:
         entity_id: switch.stereo
     - delay: '00:00:05'
     - service: media_player.media_play
       data:
-        entity_id: media_player.spotify 
+        entity_id: media_player.spotify
 
 # Turn stereo off after 2 minutes of inactivity
 - id: stereo_off_2_minutes_no_spotify
@@ -122,4 +122,3 @@
       data:
         topic: "stereo/volume/up"
         payload: 10
-

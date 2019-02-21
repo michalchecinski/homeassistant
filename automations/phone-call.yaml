@@ -1,7 +1,7 @@
 ##########################
 # Phone call automations #
 ##########################
-  
+
 # Stop playback on phonecall
 - id: phone_ring
   alias: Phone - ringing pause music playback
@@ -13,7 +13,7 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: media_player.spotify 
+        entity_id: media_player.spotify
         state: 'playing'
       # - condition: template
       #   value_template: "{{ state_attr('media_player.spotify', 'source') == 'stereo' }}"
@@ -23,7 +23,7 @@
   action:
     - service: media_player.media_pause
       data:
-        entity_id: media_player.spotify 
+        entity_id: media_player.spotify
     - service: input_boolean.turn_on
       data:
         entity_id: input_boolean.was_playing
@@ -42,7 +42,7 @@
   action:
     - service: media_player.media_play
       data:
-        entity_id: media_player.spotify 
+        entity_id: media_player.spotify
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.was_playing

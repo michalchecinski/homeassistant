@@ -33,7 +33,7 @@
       to: 'off'
     - platform: state
       entity_id: input_select.michal_status
-      from: "using computer"   
+      from: "using computer"
   action:
     - service: scene.turn_on
       entity_id: scene.work_off

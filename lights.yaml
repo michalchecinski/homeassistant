@@ -1,50 +1,49 @@
-  - platform: template
-    lights:
-      bed_lamp:
-        friendly_name: "Bed lamp"
-        icon_template: mdi:lamp
-        turn_on:
-          service: switch.turn_on
-          data:
-            entity_id: switch.b1
-        turn_off:
-          service: switch.turn_off
-          data:
-            entity_id: switch.b1
+- platform: template
+  lights:
+    bed_lamp:
+      friendly_name: "Bed lamp"
+      icon_template: mdi:lamp
+      turn_on:
+        service: switch.turn_on
+        data:
+          entity_id: switch.b1
+      turn_off:
+        service: switch.turn_off
+        data:
+          entity_id: switch.b1
 
-  - platform: mqtt
-    name: rtv led
-    command_topic: "cmnd/livingroomled/POWER1"
-    state_topic: "stat/livingroomled/RESULT"
-    value_template: "{{ value_json.POWER1 }}"
-    availability_topic: "tele/livingroomled/LWT"
-    payload_available: "Online"
-    payload_not_available: "Offline"
+- platform: mqtt
+  name: rtv led
+  command_topic: "cmnd/livingroomled/POWER1"
+  state_topic: "stat/livingroomled/RESULT"
+  value_template: "{{ value_json.POWER1 }}"
+  availability_topic: "tele/livingroomled/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
 
-  - platform: mqtt
-    name: tv led
-    command_topic: "cmnd/livingroomled/POWER2"
-    state_topic: "stat/livingroomled/RESULT"
-    value_template: "{{ value_json.POWER2 }}"
-    availability_topic: "tele/livingroomled/LWT"
-    payload_available: "Online"
-    payload_not_available: "Offline"
+- platform: mqtt
+  name: tv led
+  command_topic: "cmnd/livingroomled/POWER2"
+  state_topic: "stat/livingroomled/RESULT"
+  value_template: "{{ value_json.POWER2 }}"
+  availability_topic: "tele/livingroomled/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
 
+- platform: mqtt
+  name: desk led
+  command_topic: "cmnd/bedroomdeskled/POWER1"
+  state_topic: "stat/bedroomdeskled/RESULT"
+  value_template: "{{ value_json.POWER1 }}"
+  availability_topic: "tele/bedroomdeskled/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
 
-  - platform: mqtt
-    name: desk led
-    command_topic: "cmnd/bedroomdeskled/POWER1"
-    state_topic: "stat/bedroomdeskled/RESULT"
-    value_template: "{{ value_json.POWER1 }}"
-    availability_topic: "tele/bedroomdeskled/LWT"
-    payload_available: "Online"
-    payload_not_available: "Offline"
-
-  - platform: mqtt
-    name: monitor led
-    command_topic: "cmnd/bedroomdeskled/POWER2"
-    state_topic: "stat/bedroomdeskled/RESULT"
-    value_template: "{{ value_json.POWER2 }}"
-    availability_topic: "tele/bedroomdeskled/LWT"
-    payload_available: "Online"
-    payload_not_available: "Offline"
+- platform: mqtt
+  name: monitor led
+  command_topic: "cmnd/bedroomdeskled/POWER2"
+  state_topic: "stat/bedroomdeskled/RESULT"
+  value_template: "{{ value_json.POWER2 }}"
+  availability_topic: "tele/bedroomdeskled/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"

@@ -1,10 +1,10 @@
-##################################################################    
+##################################################################
 #  Sleep automations (now fired by Sleep As Android and Tasker)  #
 ##################################################################
 
 # Automation when going into sleep
 - id: sleep_on
-  alias: Sleep - going into sleep 
+  alias: Sleep - going into sleep
   trigger:
   - platform: state
     entity_id: input_boolean.sleep
@@ -18,18 +18,18 @@
 
 # Automation after wake up
 - id: sleep_off
-  alias: Sleep - awake 
+  alias: Sleep - awake
   trigger:
   - platform: state
     entity_id: input_boolean.sleep
     from: 'on'
-    to: 'off'  
+    to: 'off'
   condition:
     condition: and
     conditions:
       - condition: state
         entity_id: input_boolean.michal_home
-        state: 'on' 
+        state: 'on'
       - condition: state
         entity_id: input_boolean.guest_mode
         state: 'off'
@@ -50,9 +50,9 @@
 - id: alarm_on_no_guests
   alias: Sleep - alarm goes off no guests
   trigger:
-  - platform: state
-    entity_id: input_boolean.sleep_alarm
-    to: 'on'
+    - platform: state
+      entity_id: input_boolean.sleep_alarm
+      to: 'on'
   condition:
     condition: and
     conditions:
@@ -86,9 +86,9 @@
 - id: alarm_on_guests
   alias: Sleep - alarm goes off guests
   trigger:
-  - platform: state
-    entity_id: input_boolean.sleep_alarm
-    to: 'on'
+    - platform: state
+      entity_id: input_boolean.sleep_alarm
+      to: 'on'
   condition:
     - condition: state
       entity_id: input_boolean.guest_mode

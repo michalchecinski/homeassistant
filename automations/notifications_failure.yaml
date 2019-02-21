@@ -1,4 +1,3 @@
-
 - id: failure_out_home
   alias: Failure - out of home for 14 hours
   trigger:
@@ -14,9 +13,9 @@
       entity_id: input_boolean.vacation_mode
       state: 'off'
   action:
-  - service: script.ifttt_notify
-    data_template:
-      message: "You haven't been at home for 14 hours is it true?"
+    - service: script.ifttt_notify
+      data_template:
+        message: "You haven't been at home for 14 hours is it true?"
 
 - id: failure_guest_mode
   alias: Failure - guest mode for 36 hours
@@ -29,9 +28,9 @@
         minutes: 0
         seconds: 0
   action:
-  - service: script.ifttt_notify
-    data_template:
-      message: "Do you still have guests?"
+    - service: script.ifttt_notify
+      data_template:
+        message: "Do you still have guests?"
 
 - id: failure_at_home
   alias: Failure - at home for 24 hours
@@ -44,9 +43,9 @@
         minutes: 0
         seconds: 0
   action:
-  - service: script.ifttt_notify
-    data_template:
-      message: "You are at home for 24 hours is it true?"
+    - service: script.ifttt_notify
+      data_template:
+        message: "You are at home for 24 hours is it true?"
 
 - id: failure_vacuum
   alias: Failure - vacuum not run in 24 hours
@@ -63,9 +62,9 @@
       entity_id: input_boolean.vacation_mode
       state: 'off'
   action:
-  - service: script.ifttt_notify
-    data_template:
-      message: "Vacuum haven't run in 24 hours"
+    - service: script.ifttt_notify
+      data_template:
+        message: "Vacuum haven't run in 24 hours"
 
 - id: failure_vacuum_vacation
   alias: Failure - vacuum not run in 2 days
@@ -82,6 +81,6 @@
       entity_id: input_boolean.vacation_mode
       state: 'on'
   action:
-  - service: script.ifttt_notify
-    data_template:
-      message: "Vacuum haven't run in 2 days (vacation mode)"
+    - service: script.ifttt_notify
+      data_template:
+        message: "Vacuum haven't run in 2 days (vacation mode)"

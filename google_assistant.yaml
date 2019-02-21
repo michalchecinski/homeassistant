@@ -71,7 +71,7 @@ entity_config:
     aliases:
       - monitor LED
       - monitor light
-  
+
   # Scripts
   script.off_all:
     expose: true
@@ -81,7 +81,7 @@ entity_config:
       - all off
       - off all
       - all
-  # Climate 
+  # Climate
   climate.inside:
     expose: true
     name: Inside temperature

@@ -3,7 +3,7 @@ off_all:
   sequence:
     - service: homeassistant.turn_off
       data:
-        entity_id: 
+        entity_id:
           - switch.a1
           - switch.b1
           - switch.b2
@@ -44,17 +44,17 @@ say:
   sequence:
     - service: media_player.volume_set
       data_template:
-        entity_id:  media_player.living_room_speaker
+        entity_id: media_player.living_room_speaker
         volume_level: "{{ volume }}"
     - service: tts.google_say
       data_template:
-        entity_id:  media_player.living_room_speaker
+        entity_id: media_player.living_room_speaker
         message: "{{ what }}"
         cache: false
     - delay: '00:00:30'
     - service: media_player.volume_set
       data_template:
-        entity_id:  media_player.living_room_speaker
+        entity_id: media_player.living_room_speaker
         volume_level: 0.5
 # notify_thinkpad:
 #   sequence:
@@ -116,7 +116,7 @@ romantic_off:
     - delay: '00:01:00'
     - service: media_player.volume_set
       data_template:
-        entity_id:  media_player.living_room_speaker
+        entity_id: media_player.living_room_speaker
         volume_level: "0.5"
     - condition: numeric_state
       entity_id: sun.sun

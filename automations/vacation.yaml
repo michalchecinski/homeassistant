@@ -76,7 +76,7 @@
   alias: Calendar - to lublin - set vacation on
   trigger:
     - platform: state
-      entity_id:  calendar.to_lublin
+      entity_id: calendar.to_lublin
       from: 'off'
       to: 'on'
   condition:

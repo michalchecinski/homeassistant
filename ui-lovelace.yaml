@@ -11,7 +11,7 @@ views:
           - device_tracker.google_maps_102169435937546415265
           - device_tracker.oneplus
           - group.michal_home
-          - proximity.home     
+          - proximity.home
 
       - type: entities
         title: Michal state
@@ -82,7 +82,7 @@ views:
         entities:
           - sun.sun
           - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
-      
+
       - type: glance
         title: Temperature
         show_header_toggle: false
@@ -226,16 +226,16 @@ views:
         title: Home Automation
         show_header_toggle: false
         entities:
-        - entity: device_tracker.20dfb9091a1f
-          name: Google Home
-          icon: mdi:google-home
+          - entity: device_tracker.20dfb9091a1f
+            name: Google Home
+            icon: mdi:google-home
 
       - type: entities
         title: Wemos
         show_header_toggle: false
         entities:
-        - entity: device_tracker.2c3ae84e4d5a
-          name: IR Stereo
+          - entity: device_tracker.2c3ae84e4d5a
+            name: IR Stereo
 
       - type: entities
         title: Wireless Devices
@@ -427,4 +427,4 @@ views:
           - entity: automation.random_time__minutes
             icon: mdi:clock-outline
           - entity: automation.random_time__night_minute
-            icon: mdi:clock-outline  
+            icon: mdi:clock-outline

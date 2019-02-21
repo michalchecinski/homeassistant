@@ -9,6 +9,6 @@
   - platform: state
     entity_id: input_boolean.michal_home
     from: 'on'
-    to: 'off'   
+    to: 'off'
   action:
     - service: script.off_all
