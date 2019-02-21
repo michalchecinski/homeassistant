@@ -23,7 +23,7 @@
       data:
         entity_id: input_boolean.guest_mode
 
--id: ola_guest_off
+- id: ola_guest_off
   alias: Come back from Ola - set guest mode off
   trigger:
     # - platform: state
