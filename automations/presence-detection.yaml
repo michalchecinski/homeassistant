@@ -48,11 +48,12 @@
   - id: at_home
     alias: Presence - turn on boolean when at home
     trigger:
-      # - platform: state
-      #   entity_id: device_tracker.google_maps_102169435937546415265
-      #   to: 'home'
       - platform: state
-        entity_id: group.michal_home
+        entity_id: device_tracker.google_maps_102169435937546415265
+        to: 'home'
+        for: '00:02:00'
+      - platform: state
+        entity_id: device_tracker.oneplus
         to: 'home'
     action:
       - service: input_boolean.turn_on
