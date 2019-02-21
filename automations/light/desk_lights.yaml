@@ -19,7 +19,7 @@
           state: 'on'
         - condition: state
           entity_id: input_select.michal_status
-          to: "using computer"
+          state: "using computer"
     action:
       - service: scene.turn_on
         entity_id: scene.work
