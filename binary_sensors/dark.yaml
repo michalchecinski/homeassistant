@@ -6,9 +6,9 @@
         {%- if is_state("input_boolean.sleep","off") and is_state("group.michal_home","home") -%}
           {%- if (states.sun.sun.attributes.elevation | int < 5 ) -%}
             True
-          {%- elif ( (states.sun.sun.attributes.elevation | int < 25) and (states.sensor.dark_sky_cloud_coverage.state | int > 65)) -%}
+          {%- elif ( (states.sun.sun.attributes.elevation | int < 25) and (states.sensor.dark_sky_cloud_coverage.state | int > 75)) -%}
             True
-          {%- elif (states.sensor.dark_sky_cloud_coverage.state | int > 90) -%}
+          {%- elif (states.sensor.dark_sky_cloud_coverage.state | int > 95) -%}
             True
           {%- else -%}
             False
