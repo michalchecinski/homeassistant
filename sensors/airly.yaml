@@ -23,5 +23,5 @@
     airly_temperature:
       unit_of_measurement: "°C"
       value_template: "{{ states.sensor.airly.state.split(' ')[4] }}"
-    airly_quality:
+    airly_caqi_level:
       value_template: "{{ states.sensor.airly.state.split(' ')[5] }}"
