@@ -1,7 +1,5 @@
 - platform: openweathermap
   api_key: !secret openweather_api_key
-  latitude: !secret home_lat
-  longitude: !secret home_lon
   monitored_conditions:
     - temperature
     - clouds
