@@ -5,9 +5,9 @@ before_install:
   - mv travis_secrets.yaml secrets.yaml
 install:
   - pip3 install homeassistant
-  - pip install yamllint
+  # - pip install yamllint
 script:
-  - yamllint .
+  # - yamllint .
   - hass -c . --script check_config --info all
 
 notifications:
