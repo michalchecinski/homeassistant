@@ -199,26 +199,26 @@ stereo_off:
         entity_id: switch.stereo_mqtt
 
 tv_start_x:
-    alias: "TV Start X"
-    sequence:
-      - service: media_player.turn_on
-        data_template:
-          entity_id: media_player.tv
-      - delay:
-          seconds: 15
-      - service: media_player.select_source
-        data_template:
-          entity_id: media_player.tv
-          source: >
-            {% if (title == "internet") %}
-              "Przeglądarka"
-            {% elif (title == "browser") %}
-              "Przeglądarka"
-            {% elif (title == "Spotify") %}
-              "Spotify Music - Słuchaj za darmo na telewizorze z systemem LG."
-            {% else %}
-              {{ title }}
-            {% endif %}
+  alias: "TV Start X"
+  sequence:
+    - service: media_player.turn_on
+      data_template:
+        entity_id: media_player.tv
+    - delay:
+        seconds: 15
+    - service: media_player.select_source
+      data_template:
+        entity_id: media_player.tv
+        source: >
+          {% if (title == "internet") %}
+            "Przeglądarka"
+          {% elif (title == "browser") %}
+            "Przeglądarka"
+          {% elif (title == "Spotify") %}
+            "Spotify Music - Słuchaj za darmo na telewizorze z systemem LG."
+          {% else %}
+            {{ title }}
+          {% endif %}
 
 # vacuum simulation - delete after real vacuum comes
 vacuum_start:
