@@ -73,6 +73,11 @@ system_health:
 
 wake_on_lan:
 
+# notify
+notify:
+  - name: android
+    platform: fcm-android
+
 # Text to speech
 tts:
   - platform: google
