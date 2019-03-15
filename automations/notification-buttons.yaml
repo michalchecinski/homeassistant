@@ -19,3 +19,12 @@
     - service: input_boolean.turn_off
       data_template:
         entity_id: input_boolean.guest_mode
+
+- alias: HA - update via notification
+  trigger:
+  - event_data:
+      action: update_ha
+    event_type: fcm_android_notifications.clicked
+    platform: event
+  action:
+    - service: shell_command.update_ha

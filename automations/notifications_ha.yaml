@@ -24,9 +24,14 @@
     - platform: state
       entity_id: updater.updater
   action:
-    - service: script.ifttt_notify
-      data_template:
-        message: "There is a new Home Assistant {{ states('updater.updater') }} release available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
+    - service: notify.android
+      data:
+        title: "HA Update Available"
+        message: "Home Assistant {{ states('updater.updater') }} release available."
+        data:
+          actions:
+            - action: update_ha
+              title: Update (dangerous)
     - service: persistent_notification.create
       data:
         title: "Update Available"
