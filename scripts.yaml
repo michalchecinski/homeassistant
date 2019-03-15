@@ -205,19 +205,19 @@ tv_start_x:
         data_template:
           entity_id: media_player.tv
       - delay:
-        seconds: 15
+          seconds: 15
       - service: media_player.select_source
         data_template:
           entity_id: media_player.tv
           source: >
             {% if (title == "internet") %}
-                "Przeglądarka"
+              "Przeglądarka"
             {% elif (title == "browser") %}
-                "Przeglądarka"
+              "Przeglądarka"
             {% elif (title == "Spotify") %}
-                "Spotify Music - Słuchaj za darmo na telewizorze z systemem LG."
+              "Spotify Music - Słuchaj za darmo na telewizorze z systemem LG."
             {% else %}
-                {{ title }}
+              {{ title }}
             {% endif %}
 
 # vacuum simulation - delete after real vacuum comes
