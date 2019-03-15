@@ -26,17 +26,19 @@ from homeassistant.const import (
 from homeassistant.helpers import config_validation as cv
 from homeassistant.util import ensure_unique_string
 
-
 DEPENDENCIES = ['frontend']
 
 _LOGGER = logging.getLogger(__name__)
 
 REGISTRATIONS_FILE = 'fcm_android_registrations.conf'
-
+LOVELACE_FILE = 'ui-lovelace.yaml'
 
 SERVER_KEY = 'server_key'
-DEFAULT_SERVER_KEY = 'AIzaSyDIGxzoJksF9b2ifmJmkuCzoMnp6YdYcX8'
+DEFAULT_SERVER_KEY = 'AIzaSyDOCskVCLoR0_26I45OWjLdMGhtML8XXgk'
+DEFAULT_PRO_SERVER_KEY = 'AIzaSyDFJ_TtaJTQAMK22lS-MuysKfbv185N7mI'
 ATTR_TOKEN = 'token'
+ATTR_DEVNAME = 'deviceName'
+ATTR_HASPRO = 'haspro'
 FCM_POST_URL = 'https://fcm.googleapis.com/fcm/send'
 
 
@@ -51,10 +53,10 @@ ATTR_TAG = 'tag'
 ATTR_IMAGE = 'image'
 ATTR_ICON = 'icon'
 
-
-
 REGISTER_SCHEMA = vol.Schema({
     vol.Required(ATTR_TOKEN): cv.string,
+    vol.Required(ATTR_DEVNAME): cv.string,
+    vol.Required(ATTR_HASPRO): bool,
 })
 
 CALLBACK_EVENT_PAYLOAD_SCHEMA = vol.Schema({
@@ -78,11 +80,14 @@ def get_service(hass, config, discovery_info=None):
     fcm_server_key = config.get(SERVER_KEY, DEFAULT_SERVER_KEY)
     fcm_header_key = 'key=' + fcm_server_key
 
+    fcm_pro_server_key = config.get(SERVER_KEY, DEFAULT_PRO_SERVER_KEY)
+    fcm_pro_header_key = 'key=' + fcm_pro_server_key
+    hass.http.register_view(FCMAndroidLovelaceView(hass.config.path(LOVELACE_FILE)))
     hass.http.register_view(
         FCMAndroidRegistrationView(registrations, json_path))
     hass.http.register_view(FCMAndroidCallbackView(registrations))
 
-    return FCMAndroidNotificationService(registrations, json_path, fcm_header_key)
+    return FCMAndroidNotificationService(registrations, json_path, fcm_header_key, fcm_pro_server_key)
 
 
 def _load_config(filename):
@@ -103,6 +108,25 @@ class JSONBytesDecoder(json.JSONEncoder):
         if isinstance(obj, bytes):
             return obj.decode()
         return json.JSONEncoder.default(self, obj)
+
+class FCMAndroidLovelaceView(HomeAssistantView):
+    """Accepts push registrations from android."""
+
+    url = '/api/notify.fcm-android-lovelace'
+    name = 'api:notify.fcm-android-lovelace'
+
+    def __init__(self, lovelace_path):
+        """Init HTML5PushRegistrationView."""
+        self.lovelace_path = lovelace_path
+    async def post(self, request):
+        """Accept the POST request for push registrations from Android."""
+
+        try:
+            data = await request.json()
+        except ValueError:
+            return self.json_message('Invalid JSON', HTTP_BAD_REQUEST)
+
+        return self.json_message(open(self.lovelace_path, 'r').read())
 
 
 class FCMAndroidRegistrationView(HomeAssistantView):
@@ -156,7 +180,7 @@ class FCMAndroidRegistrationView(HomeAssistantView):
         for key, registration in self.registrations.items():
             if registration.get(ATTR_TOKEN) == token:
                 return key
-        return ensure_unique_string('unnamed device', self.registrations)
+        return ensure_unique_string(data.get(ATTR_DEVNAME), self.registrations)
 
     async def delete(self, request):
         """Delete a registration."""
@@ -247,11 +271,12 @@ class FCMAndroidCallbackView(HomeAssistantView):
 class FCMAndroidNotificationService(BaseNotificationService):
     """Implement the notification service for HTML5."""
 
-    def __init__(self, registrations, json_path, fcm_header_key):
+    def __init__(self, registrations, json_path, fcm_header_key, fcm_pro_header_key):
         """Initialize the service."""
         self.registrations = registrations
         self.registrations_json_path = json_path
         self.fcm_header_key = fcm_header_key
+        self.fcm_pro_header_key = fcm_pro_header_key
 
     @property
     def targets(self):
@@ -265,12 +290,6 @@ class FCMAndroidNotificationService(BaseNotificationService):
 
 
         message_type = ATTR_DATA
-
-        """Send a message to a user."""
-        headers = {
-            'Authorization': self.fcm_header_key,
-            'Content-Type': 'application/json'
-        }
 
         payload = {
             ATTR_DATA: {},
@@ -301,37 +320,54 @@ class FCMAndroidNotificationService(BaseNotificationService):
                 message_type = ATTR_DATA
 
             if data.get(ATTR_TAG) is not None:
-                if isinstance(data.get(ATTR_TAG), int):
-                    msg_payload[ATTR_TAG] = data.get(ATTR_TAG)
-                    if data.get(ATTR_DISMISS) is not None:
-                        if isinstance(data.get(ATTR_DISMISS), bool):
-                            msg_payload[ATTR_DISMISS] = data.get(ATTR_DISMISS)
-                        else:
-                            _LOGGER.warning('%s is not a valid boolean, false will be used', data.get(ATTR_DISMISS))
-                else:
-                    _LOGGER.warning('%s is not a valid integer, no tag will be used', data.get(ATTR_TAG))
+                msg_payload[ATTR_TAG] = data.get(ATTR_TAG)
+                if data.get(ATTR_DISMISS) is not None:
+                    if isinstance(data.get(ATTR_DISMISS), bool):
+                        msg_payload[ATTR_DISMISS] = data.get(ATTR_DISMISS)
+                    else:
+                        _LOGGER.warning('%s is not a valid boolean, false will be used', data.get(ATTR_DISMISS))
 
         payload[message_type] = msg_payload
 
         targets = kwargs.get(ATTR_TARGET)
-        target_tmp = []
 
         if not targets:
             targets = self.registrations.keys()
 
         for target in list(targets):
+            target_tmp = []
             info = self.registrations.get(target)
             if info is None:
                 _LOGGER.error("%s is not a valid HTML5 push notification target", target)
                 continue
             target_tmp.append(info[ATTR_TOKEN])
 
-        payload['registration_ids'] = target_tmp
+            hasspro = info.get(ATTR_HASPRO, False)
 
-        response = requests.post(FCM_POST_URL, headers=headers,
-                                     json=payload, timeout=10)
+            payload['registration_ids'] = target_tmp
+            if hasspro:
+                """Send a message to a user."""
+                headers = {
+                    'Authorization': 'key=' + DEFAULT_PRO_SERVER_KEY,
+                    'Content-Type': 'application/json'
+                }
+                response = requests.post(FCM_POST_URL, headers=headers,
+                                         json=payload, timeout=10)
 
-        if response.status_code not in (200, 201):
-            _LOGGER.exception(
-                "Error sending message. Response %d: %s:",
-                response.status_code, response.reason)
+                if response.status_code not in (200, 201):
+                    _LOGGER.exception(
+                        "Error sending message. Response %d: %s:",
+                        response.status_code, response.reason)
+            else:
+                """Send a message to a user."""
+                headers = {
+                    'Authorization': self.fcm_header_key,
+                    'Content-Type': 'application/json'
+                }
+                response = requests.post(FCM_POST_URL, headers=headers,
+                                         json=payload, timeout=10)
+
+                if response.status_code not in (200, 201):
+                    _LOGGER.exception(
+                        "Error sending message. Response %d: %s:",
+                        response.status_code, response.reason)
