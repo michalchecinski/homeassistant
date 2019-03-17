@@ -13,20 +13,23 @@
     entity_id: group.michal_home
     to: 'not_home'
   - platform: state
-    entity_id: device_tracker.google_maps_102169435937546415265
-    to: 'extended home'
-  - platform: state
-    entity_id: device_tracker.google_maps_102169435937546415265
-    to: 'Politechnika'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: device_tracker.oneplus
-        state: 'not_home'
-      - condition: state
-        entity_id: input_boolean.sleep
-        state: 'off'
+    entity_id: person.michal
+    to: 'not_home'
+  # - platform: state
+  #   entity_id: device_tracker.google_maps_102169435937546415265
+  #   to: 'extended home'
+  # - platform: state
+  #   entity_id: device_tracker.google_maps_102169435937546415265
+  #   to: 'Politechnika'
+  # condition:
+  #   condition: and
+  #   conditions:
+  #     - condition: state
+  #       entity_id: device_tracker.oneplus
+  #       state: 'not_home'
+  #     - condition: state
+  #       entity_id: input_boolean.sleep
+  #       state: 'off'
       # - condition: or
       #   conditions:
       #     - condition: state
@@ -48,12 +51,18 @@
 - id: at_home
   alias: Presence - turn on boolean when at home
   trigger:
+    # - platform: state
+    #   entity_id: device_tracker.google_maps_102169435937546415265
+    #   to: 'home'
+    #   for: '00:02:00'
+    # - platform: state
+    #   entity_id: device_tracker.oneplus
+    #   to: 'home'
     - platform: state
-      entity_id: device_tracker.google_maps_102169435937546415265
+      entity_id: group.michal_home
       to: 'home'
-      for: '00:02:00'
     - platform: state
-      entity_id: device_tracker.oneplus
+      entity_id: person.michal
       to: 'home'
   action:
     - service: input_boolean.turn_on
@@ -68,10 +77,13 @@
 - id: heading_home
   alias: Presence - heading home
   trigger:
-    platform: numeric_state
-    entity_id: proximity.home
-    below: 2000
-    above: 100
+    - platform: numeric_state
+      entity_id: proximity.home
+      below: 2000
+      above: 100
+    - platform: numeric_state
+      entity_id: sensor.michal_to_home
+      below: 15
   condition:
     condition: and
     conditions:
