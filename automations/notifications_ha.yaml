@@ -23,6 +23,20 @@
   trigger:
     - platform: state
       entity_id: updater.updater
+    - platform: state
+      entity_id: input_boolean.michal_home
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 15
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on'
+      - condition: template
+        value_template: "{{states.updater.updater.state[-1] | int > 0}}"
   action:
     - service: notify.android
       data:
