@@ -3,3 +3,6 @@
     api_key: !secret google_travel
     origin: device_tracker.google_maps_102169435937546415265
     destination: zone.home
+    options:
+      language: 'pl'
+      mode: 'transit'
