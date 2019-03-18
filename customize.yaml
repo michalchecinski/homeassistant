@@ -51,3 +51,20 @@ sensor.airly:
 
 sensor.airly_caqi_level:
   rgb_color: "if (state == 'LOW') return [124, 252, 0]; else if (state == 'HIGH') [255, 69, 0]; else return [255, 140, 0]"
+
+
+# SpaceX
+sensor.starman_speed:
+  icon: mdi:account-star
+sensor.starman_earth_distance:
+  icon: mdi:map-marker-distance
+sensor.spacex_next_rocket:
+  icon: mdi:rocket
+sensor.spacex_next_launch_day:
+  icon: mdi:calendar
+sensor.spacex_next_launch_time:
+  icon: mdi:clock-outline
+sensor.spacex_next_launch_site:
+  icon: mdi:map-marker-radius
+sensor.spacex_next_mission_name:
+  icon: mdi:information-outline
