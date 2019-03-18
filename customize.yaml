@@ -54,10 +54,6 @@ sensor.airly_caqi_level:
 
 
 # SpaceX
-sensor.starman_speed:
-  icon: mdi:account-star
-sensor.starman_earth_distance:
-  icon: mdi:map-marker-distance
 sensor.spacex_next_rocket:
   icon: mdi:rocket
 sensor.spacex_next_launch_day:
