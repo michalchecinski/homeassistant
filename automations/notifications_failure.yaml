@@ -24,6 +24,13 @@
       entity_id: input_boolean.guest_mode
       to: 'on'
       for:
+        hours: 24
+        minutes: 0
+        seconds: 0
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      to: 'on'
+      for:
         hours: 36
         minutes: 0
         seconds: 0
@@ -61,8 +68,8 @@
       entity_id: script.vacuum_start
       to: 'off'
       for:
-        hours: 24
-        minutes: 30
+        hours: 36
+        minutes: 0
         seconds: 0
   condition:
     - condition: state
@@ -71,7 +78,7 @@
   action:
     - service: notify.android
       data:
-        message: "Vacuum haven't run in 24 hours"
+        message: "Vacuum haven't run in 36 hours"
         data:
           actions:
             - action: vacuum_on
