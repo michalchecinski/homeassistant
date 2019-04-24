@@ -41,6 +41,10 @@
     - condition: template
       value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.temperature_outside__is_lower_than_indoors__open_windows.attributes.last_triggered) | int > 3600 }}'
   action:
-    - service: script.ifttt_notify
-      data_template:
-        message: "Otwórz okna. Na zewnątrz jest chłodniej. Out: {{ (states.sensor.temperature_outside.state) | float }}. In: {{ (states.sensor.livingroom_temperature.state) | float }}"
+    - service: notify.android
+      data:
+        title: "Otwórz okna"
+        message: "Na zewnątrz jest chłodniej. Out: {{ (states.sensor.temperature_outside.state) | float }}. In: {{ (states.sensor.temperature_inside.state) | float }}"
+    # - service: script.ifttt_notify
+    #   data_template:
+    #     message: "Otwórz okna. Na zewnątrz jest chłodniej. Out: {{ (states.sensor.temperature_outside.state) | float }}. In: {{ (states.sensor.temperature_inside.state) | float }}"
