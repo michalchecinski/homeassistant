@@ -81,9 +81,9 @@
       # Heading home
       - condition: template
         value_template: '{{ states.proximity.home.attributes.dir_of_travel == "towards" }}'
-      - condition: state
-        entity_id: 'binary_sensor.vacuum_day'
-        state: 'on'
+      # - condition: state
+      #   entity_id: 'binary_sensor.vacuum_day'
+      #   state: 'on'
       - condition: state
         entity_id: input_boolean.michal_home
         state: 'off'
