@@ -130,7 +130,6 @@
     - service: input_boolean.turn_on
       data:
         entity_id: input_boolean.sleep_alarm
-    - delay: 01:00
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.sleep
