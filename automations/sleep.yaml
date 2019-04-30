@@ -126,13 +126,6 @@
       entity_id: binary_sensor.sleep_alarm
       from: 'off'
       to: 'on'
-  # condition:
-  #   condition: and
-  #   conditions:
-  #     - condition: template
-  #       value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__alarm_goes_off_no_guests.attributes.last_triggered) | int > 43200 }}'
-  #     - condition: template
-  #       value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.sleep__alarm_goes_off_guests.attributes.last_triggered) | int > 43200 }}'
   action:
     - service: input_boolean.turn_on
       data:
