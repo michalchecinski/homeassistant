@@ -66,13 +66,6 @@
     - service: light.turn_on
       data:
         entity_id: group.bedroom_lights
-    - service: media_player.shuffle_set
-      data:
-        entity_id: media_player.spotify
-        shuffle: true
-    - service: script.spotify_play_playlist
-      data_template:
-        playlist: spotify:user:checin:playlist:1ukjrLqn5FTUHjqQHjPgbJ
     - delay: '00:00:10'
     - service: homeassistant.turn_off
       data:
