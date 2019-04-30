@@ -58,7 +58,7 @@
         entity_id: 'binary_sensor.vacuum_day'
         state: 'on'
       - condition: template
-        value_template: '{{ states.script.vacuum_start.attributes.last_triggered.strftime('%Y-%m-%d') == now().strftime('%Y-%m-%d') }}'
+        value_template: "{{ states.script.vacuum_start.attributes.last_triggered.strftime('%Y-%m-%d') == now().strftime('%Y-%m-%d') }}"
       - condition: state
         entity_id: input_boolean.vacuum_finished
         state: 'off'
