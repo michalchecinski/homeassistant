@@ -67,7 +67,7 @@
       data:
         entity_id: group.bedroom_lights
     - delay: '00:00:10'
-    - service: homeassistant.turn_off
+    - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.sleep_alarm
     - delay: '00:10:00'
@@ -96,7 +96,7 @@
       data:
         entity_id: group.bedroom_lights
     - delay: '00:00:10'
-    - service: homeassistant.turn_off
+    - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.sleep_alarm
     - delay: '00:10:00'
@@ -135,7 +135,7 @@
     - service: input_boolean.turn_on
       data:
         entity_id: input_boolean.sleep_alarm
-    - delay: 01:00
+    - delay: '00:00:10'
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.sleep
