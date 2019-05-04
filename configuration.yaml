@@ -83,9 +83,8 @@ notify:
 
 # Text to speech
 tts:
-  - platform: google_translate
-    cache: false
-    service_name: google_say
+  - platform: google
+    language: 'pl'
 
 device_tracker:
   - platform: google_maps
