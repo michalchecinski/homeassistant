@@ -48,8 +48,8 @@
               title: Update (dangerous)
     - service: persistent_notification.create
       data:
-        title: "Update Available"
-        message: "Home Assistant {{ states('updater.updater') }} is available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
+        title: "Dostępna aktualizacja"
+        message: "Nowa wersja Home Assistant: {{ states('updater.updater') }} - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
         notification_id: "update_available"
 
 # Notify when HA started
