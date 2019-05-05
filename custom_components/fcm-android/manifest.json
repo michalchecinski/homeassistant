@@ -1,0 +1,8 @@
+{
+    "domain": "fcm-android",
+    "name": "Your Intgration",
+    "documentation": "https://www.example.com",
+    "dependencies": [],
+    "codeowners": [],
+    "requirements": []
+  }
