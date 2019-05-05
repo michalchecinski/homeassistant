@@ -125,7 +125,7 @@
         entity_id: input_boolean.vacation_mode
         state: 'on'
       - condition: template
-        value_template: '{{ as_timestamp(now()) - as_timestamp(states.script.vacuum_start.attributes.last_triggered) | int > 43200 }}'
+        value_template: "{{ states.script.vacuum_start.attributes.last_triggered.strftime('%Y-%m-%d') != now().strftime('%Y-%m-%d') }}"
       - condition: time
         after: '07:40:00'
         before: '20:00:00'
