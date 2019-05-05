@@ -40,16 +40,16 @@
   action:
     - service: notify.android
       data:
-        title: "HA Update Available"
-        message: "Home Assistant {{ states('updater.updater') }} release available."
+        title: "HA dostępna aktualizacja"
+        message: "Nowa wersja Home Assistant: {{ states('updater.updater') }}"
         data:
           actions:
             - action: update_ha
               title: Update (dangerous)
     - service: persistent_notification.create
       data:
-        title: "Update Available"
-        message: "Home Assistant {{ states('updater.updater') }} is available. - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
+        title: "Dostępna aktualizacja"
+        message: "Nowa wersja Home Assistant: {{ states('updater.updater') }} - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
         notification_id: "update_available"
 
 # Notify when HA started
@@ -65,7 +65,7 @@
   action:
     - service: script.ifttt_notify
       data_template:
-        message: "Home assistant started"
+        message: "Home assistant wystartował"
 
 # Notify when HA shutdown
 - id: ha_shutdown
@@ -80,4 +80,4 @@
   action:
     - service: script.ifttt_notify
       data_template:
-        message: "Home assistant shutdown"
+        message: "Home assistant wyłącza się"

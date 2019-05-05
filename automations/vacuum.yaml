@@ -153,7 +153,7 @@
         entity_id: script.vacuum_start
     - service: script.ifttt_notify
       data_template:
-        message: "Vacuum off - sb at home"
+        message: "Odkurzacz wyłączony - ktoś jest w domu"
 
 - id: vacuum_finished
   alias: Vacuum - finished
@@ -170,7 +170,7 @@
         entity_id: input_boolean.vacuum_finished
     - service: script.ifttt_notify
       data_template:
-        message: "Vacuum finished"
+        message: "Odkurzacz zakończył odkurzanie"
 
 - id: vacuum_finished_off
   alias: Vacuum - finished input bool to off

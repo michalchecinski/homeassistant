@@ -15,7 +15,7 @@
   action:
     - service: script.ifttt_notify
       data_template:
-        message: "You haven't been at home for 14 hours is it true?"
+        message: "Nie było Cię w domu przez 14 godzin. Czy to prawda?"
 
 - id: failure_guest_mode
   alias: Failure - guest mode for 36 hours
@@ -37,7 +37,7 @@
   action:
     - service: notify.android
       data:
-        message: "Do you still have guests?"
+        message: "Nadal masz gości?"
         data:
           actions:
             - action: guest_mode_off
@@ -59,7 +59,7 @@
   action:
     - service: script.ifttt_notify
       data_template:
-        message: "You are at home for 24 hours is it true?"
+        message: "Jesteś w domu 24 godziny. Czy to prawda?"
 
 - id: failure_vacuum
   alias: Failure - vacuum not run in 24 hours
@@ -78,7 +78,7 @@
   action:
     - service: notify.android
       data:
-        message: "Vacuum haven't run in 36 hours"
+        message: "Odkurzacz nie uruchamiał się przez ostatnie 36 godzin."
         data:
           actions:
             - action: vacuum_on
@@ -104,7 +104,7 @@
   action:
     - service: notify.android
       data:
-        message: "Vacuum haven't run in 2 days (vacation mode)"
+        message: "Odkurzacz nie chodził przez 2 dni (vacation mode)"
         data:
           actions:
             - action: vacuum_on
