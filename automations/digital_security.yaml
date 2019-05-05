@@ -6,10 +6,9 @@
     - condition: template
       value_template: "{{ trigger.to_state.state != 'None' }}"
   action:
-    - service: script.ifttt_notify
-      data_template:
+    - service: notify.michal_html
+      data:
         message: "{{ states.persistent_notification.httplogin.attributes.message }}"
-        info: 'url: https://whatismyipaddress.com/ip/{{ states.persistent_notification.httplogin.attributes.message.split ("from ") [1]}}'
     - service: persistent_notification.create
       data:
         title: "{{ states.persistent_notification.httplogin.attributes.message }}"
@@ -21,7 +20,6 @@
     - platform: event
       event_type: device_tracker_new_device
   action:
-    - service: script.ifttt_notify
-      data_template:
-        info: "New device: {{trigger.event.data.entity_id}}"
-        message: "New device"
+    - service: notify.michal_html
+      data:
+        message: "New device: {{trigger.event.data.entity_id}}"

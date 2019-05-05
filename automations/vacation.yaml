@@ -56,8 +56,8 @@
       from: 'off'
       to: 'on'
   action:
-    - service: script.ifttt_notify
-      data_template:
+    - service: notify.michal_html
+      data:
         message: "HA wyjechałeś na wakacje"
 
 - id: vacation_off_notification
@@ -68,8 +68,8 @@
       from: 'on'
       to: 'off'
   action:
-    - service: script.ifttt_notify
-      data_template:
+    - service: notify.michal_html
+      data:
         message: "HA Wróciłeś z wakacji"
 
 - id: to_lublin_calendar

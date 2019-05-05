@@ -17,8 +17,8 @@
   action:
     - service: shell_command.pull_git_conf
     - delay: '00:00:05'
-    - service: script.ifttt_notify
-      data_template:
+    - service: notify.michal_html
+      data:
         message: "HA pulled config"
     - service: homeassistant.restart
 

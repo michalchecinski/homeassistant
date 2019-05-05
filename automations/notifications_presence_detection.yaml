@@ -7,8 +7,8 @@
       from: 'off'
       to: 'on'
   action:
-    - service: script.ifttt_notify
-      data_template:
+    - service: notify.michal_html
+      data:
         message: "Home assistant wykrył, że jesteś w domu."
 
 # Notify when come home
@@ -20,6 +20,6 @@
       from: 'on'
       to: 'off'
   action:
-    - service: script.ifttt_notify
-      data_template:
+    - service: notify.michal_html
+      data:
         message: "Home assistant wykrył, że wyszedłeś z domu."

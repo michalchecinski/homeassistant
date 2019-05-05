@@ -9,8 +9,8 @@
     condition: template
     value_template: "{{ (states.sensor.temperature_outside.state) | float <= (states.input_number.last_morning_temp.state) | float - 5 }}"
   action:
-    - service: script.ifttt_notify
-      data_template:
+    - service: notify.michal_html
+      data:
         message: "Temperatura spadła znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}} C; dzisiaj {{(states.sensor.temperature_outside.state)}} C"
 
 - id: outside_temp_log
@@ -45,6 +45,3 @@
       data:
         title: "Otwórz okna"
         message: "Na zewnątrz jest chłodniej. Out: {{ (states.sensor.temperature_outside.state) | float }}. In: {{ (states.sensor.temperature_inside.state) | float }}"
-    # - service: script.ifttt_notify
-    #   data_template:
-    #     message: "Otwórz okna. Na zewnątrz jest chłodniej. Out: {{ (states.sensor.temperature_outside.state) | float }}. In: {{ (states.sensor.temperature_inside.state) | float }}"

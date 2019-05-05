@@ -13,8 +13,8 @@
       entity_id: input_boolean.vacation_mode
       state: 'off'
   action:
-    - service: script.ifttt_notify
-      data_template:
+    - service: notify.michal_html
+      data:
         message: "Nie było Cię w domu przez 14 godzin. Czy to prawda?"
 
 - id: failure_guest_mode
@@ -42,9 +42,6 @@
           actions:
             - action: guest_mode_off
               title: Turn off guest mode
-    # - service: script.ifttt_notify
-    #   data_template:
-    #     message: "Do you still have guests?"
 
 - id: failure_at_home
   alias: Failure - at home for 24 hours
@@ -57,8 +54,8 @@
         minutes: 0
         seconds: 0
   action:
-    - service: script.ifttt_notify
-      data_template:
+    - service: notify.michal_html
+      data:
         message: "Jesteś w domu 24 godziny. Czy to prawda?"
 
 - id: failure_vacuum
@@ -83,9 +80,6 @@
           actions:
             - action: vacuum_on
               title: Run vacuum now
-    # - service: script.ifttt_notify
-    #   data_template:
-    #     message: "Vacuum haven't run in 24 hours"
 
 - id: failure_vacuum_vacation
   alias: Failure - vacuum not run in 2 days
@@ -109,6 +103,3 @@
           actions:
             - action: vacuum_on
               title: Run vacuum now
-    # - service: script.ifttt_notify
-    #   data_template:
-    #     message: "Vacuum haven't run in 2 days (vacation mode)"

@@ -31,9 +31,9 @@ iron_turn_off:
 #   sequence:
 #     - delay:
 #         minutes: 46
-#     - service: script.ifttt_notify
-#       data_template:
-#         message: "Outside temperature battery dead"
+    # - service: notify.michal_html
+    #   data:
+    #     message: "Outside temperature battery dead"
 
 ifttt_notify:
   sequence:

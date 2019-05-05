@@ -63,8 +63,8 @@
   #     entity_id: input_boolean.michal_home
   #     state: 'off'
   action:
-    - service: script.ifttt_notify
-      data_template:
+    - service: notify.michal_html
+      data:
         message: "Home assistant wystartował"
 
 # Notify when HA shutdown
@@ -78,6 +78,6 @@
       entity_id: input_boolean.michal_home
       state: 'off'
   action:
-    - service: script.ifttt_notify
-      data_template:
+    - service: notify.michal_html
+      data:
         message: "Home assistant wyłącza się"
