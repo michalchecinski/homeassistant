@@ -78,7 +78,7 @@
   action:
     - service: notify.android
       data:
-        message: "Vacuum haven't run in 36 hours"
+        message: "Odkurzacz nie uruchamiał się przez ostatnie 36 godzin."
         data:
           actions:
             - action: vacuum_on
