@@ -40,8 +40,8 @@
   action:
     - service: notify.android
       data:
-        title: "HA Update Available"
-        message: "Home Assistant {{ states('updater.updater') }} release available."
+        title: "HA dostępna aktualizacja"
+        message: "Nowa wersja Home Assistant: {{ states('updater.updater') }}"
         data:
           actions:
             - action: update_ha
