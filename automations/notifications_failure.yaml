@@ -59,7 +59,7 @@
   action:
     - service: script.ifttt_notify
       data_template:
-        message: "You are at home for 24 hours is it true?"
+        message: "Jesteś w domu 24 godziny. Czy to prawda?"
 
 - id: failure_vacuum
   alias: Failure - vacuum not run in 24 hours
