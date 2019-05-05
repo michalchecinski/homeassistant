@@ -151,9 +151,16 @@
     - service: homeassistant.turn_off
       data_template:
         entity_id: script.vacuum_start
-    - service: script.ifttt_notify
-      data_template:
-        message: "Odkurzacz wyłączony - ktoś jest w domu"
+    # - service: script.ifttt_notify
+    #   data_template:
+    #     message: "Odkurzacz wyłączony - ktoś jest w domu"
+    - service: notify.android
+      data:
+        message: "Odkurzacz nie skończył pracy, ale się wyłączył - ktoś jest w domu."
+        data:
+          actions:
+            - action: vacuum_on
+              title: Dokończ odkurzanie
 
 - id: vacuum_finished
   alias: Vacuum - finished
