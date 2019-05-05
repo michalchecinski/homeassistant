@@ -104,7 +104,7 @@
   action:
     - service: notify.android
       data:
-        message: "Vacuum haven't run in 2 days (vacation mode)"
+        message: "Odkurzacz nie chodził przez 2 dni (vacation mode)"
         data:
           actions:
             - action: vacuum_on
