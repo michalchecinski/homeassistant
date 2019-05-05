@@ -38,7 +38,7 @@
       - condition: template
         value_template: "{{states.updater.updater.state[-1] | int > 0}}"
   action:
-    - service: notify.android
+    - service: notify.michal_html
       data:
         title: "HA dostępna aktualizacja"
         message: "Nowa wersja Home Assistant: {{ states('updater.updater') }}"

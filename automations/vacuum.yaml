@@ -66,7 +66,7 @@
 #         after: '07:40:00'
 #         before: '20:00:00'
 #   action:
-#     - service: notify.android
+#     - service: notify.michal_html
 #       data:
 #         message: "Odkurzacz nie skończył pracy."
 #         data:
@@ -154,7 +154,7 @@
     # - service: script.ifttt_notify
     #   data_template:
     #     message: "Odkurzacz wyłączony - ktoś jest w domu"
-    - service: notify.android
+    - service: notify.michal_html
       data:
         message: "Odkurzacz nie skończył pracy, ale się wyłączył - ktoś jest w domu."
         data:

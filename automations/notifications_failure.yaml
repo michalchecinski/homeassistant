@@ -35,7 +35,7 @@
         minutes: 0
         seconds: 0
   action:
-    - service: notify.android
+    - service: notify.michal_html
       data:
         message: "Nadal masz gości?"
         data:
@@ -76,7 +76,7 @@
       entity_id: input_boolean.vacation_mode
       state: 'off'
   action:
-    - service: notify.android
+    - service: notify.michal_html
       data:
         message: "Odkurzacz nie uruchamiał się przez ostatnie 36 godzin."
         data:
@@ -102,7 +102,7 @@
       entity_id: input_boolean.vacation_mode
       state: 'on'
   action:
-    - service: notify.android
+    - service: notify.michal_html
       data:
         message: "Odkurzacz nie chodził przez 2 dni (vacation mode)"
         data:
