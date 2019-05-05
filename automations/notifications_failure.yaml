@@ -37,7 +37,7 @@
   action:
     - service: notify.android
       data:
-        message: "Do you still have guests?"
+        message: "Nadal masz gości?"
         data:
           actions:
             - action: guest_mode_off
