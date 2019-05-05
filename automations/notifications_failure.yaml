@@ -15,7 +15,7 @@
   action:
     - service: script.ifttt_notify
       data_template:
-        message: "You haven't been at home for 14 hours is it true?"
+        message: "Nie było Cię w domu przez 14 godzin. Czy to prawda?"
 
 - id: failure_guest_mode
   alias: Failure - guest mode for 36 hours
