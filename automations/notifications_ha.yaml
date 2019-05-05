@@ -80,4 +80,4 @@
   action:
     - service: script.ifttt_notify
       data_template:
-        message: "Home assistant shutdown"
+        message: "Home assistant wyłącza się"
