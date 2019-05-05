@@ -132,7 +132,7 @@
   action:
     - service: script.ifttt_notify
       data_template:
-        message: "Vacuum coming from vacation on"
+        message: "Odkurzacz włączony - wracasz z wakacji"
     - service: homeassistant.turn_on
       data_template:
         entity_id: script.vacuum_start
