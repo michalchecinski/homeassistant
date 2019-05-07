@@ -7,6 +7,8 @@
     - platform: state
       entity_id: input_boolean.michal_home
       to: 'off'
+    - platform: time
+      at: '08:30:00'
   condition:
     condition: and
     conditions:
