@@ -28,8 +28,10 @@ sleep_alarm:
   initial: off
 
 bedtime:
+  name: bedtime
 
 was_playing:
+  name: was playing
 
 fake_heater:
   name: Fake Heater
@@ -39,5 +41,7 @@ fake_heater:
 # shower_time:
 
 phonecall:
+  name: phonecall
 
 vacuum_finished:
+  name: vacuum finished
