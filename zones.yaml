@@ -9,3 +9,9 @@
   longitude: 21.008086
   radius: 300
   icon: mdi:school
+
+- name: Praca
+  latitude: !secret work_lat
+  longitude: !secret work_lon
+  radius: 300
+  icon: mdi:briefcase
