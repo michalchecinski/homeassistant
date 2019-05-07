@@ -14,9 +14,9 @@ alarm_minute:
   min: 0
   max: 59
 
-  michal_work_last_day:
-    min: 0
-    max: 10
+michal_work_last_day:
+  min: 0
+  max: 10
 
 michal_work_last_week:
   min: 0
