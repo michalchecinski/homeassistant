@@ -3,7 +3,7 @@
   trigger:
     - platform: state
       entity_id: person.michal
-      to: 'work'
+      to: 'praca'
   condition:
     condition: and
     conditions:

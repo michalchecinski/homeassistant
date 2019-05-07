@@ -94,8 +94,7 @@ notify:
     encryption: starttls
     username: !secret gmaps_user
     password: !secret gmaps_password
-    recipient:
-      - !secret michal_email
+    recipient: !secret michal_email
     sender_name: My Home Assistant
 
 # Text to speech

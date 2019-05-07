@@ -10,8 +10,8 @@
   radius: 300
   icon: mdi:school
 
-- name: Praca
+- name: praca
   latitude: !secret work_lat
   longitude: !secret work_lon
-  radius: 300
+  radius: 100
   icon: mdi:briefcase
