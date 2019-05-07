@@ -85,6 +85,18 @@ notify:
     vapid_pub_key: !secret vapid_pub_key
     vapid_prv_key: !secret vapid_prv_key
     vapid_email: !secret vapid_email
+  - name: gmail_notification
+    platform: smtp
+    server: smtp.gmail.com
+    port: 587
+    timeout: 15
+    sender: !secret gmaps_user
+    encryption: starttls
+    username: !secret gmaps_user
+    password: !secret gmaps_password
+    recipient:
+      - !secret michal_email
+    sender_name: My Home Assistant
 
 # Text to speech
 tts:
