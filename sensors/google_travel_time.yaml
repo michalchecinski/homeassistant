@@ -1,7 +1,7 @@
   - platform: google_travel_time
     name: 'Michał to home'
     api_key: !secret google_travel
-    origin: device_tracker.google_maps_102169435937546415265
+    origin: person.michal
     destination: zone.home
     options:
       language: 'pl'

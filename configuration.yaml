@@ -78,8 +78,6 @@ person:
 
 # notify
 notify:
-  - name: android
-    platform: fcm-android
   - platform: html5
     name: michal_html
     vapid_pub_key: !secret vapid_pub_key
