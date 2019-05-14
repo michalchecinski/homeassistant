@@ -9,6 +9,9 @@
       to: 'off'
     - platform: time
       at: '08:30:00'
+    - platform: state
+      entity_id: person.michal
+      to: 'praca'
   condition:
     condition: and
     conditions:
