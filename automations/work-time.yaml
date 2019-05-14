@@ -7,8 +7,8 @@
   condition:
     condition: and
     conditions:
-      # - condition: template
-      #   value_template: "{{ state_attr('automation.work_time_daily_send', 'last_triggered').strftime('%Y-%m-%d') != now().strftime('%Y-%m-%d') }}"
+      - condition: template
+        value_template: "{{ state_attr('automation.work_time_daily_send', 'last_triggered').strftime('%Y-%m-%d') != now().strftime('%Y-%m-%d') }}"
       - condition: template
         value_template: "{{ states.input_number.michal_work_last_day.state | float != 0.0 }}"
       - condition: time
