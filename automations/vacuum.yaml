@@ -7,8 +7,9 @@
     - platform: state
       entity_id: input_boolean.michal_home
       to: 'off'
-    - platform: time
-      at: '08:30:00'
+    - platform: state
+      entity_id: person.michal
+      to: 'praca'
   condition:
     condition: and
     conditions:
@@ -17,6 +18,10 @@
       #   state: 'on'
       - condition: state
         entity_id: input_boolean.michal_home
+        state: 'off'
+      # vacuum not working already
+      - condition: state
+        entity_id: script.vacuum_start
         state: 'off'
       - condition: state
         entity_id: input_boolean.vacation_mode
