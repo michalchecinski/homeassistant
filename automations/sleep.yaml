@@ -139,3 +139,6 @@
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.sleep
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.sleep_alarm
