@@ -23,6 +23,9 @@
       data:
         title: 'Raport z wczorajszej pracy'
         message: 'Wczoraj byłeś w pracy {{ states.input_number.michal_work_last_day.state }} godzin'
+    - service: notify.michal_html
+      data:
+        message: 'Wczoraj byłeś w pracy {{ states.input_number.michal_work_last_day.state }} godzin'
     - delay: '00:00:05'
     - service: input_number.set_value
       data_template:
@@ -109,3 +112,19 @@
       data_template:
         entity_id: input_number.michal_work_last_month
         value: "{{ states.input_number.michal_work_last_month.state | float + states.sensor.michal_work_today.state | float }}"
+
+- id: time_to_home
+  alias: Work notification - time to home
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.michal_work_today
+    above: 8
+  condition:
+    - condition: state
+      entity_id: person.michal
+      state: 'praca'
+  action:
+    - service: notify.michal_html
+      data:
+        message: "Czas wychodzić z pracy. Jesteś tu już 8h"
+

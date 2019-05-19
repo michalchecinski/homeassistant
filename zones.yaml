@@ -13,5 +13,5 @@
 - name: praca
   latitude: !secret work_lat
   longitude: !secret work_lon
-  radius: 100
+  radius: 80
   icon: mdi:briefcase
