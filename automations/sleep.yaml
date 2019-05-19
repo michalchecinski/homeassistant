@@ -139,6 +139,17 @@
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.sleep
+    - delay: '00:00:10'
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.sleep_alarm
+
+- id: reset_alarm
+  alias: Sleep - reset alarm bool
+  trigger:
+    - platform: time
+      at: '00:00:01'
+  action:
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.sleep_alarm
