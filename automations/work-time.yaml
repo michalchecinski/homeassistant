@@ -46,7 +46,7 @@
         - condition: template
           value_template: "{{ states.input_number.michal_work_last_week.state | float != 0.0 }}"
         - condition: template
-          value_template: "{{ as_timestamp( now() ) - as_timestamp( state_attr('automation.work_time_weekly_send', 'last_triggered') ) > 7*86400 }}"
+          value_template: "{{ as_timestamp( now() ) - as_timestamp( state_attr('automation.work_time_weekly_send', 'last_triggered') ) | int > 7*86400 }}"
   action:
     - service: notify.gmail_notification
       data:
