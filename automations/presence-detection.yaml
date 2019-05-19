@@ -15,6 +15,11 @@
   - platform: state
     entity_id: person.michal
     to: 'not_home'
+  - platform: state
+    entity_id: device_tracker.oneplus
+    to: 'not_home'
+    for:
+      minutes: 5
   # - platform: state
   #   entity_id: device_tracker.google_maps_102169435937546415265
   #   to: 'extended home'
@@ -46,6 +51,15 @@
       data:
         entity_id: input_select.michal_status
         option: 'away'
+    - condition: template
+      value_template: "{{ trigger.entity_id == 'device_tracker.oneplus' }}"
+    - service: notify.michal_html
+      data:
+        message: "Nie ma Cię w domu (poznając po BT)"
+        data:
+          actions:
+            - action: iam_home
+              title: Jestem w domu
 
 # At home
 - id: at_home
@@ -58,6 +72,10 @@
     # - platform: state
     #   entity_id: device_tracker.oneplus
     #   to: 'home'
+    - event_data:
+        action: iam_home
+      event_type: html5_notification.clicked
+      platform: event
     - platform: state
       entity_id: group.michal_home
       to: 'home'
