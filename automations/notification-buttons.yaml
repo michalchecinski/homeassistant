@@ -2,7 +2,7 @@
   trigger:
   - event_data:
       action: vacuum_on
-    event_type: fcm_android_notifications.clicked
+    event_type: html5_notification.clicked
     platform: event
   action:
     - service: automation.trigger
@@ -13,7 +13,7 @@
   trigger:
   - event_data:
       action: guest_mode_off
-    event_type: fcm_android_notifications.clicked
+    event_type: html5_notification.clicked
     platform: event
   action:
     - service: input_boolean.turn_off
@@ -24,7 +24,7 @@
   trigger:
   - event_data:
       action: update_ha
-    event_type: fcm_android_notifications.clicked
+    event_type: html5_notification.clicked
     platform: event
   action:
     - service: shell_command.update_ha
