@@ -20,12 +20,19 @@
     to: 'not_home'
     for:
       minutes: 10
-  # - platform: state
-  #   entity_id: device_tracker.google_maps_102169435937546415265
-  #   to: 'extended home'
-  # - platform: state
-  #   entity_id: device_tracker.google_maps_102169435937546415265
-  #   to: 'Politechnika'
+  - platform: state
+    entity_id: person.michal
+    to: 'extended home'
+  - platform: state
+    entity_id: person.michal
+    to: 'praca'
+  - platform: state
+    entity_id: person.michal
+    to: 'Politechnika'
+  condition:
+  - condition: state
+    entity_id: input_boolean.sleep
+    state: 'off'
   # condition:
   #   condition: and
   #   conditions:
