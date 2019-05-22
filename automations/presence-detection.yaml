@@ -19,7 +19,7 @@
     entity_id: device_tracker.oneplus
     to: 'not_home'
     for:
-      minutes: 5
+      minutes: 10
   # - platform: state
   #   entity_id: device_tracker.google_maps_102169435937546415265
   #   to: 'extended home'
