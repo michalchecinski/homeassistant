@@ -22,7 +22,7 @@ michal_work_last_day:
 michal_work_last_week:
   mode: box
   min: 0
-  max: 50
+  max: 100
 
 michal_work_last_month:
   mode: box
