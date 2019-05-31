@@ -19,7 +19,7 @@
     entity_id: device_tracker.oneplus
     to: 'not_home'
     for:
-      minutes: 10
+      minutes: 15
   - platform: state
     entity_id: person.michal
     to: 'extended home'
