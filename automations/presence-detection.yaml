@@ -85,6 +85,9 @@
     - platform: state
       entity_id: person.michal
       to: 'home'
+    - platform: state
+      entity_id: device_tracker.oneplus
+      to: 'not_home'
   action:
     - service: input_boolean.turn_on
       data:
