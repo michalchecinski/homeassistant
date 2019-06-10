@@ -14,7 +14,7 @@
       value_template: >
         {% if states.calendar.msp.attributes.start_time != none %}
           {{
-            ((as_timestamp(states.calendar.msp.attributes.start_time) - as_timestamp( strptime(states.sensor.date__time.state, "%Y-%m-%d, %H:%M" ) ) <= 3600 )
+            ((as_timestamp(states.calendar.msp.attributes.start_time) - as_timestamp( strptime(states.sensor.date_time.state, "%Y-%m-%d, %H:%M" ) ) <= 3600 )
             and (as_timestamp(states.calendar.msp.attributes.end_time) - as_timestamp(states.calendar.msp.attributes.start_time) >= 3600 )
             and states.calendar.msp.attributes.all_day == False )
           }}
@@ -27,7 +27,7 @@
       value_template: >
         {% if states.calendar.michalchecinski1gmailcom.attributes.start_time != none %}
           {{
-            ((as_timestamp(states.calendar.michalchecinski1gmailcom.attributes.start_time) - as_timestamp( strptime(states.sensor.date__time.state, "%Y-%m-%d, %H:%M" ) ) <= 3600 )
+            ((as_timestamp(states.calendar.michalchecinski1gmailcom.attributes.start_time) - as_timestamp( strptime(states.sensor.date_time.state, "%Y-%m-%d, %H:%M" ) ) <= 3600 )
             and (as_timestamp(states.calendar.michalchecinski1gmailcom.attributes.end_time) - as_timestamp(states.calendar.michalchecinski1gmailcom.attributes.start_time) >= 3600 )
             and states.calendar.michalchecinski1gmailcom.attributes.all_day == False )
           }}
@@ -40,7 +40,7 @@
       value_template: >
         {% if states.calendar.zajecia.attributes.start_time != none %}
           {{
-            ((as_timestamp(states.calendar.zajecia.attributes.start_time) - as_timestamp( strptime(states.sensor.date__time.state, "%Y-%m-%d, %H:%M" ) ) <= 3600 )
+            ((as_timestamp(states.calendar.zajecia.attributes.start_time) - as_timestamp( strptime(states.sensor.date_time.state, "%Y-%m-%d, %H:%M" ) ) <= 3600 )
             and (as_timestamp(states.calendar.zajecia.attributes.end_time) - as_timestamp(states.calendar.zajecia.attributes.start_time) >= 3600 )
             and states.calendar.zajecia.attributes.all_day == False )
           }}
@@ -53,7 +53,7 @@
       value_template: >
         {% if states.calendar.egzaminy.attributes.start_time != none %}
           {{
-            ((as_timestamp(states.calendar.egzaminy.attributes.start_time) - as_timestamp( strptime(states.sensor.date__time.state, "%Y-%m-%d, %H:%M" ) ) <= 3600 )
+            ((as_timestamp(states.calendar.egzaminy.attributes.start_time) - as_timestamp( strptime(states.sensor.date_time.state, "%Y-%m-%d, %H:%M" ) ) <= 3600 )
             and (as_timestamp(states.calendar.egzaminy.attributes.end_time) - as_timestamp(states.calendar.egzaminy.attributes.start_time) >= 3600 )
             and states.calendar.egzaminy.attributes.all_day == False )
           }}
@@ -66,7 +66,7 @@
       value_template: >
         {% if states.calendar.grupa_net_spotkania.attributes.start_time != none %}
           {{
-            ((as_timestamp(states.calendar.grupa_net_spotkania.attributes.start_time) - as_timestamp( strptime(states.sensor.date__time.state, "%Y-%m-%d, %H:%M" ) ) <= 3600 )
+            ((as_timestamp(states.calendar.grupa_net_spotkania.attributes.start_time) - as_timestamp( strptime(states.sensor.date_time.state, "%Y-%m-%d, %H:%M" ) ) <= 3600 )
             and (as_timestamp(states.calendar.grupa_net_spotkania.attributes.end_time) - as_timestamp(states.calendar.grupa_net_spotkania.attributes.start_time) >= 3600 )
             and states.calendar.grupa_net_spotkania.attributes.all_day == False )
           }}
