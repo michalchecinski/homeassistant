@@ -32,6 +32,7 @@
       icon_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.battery_icon }}'
     vacuum_cleaning_time:
       friendly_name: Time of Last Cycle
+      unit_of_measurement: 'min'
       entity_id: vacuum.xiaomi_vacuum_cleaner
       value_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaning_time }}'
       icon_template: 'mdi:timer'
