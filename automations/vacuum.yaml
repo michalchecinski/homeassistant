@@ -151,13 +151,9 @@
       entity_id: input_boolean.michal_home
       to: 'on'
   condition:
-    - condition: state
-      entity_id: script.vacuum_start
-      state: 'on'
+    - condition: template
+      value_template: "{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.status == 'Cleaning' }}"
   action:
-    - service: homeassistant.turn_off
-      data_template:
-        entity_id: script.vacuum_start
     - service: notify.michal_html
       data:
         message: "Odkurzacz nie skończył pracy, ale się wyłączył - ktoś jest w domu."
@@ -165,6 +161,9 @@
           actions:
             - action: vacuum_on
               title: Dokończ odkurzanie
+    - service: homeassistant.turn_on
+      data_template:
+        entity_id: script.vacuum_stop
 
 - id: vacuum_finished
   alias: Vacuum - finished
