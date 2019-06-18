@@ -40,7 +40,7 @@ views:
         cards:
         - type: picture-elements
           title: Vacuum
-          image: '/local/vacuum1.jpg'
+          image: 'https://raw.githubusercontent.com/michalchecinski/homeassistant/master/www/images/vacuum.png'
           elements:
             - type: icon
               icon: mdi:bell-ring
