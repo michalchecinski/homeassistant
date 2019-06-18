@@ -175,3 +175,8 @@ google:
 #   password: netatmo_password
 
 proximity: !include proximity.yaml
+
+vacuum:
+  - platform: xiaomi_miio
+    host: !secret xiaomi_vacuum_ip
+    token: !secret xiaomi_vacuum_token

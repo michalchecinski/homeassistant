@@ -220,11 +220,17 @@ tv_start_x:
             {{ title }}
           {% endif %}
 
-# vacuum simulation - delete after real vacuum comes
-vacuum_start:
+vacuum_stop:
   sequence:
-    - service: input_boolean.turn_off
-      data_template:
-        entity_id: input_boolean.vacuum_finished
+    - service: vacuum.pause
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
     - delay:
-        hours: 2
+        minutes: 6
+    - service: vacuum.stop
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+  # Dont know if next line is necessary
+    - service: vacuum.return_to_base
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
