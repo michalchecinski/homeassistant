@@ -43,10 +43,10 @@
     - service: notify.michal_html
       data:
         message: "Vacuum on"
-    - service: homeassistant.turn_on
-      data_template:
-        entity_id: script.vacuum_start
-
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+    
 # - id: vacuum__not_finished_notify
 #   alias: Vacuum - not finished notify
 #   trigger:
@@ -105,9 +105,9 @@
     - service: notify.michal_html
       data:
         message: "Vacuum vacation on"
-    - service: homeassistant.turn_on
-      data_template:
-        entity_id: script.vacuum_start
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
 
 - id: vacuum_vacation_coming_home_on
   alias: Vacuum - on coming home vacation
@@ -140,9 +140,9 @@
     - service: notify.michal_html
       data:
         message: "Odkurzacz włączony - wracasz z wakacji"
-    - service: homeassistant.turn_on
-      data_template:
-        entity_id: script.vacuum_start
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
 
 - id: vacuum_off
   alias: Vacuum - off
@@ -170,8 +170,8 @@
   alias: Vacuum - finished
   trigger:
     - platform: state
-      entity_id: script.vacuum_start
-      to: 'off'
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      to: 'docked'
   condition:
     - condition: template
       value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.vacuum_off.attributes.last_triggered) | int > 40 }}'

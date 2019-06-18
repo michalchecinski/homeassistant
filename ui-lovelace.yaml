@@ -1,67 +1,265 @@
 title: My Lovely Home Automation
 resources:
-  - url: /local/mini-media-player-bundle.js?v=1.0.3
-    type: module
+  - type: module
+    url: /local/mini-media-player-bundle.js?v=1.0.3
 views:
-  - icon: 'mdi:home'
-    title: Home
-    cards:
-      - title: Michał state
-        entities:
+  - cards:
+      - entities:
           - entity: device_tracker.google_maps_102169435937546415265
-          - entity: device_tracker.oneplus
           - entity: proximity.home
           - entity: group.michal_home
+          - entity: sensor.michal_to_home
         type: glance
-      - title: Michal state
-        show_header_toggle: false
-        entities:
-          - input_select.michal_status
-          - input_boolean.guest_mode
-          - input_boolean.vacation_mode
+        title: Michał state
+      - entities:
+          - entity: input_select.michal_status
+          - entity: input_boolean.guest_mode
+          - entity: input_boolean.vacation_mode
+          - entity: input_boolean.michal_home
         type: entities
-      - title: Temperature
-        entities:
+        title: Michal state
+        show_header_toggle: false
+      - entities:
           - entity: sensor.temperature_outside
           - entity: sensor.temperature_inside
           - entity: sensor.humidity_inside
           - entity: sensor.dark_sky_apparent_temperature
         type: glance
-      - title: Other
-        show_name: true
-        entities:
-          - entity: binary_sensor.dark
-          - entity: sensor.airly_caqi_level
-          - entity: binary_sensor.auto_lights
-        show_state: true
-        type: glance
+        title: Temperature
       - entity: sensor.airly_caqi_level
+        type: picture-entity
         state_image:
-          VERY_LOW: >-
-            https://vignette.wikia.nocookie.net/warszawa/images/7/7c/Warsaw6vb.jpg
-          LOW: >-
-            https://vignette.wikia.nocookie.net/warszawa/images/7/7c/Warsaw6vb.jpg
+          VERY_HIGH: 'http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg'
+          VERY_LOW: 'https://static.thousandwonders.net/Warsaw.640.18597.jpg'
+          HIGH: 'http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg'
           MEDIUM: >-
             https://ocs-pl.oktawave.com/v1/AUTH_2887234e-384a-4873-8bc5-405211db13a2/spidersweb/2017/12/smog-warszawa-polska-1.jpg
-          HIGH: 'http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg'
-          VERY_HIGH: 'http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg'
-        type: picture-entity
-  - icon: 'mdi:sofa'
-    title: Living room
-    cards:
+          LOW: >-
+            https://vignette.wikia.nocookie.net/warszawa/images/7/7c/Warsaw6vb.jpg
+      - type: custom:vertical-stack-in-card
+        cards:
+        - type: picture-elements
+          title: Vacuum
+          image: '/local/vacuum1.jpg'
+          elements:
+            - type: icon
+              icon: mdi:bell-ring
+              tap_action: call-service
+              entity: vacuum.xiaomi_vacuum_cleaner
+              service: vacuum.locate
+              style:
+               top: 90%
+               left: 80%
+               color: '#3090C7'
+            - type: icon
+              icon: mdi:crosshairs
+              tap_action: call-service
+              entity: vacuum.xiaomi_vacuum_cleaner
+              service: vacuum.clean_spot
+              style:
+               top: 90%
+               left: 65%
+               color: '#3090C7'
+            - type: icon
+              tap_action: call-service
+              icon: mdi:home
+              entity: vacuum.xiaomi_vacuum_cleaner
+              service: vacuum.return_to_base
+              style:
+               top: 90%
+               left: 50%
+               color: '#3090C7'
+            - type: icon
+              icon: mdi:stop
+              tap_action: call-service
+              entity: vacuum.xiaomi_vacuum_cleaner
+              service: vacuum.stop
+              style:
+               top: 90%
+               left: 35%
+               color: '#3090C7'
+            - type: icon
+              icon: mdi:play
+              tap_action: call-service
+              entity: vacuum.xiaomi_vacuum_cleaner
+              service: vacuum.start
+              style:
+               top: 90%
+               left: 20%
+               color: '#3090C7'
+            - type: state-label
+              entity: sensor.vacuum_operation
+              style:
+               top: 10%
+               left: 1%
+               color: rgb(255, 255, 255)
+               transform: translate(0%,-50%)
+               pointer-events: none
+               font-family: Trebuchet MS
+               font-size: 90%
+               font-weight: bold
+               border-color: rgb(34, 154, 210)
+               background-color: '#3090C7'
+               border-radius: 6px
+            - type: state-label
+              entity: sensor.vacuum_accessories
+              style:
+               top: 10%
+               right: 1%
+               color: rgb(255, 255, 255)
+               transform: translate(0%,-50%)
+               pointer-events: none
+               font-family: Trebuchet MS
+               font-size: 90%
+               font-weight: bold
+               border-color: rgb(34, 154, 210)
+               background-color: '#3090C7'
+               border-radius: 6px
+            - type: state-label
+              tap_action: more-info
+              entity: vacuum.xiaomi_vacuum_cleaner
+              style:
+               top: 14%
+               right: 38%
+               color: rgb(255, 255, 255)
+               transform: translate(0%,-50%)
+               font-family: Trebuchet MS
+               font-size: 150%
+               font-weight: bold
+               border-color: rgb(34, 154, 210)
+               border-radius: 6px
+               background-color: '#cccccc'
+            - type: state-label
+              entity: sensor.vacuum_cleanmainbrush
+              style:
+                top: 35%
+                right: 1%
+                color: '#ffffff'
+                transform: translate(0%,-50%)
+                pointer-events: none
+                font-family: Trebuchet MS
+                font-size: 76%
+                font-weight: bold
+                border-right-style: solid
+                border-color: rgb(34, 154, 210)
+            - type: state-label
+              entity: sensor.vacuum_cleansidebrush
+              style:
+                top: 45%
+                right: 1%
+                color: '#ffffff'
+                transform: translate(0%,-50%)
+                pointer-events: none
+                font-family: Trebuchet MS
+                font-size: 76%
+                font-weight: bold
+                border-right-style: solid
+                border-color: rgb(34, 154, 210)
+            - type: state-label
+              entity: sensor.vacuum_cleanfilter
+              style:
+                top: 55%
+                right: 1%
+                color: '#ffffff'
+                transform: translate(0%,-50%)
+                pointer-events: none
+                font-family: Trebuchet MS
+                font-size: 76%
+                font-weight: bold
+                border-right-style: solid
+                border-color: rgb(34, 154, 210)
+                opacity: 0.8
+            - type: state-label
+              entity: sensor.vacuum_sensordirtyleft
+              style:
+                top: 65%
+                right: 1%
+                color: '#ffffff'
+                transform: translate(0%,-50%)
+                pointer-events: none
+                font-family: Trebuchet MS
+                font-size: 76%
+                font-weight: bold
+                border-right-style: solid
+                border-color: rgb(34, 154, 210)
+            - type: state-label
+              entity: sensor.vacuum_status
+              style:
+                top: 40%
+                left: 1%
+                color: '#ffffff'
+                transform: translate(0%,-50%)
+                pointer-events: none
+                font-family: Trebuchet MS
+                font-size: 80%
+                font-weight: bold
+                border-left-style: solid
+                border-color: '#3090C7'
+            - type: state-label
+              entity: sensor.vacuum_battery
+              style:
+                top: 50%
+                left: 1%
+                color: '#ffffff'
+                transform: translate(0%,-50%)
+                pointer-events: none
+                font-family: Trebuchet MS
+                font-size: 80%
+                font-weight: bold
+                border-left-style: solid
+                border-color: rgb(34, 154, 210)
+            - type: state-label
+              entity: sensor.vacuum_fan_speed
+              style:
+                top: 60%
+                left: 1%
+                color: '#ffffff'
+                transform: translate(0%,-50%)
+                pointer-events: none
+                font-family: Trebuchet MS
+                font-size: 80%
+                font-weight: bold
+                border-left-style: solid
+                border-color: rgb(34, 154, 210)
+            - type: state-label
+              entity: sensor.vacuum_cleaned_area
+              prefix: "Area:"
+              style:
+                top: 79%
+                left: 31%
+                color: '#84a6ba'
+                transform: translate(0%,-50%)
+                pointer-events: none
+                font-family: Trebuchet MS
+                font-size: 80%
+                font-weight: bold
+            - type: state-label
+              entity: sensor.vacuum_cleaning_time
+              prefix: "Time:"
+              style:
+                top: 79%
+                left: 51%
+                color: '#84a6ba'
+                transform: translate(0%,-50%)
+                pointer-events: none
+                font-family: Trebuchet MS
+                font-size: 80%
+                font-weight: bold
+    icon: 'mdi:home'
+    title: Home
+  - cards:
       - entity: media_player.tv
         type: 'custom:mini-media-player'
-      - icon: 'mdi:spotify'
-        artwork: cover
-        entity: media_player.spotify
+      - entity: media_player.spotify
+        icon: 'mdi:spotify'
         type: 'custom:mini-media-player'
-      - title: Temperature
-        entities:
+        artwork: cover
+      - entities:
           - entity: sensor.livingroom_humidity
           - entity: sensor.livingroom_temperature
         type: glance
-      - title: Switches
-        entities:
+        title: Temperature
+      - entities:
           - entity: switch.b3
             tap_action:
               action: toggle
@@ -70,8 +268,8 @@ views:
               action: toggle
         columns: 2
         type: glance
-      - title: Light
-        entities:
+        title: Switches
+      - entities:
           - entity: light.rtv_led
             tap_action:
               action: toggle
@@ -79,11 +277,11 @@ views:
             tap_action:
               action: toggle
         type: glance
-  - icon: 'mdi:hotel'
-    title: Bedroom
-    cards:
-      - title: Lights
-        entities:
+        title: Light
+    icon: 'mdi:sofa'
+    title: Living room
+  - cards:
+      - entities:
           - entity: light.bed_lamp
             tap_action:
               action: toggle
@@ -94,27 +292,27 @@ views:
             tap_action:
               action: toggle
         type: glance
-      - title: THINKPAD status
-        show_header_toggle: false
-        entities:
+        title: Lights
+      - entities:
           - binary_sensor.thinkpad
         type: entities
-      - title: Alarm
+        title: THINKPAD status
         show_header_toggle: false
-        entities:
+      - entities:
           - entity: sensor.alarm_time
           - entity: input_number.alarm_hour
           - entity: input_number.alarm_minute
         type: glance
+        title: Alarm
+        show_header_toggle: false
       - entities:
           - entity: sensor.bedroom_temperature
           - entity: sensor.bedroom_humidity
         type: glance
-  - icon: 'mdi:flash'
-    title: Power
-    cards:
-      - title: Switches
-        entities:
+    icon: 'mdi:hotel'
+    title: Bedroom
+  - cards:
+      - entities:
           - entity: switch.b3
             tap_action:
               action: toggle
@@ -122,8 +320,8 @@ views:
             tap_action:
               action: toggle
         type: glance
-      - title: Lights
-        entities:
+        title: Switches
+      - entities:
           - entity: light.bed_lamp
             tap_action:
               action: toggle
@@ -131,292 +329,323 @@ views:
             tap_action:
               action: toggle
         type: glance
-  - icon: 'mdi:home-assistant'
-    title: Config
-    cards:
-      - title: Manual input
-        show_header_toggle: false
-        entities:
+        title: Lights
+    icon: 'mdi:flash'
+    title: Power
+  - cards:
+      - entities:
           - entity: input_boolean.guest_mode
           - entity: input_boolean.sleep
           - entity: input_boolean.vacation_mode
           - entity: input_boolean.romantic_dance_mode
           - entity: input_boolean.romantic_mode
         type: entities
-      - title: Hass details
-        entities:
+        title: Manual input
+        show_header_toggle: false
+      - entities:
           - binary_sensor.needs_update
           - binary_sensor.travis_status
           - binary_sensor.newest_commit
           - sensor.uptime
         type: glance
+        title: Hass details
       - cards:
-          - title: Server Load
-            entities:
-              - icon: 'mdi:speedometer'
-                entity: sensor.load_1m
-              - icon: 'mdi:speedometer'
-                entity: sensor.load_5m
-              - icon: 'mdi:speedometer'
-                entity: sensor.load_15m
+          - entities:
+              - entity: sensor.load_1m
+                icon: 'mdi:speedometer'
+              - entity: sensor.load_5m
+                icon: 'mdi:speedometer'
+              - entity: sensor.load_15m
+                icon: 'mdi:speedometer'
             type: glance
+            title: Server Load
           - cards:
               - name: Processor
-                graph: line
-                type: sensor
-                hours_to_show: 24
+                detail: 1
                 entity: sensor.processor_use
-                detail: 1
-              - name: Memory
                 graph: line
                 type: sensor
                 hours_to_show: 24
-                entity: sensor.memory_use_percent
+              - name: Memory
                 detail: 1
+                entity: sensor.memory_use_percent
+                graph: line
+                type: sensor
+                hours_to_show: 24
+              - name: Temperature
+                detail: 1
+                entity: sensor.raspberry_cpu_temp
+                graph: line
+                type: sensor
+                hours_to_show: 24
             type: horizontal-stack
         type: vertical-stack
-      - title: Home Assistant Stats
-        show_header_toggle: false
-        entities:
-          - icon: 'mdi:cellphone-link'
+      - entities:
+          - entity: sensor.tracker_count
             name: Number of Network Devices
-            entity: sensor.tracker_count
-          - icon: 'mdi:lightbulb'
-            entity: sensor.lights_count
-          - icon: 'mdi:nintendo-switch'
-            entity: sensor.binary_sensor_count
-          - icon: 'mdi:toggle-switch'
-            entity: sensor.switch_count
-          - icon: 'mdi:home-assistant'
-            entity: sensor.automation_count
-          - icon: 'mdi:script-text-outline'
-            entity: sensor.script_count
-          - icon: 'mdi:gauge'
-            entity: sensor.sensor_count
-          - icon: 'mdi:z-wave'
-            entity: sensor.zwave_count
+            icon: 'mdi:cellphone-link'
+          - entity: sensor.lights_count
+            icon: 'mdi:lightbulb'
+          - entity: sensor.binary_sensor_count
+            icon: 'mdi:nintendo-switch'
+          - entity: sensor.switch_count
+            icon: 'mdi:toggle-switch'
+          - entity: sensor.automation_count
+            icon: 'mdi:home-assistant'
+          - entity: sensor.script_count
+            icon: 'mdi:script-text-outline'
+          - entity: sensor.sensor_count
+            icon: 'mdi:gauge'
+          - entity: sensor.zwave_count
+            icon: 'mdi:z-wave'
         type: entities
-      - title: TASMOTA links
+        title: Home Assistant Stats
         show_header_toggle: false
-        entities:
+      - entities:
           - entity: weblink.wemos_bedroom_desk
           - entity: weblink.wemos_livingroom_led
         type: entities
-  - title: Connected Devices
-    cards:
-      - title: Home Automation
+        title: TASMOTA links
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:google-home'
+    icon: 'mdi:home-assistant'
+    title: Config
+  - cards:
+      - entities:
+          - entity: device_tracker.20dfb9091a1f
             name: Google Home
-            entity: device_tracker.20dfb9091a1f
+            icon: 'mdi:google-home'
         type: entities
-      - title: Wemos
+        title: Home Automation
         show_header_toggle: false
-        entities:
-          - name: IR Stereo
-            entity: device_tracker.2c3ae84e4d5a
+      - entities:
+          - entity: device_tracker.2c3ae84e4d5a
+            name: IR Stereo
           - entity: device_tracker.cc_50_e3_4b_a3_13
           - entity: device_tracker.b4_e6_2d_45_17_67
         type: entities
-      - title: Wireless Devices
+        title: Wemos
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:windows'
+      - entities:
+          - entity: device_tracker.thinkpad
             name: Thinkpad
-            entity: device_tracker.thinkpad
-          - name: Michal OnePlus Wifi
-            entity: device_tracker.64a2f9f18b04
+            icon: 'mdi:windows'
+          - entity: device_tracker.64a2f9f18b04
+            name: Michal OnePlus Wifi
         type: entities
-  - icon: 'mdi:auto-fix'
-    title: Automations
-    cards:
-      - title: Vacation Mode
+        title: Wireless Devices
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:sunglasses'
-            entity: automation.vacation_off_notify
-          - icon: 'mdi:sunglasses'
-            entity: automation.vacation_on_notify
-          - icon: 'mdi:sunglasses'
-            entity: automation.vacation_turn_off_when_home
-          - icon: 'mdi:sunglasses'
-            entity: automation.vacation_turn_on_when_gone_24_hours
-          - icon: 'mdi:sunglasses'
-            entity: automation.calendar_to_lublin_set_vacation_on
+    icon: 'mdi:power-plug'
+    title: Connected Devices
+    badges: []
+  - cards:
+      - entities:
+          - entity: automation.vacation_off_notify
+            icon: 'mdi:sunglasses'
+          - entity: automation.vacation_on_notify
+            icon: 'mdi:sunglasses'
+          - entity: automation.vacation_turn_off_when_home
+            icon: 'mdi:sunglasses'
+          - entity: automation.vacation_turn_on_when_gone_24_hours
+            icon: 'mdi:sunglasses'
+          - entity: automation.calendar_to_lublin_set_vacation_on
+            icon: 'mdi:sunglasses'
         type: entities
-      - title: Iron
+        title: Vacation Mode
         show_header_toggle: false
-        entities:
+      - entities:
           - entity: automation.iron_turned_off
           - entity: automation.iron_turned_on
         type: entities
-      - title: Stereo
+        title: Iron
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:speaker'
-            entity: automation.livingroom_stereo_max_volume_when_on
-          - icon: 'mdi:speaker'
-            entity: >-
+      - entities:
+          - entity: automation.livingroom_stereo_max_volume_when_on
+            icon: 'mdi:speaker'
+          - entity: >-
               automation.livingroom_stereo_play_spotify_on_stereo_when_coming_home
-          - icon: 'mdi:speaker'
-            entity: >-
+            icon: 'mdi:speaker'
+          - entity: >-
               automation.livingroom_stereo_turn_off_when_spotify_not_playing_on_stereo_for_2_minutes
-          - icon: 'mdi:speaker'
-            entity: >-
+            icon: 'mdi:speaker'
+          - entity: >-
               automation.livingroom_stereo_turn_on_when_spotify_on_stereo_starts_to_play
-          - icon: 'mdi:speaker'
-            entity: >-
+            icon: 'mdi:speaker'
+          - entity: >-
               automation.livingroom_stereo_turn_on_when_spotify_output_set_to_stereo
+            icon: 'mdi:speaker'
         type: entities
+        title: Stereo
+        show_header_toggle: false
       - cards:
-          - title: Michal status
-            show_header_toggle: false
-            entities:
+          - entities:
               - entity: automation.michal_status_at_computer
               - entity: automation.michal_status_not_at_computer
               - entity: automation.michal_status_not_tv
               - entity: automation.michal_status_tv
             type: entities
-          - title: Presence
+            title: Michal status
             show_header_toggle: false
-            entities:
-              - icon: 'mdi:map-marker'
-                entity: automation.presence_extended_home_heading_home
-              - icon: 'mdi:map-marker'
-                entity: automation.presence_heading_home
-              - icon: 'mdi:map-marker'
-                entity: automation.presence_turn_off_boolean_when_leaving_home
-              - icon: 'mdi:map-marker'
-                entity: automation.presence_turn_on_boolean_when_at_home
-              - icon: 'mdi:map-marker'
-                entity: automation.presence_automations_away_home
+          - entities:
+              - entity: automation.presence_extended_home_heading_home
+                icon: 'mdi:map-marker'
+              - entity: automation.presence_heading_home
+                icon: 'mdi:map-marker'
+              - entity: automation.presence_turn_off_boolean_when_leaving_home
+                icon: 'mdi:map-marker'
+              - entity: automation.presence_turn_on_boolean_when_at_home
+                icon: 'mdi:map-marker'
+              - entity: automation.presence_automations_away_home
+                icon: 'mdi:map-marker'
             type: entities
+            title: Presence
+            show_header_toggle: false
         type: vertical-stack
-      - title: Romantic
-        show_header_toggle: false
-        entities:
-          - icon: 'mdi:heart'
-            entity: automation.romantic_turn_off
-          - icon: 'mdi:heart'
-            entity: automation.romantic_turn_on
-          - icon: 'mdi:heart'
-            entity: automation.romantic_dance_turn_on
+      - entities:
+          - entity: automation.romantic_turn_off
+            icon: 'mdi:heart'
+          - entity: automation.romantic_turn_on
+            icon: 'mdi:heart'
+          - entity: automation.romantic_dance_turn_on
+            icon: 'mdi:heart'
         type: entities
-      - title: Sleep
+        title: Romantic
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:hotel'
-            entity: automation.sleep_alarm_goes_off_guests
-          - icon: 'mdi:hotel'
-            entity: automation.sleep_alarm_goes_off_no_guests
-          - icon: 'mdi:hotel'
-            entity: automation.sleep_awake
-          - icon: 'mdi:hotel'
-            entity: automation.sleep_going_into_sleep
-          - icon: 'mdi:hotel'
-            entity: automation.sleep_time_to_sleep
-          - icon: 'mdi:hotel'
-            entity: automation.sleep_time_to_wake_up
+      - entities:
+          - entity: automation.sleep_alarm_goes_off_guests
+            icon: 'mdi:hotel'
+          - entity: automation.sleep_alarm_goes_off_no_guests
+            icon: 'mdi:hotel'
+          - entity: automation.sleep_awake
+            icon: 'mdi:hotel'
+          - entity: automation.sleep_going_into_sleep
+            icon: 'mdi:hotel'
+          - entity: automation.sleep_time_to_sleep
+            icon: 'mdi:hotel'
+          - entity: automation.sleep_time_to_wake_up
+            icon: 'mdi:hotel'
         type: entities
-      - title: Vacuum
+        title: Sleep
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:robot-vacuum-variant'
-            entity: automation.vacuum_finished
-          - icon: 'mdi:robot-vacuum-variant'
-            entity: automation.vacuum_finished_input_bool_to_off
-          - icon: 'mdi:robot-vacuum-variant'
-            entity: automation.vacuum_off
-          - icon: 'mdi:robot-vacuum-variant'
-            entity: automation.vacuum_on
-          - icon: 'mdi:robot-vacuum-variant'
-            entity: automation.vacuum_on_coming_home_vacation
-          - icon: 'mdi:robot-vacuum-variant'
-            entity: automation.vacuum_vacation_on
+      - entities:
+          - entity: automation.vacuum_finished
+            icon: 'mdi:robot-vacuum-variant'
+          - entity: automation.vacuum_finished_input_bool_to_off
+            icon: 'mdi:robot-vacuum-variant'
+          - entity: automation.vacuum_off
+            icon: 'mdi:robot-vacuum-variant'
+          - entity: automation.vacuum_on
+            icon: 'mdi:robot-vacuum-variant'
+          - entity: automation.vacuum_on_coming_home_vacation
+            icon: 'mdi:robot-vacuum-variant'
+          - entity: automation.vacuum_vacation_on
+            icon: 'mdi:robot-vacuum-variant'
           - entity: input_boolean.vacuum_finished
         type: entities
-      - title: Themes
+        title: Vacuum
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:theme-light-dark'
-            entity: automation.theme_ha_started
-          - icon: 'mdi:theme-light-dark'
-            entity: automation.theme_set_dark_theme_for_night
-          - icon: 'mdi:theme-light-dark'
-            entity: automation.theme_set_default_theme_for_day
+      - entities:
+          - entity: automation.theme_ha_started
+            icon: 'mdi:theme-light-dark'
+          - entity: automation.theme_set_dark_theme_for_night
+            icon: 'mdi:theme-light-dark'
+          - entity: automation.theme_set_default_theme_for_day
+            icon: 'mdi:theme-light-dark'
         type: entities
-      - title: Temperature
+        title: Themes
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:thermometer'
-            entity: automation.temperature_bathroom_shower
-          - icon: 'mdi:thermometer'
-            entity: >-
+      - entities:
+          - entity: automation.temperature_bathroom_shower
+            icon: 'mdi:thermometer'
+          - entity: >-
               automation.temperature_outside_notification_is_lower_than_indoors_open_windows
-          - icon: 'mdi:thermometer'
-            entity: automation.temperature_outside_notification_log
-          - icon: 'mdi:thermometer'
-            entity: automation.temperature_outside_notification_significant_down
+            icon: 'mdi:thermometer'
+          - entity: automation.temperature_outside_notification_log
+            icon: 'mdi:thermometer'
+          - entity: automation.temperature_outside_notification_significant_down
+            icon: 'mdi:thermometer'
         type: entities
-      - title: Notifications
+        title: Temperature
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:message'
-            entity: automation.notification_ha_shutdown
-          - icon: 'mdi:message'
-            entity: automation.notification_ha_started
-          - icon: 'mdi:message'
-            entity: automation.notification_ha_update_available
-          - icon: 'mdi:message'
-            entity: automation.notification_coming_home
-          - icon: 'mdi:message'
-            entity: automation.notification_leaving_home
+      - entities:
+          - entity: automation.notification_ha_shutdown
+            icon: 'mdi:message'
+          - entity: automation.notification_ha_started
+            icon: 'mdi:message'
+          - entity: automation.notification_ha_update_available
+            icon: 'mdi:message'
+          - entity: automation.notification_coming_home
+            icon: 'mdi:message'
+          - entity: automation.notification_leaving_home
+            icon: 'mdi:message'
         type: entities
-      - title: Lights
+        title: Notifications
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:lightbulb'
-            entity: automation.lights_turn_on_when_entering_dark_house_after_sunset
+      - entities:
+          - entity: automation.lights_turn_on_when_entering_dark_house_after_sunset
+            icon: 'mdi:lightbulb'
           - entity: automation.lights_turn_off_desk_leds_when_computer_off
           - entity: >-
               automation.lights_turn_on_desk_leds_when_computer_on_and_after_sunset
           - entity: automation.lights_turn_on_tv_led_when_tv_on_and_after_sunset
         type: entities
-      - title: Audio notification
+        title: Lights
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:volume-high'
-            entity: automation.audio_notification_welcome_home
+      - entities:
+          - entity: automation.audio_notification_welcome_home
+            icon: 'mdi:volume-high'
           - entity: automation.audio_notification_sleep
         type: entities
-      - title: Else
+        title: Audio notification
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:github-circle'
-            entity: automation.ha_pull_config_when_travis_build_succeded
-          - icon: 'mdi:phone'
-            entity: automation.phone_resume_music_after
-          - icon: 'mdi:phone'
-            entity: automation.phone_ringing_pause_music_playback
+      - entities:
+          - entity: automation.ha_pull_config_when_travis_build_succeded
+            icon: 'mdi:github-circle'
+          - entity: automation.phone_resume_music_after
+            icon: 'mdi:phone'
+          - entity: automation.phone_ringing_pause_music_playback
+            icon: 'mdi:phone'
         type: entities
-      - title: Failure
+        title: Else
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:message-alert'
-            entity: automation.failure_at_home_for_24_hours
-          - icon: 'mdi:message-alert'
-            entity: automation.failure_out_of_home_for_14_hours
-          - icon: 'mdi:message-alert'
-            entity: automation.failure_vacuum_not_run_in_24_hours
-          - icon: 'mdi:message-alert'
-            entity: automation.failure_vacuum_not_run_in_2_days
+      - entities:
+          - entity: automation.failure_at_home_for_24_hours
+            icon: 'mdi:message-alert'
+          - entity: automation.failure_out_of_home_for_14_hours
+            icon: 'mdi:message-alert'
+          - entity: automation.failure_vacuum_not_run_in_24_hours
+            icon: 'mdi:message-alert'
+          - entity: automation.failure_vacuum_not_run_in_2_days
+            icon: 'mdi:message-alert'
         type: entities
-      - title: Security
+        title: Failure
         show_header_toggle: false
-        entities:
-          - icon: 'mdi:server-security'
-            entity: automation.notification_security_failed_login_attempt
-          - icon: 'mdi:server-security'
-            entity: automation.notification_security_if_new_devices
+      - entities:
+          - entity: automation.notification_security_failed_login_attempt
+            icon: 'mdi:server-security'
+          - entity: automation.notification_security_if_new_devices
+            icon: 'mdi:server-security'
         type: entities
+        title: Security
+        show_header_toggle: false
+      - entities:
+          - entity: automation.work_time_daily_save
+          - entity: automation.work_time_daily_send
+          - entity: automation.work_time_monthly_send
+          - entity: automation.work_time_weekly_send
+        type: entities
+        title: Work time
+        show_header_toggle: true
+    icon: 'mdi:auto-fix'
+    title: Automations
+  - cards:
+      - entities:
+          - entity: sensor.michal_work_today
+          - entity: sensor.michal_work_yesterday
+          - entity: input_number.michal_work_last_day
+          - entity: input_number.michal_work_last_week
+          - entity: input_number.michal_work_last_month
+        type: entities
+    icon: 'mdi:briefcase'
+    title: Work time
+    badges: []
+title: My Lovely Home Automation
