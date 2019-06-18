@@ -4,6 +4,18 @@
   scan_interval: 60
   value_template: "{{ value_json[0].result|int(1) == 0 }}"
 
+- platform: rest
+  name: Travis Branch master
+  resource: https://api.travis-ci.org/repos/michalchecinski/homeassistant/builds
+  scan_interval: 60
+  value_template: "{{ value_json[0].branch == 'master' }}"
+
+- platform: rest
+  name: Travis build push
+  resource: https://api.travis-ci.org/repos/michalchecinski/homeassistant/builds
+  scan_interval: 60
+  value_template: "{{ value_json[0].event_type == 'push' }}"
+
 - platform: template
   sensors:
     newest_commit:
@@ -14,7 +26,9 @@
       friendly_name: "Needs update"
       value_template: >-
         {% if is_state('binary_sensor.newest_commit', 'off')
-         and is_state('binary_sensor.travis_status', 'on') %}
+         and is_state('binary_sensor.travis_status', 'on') 
+         and is_state('binary_sensor.travis_build_push', 'on')
+         and is_state('binary_sensor.travis_branch_master', 'on') %}
           true
         {% else %}
           false
