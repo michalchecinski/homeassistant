@@ -1,388 +1,432 @@
-title: My Lovely Home Automation
-resources:
-  - type: module
-    url: /local/mini-media-player-bundle.js?v=1.0.3
 views:
   - cards:
-      - entities:
+      - type: glance
+        entities:
           - entity: device_tracker.google_maps_102169435937546415265
           - entity: proximity.home
           - entity: group.michal_home
           - entity: sensor.michal_to_home
-        type: glance
         title: Michał state
-      - entities:
+      - type: entities
+        entities:
           - entity: input_select.michal_status
           - entity: input_boolean.guest_mode
           - entity: input_boolean.vacation_mode
           - entity: input_boolean.michal_home
-        type: entities
-        title: Michal state
         show_header_toggle: false
-      - entities:
+        title: Michal state
+      - type: glance
+        entities:
           - entity: sensor.temperature_outside
           - entity: sensor.temperature_inside
           - entity: sensor.humidity_inside
           - entity: sensor.dark_sky_apparent_temperature
-        type: glance
         title: Temperature
-      - entity: sensor.airly_caqi_level
-        type: picture-entity
-        state_image:
-          VERY_HIGH: 'http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg'
-          VERY_LOW: 'https://static.thousandwonders.net/Warsaw.640.18597.jpg'
-          HIGH: 'http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg'
+      - state_image:
           MEDIUM: >-
             https://ocs-pl.oktawave.com/v1/AUTH_2887234e-384a-4873-8bc5-405211db13a2/spidersweb/2017/12/smog-warszawa-polska-1.jpg
+          HIGH: 'http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg'
+          VERY_LOW: 'https://static.thousandwonders.net/Warsaw.640.18597.jpg'
+          VERY_HIGH: 'http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg'
           LOW: >-
             https://vignette.wikia.nocookie.net/warszawa/images/7/7c/Warsaw6vb.jpg
-      - type: custom:vertical-stack-in-card
-        cards:
-        - type: picture-elements
-          title: Vacuum
-          image: 'https://raw.githubusercontent.com/michalchecinski/homeassistant/master/www/images/vacuum.png'
-          elements:
-            - type: icon
-              icon: mdi:bell-ring
-              tap_action: call-service
-              entity: vacuum.xiaomi_vacuum_cleaner
-              service: vacuum.locate
-              style:
-               top: 90%
-               left: 80%
-               color: '#3090C7'
-            - type: icon
-              icon: mdi:crosshairs
-              tap_action: call-service
-              entity: vacuum.xiaomi_vacuum_cleaner
-              service: vacuum.clean_spot
-              style:
-               top: 90%
-               left: 65%
-               color: '#3090C7'
-            - type: icon
-              tap_action: call-service
-              icon: mdi:home
-              entity: vacuum.xiaomi_vacuum_cleaner
-              service: vacuum.return_to_base
-              style:
-               top: 90%
-               left: 50%
-               color: '#3090C7'
-            - type: icon
-              icon: mdi:stop
-              tap_action: call-service
-              entity: vacuum.xiaomi_vacuum_cleaner
-              service: vacuum.stop
-              style:
-               top: 90%
-               left: 35%
-               color: '#3090C7'
-            - type: icon
-              icon: mdi:play
-              tap_action: call-service
-              entity: vacuum.xiaomi_vacuum_cleaner
-              service: vacuum.start
-              style:
-               top: 90%
-               left: 20%
-               color: '#3090C7'
-            - type: state-label
-              entity: sensor.vacuum_operation
-              style:
-               top: 10%
-               left: 1%
-               color: rgb(255, 255, 255)
-               transform: translate(0%,-50%)
-               pointer-events: none
-               font-family: Trebuchet MS
-               font-size: 90%
-               font-weight: bold
-               border-color: rgb(34, 154, 210)
-               background-color: '#3090C7'
-               border-radius: 6px
-            - type: state-label
-              entity: sensor.vacuum_accessories
-              style:
-               top: 10%
-               right: 1%
-               color: rgb(255, 255, 255)
-               transform: translate(0%,-50%)
-               pointer-events: none
-               font-family: Trebuchet MS
-               font-size: 90%
-               font-weight: bold
-               border-color: rgb(34, 154, 210)
-               background-color: '#3090C7'
-               border-radius: 6px
-            - type: state-label
-              tap_action: more-info
-              entity: vacuum.xiaomi_vacuum_cleaner
-              style:
-               top: 14%
-               right: 38%
-               color: rgb(255, 255, 255)
-               transform: translate(0%,-50%)
-               font-family: Trebuchet MS
-               font-size: 150%
-               font-weight: bold
-               border-color: rgb(34, 154, 210)
-               border-radius: 6px
-               background-color: '#cccccc'
-            - type: state-label
-              entity: sensor.vacuum_cleanmainbrush
-              style:
-                top: 35%
-                right: 1%
-                color: '#ffffff'
-                transform: translate(0%,-50%)
-                pointer-events: none
-                font-family: Trebuchet MS
-                font-size: 76%
-                font-weight: bold
-                border-right-style: solid
-                border-color: rgb(34, 154, 210)
-            - type: state-label
-              entity: sensor.vacuum_cleansidebrush
-              style:
-                top: 45%
-                right: 1%
-                color: '#ffffff'
-                transform: translate(0%,-50%)
-                pointer-events: none
-                font-family: Trebuchet MS
-                font-size: 76%
-                font-weight: bold
-                border-right-style: solid
-                border-color: rgb(34, 154, 210)
-            - type: state-label
-              entity: sensor.vacuum_cleanfilter
-              style:
-                top: 55%
-                right: 1%
-                color: '#ffffff'
-                transform: translate(0%,-50%)
-                pointer-events: none
-                font-family: Trebuchet MS
-                font-size: 76%
-                font-weight: bold
-                border-right-style: solid
-                border-color: rgb(34, 154, 210)
-                opacity: 0.8
-            - type: state-label
-              entity: sensor.vacuum_sensordirtyleft
-              style:
-                top: 65%
-                right: 1%
-                color: '#ffffff'
-                transform: translate(0%,-50%)
-                pointer-events: none
-                font-family: Trebuchet MS
-                font-size: 76%
-                font-weight: bold
-                border-right-style: solid
-                border-color: rgb(34, 154, 210)
-            - type: state-label
-              entity: sensor.vacuum_status
-              style:
-                top: 40%
-                left: 1%
-                color: '#ffffff'
-                transform: translate(0%,-50%)
-                pointer-events: none
-                font-family: Trebuchet MS
-                font-size: 80%
-                font-weight: bold
-                border-left-style: solid
-                border-color: '#3090C7'
-            - type: state-label
-              entity: sensor.vacuum_battery
-              style:
-                top: 50%
-                left: 1%
-                color: '#ffffff'
-                transform: translate(0%,-50%)
-                pointer-events: none
-                font-family: Trebuchet MS
-                font-size: 80%
-                font-weight: bold
-                border-left-style: solid
-                border-color: rgb(34, 154, 210)
-            - type: state-label
-              entity: sensor.vacuum_fan_speed
-              style:
-                top: 60%
-                left: 1%
-                color: '#ffffff'
-                transform: translate(0%,-50%)
-                pointer-events: none
-                font-family: Trebuchet MS
-                font-size: 80%
-                font-weight: bold
-                border-left-style: solid
-                border-color: rgb(34, 154, 210)
-            - type: state-label
-              entity: sensor.vacuum_cleaned_area
-              prefix: "Area:"
-              style:
-                top: 79%
-                left: 31%
-                color: '#84a6ba'
-                transform: translate(0%,-50%)
-                pointer-events: none
-                font-family: Trebuchet MS
-                font-size: 80%
-                font-weight: bold
-            - type: state-label
-              entity: sensor.vacuum_cleaning_time
-              prefix: "Time:"
-              style:
-                top: 79%
-                left: 51%
-                color: '#84a6ba'
-                transform: translate(0%,-50%)
-                pointer-events: none
-                font-family: Trebuchet MS
-                font-size: 80%
-                font-weight: bold
+        type: picture-entity
+        entity: sensor.airly_caqi_level
+      - show_state: true
+        show_name: true
+        entities:
+          - entity: binary_sensor.dark
+          - entity: binary_sensor.auto_lights
+        type: glance
+        title: Other
     icon: 'mdi:home'
     title: Home
   - cards:
-      - entity: media_player.tv
-        type: 'custom:mini-media-player'
-      - entity: media_player.spotify
+      - type: 'custom:mini-media-player'
+        entity: media_player.tv
+      - type: 'custom:mini-media-player'
+        entity: media_player.spotify
         icon: 'mdi:spotify'
-        type: 'custom:mini-media-player'
         artwork: cover
-      - entities:
+      - type: glance
+        entities:
           - entity: sensor.livingroom_humidity
           - entity: sensor.livingroom_temperature
-        type: glance
         title: Temperature
-      - entities:
-          - entity: switch.b3
-            tap_action:
+      - type: glance
+        entities:
+          - tap_action:
               action: toggle
-          - entity: switch.stereo
-            tap_action:
+            entity: switch.b3
+          - tap_action:
               action: toggle
+            entity: switch.stereo
         columns: 2
-        type: glance
         title: Switches
-      - entities:
-          - entity: light.rtv_led
-            tap_action:
+      - type: glance
+        entities:
+          - tap_action:
               action: toggle
-          - entity: light.tv_led
-            tap_action:
+            entity: light.rtv_led
+          - tap_action:
               action: toggle
-        type: glance
+            entity: light.tv_led
         title: Light
     icon: 'mdi:sofa'
     title: Living room
   - cards:
-      - entities:
-          - entity: light.bed_lamp
-            tap_action:
+      - type: glance
+        entities:
+          - tap_action:
               action: toggle
-          - entity: light.monitor_led
-            tap_action:
+            entity: light.bed_lamp
+          - tap_action:
               action: toggle
-          - entity: light.desk_led
-            tap_action:
+            entity: light.monitor_led
+          - tap_action:
               action: toggle
-        type: glance
+            entity: light.desk_led
         title: Lights
-      - entities:
+      - type: entities
+        entities:
           - binary_sensor.thinkpad
-        type: entities
-        title: THINKPAD status
         show_header_toggle: false
-      - entities:
+        title: THINKPAD status
+      - type: glance
+        entities:
           - entity: sensor.alarm_time
           - entity: input_number.alarm_hour
           - entity: input_number.alarm_minute
-        type: glance
-        title: Alarm
         show_header_toggle: false
-      - entities:
+        title: Alarm
+      - type: glance
+        entities:
           - entity: sensor.bedroom_temperature
           - entity: sensor.bedroom_humidity
-        type: glance
     icon: 'mdi:hotel'
     title: Bedroom
   - cards:
-      - entities:
-          - entity: switch.b3
-            tap_action:
+      - cards:
+          - cards:
+              - type: picture-elements
+                elements:
+                  - tap_action: call-service
+                    type: icon
+                    entity: vacuum.xiaomi_vacuum_cleaner
+                    icon: 'mdi:bell-ring'
+                    service: vacuum.locate
+                    style:
+                      left: 80%
+                      color: '#3090C7'
+                      top: 90%
+                  - tap_action: call-service
+                    type: icon
+                    entity: vacuum.xiaomi_vacuum_cleaner
+                    icon: 'mdi:crosshairs'
+                    service: vacuum.clean_spot
+                    style:
+                      left: 65%
+                      color: '#3090C7'
+                      top: 90%
+                  - tap_action: call-service
+                    type: icon
+                    entity: vacuum.xiaomi_vacuum_cleaner
+                    icon: 'mdi:home'
+                    service: vacuum.return_to_base
+                    style:
+                      left: 50%
+                      color: '#3090C7'
+                      top: 90%
+                  - tap_action: call-service
+                    type: icon
+                    entity: vacuum.xiaomi_vacuum_cleaner
+                    icon: 'mdi:stop'
+                    service: vacuum.stop
+                    style:
+                      left: 35%
+                      color: '#3090C7'
+                      top: 90%
+                  - tap_action: call-service
+                    type: icon
+                    entity: vacuum.xiaomi_vacuum_cleaner
+                    icon: 'mdi:play'
+                    service: vacuum.start
+                    style:
+                      left: 20%
+                      color: '#3090C7'
+                      top: 90%
+                  - style:
+                      font-weight: bold
+                      font-size: 90%
+                      font-family: Trebuchet MS
+                      background-color: '#3090C7'
+                      top: 10%
+                      border-color: 'rgb(34, 154, 210)'
+                      left: 1%
+                      pointer-events: none
+                      transform: 'translate(0%,-50%)'
+                      border-radius: 6px
+                      color: 'rgb(255, 255, 255)'
+                    type: state-label
+                    entity: sensor.vacuum_operation
+                  - style:
+                      font-weight: bold
+                      font-size: 90%
+                      right: 1%
+                      font-family: Trebuchet MS
+                      background-color: '#3090C7'
+                      top: 10%
+                      border-color: 'rgb(34, 154, 210)'
+                      pointer-events: none
+                      color: 'rgb(255, 255, 255)'
+                      border-radius: 6px
+                      transform: 'translate(0%,-50%)'
+                    type: state-label
+                    entity: sensor.vacuum_accessories
+                  - style:
+                      font-weight: bold
+                      font-size: 150%
+                      right: 38%
+                      font-family: Trebuchet MS
+                      background-color: '#cccccc'
+                      top: 14%
+                      border-color: 'rgb(34, 154, 210)'
+                      transform: 'translate(0%,-50%)'
+                      border-radius: 6px
+                      color: 'rgb(255, 255, 255)'
+                    type: state-label
+                    entity: vacuum.xiaomi_vacuum_cleaner
+                    tap_action: more-info
+                  - style:
+                      font-weight: bold
+                      font-size: 76%
+                      right: 1%
+                      font-family: Trebuchet MS
+                      border-right-style: solid
+                      top: 35%
+                      border-color: 'rgb(34, 154, 210)'
+                      pointer-events: none
+                      color: '#ffffff'
+                      transform: 'translate(0%,-50%)'
+                    type: state-label
+                    entity: sensor.vacuum_cleanmainbrush
+                  - style:
+                      font-weight: bold
+                      font-size: 76%
+                      right: 1%
+                      font-family: Trebuchet MS
+                      border-right-style: solid
+                      top: 45%
+                      border-color: 'rgb(34, 154, 210)'
+                      pointer-events: none
+                      color: '#ffffff'
+                      transform: 'translate(0%,-50%)'
+                    type: state-label
+                    entity: sensor.vacuum_cleansidebrush
+                  - style:
+                      font-weight: bold
+                      font-size: 76%
+                      right: 1%
+                      font-family: Trebuchet MS
+                      border-right-style: solid
+                      top: 55%
+                      border-color: 'rgb(34, 154, 210)'
+                      pointer-events: none
+                      color: '#ffffff'
+                      opacity: 0.8
+                      transform: 'translate(0%,-50%)'
+                    type: state-label
+                    entity: sensor.vacuum_cleanfilter
+                  - style:
+                      font-weight: bold
+                      font-size: 76%
+                      right: 1%
+                      font-family: Trebuchet MS
+                      border-right-style: solid
+                      top: 65%
+                      border-color: 'rgb(34, 154, 210)'
+                      pointer-events: none
+                      color: '#ffffff'
+                      transform: 'translate(0%,-50%)'
+                    type: state-label
+                    entity: sensor.vacuum_sensordirtyleft
+                  - style:
+                      font-weight: bold
+                      border-left-style: solid
+                      transform: 'translate(0%,-50%)'
+                      font-family: Trebuchet MS
+                      pointer-events: none
+                      top: 40%
+                      border-color: '#3090C7'
+                      left: 1%
+                      font-size: 80%
+                      color: '#ffffff'
+                    type: state-label
+                    entity: sensor.vacuum_status
+                  - style:
+                      font-weight: bold
+                      border-left-style: solid
+                      transform: 'translate(0%,-50%)'
+                      font-family: Trebuchet MS
+                      pointer-events: none
+                      top: 50%
+                      border-color: 'rgb(34, 154, 210)'
+                      left: 1%
+                      font-size: 80%
+                      color: '#ffffff'
+                    type: state-label
+                    entity: sensor.vacuum_battery
+                  - style:
+                      font-weight: bold
+                      border-left-style: solid
+                      transform: 'translate(0%,-50%)'
+                      font-family: Trebuchet MS
+                      pointer-events: none
+                      top: 60%
+                      border-color: 'rgb(34, 154, 210)'
+                      left: 1%
+                      font-size: 80%
+                      color: '#ffffff'
+                    type: state-label
+                    entity: sensor.vacuum_fan_speed
+                  - style:
+                      font-weight: bold
+                      font-size: 80%
+                      font-family: Trebuchet MS
+                      pointer-events: none
+                      top: 79%
+                      left: 31%
+                      transform: 'translate(0%,-50%)'
+                      color: '#84a6ba'
+                    prefix: 'Area:'
+                    entity: sensor.vacuum_cleaned_area
+                    type: state-label
+                  - style:
+                      font-weight: bold
+                      font-size: 80%
+                      font-family: Trebuchet MS
+                      pointer-events: none
+                      top: 79%
+                      left: 51%
+                      transform: 'translate(0%,-50%)'
+                      color: '#84a6ba'
+                    prefix: 'Time:'
+                    entity: sensor.vacuum_cleaning_time
+                    type: state-label
+                image: >-
+                  https://raw.githubusercontent.com/michalchecinski/homeassistant/master/www/images/vacuum.png
+                title: Vacuum
+              - cards:
+                  - name: Area
+                    graph: line
+                    entity: sensor.vacuum_cleaned_area
+                    detail: 1
+                    type: sensor
+                    hours_to_show: 24
+                  - name: Time
+                    graph: line
+                    entity: sensor.vacuum_cleaning_time
+                    detail: 1
+                    type: sensor
+                    hours_to_show: 24
+                type: horizontal-stack
+            type: 'custom:vertical-stack-in-card'
+        type: vertical-stack
+      - type: entities
+        entities:
+          - entity: automation.vacuum_finished
+            icon: 'mdi:robot-vacuum-variant'
+          - entity: automation.vacuum_finished_input_bool_to_off
+            icon: 'mdi:robot-vacuum-variant'
+          - entity: automation.vacuum_off
+            icon: 'mdi:robot-vacuum-variant'
+          - entity: automation.vacuum_on
+            icon: 'mdi:robot-vacuum-variant'
+          - entity: automation.vacuum_on_coming_home_vacation
+            icon: 'mdi:robot-vacuum-variant'
+          - entity: automation.vacuum_vacation_on
+            icon: 'mdi:robot-vacuum-variant'
+          - entity: input_boolean.vacuum_finished
+        show_header_toggle: false
+        title: Automations
+    icon: 'mdi:robot-vacuum-variant'
+    badges: []
+    title: Vacuum
+  - cards:
+      - type: glance
+        entities:
+          - tap_action:
               action: toggle
-          - entity: switch.stereo
-            tap_action:
+            entity: switch.b3
+          - tap_action:
               action: toggle
-        type: glance
+            entity: switch.stereo
         title: Switches
-      - entities:
-          - entity: light.bed_lamp
-            tap_action:
+      - type: glance
+        entities:
+          - tap_action:
               action: toggle
-          - entity: light.rtv_led
-            tap_action:
+            entity: light.bed_lamp
+          - tap_action:
               action: toggle
-        type: glance
+            entity: light.rtv_led
         title: Lights
     icon: 'mdi:flash'
     title: Power
   - cards:
-      - entities:
+      - type: entities
+        entities:
           - entity: input_boolean.guest_mode
           - entity: input_boolean.sleep
           - entity: input_boolean.vacation_mode
           - entity: input_boolean.romantic_dance_mode
           - entity: input_boolean.romantic_mode
-        type: entities
-        title: Manual input
         show_header_toggle: false
-      - entities:
-          - binary_sensor.needs_update
-          - binary_sensor.travis_status
-          - binary_sensor.newest_commit
-          - sensor.uptime
-        type: glance
+        title: Manual input
+      - type: glance
+        entities:
+          - entity: binary_sensor.needs_update
+          - entity: binary_sensor.travis_status
+          - entity: binary_sensor.newest_commit
+          - entity: sensor.uptime
+          - entity: binary_sensor.travis_branch_master
+          - entity: binary_sensor.travis_build_push
         title: Hass details
       - cards:
-          - entities:
+          - type: glance
+            entities:
               - entity: sensor.load_1m
                 icon: 'mdi:speedometer'
               - entity: sensor.load_5m
                 icon: 'mdi:speedometer'
               - entity: sensor.load_15m
                 icon: 'mdi:speedometer'
-            type: glance
             title: Server Load
           - cards:
               - name: Processor
-                detail: 1
-                entity: sensor.processor_use
                 graph: line
+                entity: sensor.processor_use
+                detail: 1
                 type: sensor
                 hours_to_show: 24
               - name: Memory
-                detail: 1
-                entity: sensor.memory_use_percent
                 graph: line
+                entity: sensor.memory_use_percent
+                detail: 1
                 type: sensor
                 hours_to_show: 24
               - name: Temperature
-                detail: 1
-                entity: sensor.raspberry_cpu_temp
                 graph: line
+                entity: sensor.raspberry_cpu_temp
+                detail: 1
                 type: sensor
                 hours_to_show: 24
             type: horizontal-stack
         type: vertical-stack
-      - entities:
-          - entity: sensor.tracker_count
-            name: Number of Network Devices
+      - type: entities
+        entities:
+          - name: Number of Network Devices
+            entity: sensor.tracker_count
             icon: 'mdi:cellphone-link'
           - entity: sensor.lights_count
             icon: 'mdi:lightbulb'
@@ -398,47 +442,47 @@ views:
             icon: 'mdi:gauge'
           - entity: sensor.zwave_count
             icon: 'mdi:z-wave'
-        type: entities
-        title: Home Assistant Stats
         show_header_toggle: false
-      - entities:
+        title: Home Assistant Stats
+      - type: entities
+        entities:
           - entity: weblink.wemos_bedroom_desk
           - entity: weblink.wemos_livingroom_led
-        type: entities
-        title: TASMOTA links
         show_header_toggle: false
+        title: TASMOTA links
     icon: 'mdi:home-assistant'
     title: Config
   - cards:
-      - entities:
-          - entity: device_tracker.20dfb9091a1f
-            name: Google Home
+      - type: entities
+        entities:
+          - name: Google Home
+            entity: device_tracker.20dfb9091a1f
             icon: 'mdi:google-home'
-        type: entities
-        title: Home Automation
         show_header_toggle: false
-      - entities:
-          - entity: device_tracker.2c3ae84e4d5a
-            name: IR Stereo
+        title: Home Automation
+      - type: entities
+        entities:
+          - name: IR Stereo
+            entity: device_tracker.2c3ae84e4d5a
           - entity: device_tracker.cc_50_e3_4b_a3_13
           - entity: device_tracker.b4_e6_2d_45_17_67
-        type: entities
+        show_header_toggle: false
         title: Wemos
-        show_header_toggle: false
-      - entities:
-          - entity: device_tracker.thinkpad
-            name: Thinkpad
+      - type: entities
+        entities:
+          - name: Thinkpad
+            entity: device_tracker.thinkpad
             icon: 'mdi:windows'
-          - entity: device_tracker.64a2f9f18b04
-            name: Michal OnePlus Wifi
-        type: entities
-        title: Wireless Devices
+          - name: Michal OnePlus Wifi
+            entity: device_tracker.64a2f9f18b04
         show_header_toggle: false
+        title: Wireless Devices
     icon: 'mdi:power-plug'
-    title: Connected Devices
     badges: []
+    title: Connected Devices
   - cards:
-      - entities:
+      - type: entities
+        entities:
           - entity: automation.vacation_off_notify
             icon: 'mdi:sunglasses'
           - entity: automation.vacation_on_notify
@@ -449,16 +493,16 @@ views:
             icon: 'mdi:sunglasses'
           - entity: automation.calendar_to_lublin_set_vacation_on
             icon: 'mdi:sunglasses'
-        type: entities
-        title: Vacation Mode
         show_header_toggle: false
-      - entities:
+        title: Vacation Mode
+      - type: entities
+        entities:
           - entity: automation.iron_turned_off
           - entity: automation.iron_turned_on
-        type: entities
-        title: Iron
         show_header_toggle: false
-      - entities:
+        title: Iron
+      - type: entities
+        entities:
           - entity: automation.livingroom_stereo_max_volume_when_on
             icon: 'mdi:speaker'
           - entity: >-
@@ -473,19 +517,19 @@ views:
           - entity: >-
               automation.livingroom_stereo_turn_on_when_spotify_output_set_to_stereo
             icon: 'mdi:speaker'
-        type: entities
-        title: Stereo
         show_header_toggle: false
+        title: Stereo
       - cards:
-          - entities:
+          - type: entities
+            entities:
               - entity: automation.michal_status_at_computer
               - entity: automation.michal_status_not_at_computer
               - entity: automation.michal_status_not_tv
               - entity: automation.michal_status_tv
-            type: entities
-            title: Michal status
             show_header_toggle: false
-          - entities:
+            title: Michal status
+          - type: entities
+            entities:
               - entity: automation.presence_extended_home_heading_home
                 icon: 'mdi:map-marker'
               - entity: automation.presence_heading_home
@@ -496,21 +540,21 @@ views:
                 icon: 'mdi:map-marker'
               - entity: automation.presence_automations_away_home
                 icon: 'mdi:map-marker'
-            type: entities
-            title: Presence
             show_header_toggle: false
+            title: Presence
         type: vertical-stack
-      - entities:
+      - type: entities
+        entities:
           - entity: automation.romantic_turn_off
             icon: 'mdi:heart'
           - entity: automation.romantic_turn_on
             icon: 'mdi:heart'
           - entity: automation.romantic_dance_turn_on
             icon: 'mdi:heart'
-        type: entities
-        title: Romantic
         show_header_toggle: false
-      - entities:
+        title: Romantic
+      - type: entities
+        entities:
           - entity: automation.sleep_alarm_goes_off_guests
             icon: 'mdi:hotel'
           - entity: automation.sleep_alarm_goes_off_no_guests
@@ -523,10 +567,10 @@ views:
             icon: 'mdi:hotel'
           - entity: automation.sleep_time_to_wake_up
             icon: 'mdi:hotel'
-        type: entities
-        title: Sleep
         show_header_toggle: false
-      - entities:
+        title: Sleep
+      - type: entities
+        entities:
           - entity: automation.vacuum_finished
             icon: 'mdi:robot-vacuum-variant'
           - entity: automation.vacuum_finished_input_bool_to_off
@@ -540,20 +584,20 @@ views:
           - entity: automation.vacuum_vacation_on
             icon: 'mdi:robot-vacuum-variant'
           - entity: input_boolean.vacuum_finished
-        type: entities
-        title: Vacuum
         show_header_toggle: false
-      - entities:
+        title: Vacuum
+      - type: entities
+        entities:
           - entity: automation.theme_ha_started
             icon: 'mdi:theme-light-dark'
           - entity: automation.theme_set_dark_theme_for_night
             icon: 'mdi:theme-light-dark'
           - entity: automation.theme_set_default_theme_for_day
             icon: 'mdi:theme-light-dark'
-        type: entities
-        title: Themes
         show_header_toggle: false
-      - entities:
+        title: Themes
+      - type: entities
+        entities:
           - entity: automation.temperature_bathroom_shower
             icon: 'mdi:thermometer'
           - entity: >-
@@ -563,10 +607,10 @@ views:
             icon: 'mdi:thermometer'
           - entity: automation.temperature_outside_notification_significant_down
             icon: 'mdi:thermometer'
-        type: entities
-        title: Temperature
         show_header_toggle: false
-      - entities:
+        title: Temperature
+      - type: entities
+        entities:
           - entity: automation.notification_ha_shutdown
             icon: 'mdi:message'
           - entity: automation.notification_ha_started
@@ -577,37 +621,37 @@ views:
             icon: 'mdi:message'
           - entity: automation.notification_leaving_home
             icon: 'mdi:message'
-        type: entities
-        title: Notifications
         show_header_toggle: false
-      - entities:
+        title: Notifications
+      - type: entities
+        entities:
           - entity: automation.lights_turn_on_when_entering_dark_house_after_sunset
             icon: 'mdi:lightbulb'
           - entity: automation.lights_turn_off_desk_leds_when_computer_off
           - entity: >-
               automation.lights_turn_on_desk_leds_when_computer_on_and_after_sunset
           - entity: automation.lights_turn_on_tv_led_when_tv_on_and_after_sunset
-        type: entities
-        title: Lights
         show_header_toggle: false
-      - entities:
+        title: Lights
+      - type: entities
+        entities:
           - entity: automation.audio_notification_welcome_home
             icon: 'mdi:volume-high'
           - entity: automation.audio_notification_sleep
-        type: entities
-        title: Audio notification
         show_header_toggle: false
-      - entities:
+        title: Audio notification
+      - type: entities
+        entities:
           - entity: automation.ha_pull_config_when_travis_build_succeded
             icon: 'mdi:github-circle'
           - entity: automation.phone_resume_music_after
             icon: 'mdi:phone'
           - entity: automation.phone_ringing_pause_music_playback
             icon: 'mdi:phone'
-        type: entities
-        title: Else
         show_header_toggle: false
-      - entities:
+        title: Else
+      - type: entities
+        entities:
           - entity: automation.failure_at_home_for_24_hours
             icon: 'mdi:message-alert'
           - entity: automation.failure_out_of_home_for_14_hours
@@ -616,36 +660,40 @@ views:
             icon: 'mdi:message-alert'
           - entity: automation.failure_vacuum_not_run_in_2_days
             icon: 'mdi:message-alert'
-        type: entities
-        title: Failure
         show_header_toggle: false
-      - entities:
+        title: Failure
+      - type: entities
+        entities:
           - entity: automation.notification_security_failed_login_attempt
             icon: 'mdi:server-security'
           - entity: automation.notification_security_if_new_devices
             icon: 'mdi:server-security'
-        type: entities
-        title: Security
         show_header_toggle: false
-      - entities:
+        title: Security
+      - type: entities
+        entities:
           - entity: automation.work_time_daily_save
           - entity: automation.work_time_daily_send
           - entity: automation.work_time_monthly_send
           - entity: automation.work_time_weekly_send
-        type: entities
-        title: Work time
         show_header_toggle: true
+        title: Work time
     icon: 'mdi:auto-fix'
     title: Automations
   - cards:
-      - entities:
+      - type: entities
+        entities:
           - entity: sensor.michal_work_today
           - entity: sensor.michal_work_yesterday
           - entity: input_number.michal_work_last_day
           - entity: input_number.michal_work_last_week
           - entity: input_number.michal_work_last_month
-        type: entities
     icon: 'mdi:briefcase'
-    title: Work time
     badges: []
+    title: Work time
+resources:
+  - type: module
+    url: /local/mini-media-player-bundle.js?v=1.0.3
+  - type: js
+    url: /local/vertical-stack-in-card.js?v=0.1.3
 title: My Lovely Home Automation

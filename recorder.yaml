@@ -22,6 +22,7 @@ exclude:
     - proximity
     - input_number
     - media_player
+    - vacuum
   entities:
     - sun.sun
     - media_player.spotify
