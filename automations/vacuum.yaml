@@ -21,8 +21,8 @@
         state: 'off'
       # vacuum not working already
       - condition: state
-        entity_id: script.vacuum_start
-        state: 'off'
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        state: 'docked'
       - condition: state
         entity_id: input_boolean.vacation_mode
         state: 'off'
