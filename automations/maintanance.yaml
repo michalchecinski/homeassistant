@@ -21,22 +21,3 @@
       data:
         message: "HA pulled config"
     - service: homeassistant.restart
-
-# # Restart mopidy service every hour when it's no playing
-#   - id: restart_mopidy
-#     alias: Mopidy - Restart mopidy service
-#     trigger:
-#     - platform: time
-#       minutes: 00
-#       seconds: 00
-#     condition:
-#       condition: or
-#       conditions:
-#       - condition: state
-#         entity_id: 'media_player.salon'
-#         state: 'off'
-#       - condition: state
-#         entity_id: 'media_player.salon'
-#         state: 'paused'
-#     action:
-#     - service: shell_command.restart_mopidy
