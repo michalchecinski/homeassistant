@@ -1,0 +1,36 @@
+#####################################
+#  Notification vacuum automations  #
+#####################################
+
+- id: vacuum_off_notification
+  alias: Vacuum - notification - off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacuum_finished
+      from: 'off'
+      to: 'on'
+  action:
+    - service: notify.michal_html
+      data:
+        message: "Odkurzacz zakończył odkurzanie"
+
+- id: vacuum_on_notification
+  alias: Vacuum - notification - on
+  trigger:
+    - platform: state
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      from: 'docked'
+      to: 'cleaning'
+  condition:
+    condition: and
+    conditions:
+      # - condition: state
+      #   entity_id: input_boolean.michal_home
+      #   state: 'off'
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
+  action:
+    - service: notify.michal_html
+      data:
+        message: "Odkurzacz wystartował"
