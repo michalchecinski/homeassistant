@@ -38,32 +38,11 @@
             state: 'off'
       - condition: time
         after: '07:40:00'
-        before: '20:00:00'
+        before: '21:00:00'
   action:
     - service: vacuum.start
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
-
-- id: vacuum_on_notification
-  alias: Vacuum - notification - on
-  trigger:
-    - platform: state
-      entity_id: vacuum.xiaomi_vacuum_cleaner
-      from: 'docked'
-      to: 'cleaning'
-  condition:
-    condition: and
-    conditions:
-      # - condition: state
-      #   entity_id: input_boolean.michal_home
-      #   state: 'off'
-      - condition: state
-        entity_id: input_boolean.vacation_mode
-        state: 'off'
-  action:
-    - service: notify.michal_html
-      data:
-        message: "Odkurzacz wystartował"
 
 - id: vacuum_vacation_on
   alias: Vacuum - vacation on
@@ -135,8 +114,9 @@
       entity_id: input_boolean.michal_home
       to: 'on'
   condition:
-    - condition: template
-      value_template: "{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.status == 'Cleaning' }}"
+    - platform: state
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      state: 'cleaning'
   action:
     - service: notify.michal_html
       data:
@@ -171,9 +151,6 @@
     - service: input_boolean.turn_on
       data_template:
         entity_id: input_boolean.vacuum_finished
-    - service: notify.michal_html
-      data:
-        message: "Odkurzacz zakończył odkurzanie"
 
 - id: vacuum_finished_off
   alias: Vacuum - finished input bool to off
@@ -184,3 +161,37 @@
     - service: input_boolean.turn_off
       data_template:
         entity_id: input_boolean.vacuum_finished
+
+
+- id: vacuum_off_notification
+  alias: Vacuum - notification - off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacuum_finished
+      from: 'off'
+      to: 'on'
+  action:
+    - service: notify.michal_html
+      data:
+        message: "Odkurzacz zakończył odkurzanie"
+
+- id: vacuum_on_notification
+  alias: Vacuum - notification - on
+  trigger:
+    - platform: state
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      from: 'docked'
+      to: 'cleaning'
+  condition:
+    condition: and
+    conditions:
+      # - condition: state
+      #   entity_id: input_boolean.michal_home
+      #   state: 'off'
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
+  action:
+    - service: notify.michal_html
+      data:
+        message: "Odkurzacz wystartował"
