@@ -1,3 +1,7 @@
+##############################
+#  Notification temperature  #
+##############################
+
 - id: outside_temp_down_significantly
   alias: Temperature outside notification - significant down
   trigger:

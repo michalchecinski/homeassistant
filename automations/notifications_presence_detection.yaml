@@ -1,3 +1,7 @@
+#####################################
+#  Notification presence detection  #
+#####################################
+
 # Notify when come home
 - id: hotification_coming_home
   alias: Notification - coming home

@@ -1,3 +1,7 @@
+#########################
+#  Tasmota automations  #
+#########################
+
 - alias: "Tasmota - sync state on HA start-up"
   trigger:
     platform: homeassistant

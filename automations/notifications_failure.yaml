@@ -1,3 +1,7 @@
+######################################
+#  Notification failure automations  #
+######################################
+
 - id: failure_out_home
   alias: Failure - out of home for 14 hours
   trigger:

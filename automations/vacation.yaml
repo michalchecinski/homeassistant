@@ -49,7 +49,7 @@
 
 
 - id: vacation_on_notification
-  alias: Vacation - on notify
+  alias: Vacation - notification - on
   trigger:
     - platform: state
       entity_id: input_boolean.vacation_mode
@@ -61,7 +61,7 @@
         message: "HA wyjechałeś na wakacje"
 
 - id: vacation_off_notification
-  alias: Vacation - off notify
+  alias: Vacation - notification - off
   trigger:
     - platform: state
       entity_id: input_boolean.vacation_mode

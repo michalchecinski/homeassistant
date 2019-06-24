@@ -1,3 +1,7 @@
+########################
+#  Themes automations  #
+########################
+
 # Set dark theme for the night
 - id: theme_night
   alias: 'Theme - set dark theme for night'

@@ -1,3 +1,7 @@
+########################################
+#  Michal status dropdown automations  #
+########################################
+
 - id: michal_status_computer
   alias: Michal status - at computer
   trigger:

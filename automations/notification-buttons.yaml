@@ -1,3 +1,7 @@
+######################################
+#  Notification buttons automations  #
+######################################
+
 - alias: Vacuum - on via notification
   trigger:
   - event_data:
