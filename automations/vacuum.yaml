@@ -114,7 +114,7 @@
       entity_id: input_boolean.michal_home
       to: 'on'
   condition:
-    - platform: state
+    - condition: state
       entity_id: vacuum.xiaomi_vacuum_cleaner
       state: 'cleaning'
   action:
