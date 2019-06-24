@@ -6,12 +6,6 @@
 - id: away
   alias: Presence - turn off boolean when leaving home
   trigger:
-  # - platform: state
-  #   entity_id: device_tracker.oneplus
-  #   to: 'not_home'
-  - platform: state
-    entity_id: group.michal_home
-    to: 'not_home'
   - platform: state
     entity_id: person.michal
     to: 'not_home'
