@@ -26,7 +26,7 @@
       friendly_name: "Needs update"
       value_template: >-
         {% if is_state('binary_sensor.newest_commit', 'off')
-         and is_state('binary_sensor.travis_status', 'on') 
+         and is_state('binary_sensor.travis_status', 'on')
          and is_state('binary_sensor.travis_build_push', 'on')
          and is_state('binary_sensor.travis_branch_master', 'on') %}
           true
