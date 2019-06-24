@@ -15,11 +15,11 @@
   - platform: state
     entity_id: person.michal
     to: 'not_home'
-  - platform: state
-    entity_id: device_tracker.oneplus
-    to: 'not_home'
-    for:
-      minutes: 15
+  # - platform: state
+  #   entity_id: device_tracker.oneplus
+  #   to: 'not_home'
+  #   for:
+  #     minutes: 15
   - platform: state
     entity_id: person.michal
     to: 'extended home'
@@ -38,14 +38,6 @@
       - condition: state
         entity_id: input_boolean.sleep
         state: 'off'
-      # - condition: or
-      #   conditions:
-      #     - condition: state
-      #       entity_id: input_boolean.sleep
-      #       state: 'off'
-      #     - condition: time
-      #       before: '7:30:00'
-      #       after: '21:00:00'
   action:
     - service: input_boolean.turn_off
       data:
@@ -68,13 +60,6 @@
 - id: at_home
   alias: Presence - turn on boolean when at home
   trigger:
-    # - platform: state
-    #   entity_id: device_tracker.google_maps_102169435937546415265
-    #   to: 'home'
-    #   for: '00:02:00'
-    # - platform: state
-    #   entity_id: device_tracker.oneplus
-    #   to: 'home'
     - event_data:
         action: iam_home
       event_type: html5_notification.clicked
@@ -87,7 +72,7 @@
       to: 'home'
     - platform: state
       entity_id: device_tracker.oneplus
-      to: 'not_home'
+      to: 'home'
   action:
     - service: input_boolean.turn_on
       data:
@@ -114,10 +99,6 @@
       # Heading home
       - condition: template
         value_template: '{{ states.proximity.home.attributes.dir_of_travel == "towards" }}'
-      # # Michal away home
-      # - condition: state
-      #   entity_id: input_select.michal_status
-      #   state: 'away'
   action:
     - service: input_select.select_option
       data:
@@ -130,7 +111,7 @@
   alias: Presence - extended home - heading home
   trigger:
     - platform: state
-      entity_id: device_tracker.google_maps_102169435937546415265
+      entity_id: person.michal
       from: 'not_home'
       to: 'extended home'
   condition:
