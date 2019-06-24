@@ -1,11 +1,11 @@
-michal_home:
-  control: hidden
-  name: michal home
-  view: no
-  entities:
-    - device_tracker.google_maps_102169435937546415265
-    - device_tracker.oneplus
-    - device_tracker.64a2f9f18b04
+# michal_home:
+#   control: hidden
+#   name: michal home
+#   view: no
+#   entities:
+#     - device_tracker.google_maps_102169435937546415265
+#     - device_tracker.oneplus
+#     - device_tracker.64a2f9f18b04
 
 bedroom_lights:
   name: bedroom lights
