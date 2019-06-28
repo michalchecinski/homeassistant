@@ -234,3 +234,70 @@ vacuum_stop:
     - service: vacuum.return_to_base
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
+
+# Vacuum rooms
+
+vacuum_kitchen:
+  alias: "Odkurz kuchnię"
+  sequence:
+    - service: vacuum.xiaomi_clean_zone
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        repeats: 1
+        zone: [[24600, 23000, 27600, 25000]]
+
+vacuum_hall:
+  alias: "Odkurz przedpokój"
+  sequence:
+    - service: vacuum.xiaomi_clean_zone
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        repeats: 1
+        zone: [[27600, 22400, 29500, 26100]]
+
+vacuum_livingroom:
+  alias: "Odkurz salon"
+  sequence:
+    - service: vacuum.xiaomi_clean_zone
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        repeats: 1
+        zone: [[22600, 25000, 27300, 28800]]
+
+vacuum_bathroom:
+  alias: "Odkurz łazienkę"
+  sequence:
+    - service: vacuum.xiaomi_clean_zone
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        repeats: 1
+        zone: [[27400, 26100, 295000, 27900]]
+
+vacuum_bedroom:
+  alias: "Odkurz sypialnię"
+  sequence:
+    - service: vacuum.xiaomi_clean_zone
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        repeats: 1
+        zone: [[23900, 19400, 28700, 22300]]
+
+vacuum_room:
+    alias: "Odkurz!"
+    sequence:
+      - service: script.turn_on
+        data_template:
+          entity_id: >
+            {% if is_state("input_select.vacuum_room_select", "Kuchnia") %}
+              script.vacuum_kitchen
+            {% elif is_state("input_select.vacuum_room_select", "Salon") %}
+              script.vacuum_living_room
+            {% elif is_state("input_select.vacuum_room_select", "Przedpokój") %}
+              script.vacuum_hall
+            {% endif %}
+            {% elif is_state("input_select.vacuum_room_select", "Sypialnia") %}
+              script.vacuum_bedroom
+            {% endif %}
+            {% elif is_state("input_select.vacuum_room_select", "Łazienka") %}
+              script.vacuum_bathroom
+            {% endif %}

@@ -6,3 +6,12 @@ michal_status:
     - at home
     - away
     - near home
+
+vacuum_room_select:
+  name: Wybierz pokój do odkurzania
+  options:
+    - Kuchnia
+    - Salon
+    - Sypialnia
+    - Przedpokój
+    - Łazienka
