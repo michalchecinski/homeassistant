@@ -294,10 +294,8 @@ vacuum_room:
               script.vacuum_living_room
             {% elif is_state("input_select.vacuum_room_select", "Przedpokój") %}
               script.vacuum_hall
-            {% endif %}
             {% elif is_state("input_select.vacuum_room_select", "Sypialnia") %}
               script.vacuum_bedroom
-            {% endif %}
             {% elif is_state("input_select.vacuum_room_select", "Łazienka") %}
               script.vacuum_bathroom
             {% endif %}
