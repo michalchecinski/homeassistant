@@ -177,17 +177,15 @@
   action:
     - service: script.turn_on
       data_template:
-        entity_id: >
-          {% if trigger.event.data.room == "kitchen" %}
+        entity_id: >-
+          {% if trigger.event.data.room == 'kitchen' %}
             script.vacuum_kitchen
           {% elif trigger.event.data.room == "livingroom" %}
             script.vacuum_living_room
           {% elif trigger.event.data.room == "hall" %}
             script.vacuum_hall
-          {% endif %}
           {% elif trigger.event.data.room == "bedroom" %}
             script.vacuum_bedroom
-          {% endif %}
           {% elif trigger.event.data.room == "bathroom" %}
             script.vacuum_bathroom
           {% endif %}
