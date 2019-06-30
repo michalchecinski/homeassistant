@@ -30,16 +30,12 @@
       - condition: state
         entity_id: input_boolean.vacation_mode
         state: 'off'
+      # - condition: state
+      #   entity_id: 'binary_sensor.vacuum_day'
+      #   state: 'on'
       - condition: state
-        entity_id: 'binary_sensor.vacuum_day'
-        state: 'on'
-      - condition: or
-        conditions:
-          - condition: template
-            value_template: "{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.clean_start.strftime('%Y-%m-%d') != now().strftime('%Y-%m-%d') }}"
-          - condition: state
-            entity_id: input_boolean.vacuum_finished
-            state: 'off'
+        entity_id: input_boolean.vacuum_finished
+        state: 'off'
       - condition: time
         after: '07:40:00'
         before: '21:00:00'
@@ -182,7 +178,11 @@
             script.vacuum_kitchen
           {% elif trigger.event.data.room == "livingroom" %}
             script.vacuum_living_room
-          {% elif trigger.event.data.room == "hall" %}
+          {% elif trigger.event.data.room == "living room" %}
+            script.vacuum_living_room
+          {% elif trigger.event.data.room == "Hall" %}
+            script.vacuum_hall
+          {% elif trigger.event.data.room == "hallway" %}
             script.vacuum_hall
           {% elif trigger.event.data.room == "bedroom" %}
             script.vacuum_bedroom
