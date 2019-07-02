@@ -34,3 +34,43 @@
     - service: notify.michal_html
       data:
         message: "Odkurzacz wystartował"
+
+
+- id: vacuum_empty_dustbin
+  alias: Vacuum - notification audio - empty dustbin
+  trigger:
+    - platform: state
+      entity_id: input_boolean.michal_home
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 10
+    - platform: state
+      entity_id: input_boolean.vacuum_finished
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.vacuum_finished
+        state: 'on'
+      - condition: time
+        weekday:
+          - sat
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on'
+  action:
+    - service: vacuum.send_command
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        command: app_goto_target
+        params: [24800, 23800]
+    - delay: '00:01:15'
+    - service: script.turn_on
+      entity_id: script.say
+      data:
+        variables:
+          volume: '1'
+          what: 'Czas wypróżnić odkurzacz'
