@@ -189,3 +189,19 @@
           {% elif trigger.event.data.room == "bathroom" %}
             script.vacuum_bathroom
           {% endif %}
+
+- id: vacuum_mop_ifttt_action
+  alias: Vacuum - mop ifttt action
+  trigger:
+    platform: event
+    event_type: ifttt_webhook_received
+    event_data:
+      action: vacuum_mop
+  action:
+    - service: vacuum.set_fan_speed
+      data_template:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: 105
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
