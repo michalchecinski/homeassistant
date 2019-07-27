@@ -299,3 +299,12 @@ vacuum_room:
             {% elif is_state("input_select.vacuum_room_select", "Łazienka") %}
               script.vacuum_bathroom
             {% endif %}
+
+vacuum_goto_bin:
+    alias: "Jedź pod śmietnik!"
+    sequence:
+      - service: vacuum.send_command
+        data:
+          entity_id: vacuum.xiaomi_vacuum_cleaner
+          command: app_goto_target
+          params: [24800, 23800]

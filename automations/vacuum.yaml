@@ -222,6 +222,8 @@
   condition:
     condition: and
     conditions:
+      - condition: template
+        value_template: "{{ states.automation.vacuum_notification_audio_empty_dustbin.attributes.last_triggered.strftime('%Y-%m-%d') != now().strftime('%Y-%m-%d') }}"
       - condition: state
         entity_id: input_boolean.vacuum_finished
         state: 'on'
@@ -231,12 +233,16 @@
       - condition: state
         entity_id: input_boolean.michal_home
         state: 'on'
+      - condition: or
+        conditions:
+          - condition: state
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+            state: 'idle'
+          - condition: state
+            entity_id: vacuum.xiaomi_vacuum_cleaner
+            state: 'docked'
   action:
-    - service: vacuum.send_command
-      data:
-        entity_id: vacuum.xiaomi_vacuum_cleaner
-        command: app_goto_target
-        params: [24800, 23800]
+    - service: script.vacuum_goto_bin
     - delay: '00:01:15'
     - service: script.turn_on
       entity_id: script.say
