@@ -1,8 +1,0 @@
-  - platform: mqtt
-    state_topic: "THINKPAD/Power/BatteryLifePercent"
-    name: "Thinkpad battery life"
-    unit_of_measurement: '%'
-
-  - platform: mqtt
-    state_topic: "THINKPAD/Power/BatteryChargeStatus"
-    name: "Thinkpad battery charge status"

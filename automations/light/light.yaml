@@ -12,7 +12,7 @@
       to: 'on'
   condition:
     - condition: state
-      entity_id: binary_sensor.dark
+      entity_id: binary_sensor.auto_lights
       state: 'on'
   action:
     - service: homeassistant.turn_on

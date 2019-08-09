@@ -6,13 +6,13 @@
       entity_id: media_player.tv
       to: 'playing'
     - platform: state
-      entity_id: binary_sensor.dark
+      entity_id: binary_sensor.auto_lights
       to: 'on'
   condition:
     condition: and
     conditions:
       - condition: state
-        entity_id: binary_sensor.dark
+        entity_id: binary_sensor.auto_lights
         state: 'on'
       - condition: state
         entity_id: media_player.tv

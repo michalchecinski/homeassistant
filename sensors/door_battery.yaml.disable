@@ -1,5 +1,0 @@
-  - platform: mqtt
-    state_topic: "hallway/door/battery"
-    name: "Door battery"
-    unit_of_measurement: "mV"
-    icon: mdi:battery-80

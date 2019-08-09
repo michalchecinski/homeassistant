@@ -83,17 +83,6 @@ notify:
     vapid_pub_key: !secret vapid_pub_key
     vapid_prv_key: !secret vapid_prv_key
     vapid_email: !secret vapid_email
-  - name: gmail_notification
-    platform: smtp
-    server: smtp.gmail.com
-    port: 587
-    timeout: 15
-    sender: !secret gmaps_user
-    encryption: starttls
-    username: !secret gmaps_user
-    password: !secret gmaps_password
-    recipient: !secret michal_email
-    sender_name: My Home Assistant
 
 # Text to speech
 tts:
@@ -123,10 +112,6 @@ ifttt:
   key: !secret ifttt_key
 
 media_player:
-  - platform: spotify
-    client_id: !secret spotify_client
-    client_secret: !secret spotify_secret
-
   - platform: webostv
     host: 192.168.0.30
     name: TV
@@ -152,8 +137,6 @@ script: !include scripts.yaml
 zone: !include zones.yaml
 shell_command: !include shell_commands.yaml
 scene: !include scenes.yaml
-rest_command: !include rest_commands.yaml
-weblink: !include weblink.yaml
 climate: !include climate.yaml
 
 # input

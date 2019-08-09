@@ -1,4 +1,0 @@
-- platform: waqi
-  token: !secret air_token
-  locations:
-    - Warsaw
