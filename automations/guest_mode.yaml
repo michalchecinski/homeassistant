@@ -16,7 +16,7 @@
         entity_id: input_boolean.michal_home
         state: 'on'
       - condition: state
-        entity_id: calendar.ola
+        entity_id: calendar.ola_michal
         state: 'on'
   action:
     - service: homeassistant.turn_on
@@ -26,10 +26,6 @@
 - id: ola_guest_off
   alias: Come back from Ola - set guest mode off
   trigger:
-    # - platform: state
-    #   entity_id: calendar.ola
-    #   from: 'on'
-    #   to: 'off'
     - platform: state
       entity_id: input_boolean.michal_home
       from: 'off'
@@ -41,7 +37,7 @@
         entity_id: input_boolean.michal_home
         state: 'on'
       - condition: state
-        entity_id: calendar.ola
+        entity_id: calendar.ola_michal
         state: 'off'
       - condition: state
         entity_id: input_boolean.guest_mode
