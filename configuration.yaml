@@ -99,6 +99,7 @@ device_tracker:
     new_device_defaults:
       track_new_devices: false
   - platform: upc_connect
+    password: !secret upc_passwd
     consider_home: 30
     interval_seconds: 10
     new_device_defaults:
