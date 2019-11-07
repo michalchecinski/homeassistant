@@ -8,6 +8,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v1
+
+      - name: Copy secrets
+        run: cp travis_secrets.yaml secrets.yaml
+
       - name: Home Assistant Configuration Check
         uses: ludeeus/action-ha-config-check@0.0.1
         env:
