@@ -57,38 +57,6 @@
     condition: and
     conditions:
       - condition: state
-        entity_id: input_boolean.guest_mode
-        state: 'off'
-      - condition: state
-        entity_id: input_boolean.michal_home
-        state: 'on'
-  action:
-    - service: light.turn_on
-      data:
-        entity_id: group.bedroom_lights
-    - delay: '00:00:10'
-    - service: input_boolean.turn_off
-      data:
-        entity_id: input_boolean.sleep_alarm
-    - delay: '00:10:00'
-    - service: light.turn_off
-      data:
-        entity_id: group.bedroom_lights
-
-# Alarm is ringing - guest on
-- id: alarm_on_guests
-  alias: Sleep - alarm goes off guests
-  trigger:
-    - platform: state
-      entity_id: input_boolean.sleep_alarm
-      to: 'on'
-  condition:
-    condition: and
-    conditions:
-      - condition: state
-        entity_id: input_boolean.guest_mode
-        state: 'on'
-      - condition: state
         entity_id: input_boolean.michal_home
         state: 'on'
   action:
