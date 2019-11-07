@@ -10,3 +10,5 @@ jobs:
         uses: actions/checkout@v1
       - name: Home Assistant Configuration Check
         uses: ludeeus/action-ha-config-check@0.0.1
+        env:
+          ACTION_VERSION: STABLE
