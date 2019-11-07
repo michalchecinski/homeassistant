@@ -1,3 +1,0 @@
-  - platform: mqtt
-    state_topic: "bathroom/leak"
-    name: "Bathroom leak"

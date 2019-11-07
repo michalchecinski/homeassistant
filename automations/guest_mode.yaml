@@ -18,6 +18,8 @@
       - condition: state
         entity_id: calendar.ola_michal
         state: 'on'
+      - condition: template
+        value_template: '{{ states.calendar.ola_michal.attributes.all_day != true }}'
   action:
     - service: homeassistant.turn_on
       data:
@@ -36,9 +38,13 @@
       - condition: state
         entity_id: input_boolean.michal_home
         state: 'on'
-      - condition: state
-        entity_id: calendar.ola_michal
-        state: 'off'
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: calendar.ola_michal
+          state: 'off'
+        - condition: template
+          value_template: '{{ states.calendar.ola_michal.attributes.all_day == true }}'
       - condition: state
         entity_id: input_boolean.guest_mode
         state: 'on'
