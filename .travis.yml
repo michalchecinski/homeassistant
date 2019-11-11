@@ -6,6 +6,7 @@ before_install:
   - mv travis_secrets.yaml secrets.yaml
 install:
   - pip3 install homeassistant
+  - pip3 install hass-nabucasa
   # - pip install yamllint
 script:
   # - yamllint .
