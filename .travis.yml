@@ -4,7 +4,7 @@ python:
 before_install:
   - mv travis_secrets.yaml secrets.yaml
 install:
-  - pip3 install homeassistant
+  - pip3 install homeassistant -U
   # - pip install yamllint
 script:
   # - yamllint .
