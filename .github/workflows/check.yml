@@ -12,7 +12,8 @@ jobs:
       - name: Copy secrets
         run: cp travis_secrets.yaml secrets.yaml
 
-      - name: Home Assistant Configuration Check
-        uses: ludeeus/action-ha-config-check@0.0.1
-        env:
-          ACTION_VERSION: STABLE
+      - name: Install
+        run: pip3 install homeassistant
+
+      - name: Check Config
+        run: hass -c . --script check_config --info all
