@@ -1,13 +1,15 @@
 language: python
+cache: pip
 python:
   - "3.5"
 before_install:
   - mv travis_secrets.yaml secrets.yaml
 install:
-  - pip3 install --pre --upgrade homeassistant
+  - pip3 install homeassistant
   # - pip install yamllint
 script:
   # - yamllint .
+  - "hass --version"
   - hass -c . --script check_config --info all
 
 notifications:
