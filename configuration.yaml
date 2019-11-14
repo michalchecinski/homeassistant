@@ -34,7 +34,7 @@ frontend:
 config:
 
 http:
-  #api_password: !secret http_password
+  # api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   base_url: !secret base_url
   ip_ban_enabled: true
@@ -106,7 +106,7 @@ device_tracker:
       track_new_devices: true
       hide_if_away: false
 
-#IFTTT
+# IFTTT
 ifttt:
   key: !secret ifttt_key
 

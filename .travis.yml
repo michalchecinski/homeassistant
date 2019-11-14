@@ -2,15 +2,21 @@ language: python
 cache: pip
 python:
   - "3.7"
+
+env:
+  - VER=latest
+  - VER=pre
+
 before_install:
   - sudo apt-get update
   - sudo apt-get -y install libbluetooth-dev python-dev  bluez
   - mv travis_secrets.yaml secrets.yaml
 install:
-  - pip3 install homeassistant
+  - if [ "$VER" = "latest" ]; then pip3 install homeassistant; fi
+  - if [ "$VER" = "pre" ]; then pip3 install --pre homeassistant; fi
   - pip3 install hass-nabucasa
   - pip3 install pybluez
-  # - pip install yamllint
+  # - pip3 install yamllint
 script:
   # - yamllint .
   - "hass --version"
