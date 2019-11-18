@@ -10,6 +10,8 @@ include:
     - person
     - automation
     - script
+    - sensor
+    - binary_sensor
   # entities:
 # exclude:
 #   domains:
