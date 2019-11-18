@@ -1,27 +1,4 @@
-- platform: rest
-  scan_interval: 120
-  name: Airly
-  resource: !secret airly_url
-  value_template: "{{ value_json['current']['values'][1]['value'] }} {{ value_json['current']['values'][2]['value'] }} {{ value_json['current']['values'][3]['value'] }} {{ value_json['current']['values'][4]['value'] }} {{ value_json['current']['values'][5]['value'] }} {{ value_json['current']['indexes'][0]['level'] }}"
-  headers:
-    apikey: !secret api_airly
-
 - platform: template
   sensors:
-    airly_pm25:
-      unit_of_measurement: "μg/m3"
-      value_template: "{{ states.sensor.airly.state.split(' ')[0] }}"
-    airly_pm10:
-      unit_of_measurement: "μg/m3"
-      value_template: "{{ states.sensor.airly.state.split(' ')[1] }}"
-    airly_pressure:
-      unit_of_measurement: "hPA"
-      value_template: "{{ states.sensor.airly.state.split(' ')[2] }}"
-    airly_humidity:
-      unit_of_measurement: "%"
-      value_template: "{{ states.sensor.airly.state.split(' ')[3] }}"
-    airly_temperature:
-      unit_of_measurement: "°C"
-      value_template: "{{ states.sensor.airly.state.split(' ')[4] }}"
     airly_caqi_level:
-      value_template: "{{ states.sensor.airly.state.split(' ')[5] }}"
+      value_template: "{{ states.air_quality.airly.attributes.air_quality_index_level }}"
