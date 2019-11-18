@@ -24,7 +24,7 @@
     - platform: state
       entity_id: binary_sensor.thinkpad
       to: 'off'
-      for: '00:00:30'
+      for: '00:01:30'
   condition:
     - condition: state
       entity_id: input_boolean.michal_home
