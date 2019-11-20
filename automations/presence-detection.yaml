@@ -59,13 +59,7 @@
       event_type: html5_notification.clicked
       platform: event
     - platform: state
-      entity_id: group.michal_home
-      to: 'home'
-    - platform: state
       entity_id: person.michal
-      to: 'home'
-    - platform: state
-      entity_id: device_tracker.oneplus
       to: 'home'
   action:
     - service: input_boolean.turn_on
