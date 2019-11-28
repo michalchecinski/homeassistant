@@ -7,7 +7,7 @@
   trigger:
     - platform: time_pattern
       hours: 7
-      minutes: 11
+      minutes: 20
       seconds: 00
   condition:
     condition: template
@@ -15,14 +15,29 @@
   action:
     - service: notify.michal_html
       data:
-        message: "Temperatura spadła znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}} C; dzisiaj {{(states.sensor.temperature_outside.state)}} C"
+        message: "Temperatura SPADŁA znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}} C; dzisiaj {{(states.sensor.temperature_outside.state)}} C"
+
+- id: outside_temp_up_significantly
+  alias: Temperature outside notification - significant up
+  trigger:
+    - platform: time_pattern
+      hours: 7
+      minutes: 20
+      seconds: 00
+  condition:
+    condition: template
+    value_template: "{{ (states.sensor.temperature_outside.state) | float >= (states.input_number.last_morning_temp.state) | float + 5 }}"
+  action:
+    - service: notify.michal_html
+      data:
+        message: "Temperatura WZROSŁA znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}} C; dzisiaj {{(states.sensor.temperature_outside.state)}} C"
 
 - id: outside_temp_log
   alias: Temperature outside notification - log
   trigger:
     - platform: time_pattern
       hours: 7
-      minutes: 12
+      minutes: 21
       seconds: 00
   action:
     - service: input_number.set_value
