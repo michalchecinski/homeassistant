@@ -1,3 +1,7 @@
+#################
+# Lights sensor #
+#################
+
 - platform: template
   lights:
     bed_lamp:

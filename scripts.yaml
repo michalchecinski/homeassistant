@@ -1,3 +1,7 @@
+###########
+# Scripts #
+###########
+
 off_all:
   alias: "Turn off all"
   sequence:

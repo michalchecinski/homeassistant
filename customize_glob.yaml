@@ -1,3 +1,7 @@
+####################
+# Customize global #
+####################
+
 "binary_sensor.*_leak":
   device_class: moisture
   templates:

@@ -8,6 +8,7 @@
            is_state('binary_sensor.event_hour_offset_ola_michal', 'on') or
            is_state('binary_sensor.event_hour_offset_egzaminy', 'on')
         }}
+        
     event_hour_offset_ola_michal:
       friendly_name: "Event hour offset Ola&Michal"
       value_template: >

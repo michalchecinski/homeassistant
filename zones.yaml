@@ -1,3 +1,7 @@
+#########
+# Zones #
+#########
+
 - name: extended home
   latitude: !secret home_lat
   longitude: !secret home_lon

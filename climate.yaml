@@ -1,12 +1,17 @@
-# - platform: generic_thermostat
-#   name: Living Room
-#   heater: input_boolean.fake_heater
-#   target_sensor: sensor.livingroom_temperature
+#######################
+# Climate Thermostats #
+#######################
 
-# - platform: generic_thermostat
-#   name: Bed Room
-#   heater: input_boolean.fake_heater
-#   target_sensor: sensor.bedroom_temperature
+
+- platform: generic_thermostat
+  name: Living Room
+  heater: input_boolean.fake_heater
+  target_sensor: sensor.livingroom_temperature
+  
+- platform: generic_thermostat
+  name: Bedroom
+  heater: input_boolean.fake_heater
+  target_sensor: sensor.bedroom_temperature
 
 - platform: generic_thermostat
   name: inside

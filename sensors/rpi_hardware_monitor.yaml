@@ -1,3 +1,8 @@
+###########################
+# RPi hardware monitoring #
+###########################
+
+# CPU temp
 - platform: command_line
   name: 'Raspberry CPU Temp'
   command: 'cat /sys/class/thermal/thermal_zone0/temp'

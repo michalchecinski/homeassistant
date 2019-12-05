@@ -1,3 +1,7 @@
+######################
+#  Iron automations  #
+######################
+
 # Iron turned on
 - id: iron_turned_on
   alias: Iron - turned on

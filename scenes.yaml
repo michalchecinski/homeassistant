@@ -1,3 +1,7 @@
+##########
+# scenes #
+##########
+
 - name: Romantic
   entities:
     light.rtv_led: true

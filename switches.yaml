@@ -1,3 +1,7 @@
+############
+# Switches #
+############
+
 - platform: rpi_rf
   gpio: 15
   switches:

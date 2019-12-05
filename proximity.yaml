@@ -1,3 +1,7 @@
+#####################
+# Proximity sensors #
+#####################
+
 home:
   devices:
     - device_tracker.google_maps_102169435937546415265
@@ -5,3 +9,4 @@ home:
   unit_of_measurement: m
   ignored_zones:
     - politechnika
+    - praca

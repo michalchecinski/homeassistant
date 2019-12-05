@@ -1,3 +1,7 @@
+###########################
+# Google Assistant config #
+###########################
+
 project_id: !secret google_assistant_project_id
 api_key: !secret google_assistant_opengraph
 exposed_domains:

@@ -6,6 +6,7 @@
   availability_topic: "tele/livingroomled/LWT"
   payload_available: "Online"
   payload_not_available: "Offline"
+
 - platform: mqtt
   state_topic: 'tele/livingroomled/SENSOR'
   name: 'Livingroom Humidity'

@@ -1,3 +1,7 @@
+#############
+# Customize #
+#############
+
 # Groups
 group.all_automations:
   hidden: false

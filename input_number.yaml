@@ -1,9 +1,7 @@
-  # random_night_minute:
-  #   min: 0
-  #   max: 59
-  # random_minute:
-  #   min: 0
-  #   max: 59
+################
+# Input number #
+################
+
 last_morning_temp:
   min: -30
   max: 60

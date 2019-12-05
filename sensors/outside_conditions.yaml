@@ -1,7 +1,6 @@
-# - platform: mqtt
-#   state_topic: "outside/temperature"
-#   name: "Temperature outside sensor"
-#   unit_of_measurement: "°C"
+####################################
+# Outside conditions (temperature) #
+####################################
 
 - platform: template
   sensors:
@@ -9,6 +8,11 @@
       friendly_name: "Temperature outside"
       value_template: "{{ states.sensor.airly_temperature.state }}"
       unit_of_measurement: "°C"
+
+# - platform: mqtt
+#   state_topic: "outside/temperature"
+#   name: "Temperature outside"
+#   unit_of_measurement: "°C"
 
 # - platform: mqtt
 #   state_topic: "outside/battery"

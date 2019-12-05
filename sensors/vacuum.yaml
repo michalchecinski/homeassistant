@@ -1,3 +1,7 @@
+##################
+# Vacuum sensors #
+##################
+
 - platform: template
   sensors:
     vacuum_status:

@@ -1,3 +1,7 @@
+#########################
+# Travis binary sensors #
+#########################
+
 - platform: rest
   name: Travis Status
   resource: https://api.travis-ci.org/repos/michalchecinski/homeassistant/builds

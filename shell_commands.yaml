@@ -1,2 +1,6 @@
+##################
+# Shell commands #
+##################
+
 pull_git_conf: 'bash /home/homeassistant/.homeassistant/bash/git_pull.sh'
 update_ha: 'bash /home/homeassistant/.homeassistant/bash/update-ha.sh'

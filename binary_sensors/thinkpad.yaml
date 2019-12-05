@@ -1,15 +1,3 @@
-  #  - platform: mqtt
-  #   state_topic: "THINKPAD/Power/PowerLineStatus"
-  #   name: "Thinkpad charging"
-  #   payload_on: "Online"
-  #   payload_off: "Offline"
-
-  # - platform: mqtt
-  #   state_topic: "THINKPAD/"
-  #   name: "Thinkpad"
-  #   payload_on: "on"
-  #   payload_off: "off"
-
 - platform: template
   sensors:
     thinkpad:
