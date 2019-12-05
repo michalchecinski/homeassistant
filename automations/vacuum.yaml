@@ -190,6 +190,18 @@
             script.vacuum_bathroom
           {% endif %}
 
+- id: vacuum_home_ifttt_action
+  alias: Vacuum - home ifttt action
+  trigger:
+    platform: event
+    event_type: ifttt_webhook_received
+    event_data:
+      action: vacuum_home
+  action:
+    - service: automation.trigger
+      data_template:
+        entity_id: automation.vacuum_on
+
 - id: vacuum_mop_ifttt_action
   alias: Vacuum - mop ifttt action
   trigger:
