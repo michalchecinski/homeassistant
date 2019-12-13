@@ -2,20 +2,6 @@
 # Lights sensor #
 #################
 
-- platform: template
-  lights:
-    bed_lamp:
-      friendly_name: "Bed lamp"
-      icon_template: mdi:lamp
-      turn_on:
-        service: switch.turn_on
-        data:
-          entity_id: switch.b1
-      turn_off:
-        service: switch.turn_off
-        data:
-          entity_id: switch.b1
-
 - platform: mqtt
   name: rtv led
   command_topic: "cmnd/livingroomled/POWER1"

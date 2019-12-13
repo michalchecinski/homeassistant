@@ -5,17 +5,17 @@
 - platform: rpi_rf
   gpio: 15
   switches:
-    A1:
-      code_on: 14013452
-      code_off: 14013451
-    B1:
+    # A1:
+    #   code_on: 14013452
+    #   code_off: 14013451
+    B1: # former bedlamp
       code_on: 7721996
       code_off: 7721995
       signal_repetitions: 30
-    B2:
-      code_on: 7697412
-      code_off: 7697411
-    B3:
+    # B2:
+    #   code_on: 7697412
+    #   code_off: 7697411
+    B3: # iron
       code_on: 7691276
       code_off: 7691275
 
