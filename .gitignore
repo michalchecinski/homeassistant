@@ -22,3 +22,11 @@ git_pull.log
 
 # docker stuff
 docker_files
+
+.google.token
+.google_maps_location_sharing.cookies*
+custom_components/html5/__pycache__/
+fcm_android_registrations.conf
+google_calendars.yaml
+html5_push_registrations.conf
+webostv.conf
