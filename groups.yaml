@@ -21,7 +21,7 @@ all_lights:
     - light.rtv_led
 
 all_switches:
-  name: bedroom switches
+  name: all switches
   view: no
   entities:
     - switch.a1
