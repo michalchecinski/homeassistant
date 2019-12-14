@@ -121,7 +121,7 @@ media_player:
 
 # MQTT
 mqtt:
-  broker: 127.0.0.1
+  broker: 172.19.0.20
   port: 1883
   username: !secret mqtt_user
   password: !secret mqtt_pass
