@@ -1,0 +1,40 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- task: CmdLine@2
+  displayName: 'install bt deps'
+  inputs:
+    script: |
+      sudo apt-get update
+      sudo apt-get -y install libbluetooth-dev python-dev bluez
+
+- script: |
+    mv travis_secrets.yaml secrets.yaml
+  displayName: 'move secrets'
+
+- task: UsePythonVersion@0
+  displayName: 'use python 3'
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+    architecture: 'x64'
+
+- script: |
+    python -m pip install --upgrade pip
+    pip install homeassistant
+  displayName: 'Install hass'
+
+- script: |
+    hass --version
+    hass -c . --script check_config --info all
+  displayName: 'test hass config'
