@@ -18,11 +18,9 @@ steps:
       sudo apt-get update
       sudo apt-get -y install libbluetooth-dev python-dev bluez
 
-- task: CmdLine@2
+- script: |
+    mv travis_secrets.yaml secrets.yaml
   displayName: 'move secrets'
-  inputs:
-    script: |
-      mv travis_secrets.yaml secrets.yaml
 
 - task: UsePythonVersion@0
   displayName: 'use python 3'
@@ -31,11 +29,12 @@ steps:
     addToPath: true
     architecture: 'x64'
 
-- task: PythonScript@0
+- script: |
+    python -m pip install --upgrade pip
+    pip install homeassistant
+  displayName: 'Install hass'
+
+- script: |
+    hass --version
+    hass -c . --script check_config --info all
   displayName: 'test hass config'
-  inputs:
-    scriptSource: 'inline'
-    script: |
-      python -m pip install homeassistant
-      hass --version
-      hass -c . --script check_config --info all
