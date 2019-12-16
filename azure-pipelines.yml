@@ -1,0 +1,33 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- task: CmdLine@2
+  inputs:
+    script: |
+      sudo apt-get update
+      sudo apt-get -y install libbluetooth-dev python-dev bluez
+      mv travis_secrets.yaml secrets.yaml
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.x'
+    addToPath: true
+    architecture: 'x64'
+
+- task: PythonScript@0
+  inputs:
+    scriptSource: 'inline'
+    script: |
+      pip3 install homeassistant
+      hass --version
+      hass -c . --script check_config --info all
