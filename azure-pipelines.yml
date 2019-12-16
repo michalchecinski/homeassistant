@@ -12,22 +12,30 @@ pool:
 steps:
 
 - task: CmdLine@2
+  displayName: 'install bt deps'
   inputs:
     script: |
       sudo apt-get update
       sudo apt-get -y install libbluetooth-dev python-dev bluez
+
+- task: CmdLine@2
+  displayName: 'move secrets'
+  inputs:
+    script: |
       mv travis_secrets.yaml secrets.yaml
 
 - task: UsePythonVersion@0
+  displayName: 'use python 3'
   inputs:
     versionSpec: '3.x'
     addToPath: true
     architecture: 'x64'
 
 - task: PythonScript@0
+  displayName: 'test hass config'
   inputs:
     scriptSource: 'inline'
     script: |
-      pip3 install homeassistant
+      pip install homeassistant
       hass --version
       hass -c . --script check_config --info all
