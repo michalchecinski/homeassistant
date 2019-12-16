@@ -36,6 +36,6 @@ steps:
   inputs:
     scriptSource: 'inline'
     script: |
-      pip install homeassistant
+      python -m pip install homeassistant
       hass --version
       hass -c . --script check_config --info all
