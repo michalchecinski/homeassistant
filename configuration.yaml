@@ -127,7 +127,6 @@ group: !include groups.yaml
 automation: !include_dir_merge_list automations
 script: !include scripts.yaml
 zone: !include zones.yaml
-shell_command: !include shell_commands.yaml
 scene: !include scenes.yaml
 climate: !include climate.yaml
 
@@ -173,10 +172,3 @@ yeelight:
 discovery:
   ignore:
   - yeelight
-
-unifi:
-  controllers:
-    - host: unifi
-      site: My site
-      ssid_filter:
-        - 'USS SZ'
