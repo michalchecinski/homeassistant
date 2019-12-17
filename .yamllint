@@ -1,9 +1,29 @@
 extends: default
 
 rules:
-  document-start: disable
   line-length:
     max: 180
     level: warning
   new-line-at-end-of-file:
     level: warning
+  braces:
+    level: warning
+    max-spaces-inside: 1
+  brackets:
+    level: warning
+    max-spaces-inside: 1
+  colons:
+    level: warning
+  commas:
+    level: warning
+  comments: disable
+  comments-indentation: disable
+  document-start: disable
+  empty-lines:
+    level: warning
+  hyphens:
+    level: warning
+  indentation:
+    level: error
+    indent-sequences: consistent
+  truthy: disable
