@@ -28,13 +28,13 @@ views:
         type: glance
       - entity: sensor.airly_caqi_level
         state_image:
-          HIGH: 'http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg'
-          LOW: >-
+          high: 'http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg'
+          low: >-
             https://vignette.wikia.nocookie.net/warszawa/images/7/7c/Warsaw6vb.jpg
-          MEDIUM: >-
+          medium: >-
             https://ocs-pl.oktawave.com/v1/AUTH_2887234e-384a-4873-8bc5-405211db13a2/spidersweb/2017/12/smog-warszawa-polska-1.jpg
-          VERY_HIGH: 'http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg'
-          VERY_LOW: 'https://static.thousandwonders.net/Warsaw.640.18597.jpg'
+          very_high: 'http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg'
+          very_low: 'https://static.thousandwonders.net/Warsaw.640.18597.jpg'
         type: picture-entity
       - entities:
           - entity: binary_sensor.auto_lights
@@ -361,27 +361,6 @@ views:
     title: Vacuum
   - cards:
       - entities:
-          - entity: switch.b3
-            tap_action:
-              action: toggle
-          - entity: switch.stereo
-            tap_action:
-              action: toggle
-        title: Switches
-        type: glance
-      - entities:
-          - entity: light.bed_lamp
-            tap_action:
-              action: toggle
-          - entity: light.rtv_led
-            tap_action:
-              action: toggle
-        title: Lights
-        type: glance
-    icon: 'mdi:flash'
-    title: Power
-  - cards:
-      - entities:
           - entity: input_boolean.guest_mode
           - entity: input_boolean.sleep
           - entity: input_boolean.vacation_mode
@@ -535,8 +514,6 @@ views:
         title: Romantic
         type: entities
       - entities:
-          - entity: automation.sleep_alarm_goes_off_guests
-            icon: 'mdi:hotel'
           - entity: automation.sleep_alarm_goes_off_no_guests
             icon: 'mdi:hotel'
           - entity: automation.sleep_awake

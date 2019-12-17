@@ -13,7 +13,11 @@ off_all:
           - switch.b2
           - switch.b3
           - switch.stereo
-          - group.all_lights
+          - switch.living_room_appliances
+          - switch.biurko
+          - light.bed_lamp
+          - light.monitor_led
+          - light.desk_led
 
 iron_turn_off:
   alias: "Turn off iron after 20 minutes of use"

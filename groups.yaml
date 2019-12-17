@@ -9,3 +9,25 @@ bedroom_lights:
     - light.bed_lamp
     - light.monitor_led
     - light.desk_led
+
+all_lights:
+  name: all lights
+  view: no
+  entities:
+    - light.bed_lamp
+    - light.monitor_led
+    - light.desk_led
+    - light.tv_led
+    - light.rtv_led
+
+all_switches:
+  name: all switches
+  view: no
+  entities:
+    - switch.a1
+    - switch.b1
+    - switch.b2
+    - switch.b3
+    - switch.stereo
+    - switch.living_room_appliances
+    - switch.biurko
