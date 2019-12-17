@@ -1,0 +1,9 @@
+steps:
+  - script: sudo apt-get -y install libbluetooth-dev python-dev bluez
+    displayName: 'install bt deps'
+
+  - script: pip install --upgrade netdisco
+    displayName: 'Install deps'
+
+  - script: mv travis_secrets.yaml secrets.yaml
+    displayName: 'move secrets'
