@@ -6,9 +6,9 @@
 - id: sleep_on
   alias: Sleep - going into sleep
   trigger:
-  - platform: state
-    entity_id: input_boolean.sleep
-    to: 'on'
+    - platform: state
+      entity_id: input_boolean.sleep
+      to: 'on'
   condition:
     condition: state
     entity_id: input_boolean.michal_home

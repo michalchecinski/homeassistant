@@ -33,9 +33,9 @@ stages:
             displayName: 'Use python 3.x'
           - script: pip install --upgrade pip flake8 mypy typed_ast
             displayName: 'Install python validation tools'
-          - script: flake8 .
+          - script: flake8 ./scripts
             displayName: 'Validate flake8'
-          - script: mypy --ignore-missing-imports .
+          - script: mypy --ignore-missing-imports ./scripts
             displayName: 'Validate my-py'
       - job: Bash
         steps:
