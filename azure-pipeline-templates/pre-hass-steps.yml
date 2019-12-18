@@ -12,5 +12,5 @@ steps:
   - script: pip install --upgrade netdisco
     displayName: 'Install python deps'
 
-  - script: mv travis_secrets.yaml secrets.yaml
+  - script: mv ./homeassistant/.stubs/ ./homeassistant/
     displayName: 'move secrets'
