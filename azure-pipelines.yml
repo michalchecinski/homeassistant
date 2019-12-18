@@ -16,18 +16,18 @@ stages:
             displayName: 'Install docker-compose'
           - script: docker-compose config
             displayName: 'Validate docker-compose'
-      - job: Yamllint
-        steps:
-          - task: UsePythonVersion@0
-            inputs:
-              versionSpec: '3.x'
-              addToPath: true
-              architecture: 'x64'
-            displayName: 'Use python 3.x'
-          - script: pip install --upgrade pip yamllint
-            displayName: 'Install yamllint'
-          - script: yamllint .
-            displayName: 'Validate yaml files'
+      # - job: Yamllint
+      #   steps:
+      #     - task: UsePythonVersion@0
+      #       inputs:
+      #         versionSpec: '3.x'
+      #         addToPath: true
+      #         architecture: 'x64'
+      #       displayName: 'Use python 3.x'
+      #     - script: pip install --upgrade pip yamllint
+      #       displayName: 'Install yamllint'
+      #     - script: yamllint .
+      #       displayName: 'Validate yaml files'
       - job: Python
         steps:
           - task: UsePythonVersion@0
