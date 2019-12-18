@@ -1,0 +1,121 @@
+version: '3.7'
+
+services:
+  home-assistant:
+    image: homeassistant/raspberrypi3-homeassistant:stable
+    container_name: "hass"
+    # network_mode: host
+    depends_on:
+      # - influxdb
+      - mqtt
+    restart: always
+    privileged: true
+    volumes:
+      - ./docker_files/homeassistant:/config
+      - /home/pi/ssh:/root/.ssh/
+    ports:
+      - 8123:8123
+    environment:
+      - TZ=Europe/Warsaw
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://172.19.0.10:8123"]
+      interval: 30s
+      timeout: 10s
+      retries: 6
+    networks:
+      serv_network:
+        ipv4_address: 172.19.0.10
+
+  mqtt:
+    image: eclipse-mosquitto:latest
+    container_name: "mqtt"
+    restart: always
+    # network_mode: host
+    ports:
+      - 1883:1883
+      - 9001:9001
+    volumes:
+      - ./docker_files/mqtt/data:/mosquitto/data
+      - ./docker_files/mqtt/config:/mosquitto/config
+      - ./docker_files/mqtt/log:/mosquitto/log
+    environment:
+      - TZ=Europe/Warsaw
+    networks:
+      serv_network:
+        ipv4_address: 172.19.0.20
+
+  unifi:
+    image: ryansch/unifi-rpi:latest
+    container_name: "unifi"
+    restart: always
+    volumes:
+      - ./docker_files/unifi/config:/var/lib/unifi
+      - ./docker_files/unifi/log:/usr/lib/unifi/logs
+      - ./docker_files/unifi/log2:/var/log/unifi
+      - ./docker_files/unifi/run:/usr/lib/unifi/run
+      - ./docker_files/unifi/run2:/run/unifi
+      - ./docker_files/unifi/work:/usr/lib/unifi/work
+    # network_mode: host
+    ports:
+      - 3478:3478/udp
+      - 10001:10001/udp
+      - 6789:6789/tcp
+      - 8080:8080/tcp
+      - 8880:8880/tcp
+      - 8443:8443/tcp
+      - 8843:8843/tcp
+    environment:
+      - TZ=Europe/Warsaw
+    networks:
+      serv_network:
+        ipv4_address: 172.19.0.30
+
+  portainer:
+    image: portainer/portainer
+    container_name: "portainer"
+    restart: always
+    volumes:
+      - ./docker_files/portainer_data:/data portainer/portainer
+      - /var/run/docker.sock:/var/run/docker.sock #linux
+    ports:
+      - 9000:9000
+      - 8000:8000
+    environment:
+      - TZ=Europe/Warsaw
+    networks:
+      serv_network:
+        ipv4_address: 172.19.0.40
+
+  pihole:
+    container_name: pihole
+    image: pihole/pihole:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "6680:80/tcp"
+      - "6443:443/tcp"
+    environment:
+      - TZ=Europe/Warsaw
+    # Volumes store your data between container upgrades
+    volumes:
+      - './docker_files/pihole/etc-pihole/:/etc/pihole/'
+      - './docker_files/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+    # Recommended but not required (DHCP needs NET_ADMIN)
+    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    networks:
+      serv_network:
+        ipv4_address: 172.19.0.50
+
+networks:
+  serv_network:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.19.0.0/16"
