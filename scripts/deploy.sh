@@ -10,24 +10,24 @@ HASS_PATH="/home/pi/homeassistant"
 # not change
 LAST_HASS_BUILD_FILEPATH="/tmp/hass_last_devops_build"
 
-function remote_git_hass() {
+function remote_git() {
     git --git-dir "$HASS_PATH"/.git --work-tree="$HASS_PATH" "$@"
 }
 
-function fetch_latest_hass_build_number() {
+function fetch_latest_build_number() {
     curl \
         -s "$BASE_API_PATH/$HASS_BUILD_PATH" \
         | jq '.value[0].buildNumber'
 }
 
-function should_update_hass() {
+function should_update() {
     local latest_build_number
     local saved_build_number
 
     # If the last build file doesn't exist, create it:
     [ ! -f "$LAST_HASS_BUILD_FILEPATH" ] && touch "$LAST_HASS_BUILD_FILEPATH"
 
-    latest_build_number=$(fetch_latest_hass_build_number)
+    latest_build_number=$(fetch_latest_build_number)
     saved_build_number=$(cat "$LAST_HASS_BUILD_FILEPATH")
 
     # If the build number is the same as the last one retrieved, don't trigger
@@ -42,16 +42,11 @@ function should_update_hass() {
 
     echo "true"
 }
-hass_update="$(should_update_hass)"
-#if [ "$hass_update" == "true" ]
-#then
-#    echo "Deploy hass"
-#    remote_git_hass pull
-#fi
+updated="$(should_update)"
 
-if [ "$hass_update" == "true" ]
+if [ "$updated" == "true" ]
 then
-    remote_git_hass pull
+    remote_git pull
     sleep 1
     bash "$HASS_PATH"/scripts/build.sh
     echo "Build finished"
