@@ -11,7 +11,7 @@ services:
     restart: always
     privileged: true
     volumes:
-      - ./docker_files/homeassistant:/config
+      - ./homeassistant:/config
       - /home/pi/ssh:/root/.ssh/
     ports:
       - 8123:8123

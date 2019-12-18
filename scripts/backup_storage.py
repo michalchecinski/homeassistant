@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
     file_number = len(listOfFiles)
 
-    for index, file_path in listOfFiles:
+    for index, file_path in enumerate(listOfFiles):
         print(str(index) + "/" + str(file_number))
 
         blob_client = blob_service_client.get_blob_client(
