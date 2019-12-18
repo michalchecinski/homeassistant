@@ -12,5 +12,5 @@ steps:
   - script: pip install --upgrade netdisco
     displayName: 'Install python deps'
 
-  - script: cp ./homeassistant/.stubs/ ./homeassistant/
+  - script: cp -a ./homeassistant/.stubs/. ./homeassistant/
     displayName: 'move secrets'
