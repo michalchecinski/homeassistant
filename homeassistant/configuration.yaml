@@ -79,6 +79,10 @@ notify:
     vapid_pub_key: !secret vapid_pub_key
     vapid_prv_key: !secret vapid_prv_key
     vapid_email: !secret vapid_email
+  - name: slack
+    platform: slack
+    api_key: !secret slack_api_key
+    default_channel: '#hass'
 
 # Text to speech
 tts:
@@ -101,7 +105,7 @@ ifttt:
 
 media_player:
   - platform: webostv
-    host: 192.168.0.30
+    host: 192.168.1.30
     name: TV
     turn_on_action:
       service: wake_on_lan.send_magic_packet
@@ -138,12 +142,6 @@ google:
   client_id: !secret google_client_id
   client_secret: !secret google_client_secret
 
-# netatmo:
-#   api_key: netatmo_id
-#   secret_key: netatmo_secret
-#   username: netatmo_username
-#   password: netatmo_password
-
 proximity: !include proximity.yaml
 
 vacuum:
@@ -156,15 +154,20 @@ mobile_app:
 tplink:
   discovery: false
   switch:
-    - host: 192.168.0.108
-    - host: 192.168.0.122
+    - host: 192.168.1.121
+    - host: 192.168.1.122
 
 yeelight:
   devices:
-    192.168.0.164:
+    192.168.1.131:
       name: Bed lamp
       model: color2
 
 discovery:
   ignore:
-    - yeelight
+  - yeelight
+
+pi_hole:
+  host: '172.19.0.10:6680'
+  ssl: false
+  verify_ssl: false
