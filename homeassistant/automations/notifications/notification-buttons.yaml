@@ -4,10 +4,10 @@
 
 - alias: Vacuum - on via notification
   trigger:
-  - event_data:
-      action: vacuum_on
-    event_type: html5_notification.clicked
-    platform: event
+    - event_data:
+        action: vacuum_on
+      event_type: html5_notification.clicked
+      platform: event
   action:
     - service: homeassistant.turn_off
       data_template:
@@ -18,10 +18,10 @@
 
 - alias: Guest mode - off via notification
   trigger:
-  - event_data:
-      action: guest_mode_off
-    event_type: html5_notification.clicked
-    platform: event
+    - event_data:
+        action: guest_mode_off
+      event_type: html5_notification.clicked
+      platform: event
   action:
     - service: input_boolean.turn_off
       data_template:
@@ -29,9 +29,9 @@
 
 - alias: HA - update via notification
   trigger:
-  - event_data:
-      action: update_ha
-    event_type: html5_notification.clicked
-    platform: event
+    - event_data:
+        action: update_ha
+      event_type: html5_notification.clicked
+      platform: event
   action:
     - service: shell_command.update_ha

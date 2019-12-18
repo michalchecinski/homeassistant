@@ -1,39 +1,76 @@
 trigger:
-  - master
-
-schedules:
-- cron: "0 0 * * *"
-  displayName: Daily build
+  batch: true
   branches:
     include:
-    - master
-  always: true
+      - master
+      - feature/*
+      - remodel-structure
 
-pool:
-  vmImage: 'ubuntu-latest'
+stages:
+  - stage:
+    displayName: Static analysis
+    jobs:
+      - job: Docker
+        steps:
+          - script: sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+            displayName: 'Install docker-compose'
+          - script: docker-compose config
+            displayName: 'Validate docker-compose'
+      - job: Yamllint
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.x'
+              addToPath: true
+              architecture: 'x64'
+            displayName: 'Use python 3.x'
+          - script: pip install --upgrade pip yamllint
+            displayName: 'Install yamllint'
+          - script: yamllint .
+            displayName: 'Validate yaml files'
+      - job: Python
+        steps:
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.x'
+              addToPath: true
+              architecture: 'x64'
+            displayName: 'Use python 3.x'
+          - script: pip install --upgrade pip flake8 mypy typed_ast
+            displayName: 'Install python validation tools'
+          - script: flake8 ./scripts
+            displayName: 'Validate flake8'
+          - script: mypy --ignore-missing-imports ./scripts
+            displayName: 'Validate my-py'
+      - job: Bash
+        steps:
+          - script: sudo apt-get install shellcheck
+            displayName: 'Install shellcheck'
+          - script: find . -not -name 'fix-routes.sh' -name '*.sh' -exec shellcheck {} +
+            displayName: 'Validate bash scripts'
+  - stage:
+    displayName: Home Assistant
+    jobs:
+      - job:
+        displayName: 'Check HomeAssistant config Latest'
+        steps:
+          - template: azure-pipeline-templates/pre-hass-steps.yml
 
-jobs:
-  - job:
-    displayName: 'Check HomeAssistant config Latest'
-    steps:
-      - template: azure-pipeline-templates/pre-hass-steps.yml
+          - script: pip install --upgrade homeassistant
 
-      - script: pip install --upgrade homeassistant
+          - script: |
+              hass --version
+              hass -c ./homeassistant --script check_config --info all
+            displayName: 'test hass config'
+      - job:
+        displayName: 'Check HomeAssistant config pre'
+        continueOnError: true
+        steps:
+          - template: azure-pipeline-templates/pre-hass-steps.yml
 
-      - script: |
-          hass --version
-          hass -c . --script check_config --info all
-        displayName: 'test hass config'
+          - script: pip install --upgrade --pre homeassistant
 
-  - job:
-    displayName: 'Check HomeAssistant config pre'
-    continueOnError: true
-    steps:
-      - template: azure-pipeline-templates/pre-hass-steps.yml
-
-      - script: pip install --upgrade --pre homeassistant
-
-      - script: |
-          hass --version
-          hass -c . --script check_config --info all
-        displayName: 'test hass config'
+          - script: |
+              hass --version
+              hass -c ./homeassistant --script check_config --info all
+            displayName: 'test hass config'

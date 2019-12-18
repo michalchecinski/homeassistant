@@ -1,6 +1,3 @@
-secrets.yaml
-known_devices.yaml
-
 # HA stuff
 .HA_VERSION
 .google_maps_location_sharing.cookies
@@ -15,14 +12,9 @@ home-assistant.log
 home-assistant_v2.db
 home-assistant_v2.db-shm
 home-assistant_v2.db-wal
-
 .spotify-token-cache
 .storage/
 git_pull.log
-
-# docker stuff
-docker_files
-
 .google.token
 .google_maps_location_sharing.cookies*
 custom_components/html5/__pycache__/
@@ -30,3 +22,16 @@ fcm_android_registrations.conf
 google_calendars.yaml
 html5_push_registrations.conf
 webostv.conf
+
+# Docker volumes
+docker_files/pihole
+docker_files/mqtt/config/passwd
+docker_files/mqtt/log
+docker_files/unifi
+
+# Secrets
+account_details_file.txt
+secrets.yaml
+known_devices.yaml
+
+!/homeassistant/.stubs/*

@@ -167,4 +167,4 @@ yeelight:
 
 discovery:
   ignore:
-  - yeelight
+    - yeelight
