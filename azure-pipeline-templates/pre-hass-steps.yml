@@ -1,4 +1,7 @@
 steps:
+
+  - script: ls . -la
+
   - script: sudo apt-get -y install libbluetooth-dev python-dev bluez
     displayName: 'install bt deps'
 

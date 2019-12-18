@@ -49,8 +49,6 @@ stages:
       - job:
         displayName: 'Check HomeAssistant config Latest'
         steps:
-          - script: ls -la
-
           - template: azure-pipeline-templates/pre-hass-steps.yml
 
           - script: pip install --upgrade homeassistant
