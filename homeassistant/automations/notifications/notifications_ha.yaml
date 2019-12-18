@@ -42,15 +42,15 @@
       data:
         title: "HA dostępna aktualizacja"
         message: "Nowa wersja Home Assistant: {{ states('updater.updater') }}"
-        data:
-          actions:
-            - action: update_ha
-              title: Update (dangerous)
     - service: persistent_notification.create
       data:
         title: "Dostępna aktualizacja"
         message: "Nowa wersja Home Assistant: {{ states('updater.updater') }} - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
         notification_id: "update_available"
+    - service: notify.slack
+      data:
+        title: "Dostępna aktualizacja"
+        message: "Nowa wersja Home Assistant: {{ states('updater.updater') }}"
 
 # Notify when HA started
 - id: ha_start
@@ -66,6 +66,12 @@
     - service: notify.michal_html
       data:
         message: "Home assistant wystartował"
+    - service: notify.slack
+      data:
+        title: "Start"
+        message: "Home assistant wystartował"
+        target:
+          - '#deployment'
 
 # Notify when HA shutdown
 - id: ha_shutdown
@@ -80,4 +86,8 @@
   action:
     - service: notify.michal_html
       data:
+        message: "Home assistant wyłącza się"
+    - service: notify.slack
+      data:
+        title: "STOP"
         message: "Home assistant wyłącza się"
