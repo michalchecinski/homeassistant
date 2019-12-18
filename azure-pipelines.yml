@@ -2,9 +2,9 @@ trigger:
   batch: true
   branches:
     include:
-    - master
-    - feature/*
-    - remodel-structure
+      - master
+      - feature/*
+      - remodel-structure
 
 stages:
   - stage:
