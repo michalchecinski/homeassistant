@@ -1,5 +1,10 @@
 trigger:
-  - master
+  batch: true
+  branches:
+    include:
+    - master
+    - feature/*
+    - remodel-structure
 
 stages:
   - stage:
