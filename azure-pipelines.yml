@@ -60,7 +60,7 @@ stages:
 
           - script: |
               hass --version
-              hass -c . --script check_config --info all
+              hass -c ./homeassistant --script check_config --info all
             displayName: 'test hass config'
       - job:
         displayName: 'Check HomeAssistant config pre'
@@ -72,5 +72,5 @@ stages:
 
           - script: |
               hass --version
-              hass -c . --script check_config --info all
+              hass -c ./homeassistant --script check_config --info all
             displayName: 'test hass config'
