@@ -33,3 +33,5 @@ docker_files/unifi
 account_details_file.txt
 secrets.yaml
 known_devices.yaml
+
+!/homeassistant/.stubs/*
