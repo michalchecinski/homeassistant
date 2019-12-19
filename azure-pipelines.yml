@@ -50,6 +50,7 @@ stages:
             displayName: 'Validate bash scripts'
   - stage:
     displayName: Home Assistant
+    dependsOn: []
     jobs:
       - job:
         strategy:
