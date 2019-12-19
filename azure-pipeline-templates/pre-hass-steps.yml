@@ -1,6 +1,6 @@
 steps:
-  - script: sudo apt-get -y install libbluetooth-dev python-dev bluez
-    displayName: 'install bt deps'
+  # - script: sudo apt-get -y install libbluetooth-dev python-dev bluez
+  #   displayName: 'install bt deps'
 
   - task: UsePythonVersion@0
     inputs:
@@ -9,8 +9,8 @@ steps:
       architecture: 'x64'
     displayName: 'Use python 3.x'
 
-  - script: pip install --upgrade netdisco
-    displayName: 'Install python deps'
+  # - script: pip install --upgrade netdisco
+  #   displayName: 'Install python deps'
 
   - script: cp -a ./homeassistant/.stubs/. ./homeassistant/
     displayName: 'move secrets'

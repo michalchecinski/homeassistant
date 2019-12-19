@@ -58,9 +58,7 @@ stages:
 
           - script: pip install --upgrade homeassistant
 
-          - script: |
-              hass --version
-              hass -c ./homeassistant --script check_config --info all
+          - script: python -m homeassistant -c ./homeassistant --script check_config --info all
             displayName: 'test hass config'
       - job:
         displayName: 'Check HomeAssistant config pre'
@@ -70,7 +68,5 @@ stages:
 
           - script: pip install --upgrade --pre homeassistant
 
-          - script: |
-              hass --version
-              hass -c ./homeassistant --script check_config --info all
+          - script: python -m homeassistant -c ./homeassistant --script check_config --info all
             displayName: 'test hass config'
