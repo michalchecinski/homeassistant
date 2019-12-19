@@ -1,8 +1,7 @@
 #!/bin/bash
 #set -euxo pipefail
 
-#REPO_PATH="$( dirname "$( cd "$(dirname "$0")" ; pwd -P )" )"
-REPO_PATH="/home/pi/rpi-server"
+REPO_PATH="/home/pi/homeassistant"
 
 OLD_HEAD=$(git rev-parse HEAD)
 
