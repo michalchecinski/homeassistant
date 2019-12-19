@@ -54,9 +54,9 @@ stages:
       - job:
         strategy:
           matrix:
-            hasslatest:
+            latest:
               HASS_PACKAGE: 'homeassistant'
-            hasspre:
+            pre:
               HASS_PACKAGE: '--pre homeassistant'
         displayName: 'Check HomeAssistant config'
         steps:
