@@ -52,21 +52,42 @@ stages:
     displayName: Home Assistant
     jobs:
       - job:
-        displayName: 'Check HomeAssistant config Latest'
+        strategy:
+          matrix:
+            hasslatest:
+              HASS_PACKAGE: 'homeassistant'
+            hasspre:
+              HASS_PACKAGE: '--pre homeassistant'
+        displayName: 'Check HomeAssistant config'
         steps:
-          - template: azure-pipeline-templates/pre-hass-steps.yml
+          - script: sudo apt-get -y install libbluetooth-dev python-dev bluez
+            displayName: 'install bt deps'
 
-          - script: pip install --upgrade homeassistant
+          - task: UsePythonVersion@0
+            inputs:
+              versionSpec: '3.x'
+              addToPath: true
+              architecture: 'x64'
+            displayName: 'Use python 3.x'
+
+          - script: pip install --upgrade netdisco
+            displayName: 'Install python deps'
+
+          - script: cp -a ./homeassistant/.stubs/. ./homeassistant/
+            displayName: 'move secrets'
+
+          - script: pip install --upgrade $(HASS_PACKAGE)
+            displayName: 'install hass'
 
           - script: python -m homeassistant -c ./homeassistant --script check_config --info all
             displayName: 'test hass config'
-      - job:
-        displayName: 'Check HomeAssistant config pre'
-        continueOnError: true
-        steps:
-          - template: azure-pipeline-templates/pre-hass-steps.yml
+      # - job:
+      #   displayName: 'Check HomeAssistant config pre'
+      #   continueOnError: true
+      #   steps:
+      #     - template: azure-pipeline-templates/pre-hass-steps.yml
 
-          - script: pip install --upgrade --pre homeassistant
+      #     - script: pip install --upgrade --pre homeassistant
 
-          - script: python -m homeassistant -c ./homeassistant --script check_config --info all
-            displayName: 'test hass config'
+      #     - script: python -m homeassistant -c ./homeassistant --script check_config --info all
+      #       displayName: 'test hass config'
