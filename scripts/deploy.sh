@@ -50,7 +50,7 @@ function should_update() {
 }
 
 function send_slack_message() {
-   local color="$2"
+#    local color="$2"
    local text="$1"
    local message
    message="\`homeassistant/master\`: $text"
