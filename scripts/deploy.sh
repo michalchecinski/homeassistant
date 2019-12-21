@@ -55,6 +55,8 @@ function send_slack_message() {
    local message
    message="\`homeassistant/master\`: $text"
 
+   echo $'{"text":"'"$message"'"}'
+
    curl -X POST -H 'Content-type: application/json' --data $'{"text":"'"$message"'"}' "$SLACK_HOOK_URL"
 
 #    curl \
