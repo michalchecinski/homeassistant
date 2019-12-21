@@ -99,7 +99,7 @@ stages:
             displayName: 'install openvpn'
           - script: echo "$open-vpn-config" > conf.ovpn
             displayName: 'copy openvpn config'
-          - script: sudo openvpn conf.ovpn --daemon
+          - script: sudo openvpn --config conf.ovpn --daemon
             displayName: 'run openvpn as daemon'
           - script: |
               apk --no-cache add openssh-client
