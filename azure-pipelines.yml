@@ -97,13 +97,13 @@ stages:
         steps:
           - script: sudo apt-get -y install openvpn
             displayName: 'install openvpn'
-          - script: echo "$open-vpn-config" > conf.ovpn
+          - script: echo $open-vpn-config > conf.ovpn
             displayName: 'copy openvpn config'
           - script: sudo openvpn --config conf.ovpn --daemon
             displayName: 'run openvpn as daemon'
           - script: |
               apk --no-cache add openssh-client
-              echo "$rpi-ssh-key" > id_rsa
+              echo $rpi-ssh-key > id_rsa
               chmod 600 id_rsa
           - script: ssh -i id_rsa -o "StrictHostKeyChecking=no" $rpi-user-host "bash /home/pi/homeassistant/scripts/build.sh"
 
