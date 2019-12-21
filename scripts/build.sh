@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -euxo pipefail
+set -euxo pipefail
 
 REPO_PATH="/home/pi/homeassistant"
 
@@ -18,7 +18,7 @@ function docker_compose_changed() {
         return
     fi
 
-    filechanged=$(git diff --name-only "$OLD_HEAD" "$NEW_HEAD" | egrep 'docker-compose.yaml')
+    filechanged=$(git diff --name-only "$OLD_HEAD" "$NEW_HEAD" | egrep 'docker-compose.yaml|build.sh')
 
     if [ -f "$filechanged" ]
     then
@@ -40,5 +40,5 @@ then
     docker network prune -f
     docker volume prune -f
 else
-    docker-compose -f "$REPO_PATH"/docker-compose.yaml restart
+    docker-compose -f "$REPO_PATH"/docker-compose.yaml restart hass
 fi
