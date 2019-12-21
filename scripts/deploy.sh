@@ -51,19 +51,18 @@ function should_update() {
 
 function send_slack_message() {
 #    local color="$2"
-   local text="$1"
-   local message
-   message="\`homeassistant/master\`: $text"
+    local text="$1"
+    local message
 
-   echo $'{"text":"'"$message"'"}'
+    text = ${text//\"/}
 
-   curl -X POST -H 'Content-type: application/json' --data $'{"text":"'"$message"'"}' "$SLACK_HOOK_URL"
+    message="\`homeassistant/master\`: $text"
 
-#    curl \
-#        -X "POST" \
-#      -H 'Content-Type: application/json' \
-#      -d $'{ "attachments": [ { "color": "'"$color"'", "text": "'"$message"'" } ] }' \
-#     "$SLACK_HOOK_URL"
+    curl \
+       -X "POST" \
+     -H 'Content-Type: application/json' \
+     -d $'{ "attachments": [ { "color": "'"$color"'", "text": "'"$message"'" } ] }' \
+    "$SLACK_HOOK_URL"
 }
 
 updated="$(should_update)"
