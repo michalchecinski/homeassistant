@@ -1,7 +1,7 @@
 version: '3.7'
 
 services:
-  home-assistant:
+  hass:
     image: homeassistant/raspberrypi3-homeassistant:stable
     container_name: "hass"
     # network_mode: host
