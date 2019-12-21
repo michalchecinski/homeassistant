@@ -6,8 +6,11 @@ trigger:
       - feature/*
       - remodel-structure
 
+variables:
+  - group: hass-secrets
+
 stages:
-  - stage:
+  - stage: StaticAnalysis
     displayName: Static analysis
     jobs:
       - job: Docker
@@ -48,7 +51,7 @@ stages:
             displayName: 'Install shellcheck'
           - script: find . -not -name 'fix-routes.sh' -name '*.sh' -exec shellcheck {} +
             displayName: 'Validate bash scripts'
-  - stage:
+  - stage: HomeAssistant
     displayName: Home Assistant
     dependsOn: []
     jobs:
@@ -82,13 +85,24 @@ stages:
 
           - script: python -m homeassistant -c ./homeassistant --script check_config --info all
             displayName: 'test hass config'
-      # - job:
-      #   displayName: 'Check HomeAssistant config pre'
-      #   continueOnError: true
-      #   steps:
-      #     - template: azure-pipeline-templates/pre-hass-steps.yml
 
-      #     - script: pip install --upgrade --pre homeassistant
+  - stage:
+    displayName: Deploy
+    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+    dependsOn:
+     - StaticAnalysis
+     - HomeAssistant
+    steps:
+      - script: sudo apt-get -y install openvpn
+        displayName: 'install openvpn'
+      - script: echo "$open-vpn-config" > conf.ovpn
+        displayName: 'copy openvpn config'
+      - script: sudo openvpn conf.ovpn --daemon
+        displayName: 'run openvpn as daemon'
+      - script: |
+          apk --no-cache add openssh-client
+          echo "$rpi-ssh-key" > id_rsa
+          chmod 600 id_rsa
+      - script: ssh -i id_rsa -o "StrictHostKeyChecking=no" $rpi-user-host "bash /home/pi/homeassistant/scripts/build.sh"
 
-      #     - script: python -m homeassistant -c ./homeassistant --script check_config --info all
-      #       displayName: 'test hass config'
+
