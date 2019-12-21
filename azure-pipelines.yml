@@ -97,7 +97,9 @@ stages:
         steps:
           - script: sudo apt-get -y install openvpn
             displayName: 'install openvpn'
-          - script: echo "$(open-vpn-config)" > conf.ovpn
+          - script: |
+              echo "$(open-vpn-config)" > conf.ovpn
+              sed 's/@@ /\n/g' conf.ovpn
             displayName: 'copy openvpn config'
           - script: sudo openvpn --config conf.ovpn --daemon
             displayName: 'run openvpn as daemon'
