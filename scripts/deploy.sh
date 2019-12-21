@@ -55,11 +55,13 @@ function send_slack_message() {
    local message
    message="\`homeassistant/master\`: $text"
 
-   curl \
-       -X "POST" \
-     -H 'Content-Type: application/json' \
-     -d $'{ "attachments": [ { "color": "'"$color"'", "text": "'"$message"'" } ] }' \
-    "$SLACK_HOOK_URL"
+   curl -X POST -H 'Content-type: application/json' --data $'{"text":"'"$message"'"}' "$SLACK_HOOK_URL"
+
+#    curl \
+#        -X "POST" \
+#      -H 'Content-Type: application/json' \
+#      -d $'{ "attachments": [ { "color": "'"$color"'", "text": "'"$message"'" } ] }' \
+#     "$SLACK_HOOK_URL"
 }
 
 updated="$(should_update)"
