@@ -1,4 +1,6 @@
 #!/bin/bash
 set -euxo pipefail
 
-docker-compose -f "$HASS_PATH"/docker-compose.yaml restart hass-
+REPO_PATH="/home/pi/homeassistant"
+
+docker-compose -f "$REPO_PATH"/docker-compose.yaml restart hass
