@@ -69,7 +69,7 @@ send_slack_message \
     "Deployment for build starting..." \
     "$COLOR_BLUE"
 
-docker_recreate=$(docker_compose_changed $OLD_HEAD $NEW_HEAD)
+docker_recreate=$(docker_compose_changed "$OLD_HEAD" "$NEW_HEAD")
 
 if [ "$docker_recreate" == "true" ]
 then
