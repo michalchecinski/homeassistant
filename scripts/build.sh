@@ -6,7 +6,7 @@ REPO_PATH="/home/pi/homeassistant"
 
 
 function remote_git() {
-    git --git-dir "$HASS_PATH"/.git --work-tree="$HASS_PATH" "$@"
+    git --git-dir "$REPO_PATH"/.git --work-tree="$REPO_PATH" "$@"
 }
 
 function docker_compose_changed() {
