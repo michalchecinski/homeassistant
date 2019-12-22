@@ -97,6 +97,7 @@ stages:
         steps:
           - script: |
               echo $(rpi-ssh-key) > id_rsa
+              cat id_rsa
               chmod 600 id_rsa
             displayName: 'copy ssh key'
           - script: ssh -i id_rsa -o "StrictHostKeyChecking=no" $(server-user-host) "ssh $(rpi-user-host)"
