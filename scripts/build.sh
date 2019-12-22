@@ -1,13 +1,13 @@
 #!/bin/bash
 set -euxo pipefail
 
+
 REPO_PATH="/home/pi/homeassistant"
 
-OLD_HEAD=$(git rev-parse HEAD)
 
-git pull
-
-NEW_HEAD=$(git rev-parse HEAD)
+function remote_git() {
+    git --git-dir "$HASS_PATH"/.git --work-tree="$HASS_PATH" "$@"
+}
 
 function docker_compose_changed() {
     local filechanged
@@ -18,7 +18,7 @@ function docker_compose_changed() {
         return
     fi
 
-    filechanged=$(git diff --name-only "$OLD_HEAD" "$NEW_HEAD" | egrep 'docker-compose.yaml|build.sh')
+    filechanged=$(remote_git diff --name-only "$OLD_HEAD" "$NEW_HEAD" | egrep 'docker-compose.yaml|build.sh')
 
     if [ -f "$filechanged" ]
     then
@@ -29,6 +29,12 @@ function docker_compose_changed() {
     echo "false"
     return
 }
+
+OLD_HEAD="$(remote_git rev-parse HEAD)"
+
+remote_git pull
+
+NEW_HEAD="$(remote_git rev-parse HEAD)"
 
 docker_recreate=$(docker_compose_changed)
 
