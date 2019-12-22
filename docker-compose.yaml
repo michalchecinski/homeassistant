@@ -4,7 +4,6 @@ services:
   hass:
     image: homeassistant/raspberrypi3-homeassistant:stable
     container_name: "hass"
-    # network_mode: host
     depends_on:
       # - influxdb
       - mqtt
@@ -30,7 +29,6 @@ services:
     image: eclipse-mosquitto:latest
     container_name: "mqtt"
     restart: always
-    # network_mode: host
     ports:
       - 1883:1883
       - 9001:9001
@@ -55,7 +53,6 @@ services:
       - ./docker_files/unifi/run:/usr/lib/unifi/run
       - ./docker_files/unifi/run2:/run/unifi
       - ./docker_files/unifi/work:/usr/lib/unifi/work
-    # network_mode: host
     ports:
       - 3478:3478/udp
       - 10001:10001/udp
@@ -97,7 +94,6 @@ services:
       - "6443:443/tcp"
     environment:
       - TZ=Europe/Warsaw
-    # Volumes store your data between container upgrades
     volumes:
       - './docker_files/pihole/etc-pihole/:/etc/pihole/'
       - './docker_files/pihole/etc-dnsmasq.d/:/etc/dnsmasq.d/'
