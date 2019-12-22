@@ -90,8 +90,8 @@ stages:
     displayName: Deployment
     condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
     dependsOn:
-     - StaticAnalysis
-     - HomeAssistant
+      - StaticAnalysis
+      - HomeAssistant
     jobs:
       - job: Deployment
         steps:
