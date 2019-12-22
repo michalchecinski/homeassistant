@@ -165,7 +165,7 @@ yeelight:
 
 discovery:
   ignore:
-  - yeelight
+    - yeelight
 
 pi_hole:
   host: '172.19.0.10:6680'

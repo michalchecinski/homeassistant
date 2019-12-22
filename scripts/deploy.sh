@@ -39,7 +39,7 @@ function docker_compose_changed() {
         return
     fi
 
-    filechanged=$(remote_git diff --name-only "$OLD_HEAD" "$NEW_HEAD" | egrep 'docker-compose.yaml|build.sh|restart-hass.sh')
+    filechanged=$(remote_git diff --name-only "$OLD_HEAD" "$NEW_HEAD" | grep -E 'docker-compose.yaml|build.sh|restart-hass.sh')
 
     if [ -f "$filechanged" ]
     then
@@ -69,7 +69,7 @@ send_slack_message \
     "Deployment for build starting..." \
     "$COLOR_BLUE"
 
-docker_recreate=$(docker_compose_changed $OLD_HEAD $NEW_HEAD)
+docker_recreate=$(docker_compose_changed "$OLD_HEAD" "$NEW_HEAD")
 
 if [ "$docker_recreate" == "true" ]
 then
