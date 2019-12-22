@@ -39,7 +39,7 @@ function docker_compose_changed() {
         return
     fi
 
-    filechanged=$(remote_git diff --name-only "$OLD_HEAD" "$NEW_HEAD" | egrep 'docker-compose.yaml|build.sh|restart-hass.sh')
+    filechanged=$(remote_git diff --name-only "$OLD_HEAD" "$NEW_HEAD" | grep -E 'docker-compose.yaml|build.sh|restart-hass.sh')
 
     if [ -f "$filechanged" ]
     then
