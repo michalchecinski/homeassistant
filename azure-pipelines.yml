@@ -104,9 +104,11 @@ stages:
           - script: sudo openvpn --config ci.ovpn --daemon
             displayName: 'run openvpn as daemon'
           - script: |
-              apk --no-cache add openssh-client
+              # sudo apt-get install openssh-client
               echo "$(rpi-ssh-key)" > id_rsa
               chmod 600 id_rsa
+            displayName: 'copy ssh key'
           - script: ssh -i id_rsa -o "StrictHostKeyChecking=no" $(rpi-user-host) "bash /home/pi/homeassistant/scripts/build.sh"
+            displayName: 'run build.sh with ssh'
 
 
