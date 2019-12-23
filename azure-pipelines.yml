@@ -86,29 +86,21 @@ stages:
           - script: python -m homeassistant -c ./homeassistant --script check_config --info all
             displayName: 'test hass config'
 
-  - stage:
-    displayName: Deployment
-    condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
-    dependsOn:
-     - StaticAnalysis
-     - HomeAssistant
-    jobs:
-      - job: Deployment
-        steps:
-          - script: sudo apt-get -y install openvpn
-            displayName: 'install openvpn'
-          - script: |
-              echo "$(open-vpn-config)" > conf.ovpn
-              sed 's/@@ /\n/g' conf.ovpn > ci.ovpn
-            displayName: 'copy openvpn config'
-          - script: sudo openvpn --config ci.ovpn --daemon
-            displayName: 'run openvpn as daemon'
-          - script: |
-              # sudo apt-get install openssh-client
-              echo "$(rpi-ssh-key)" > id_rsa
-              chmod 600 id_rsa
-            displayName: 'copy ssh key'
-          - script: ssh -i id_rsa -o "StrictHostKeyChecking=no" $(rpi-user-host) "cd /home/pi/homeassistant && git pull"
-            displayName: 'run build.sh with ssh'
+  # - stage:
+  #   displayName: Deployment
+  #   condition: and(succeeded(), eq(variables['build.sourceBranch'], 'refs/heads/master'))
+  #   dependsOn:
+  #     - StaticAnalysis
+  #     - HomeAssistant
+  #   jobs:
+  #     - job: Deployment
+  #       steps:
+  #         - script: |
+  #             echo $(rpi-ssh-key) > id_rsa
+  #             cat id_rsa
+  #             sudo chmod 600 id_rsa
+  #           displayName: 'copy ssh key'
+  #         - script: ssh -i id_rsa -o "StrictHostKeyChecking=no" $(server-user-host) "ssh $(rpi-user-host)"
+  #           displayName: 'ssh deployment'
 
 
