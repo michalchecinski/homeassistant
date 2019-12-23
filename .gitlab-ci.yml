@@ -103,7 +103,7 @@ deploy:
     - echo "$DEPLOYMENT_SSH_KEY" > id_rsa
     - chmod 600 id_rsa
   script:
-    - ssh -i id_rsa -o "StrictHostKeyChecking=no" $(SERV_SSH_LOGIN) "ssh $(DEPLOYMENT_SSH_LOGIN)"
+    - ssh -i id_rsa -o "StrictHostKeyChecking=no" $SERV_SSH_LOGIN "ssh $DEPLOYMENT_SSH_LOGIN"
   after_script:
     - rm id_rsa
   only:
