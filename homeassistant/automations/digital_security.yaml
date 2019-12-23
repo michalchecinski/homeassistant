@@ -9,8 +9,8 @@
     - service: notify.slack
       data:
         message: "{{ states.persistent_notification.httplogin.attributes.message }}"
-      target:
-        - '#hass'
+        target:
+          - '#hass'
     - service: persistent_notification.create
       data:
         title: "{{ states.persistent_notification.httplogin.attributes.message }}"
