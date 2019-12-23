@@ -58,7 +58,7 @@ jobs:
           args: python -m homeassistant --config ./homeassistant --script check_config --info all
 
   deploy:
-    if: success() && ${{ github.ref == 'master' }}
+    # if: success() && ${{ github.ref == 'master' }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy config
