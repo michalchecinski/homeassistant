@@ -1,6 +1,5 @@
 name: Home Assistant CI
 
-# yamllint disable-line rule:truthy
 on:
   push:
   pull_request:
@@ -8,58 +7,95 @@ on:
     - cron: 0 12 * * *
 
 jobs:
-  home_assistant_stable:
+  docker-compose:
     runs-on: ubuntu-latest
     steps:
-      - name: Getting your configuration from GitHub
+      - name: Get configuration from GitHub
+        uses: actions/checkout@v1
+      - run: sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        name: 'Install docker-compose'
+      - run: docker-compose config
+        name: 'Validate docker-compose'
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    container:
+      image: koalaman/shellcheck-alpine:stable
+    steps:
+      - name: Get configuration from GitHub
+        uses: actions/checkout@v1
+      - name: shellcheck
+        run: find . -name '*.sh' -exec shellcheck {} +
+
+  yamllint:
+    runs-on: ubuntu-latest
+    container:
+      image: sdesbure/yamllint
+    steps:
+      - name: Get configuration from GitHub
+        uses: actions/checkout@v1
+      - name: yamllint
+        run: yamllint .
+
+  python:
+    runs-on: ubuntu-latest
+    container:
+      image: python:latest
+    steps:
+      - name: Get configuration from GitHub
+        uses: actions/checkout@v1
+      - run: pip install --upgrade pip flake8 mypy typed_ast
+        name: 'Install python validation tools'
+      - run: flake8 ./scripts
+        name: 'Validate flake8'
+      - run: mypy --ignore-missing-imports ./scripts
+        name: 'Validate my-py'
+
+  home_assistant_latest:
+    runs-on: ubuntu-latest
+    container:
+      image: homeassistant/home-assistant:latest
+    steps:
+      - name: Get configuration from GitHub
         uses: actions/checkout@v1
       - name: Copy secrets
         run: cp -a homeassistant/.stubs/. homeassistant/
       - name: Home Assistant Version
-        uses: "docker://homeassistant/home-assistant:stable"
-        with:
-          args: |
-            python -m homeassistant --version
+        run: python -m homeassistant --version
       - name: Home Assistant Check Config
-        uses: "docker://homeassistant/home-assistant:stable"
-        with:
-          args: python -m homeassistant --config ./homeassistant --script check_config --info all
-  home_assistant_beta:
+        run: python -m homeassistant --config ./homeassistant --script check_config --info all
+
+  home_assistant_rc:
     runs-on: ubuntu-latest
+    container:
+      image: homeassistant/home-assistant:rc
     steps:
-      - name: Getting your configuration from GitHub
+      - name: Get configuration from GitHub
         uses: actions/checkout@v1
       - name: Copy secrets
         run: cp -a homeassistant/.stubs/. homeassistant/
       - name: Home Assistant Version
-        uses: "docker://homeassistant/home-assistant:beta"
-        with:
-          args: |
-            python -m homeassistant --version
+        run: python -m homeassistant --version
       - name: Home Assistant Check Config
-        uses: "docker://homeassistant/home-assistant:beta"
-        with:
-          args: python -m homeassistant --config ./homeassistant --script check_config --info all
+        run: python -m homeassistant --config ./homeassistant --script check_config --info all
+
   home_assistant_dev:
     runs-on: ubuntu-latest
+    container:
+      image: homeassistant/home-assistant:dev
     steps:
-      - name: Getting your configuration from GitHub
+      - name: Get configuration from GitHub
         uses: actions/checkout@v1
       - name: Copy secrets
         run: cp -a homeassistant/.stubs/. homeassistant/
       - name: Home Assistant Version
-        uses: "docker://homeassistant/home-assistant:dev"
-        with:
-          args: |
-            python -m homeassistant --version
+        run: python -m homeassistant --version
       - name: Home Assistant Check Config
-        uses: "docker://homeassistant/home-assistant:dev"
-        with:
-          args: python -m homeassistant --config ./homeassistant --script check_config --info all
+        run: python -m homeassistant --config ./homeassistant --script check_config --info all
 
   deploy:
     if: success() && contains(github.ref, 'master')
-    needs: home_assistant_stable
+    needs: [ home_assistant_latest, docker-compose, shellcheck, python, yamllint ]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy config
@@ -68,3 +104,12 @@ jobs:
           hosts: ${{ secrets.SERV_SSH_LOGIN }}
           privateKey: ${{ secrets.DEPLOYMENT_SSH_KEY }}
           command: ssh ${{ secrets.DEPLOYMENT_SSH_LOGIN }}
+      - uses: 8398a7/action-slack@v2
+        with:
+          status: ${{ job.status }}
+          only_mention_fail: 'channel'
+          author_name: 'Github Actions'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+        if: always()
