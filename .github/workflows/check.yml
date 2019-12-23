@@ -51,13 +51,10 @@ jobs:
       - run: mypy --ignore-missing-imports ./scripts
         name: 'Validate my-py'
 
-  home_assistant:
+  home_assistant_stable:
     runs-on: ubuntu-latest
     container:
-      image: homeassistant/home-assistant:${{ matrix.hass }}
-    strategy:
-      matrix:
-        hass: [stable, rc, beta]
+      image: homeassistant/home-assistant:stable
     steps:
       - name: Get configuration from GitHub
         uses: actions/checkout@v1
@@ -67,42 +64,38 @@ jobs:
         run: python -m homeassistant --version
       - name: Home Assistant Check Config
         run: python -m homeassistant --config ./homeassistant --script check_config --info all
-  # home_assistant_beta:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Getting your configuration from GitHub
-  #       uses: actions/checkout@v1
-  #     - name: Copy secrets
-  #       run: cp -a homeassistant/.stubs/. homeassistant/
-  #     - name: Home Assistant Version
-  #       uses: "docker://homeassistant/home-assistant:beta"
-  #       with:
-  #         args: |
-  #           python -m homeassistant --version
-  #     - name: Home Assistant Check Config
-  #       uses: "docker://homeassistant/home-assistant:beta"
-  #       with:
-  #         args: python -m homeassistant --config ./homeassistant --script check_config --info all
-  # home_assistant_dev:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Getting your configuration from GitHub
-  #       uses: actions/checkout@v1
-  #     - name: Copy secrets
-  #       run: cp -a homeassistant/.stubs/. homeassistant/
-  #     - name: Home Assistant Version
-  #       uses: "docker://homeassistant/home-assistant:dev"
-  #       with:
-  #         args: |
-  #           python -m homeassistant --version
-  #     - name: Home Assistant Check Config
-  #       uses: "docker://homeassistant/home-assistant:dev"
-  #       with:
-  #         args: python -m homeassistant --config ./homeassistant --script check_config --info all
+
+  home_assistant_rc:
+    runs-on: ubuntu-latest
+    container:
+      image: homeassistant/home-assistant:rc
+    steps:
+      - name: Get configuration from GitHub
+        uses: actions/checkout@v1
+      - name: Copy secrets
+        run: cp -a homeassistant/.stubs/. homeassistant/
+      - name: Home Assistant Version
+        run: python -m homeassistant --version
+      - name: Home Assistant Check Config
+        run: python -m homeassistant --config ./homeassistant --script check_config --info all
+
+  home_assistant_dev:
+    runs-on: ubuntu-latest
+    container:
+      image: homeassistant/home-assistant:dev
+    steps:
+      - name: Get configuration from GitHub
+        uses: actions/checkout@v1
+      - name: Copy secrets
+        run: cp -a homeassistant/.stubs/. homeassistant/
+      - name: Home Assistant Version
+        run: python -m homeassistant --version
+      - name: Home Assistant Check Config
+        run: python -m homeassistant --config ./homeassistant --script check_config --info all
 
   deploy:
     if: success() && contains(github.ref, 'master')
-    needs: [ home_assistant, docker-compose, shellcheck, python, yamllint ]
+    needs: [ home_assistant_latest, docker-compose, shellcheck, python, yamllint ]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy config
