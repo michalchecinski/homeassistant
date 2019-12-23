@@ -38,10 +38,6 @@
       - condition: template
         value_template: "{{states.updater.updater.state[-1] | int > 0}}"
   action:
-    - service: notify.michal_html
-      data:
-        title: "HA dostępna aktualizacja"
-        message: "Nowa wersja Home Assistant: {{ states('updater.updater') }}"
     - service: persistent_notification.create
       data:
         title: "Dostępna aktualizacja"
@@ -63,9 +59,6 @@
   #     entity_id: input_boolean.michal_home
   #     state: 'off'
   action:
-    - service: notify.michal_html
-      data:
-        message: "Home assistant wystartował"
     - service: notify.slack
       data:
         title: "Start"
@@ -84,10 +77,9 @@
       entity_id: input_boolean.michal_home
       state: 'off'
   action:
-    - service: notify.michal_html
-      data:
-        message: "Home assistant wyłącza się"
     - service: notify.slack
       data:
         title: "STOP"
         message: "Home assistant wyłącza się"
+        target:
+          - '#deployment'
