@@ -46,7 +46,7 @@ jobs:
       - name: Getting your configuration from GitHub
         uses: actions/checkout@v1
       - name: Copy secrets
-        run: cp travis_secrets.yaml secrets.yaml
+        run: cp -a homeassistant/.stubs/. homeassistant/
       - name: Home Assistant Version
         uses: "docker://homeassistant/home-assistant:dev"
         with:
@@ -58,7 +58,7 @@ jobs:
           args: python -m homeassistant --config ./homeassistant --script check_config --info all
 
   deploy:
-    # if: success() && ${{ github.ref == 'master' }}
+    if: ${{ success() && github.ref == 'master' }}
     runs-on: ubuntu-latest
     steps:
       - name: Deploy config
