@@ -51,10 +51,10 @@ jobs:
       - run: mypy --ignore-missing-imports ./scripts
         name: 'Validate my-py'
 
-  home_assistant_stable:
+  home_assistant_latest:
     runs-on: ubuntu-latest
     container:
-      image: homeassistant/home-assistant:stable
+      image: homeassistant/home-assistant:latest
     steps:
       - name: Get configuration from GitHub
         uses: actions/checkout@v1
