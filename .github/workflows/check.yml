@@ -59,7 +59,7 @@ jobs:
 
   deploy:
     if: success() && contains(github.ref, 'master')
-    needs: home_assistant_stable
+    needs: home_assistant
     runs-on: ubuntu-latest
     steps:
       - name: Deploy config
