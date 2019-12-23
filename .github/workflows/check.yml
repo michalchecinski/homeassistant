@@ -10,6 +10,8 @@ jobs:
   docker-compose:
     runs-on: ubuntu-latest
     steps:
+      - name: Get configuration from GitHub
+        uses: actions/checkout@v1
       - run: sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         name: 'Install docker-compose'
       - run: docker-compose config
@@ -20,6 +22,8 @@ jobs:
     container:
       image: koalaman/shellcheck-alpine:stable
     steps:
+      - name: Get configuration from GitHub
+        uses: actions/checkout@v1
       - name: shellcheck
         run: find . -name '*.sh' -exec shellcheck {} +
 
@@ -28,6 +32,8 @@ jobs:
     container:
       image: sdesbure/yamllint
     steps:
+      - name: Get configuration from GitHub
+        uses: actions/checkout@v1
       - name: yamllint
         run: yamllint .
 
@@ -36,6 +42,8 @@ jobs:
     container:
       image: python:latest
     steps:
+      - name: Get configuration from GitHub
+        uses: actions/checkout@v1
       - run: pip install --upgrade pip flake8 mypy typed_ast
         name: 'Install python validation tools'
       - run: flake8 ./scripts
@@ -51,7 +59,7 @@ jobs:
       matrix:
         hass: [stable, rc, beta]
     steps:
-      - name: Getting your configuration from GitHub
+      - name: Get configuration from GitHub
         uses: actions/checkout@v1
       - name: Copy secrets
         run: cp -a homeassistant/.stubs/. homeassistant/
