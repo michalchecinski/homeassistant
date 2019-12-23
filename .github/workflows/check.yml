@@ -1,6 +1,5 @@
 name: Home Assistant CI
 
-# yamllint disable-line rule:truthy
 on:
   push:
   pull_request:
@@ -22,17 +21,7 @@ jobs:
       image: koalaman/shellcheck-alpine:stable
     steps:
       - name: shellcheck
-        run: |
-        for file in $(grep -IRl "#\!\(/usr/bin/env \|/bin/\)" --exclude-dir ".git" .); do
-          if ! shellcheck -x $file; then
-            export FAILED=1
-          else
-            echo "$file OK"
-          fi
-        done
-        if [ "${FAILED}" = "1" ]; then
-          exit 1
-        fi
+        run: find . -name '*.sh' -exec shellcheck {} +
 
   yamllint:
     runs-on: ubuntu-latest
