@@ -62,7 +62,7 @@ yamllint:
 python:
   <<: *staticcheck
   image:
-    name: alpine:latest
+    name: python:latest
     entrypoint: [""]
   before_script:
     - pip install --upgrade pip flake8 mypy typed_ast
