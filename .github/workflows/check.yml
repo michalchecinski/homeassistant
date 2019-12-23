@@ -8,6 +8,52 @@ on:
     - cron: 0 12 * * *
 
 jobs:
+  docker-compose:
+    runs-on: ubuntu-latest
+    steps:
+      - run: sudo curl -L "https://github.com/docker/compose/releases/download/1.25.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+        name: 'Install docker-compose'
+      - run: docker-compose config
+        name: 'Validate docker-compose'
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    container:
+      image: koalaman/shellcheck-alpine:stable
+    steps:
+      - name: shellcheck
+        run: |
+        for file in $(grep -IRl "#\!\(/usr/bin/env \|/bin/\)" --exclude-dir ".git" .); do
+          if ! shellcheck -x $file; then
+            export FAILED=1
+          else
+            echo "$file OK"
+          fi
+        done
+        if [ "${FAILED}" = "1" ]; then
+          exit 1
+        fi
+
+  yamllint:
+    runs-on: ubuntu-latest
+    container:
+      image: sdesbure/yamllint
+    steps:
+      - name: yamllint
+        run: yamllint .
+
+  python:
+    runs-on: ubuntu-latest
+    container:
+      image: python:latest
+    steps:
+      - run: pip install --upgrade pip flake8 mypy typed_ast
+        name: 'Install python validation tools'
+      - run: flake8 ./scripts
+        name: 'Validate flake8'
+      - run: mypy --ignore-missing-imports ./scripts
+        name: 'Validate my-py'
+
   home_assistant:
     runs-on: ubuntu-latest
     container:
