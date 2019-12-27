@@ -1,0 +1,19 @@
+
+- id: failure_out_home
+  alias: Failure - out of home for 14 hours
+  trigger:
+    - platform: state
+      entity_id: input_boolean.michal_home
+      to: 'off'
+      for:
+        hours: 14
+        minutes: 0
+        seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+  action:
+    - service: notify.michal_html
+      data:
+        message: "Nie było Cię w domu przez 14 godzin. Czy to prawda?"

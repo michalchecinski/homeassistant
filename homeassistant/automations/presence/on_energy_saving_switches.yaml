@@ -1,0 +1,17 @@
+###################################################
+# Turn on energy saving switches when coming home #
+###################################################
+
+- id: alarm_time
+  alias: Coming home - turn on energy saving switches
+  trigger:
+    - platform: state
+      entity_id: input_boolean.michal_home
+      from: 'off'
+      to: 'on'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id:
+          - switch.living_room_appliances
+          - switch.biurko

@@ -15,7 +15,6 @@
       data:
         entity_id: script.iron_turn_off
 
-
 # Iron turned on
 - id: iron_turned_off
   alias: Iron - turned off

@@ -1,0 +1,13 @@
+- id: alarm_time
+  alias: Sleep - time to wake up
+  trigger:
+    - platform: state
+      entity_id: input_boolean.sleep
+      from: 'on'
+      to: 'off'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id:
+          - switch.living_room_appliances
+          - switch.biurko

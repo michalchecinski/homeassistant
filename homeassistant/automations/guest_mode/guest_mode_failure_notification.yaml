@@ -1,0 +1,25 @@
+- id: failure_guest_mode
+  alias: Failure - guest mode for 36 hours
+  trigger:
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      to: 'on'
+      for:
+        hours: 24
+        minutes: 0
+        seconds: 0
+    - platform: state
+      entity_id: input_boolean.guest_mode
+      to: 'on'
+      for:
+        hours: 36
+        minutes: 0
+        seconds: 0
+  action:
+    - service: notify.michal_html
+      data:
+        message: "Nadal masz gości?"
+        data:
+          actions:
+            - action: guest_mode_off
+              title: Turn off guest mode

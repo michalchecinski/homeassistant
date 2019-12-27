@@ -1,0 +1,37 @@
+#############################
+#  Michal away automations  #
+#############################
+
+# Away home
+- id: away
+  alias: Presence - turn off boolean when leaving home
+  trigger:
+    - platform: state
+      entity_id: person.michal
+      to: 'not_home'
+    - platform: state
+      entity_id: person.michal
+      to: 'extended home'
+    - platform: state
+      entity_id: person.michal
+      to: 'praca'
+    - platform: state
+      entity_id: person.michal
+      to: 'Politechnika'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.sleep
+        state: 'off'
+  action:
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.michal_home
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.michal_status
+        option: 'away'
