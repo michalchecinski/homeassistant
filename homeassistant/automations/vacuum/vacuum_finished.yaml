@@ -1,0 +1,33 @@
+- id: vacuum_finished
+  alias: Vacuum - finished
+  trigger:
+    - platform: state
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      from: 'returning'
+      to: 'docked'
+    - platform: state
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      from: 'cleaning'
+      to: 'docked'
+  condition:
+    condition: and
+    conditions:
+      - condition: template
+        value_template: '{{ states.vacuum.xiaomi_vacuum_cleaner.attributes.cleaned_area | int >= 34 }}'
+      - condition: template
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.vacuum_off.attributes.last_triggered) | int > 40 }}'
+  action:
+    - service: input_boolean.turn_on
+      data_template:
+        entity_id: input_boolean.vacuum_finished
+
+
+- id: vacuum_finished_off
+  alias: Vacuum - finished input bool to off
+  trigger:
+    - platform: time
+      at: '00:01:00'
+  action:
+    - service: input_boolean.turn_off
+      data_template:
+        entity_id: input_boolean.vacuum_finished

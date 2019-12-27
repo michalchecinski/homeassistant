@@ -1,8 +1,0 @@
-  - platform: google_travel_time
-    name: 'Michał to home'
-    api_key: !secret google_travel
-    origin: person.michal
-    destination: zone.home
-    options:
-      language: 'pl'
-      mode: 'transit'

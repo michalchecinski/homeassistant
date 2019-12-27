@@ -1,0 +1,27 @@
+##################################
+#  IFTTT webhook smog automation #
+##################################
+
+- id: ifttt_webhook_smog
+  alias: IFTTT webhook smog
+  trigger:
+    platform: event
+    event_type: ifttt_webhook_received
+    event_data:
+      action: smog_level
+  action:
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.living_room_speaker
+        volume_level: "1"
+    - service: tts.google_say
+      data_template:
+        entity_id: media_player.living_room_speaker
+        message: "Smog level is {{ states('sensor.airly_caqi_level') }}"
+        language: 'en'
+        cache: false
+    - delay: '00:00:07'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.living_room_speaker
+        volume_level: 0.5

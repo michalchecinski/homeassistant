@@ -1,0 +1,18 @@
+- alias: "Notification security - failed login attempt"
+  trigger:
+    - platform: state
+      entity_id: persistent_notification.httplogin
+  condition:
+    - condition: template
+      value_template: "{{ trigger.to_state.state != 'None' }}"
+  action:
+    - service: notify.slack
+      data:
+        message: "{{ states.persistent_notification.httplogin.attributes.message }}"
+        target:
+          - '#hass'
+    - service: persistent_notification.create
+      data:
+        title: "{{ states.persistent_notification.httplogin.attributes.message }}"
+        message: 'url: https://whatismyipaddress.com/ip/{{ states.persistent_notification.httplogin.attributes.message.split ("from ") [1]}}'
+        notification_id: "update_available"

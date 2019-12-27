@@ -1,0 +1,13 @@
+
+
+- id: vacuum_finished_notification
+  alias: Vacuum - notification - off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacuum_finished
+      from: 'off'
+      to: 'on'
+  action:
+    - service: notify.michal_html
+      data:
+        message: "Odkurzacz zakończył odkurzanie"

@@ -1,0 +1,9 @@
+########################
+# Thinkpad home sensor #
+########################
+
+- platform: template
+  sensors:
+    thinkpad:
+      value_template: >-
+        {{ is_state('device_tracker.thinkpad', 'home') }}

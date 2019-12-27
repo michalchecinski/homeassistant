@@ -1,0 +1,18 @@
+#######################################
+# Outside temperature down automation #
+#######################################
+
+- id: outside_temp_down_significantly
+  alias: Temperature outside notification - significant down
+  trigger:
+    - platform: time_pattern
+      hours: 7
+      minutes: 20
+      seconds: 00
+  condition:
+    condition: template
+    value_template: "{{ (states.sensor.temperature_outside.state) | float <= (states.input_number.last_morning_temp.state) | float - 5 }}"
+  action:
+    - service: notify.michal_html
+      data:
+        message: "Temperatura SPADŁA znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}} C; dzisiaj {{(states.sensor.temperature_outside.state)}} C"

@@ -1,0 +1,26 @@
+###########################################
+#  Open windows temperature notification  #
+###########################################
+
+- id: outside_temp_open_window
+  alias: Temperature outside notification - is lower than indoors - open windows
+  trigger:
+    - platform: template
+      value_template: "{{ (states.sensor.temperature_outside.state) | float <= (states.sensor.temperature_inside.state) | float - 5 }}"
+  condition:
+    - condition: state
+      entity_id: input_boolean.michal_home
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.sleep
+      state: 'off'
+    - condition: template
+      value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.temperature_outside_notification_is_lower_than_indoors_open_windows.attributes.last_triggered) | int > 3600 }}'
+    - condition: numeric_state
+      entity_id: 'sensor.temperature_outside'
+      above: 13
+  action:
+    - service: notify.michal_html
+      data:
+        title: "Otwórz okna"
+        message: "Na zewnątrz jest chłodniej. Out: {{ (states.sensor.temperature_outside.state) | float }}. In: {{ (states.sensor.temperature_inside.state) | float }}"

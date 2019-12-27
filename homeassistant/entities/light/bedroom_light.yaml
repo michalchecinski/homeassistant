@@ -1,0 +1,21 @@
+##################
+# Bedroom lights #
+##################
+
+- platform: mqtt
+  name: desk led
+  command_topic: "cmnd/bedroomdeskled/POWER1"
+  state_topic: "stat/bedroomdeskled/RESULT"
+  value_template: "{{ value_json.POWER1 }}"
+  availability_topic: "tele/bedroomdeskled/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+
+- platform: mqtt
+  name: monitor led
+  command_topic: "cmnd/bedroomdeskled/POWER2"
+  state_topic: "stat/bedroomdeskled/RESULT"
+  value_template: "{{ value_json.POWER2 }}"
+  availability_topic: "tele/bedroomdeskled/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"

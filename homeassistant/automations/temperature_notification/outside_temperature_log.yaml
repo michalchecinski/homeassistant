@@ -1,0 +1,16 @@
+#############################################
+# Log outside temperature for notifications #
+#############################################
+
+- id: outside_temp_log
+  alias: Temperature outside notification - log
+  trigger:
+    - platform: time_pattern
+      hours: 7
+      minutes: 21
+      seconds: 00
+  action:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.last_morning_temp
+        value: "{{ (states.sensor.temperature_outside.state) | float }}"

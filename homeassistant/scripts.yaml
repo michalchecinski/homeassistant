@@ -2,23 +2,6 @@
 # Scripts #
 ###########
 
-off_all:
-  alias: "Turn off all"
-  sequence:
-    - service: homeassistant.turn_off
-      data:
-        entity_id:
-          - switch.a1
-          - switch.b1
-          - switch.b2
-          - switch.b3
-          - switch.stereo
-          - switch.living_room_appliances
-          - switch.biurko
-          - light.bed_lamp
-          - light.monitor_led
-          - light.desk_led
-
 iron_turn_off:
   alias: "Turn off iron after 20 minutes of use"
   sequence:
@@ -80,6 +63,7 @@ romantic_on:
     - service: scene.turn_on
       data:
         entity_id: scene.romantic
+
 romantic_off:
   alias: Romantic off
   sequence:
@@ -107,6 +91,7 @@ romantic_off:
     - service: scene.turn_on
       data:
         entity_id: scene.normal_livingroom
+
 romantic_dance_on:
   alias: Romantic dance on
   sequence:
@@ -131,6 +116,7 @@ romantic_dance_on:
     - service: scene.turn_on
       data:
         entity_id: scene.romantic
+
 spotify_play_playlist:
   alias: Spotify play playlist
   sequence:
@@ -146,6 +132,7 @@ spotify_play_playlist:
         entity_id: media_player.spotify
         media_content_type: playlist
         media_content_id: "{{ playlist }}"
+
 spotify_play_song:
   alias: Spotify play song
   sequence:
@@ -161,6 +148,7 @@ spotify_play_song:
         entity_id: media_player.spotify
         media_content_type: music
         media_content_id: "{{ song }}"
+
 stereo_on:
   alias: "Stereo on"
   sequence:
@@ -170,6 +158,7 @@ stereo_on:
     - service: switch.turn_on
       data:
         entity_id: switch.stereo_mqtt
+
 stereo_off:
   alias: "Stereo off"
   sequence:
