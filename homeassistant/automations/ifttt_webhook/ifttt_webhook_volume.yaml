@@ -1,0 +1,16 @@
+############################################
+#  IFTTT webhook volume service automation #
+############################################
+
+- id: ifttt_webhook_call_set_vol_service
+  alias: IFTTT webhook call set vol service
+  trigger:
+    platform: event
+    event_type: ifttt_webhook_received
+    event_data:
+      action: call_set_volume_service
+  action:
+    service_template: '{{ trigger.event.data.service }}'
+    data_template:
+      entity_id: '{{ trigger.event.data.entity_id }}'
+      volume_level: '0.{{ trigger.event.data.volume_level }}'

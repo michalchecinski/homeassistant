@@ -1,0 +1,19 @@
+######################################################
+#  Michal status dropdown using computer automation  #
+######################################################
+
+- id: michal_status_computer
+  alias: Michal status - at computer
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.thinkpad
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: input_boolean.michal_home
+      state: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.michal_status
+        option: 'using computer'

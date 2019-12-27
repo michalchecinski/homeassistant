@@ -1,0 +1,4 @@
+platform: bluetooth_tracker
+consider_home: 330
+new_device_defaults:
+  track_new_devices: false

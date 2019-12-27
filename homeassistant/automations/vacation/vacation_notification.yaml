@@ -1,0 +1,23 @@
+- id: vacation_on_notification
+  alias: Vacation - notification - on
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+      from: 'off'
+      to: 'on'
+  action:
+    - service: notify.michal_html
+      data:
+        message: "HA wyjechałeś na wakacje"
+
+- id: vacation_off_notification
+  alias: Vacation - notification - off
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacation_mode
+      from: 'on'
+      to: 'off'
+  action:
+    - service: notify.michal_html
+      data:
+        message: "HA Wróciłeś z wakacji"

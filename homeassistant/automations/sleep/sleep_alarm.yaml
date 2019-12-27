@@ -1,0 +1,46 @@
+###############
+# Sleep alarm #
+###############
+
+- id: sleep_alarm_on
+  alias: Sleep - alarm
+  trigger:
+    - platform: state
+      entity_id: input_boolean.sleep_alarm
+      to: 'on'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on'
+  action:
+    - service: light.turn_on
+      entity_id: light.bed_lamp
+      data:
+        rgb_color: [255, 0, 0]
+        brightness_pct: 1
+    - delay: 00:03
+    - service: light.turn_on
+      entity_id: light.bed_lamp
+      data:
+        rgb_color: [255,100,0]
+        brightness_pct: 1
+        transition: 60
+    - delay: 00:02
+    - service: light.turn_on
+      entity_id: light.bed_lamp
+      data:
+        rgb_color: [255,230,200]
+        brightness_pct: 1
+        transition: 60
+    - delay: 00:03
+    - service: light.turn_on
+      entity_id: light.bed_lamp
+      data:
+        rgb_color: [255,230,200]
+        brightness_pct: 50
+        transition: 60
+    - service: light.turn_off
+      data:
+        entity_id: light.bed_lamp

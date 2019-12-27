@@ -1,0 +1,19 @@
+# At home
+- id: at_home
+  alias: Presence - turn on boolean when at home
+  trigger:
+    - event_data:
+        action: iam_home
+      event_type: html5_notification.clicked
+      platform: event
+    - platform: state
+      entity_id: person.michal
+      to: 'home'
+  action:
+    - service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.michal_home
+    - service: input_select.select_option
+      data:
+        entity_id: input_select.michal_status
+        option: 'at home'

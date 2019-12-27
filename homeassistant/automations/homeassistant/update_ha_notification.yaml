@@ -1,0 +1,32 @@
+############################
+#  Update HA notification  #
+############################
+
+# Notify when new home assistant version is live
+- id: update_notification
+  alias: Notification - HA update available
+  trigger:
+    - platform: state
+      entity_id: updater.updater
+    - platform: state
+      entity_id: input_boolean.michal_home
+      from: 'off'
+      to: 'on'
+      for:
+        minutes: 15
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on'
+  action:
+    - service: persistent_notification.create
+      data:
+        title: "Dostępna aktualizacja"
+        message: "Nowa wersja Home Assistant: {{ states('updater.updater') }} - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
+        notification_id: "update_available"
+    - service: notify.slack
+      data:
+        title: "Dostępna aktualizacja"
+        message: "Nowa wersja Home Assistant: {{ states('updater.updater') }}"

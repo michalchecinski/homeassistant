@@ -1,0 +1,32 @@
+################################
+# Sleep off (awake) automation #
+################################
+
+- id: sleep_off
+  alias: Sleep - awake
+  trigger:
+    - platform: state
+      entity_id: input_boolean.sleep
+      from: 'on'
+      to: 'off'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
+      - condition: time
+        after: '05:00:00'
+        before: '13:00:00'
+  action:
+    - delay: '00:04:00'
+    - service: media_player.shuffle_set
+      data:
+        entity_id: media_player.spotify
+        shuffle: true
+    - service: script.spotify_play_playlist
+      data_template:
+        playlist: "{{ ['spotify:user:spotify:playlist:37i9dQZF1DX6FpuSJJgdDF','spotify:user:spotify:playlist:37i9dQZF1DXdd3gw5QVjt9', 'spotify:user:spotify:playlist:37i9dQZF1DX5dJCW6dyCUe']|random }}"

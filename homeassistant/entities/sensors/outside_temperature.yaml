@@ -1,0 +1,10 @@
+####################################
+# Outside conditions (temperature) #
+####################################
+
+- platform: template
+  sensors:
+    temperature_outside:
+      friendly_name: "Temperature outside"
+      value_template: "{{ states.sensor.airly_temperature.state }}"
+      unit_of_measurement: "°C"

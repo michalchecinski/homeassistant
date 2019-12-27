@@ -1,0 +1,16 @@
+#######################
+# Avg home conditions #
+#######################
+
+- platform: min_max
+  name: Temperature inside
+  type: mean
+  entity_ids:
+    - sensor.bedroom_temperature
+    - sensor.livingroom_temperature
+- platform: min_max
+  name: Humidity inside
+  type: mean
+  entity_ids:
+    - sensor.bedroom_humidity
+    - sensor.livingroom_humidity
