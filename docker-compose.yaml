@@ -109,6 +109,20 @@ services:
       serv_network:
         ipv4_address: 172.19.0.50
 
+  glances:
+    container_name: glances
+    restart: always
+    image: nicolargo/glances:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 61208-61209:61208-61209
+    environment:
+      - GLANCES_OPT=-w
+    networks:
+      serv_network:
+        ipv4_address: 172.19.0.60
+
 networks:
   serv_network:
     ipam:
