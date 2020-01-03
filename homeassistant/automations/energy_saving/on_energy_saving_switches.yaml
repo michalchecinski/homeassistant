@@ -1,0 +1,21 @@
+##################################
+# Turn on energy saving switches #
+##################################
+
+- id: switch_light_energy_on
+  alias: Energy - Turn on energy saving switches
+  trigger:
+    - platform: state
+      entity_id: input_boolean.michal_home
+      from: 'off'
+      to: 'on'
+    - platform: state
+      entity_id: input_boolean.sleep
+      from: 'on'
+      to: 'off'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id:
+          - switch.living_room_appliances
+          - switch.biurko

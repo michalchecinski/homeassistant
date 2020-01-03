@@ -1,14 +1,17 @@
-#############################
-# Off all when leaving home #
-#############################
+#######################################
+# Off all when leaving home and sleep #
+#######################################
 
 - id: away_home_script
-  alias: Leaving home - off all switches and lights
+  alias: Energy - Turn off energy saving switches and lights
   trigger:
     - platform: state
       entity_id: input_boolean.michal_home
       from: 'on'
       to: 'off'
+    - platform: state
+      entity_id: input_boolean.sleep
+      to: 'on'
   action:
     - service: homeassistant.turn_off
       data:
