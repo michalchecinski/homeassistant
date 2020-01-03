@@ -35,87 +35,6 @@ say:
         entity_id: media_player.living_room_speaker
         volume_level: 0.5
 
-romantic_on:
-  alias: Romantic on
-  sequence:
-    - service: switch.turn_on
-      data:
-        entity_id: switch.stereo
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.living_room_speaker
-        volume_level: "0.2"
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.spotify
-        volume_level: "0.15"
-    - service: media_player.shuffle_set
-      data:
-        entity_id: media_player.spotify
-        shuffle: true
-    - service: script.spotify_play_playlist
-      data_template:
-        playlist: "spotify:user:checin:playlist:6f4TfHpSuNFBaJnWxfqE2w"
-    - condition: numeric_state
-      entity_id: sun.sun
-      value_template: "{{ state.attributes.elevation }}"
-      below: -3.0
-    - service: scene.turn_on
-      data:
-        entity_id: scene.romantic
-
-romantic_off:
-  alias: Romantic off
-  sequence:
-    - service: light.turn_off
-      data:
-        entity_id: light.rtv_led
-    - service: switch.turn_off
-      data:
-        entity_id: switch.stereo
-    - service: media_player.media_pause
-      data:
-        entity_id: media_player.spotify
-    - service: media_player.clear_playlist
-      data:
-        entity_id: media_player.spotify
-    - delay: '00:01:00'
-    - service: media_player.volume_set
-      data_template:
-        entity_id: media_player.living_room_speaker
-        volume_level: "0.5"
-    - condition: numeric_state
-      entity_id: sun.sun
-      value_template: "{{ state.attributes.elevation }}"
-      below: -3.0
-    - service: scene.turn_on
-      data:
-        entity_id: scene.normal_livingroom
-
-romantic_dance_on:
-  alias: Romantic dance on
-  sequence:
-    - service: switch.turn_on
-      data:
-        entity_id: switch.stereo
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.living_room_speaker
-        volume_level: "0.2"
-    - service: script.spotify_play_song
-      data_template:
-        song: "spotify:track:0Tel1fmuCxEFV6wBLXsEdk"
-    - service: media_player.volume_set
-      data:
-        entity_id: media_player.spotify
-        volume_level: "0.15"
-    - condition: numeric_state
-      entity_id: sun.sun
-      value_template: "{{ state.attributes.elevation }}"
-      below: -3.0
-    - service: scene.turn_on
-      data:
-        entity_id: scene.romantic
 
 spotify_play_playlist:
   alias: Spotify play playlist
@@ -133,6 +52,7 @@ spotify_play_playlist:
         media_content_type: playlist
         media_content_id: "{{ playlist }}"
 
+
 spotify_play_song:
   alias: Spotify play song
   sequence:
@@ -149,6 +69,7 @@ spotify_play_song:
         media_content_type: music
         media_content_id: "{{ song }}"
 
+
 stereo_on:
   alias: "Stereo on"
   sequence:
@@ -159,6 +80,7 @@ stereo_on:
       data:
         entity_id: switch.stereo_mqtt
 
+
 stereo_off:
   alias: "Stereo off"
   sequence:
@@ -168,6 +90,7 @@ stereo_off:
     - service: switch.turn_off
       data:
         entity_id: switch.stereo_mqtt
+
 
 tv_start_x:
   alias: "TV Start X"
@@ -191,6 +114,7 @@ tv_start_x:
             {{ title }}
           {% endif %}
 
+
 vacuum_stop:
   sequence:
     - service: vacuum.pause
@@ -207,7 +131,6 @@ vacuum_stop:
         entity_id: vacuum.xiaomi_vacuum_cleaner
 
 # Vacuum rooms
-
 vacuum_kitchen:
   alias: "Odkurz kuchnię"
   sequence:
@@ -216,6 +139,7 @@ vacuum_kitchen:
         entity_id: vacuum.xiaomi_vacuum_cleaner
         repeats: 1
         zone: [[24600, 23000, 27600, 25000]]
+
 
 vacuum_hall:
   alias: "Odkurz przedpokój"
@@ -226,6 +150,7 @@ vacuum_hall:
         repeats: 1
         zone: [[27600, 22400, 29500, 26100]]
 
+
 vacuum_livingroom:
   alias: "Odkurz salon"
   sequence:
@@ -234,6 +159,7 @@ vacuum_livingroom:
         entity_id: vacuum.xiaomi_vacuum_cleaner
         repeats: 1
         zone: [[22600, 25000, 27300, 28800]]
+
 
 vacuum_bathroom:
   alias: "Odkurz łazienkę"
@@ -244,6 +170,7 @@ vacuum_bathroom:
         repeats: 1
         zone: [[27400, 26100, 295000, 27900]]
 
+
 vacuum_bedroom:
   alias: "Odkurz sypialnię"
   sequence:
@@ -252,6 +179,7 @@ vacuum_bedroom:
         entity_id: vacuum.xiaomi_vacuum_cleaner
         repeats: 1
         zone: [[23900, 19400, 28700, 22300]]
+
 
 vacuum_room:
   alias: "Odkurz!"
@@ -270,6 +198,7 @@ vacuum_room:
           {% elif is_state("input_select.vacuum_room_select", "Łazienka") %}
             script.vacuum_bathroom
           {% endif %}
+
 
 vacuum_goto_bin:
   alias: "Jedź pod śmietnik!"
