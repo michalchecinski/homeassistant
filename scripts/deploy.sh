@@ -61,8 +61,8 @@ if [ "$git_pull_result" == "1" ]; then
     return
 fi
 
-remote_git submodule sync --recursive
-remote_git submodule update --init --recursive
+#remote_git submodule sync --recursive
+#remote_git submodule update --init --recursive
 
 NEW_HEAD="$(remote_git rev-parse HEAD)"
 
