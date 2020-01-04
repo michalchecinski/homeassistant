@@ -113,3 +113,5 @@ pi_hole:
   verify_ssl: false
 
 speedtestdotnet: !include integrations/speedtest.yaml
+
+panel_iframe: !include integrations/panel_iframe.yaml
