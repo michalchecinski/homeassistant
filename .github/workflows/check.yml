@@ -3,8 +3,6 @@ name: Home Assistant CI
 on:
   push:
   pull_request:
-  schedule:
-    - cron: 0 12 * * *
 
 jobs:
   docker-compose:
@@ -51,10 +49,10 @@ jobs:
       - run: mypy --ignore-missing-imports ./scripts
         name: 'Validate my-py'
 
-  home_assistant_latest:
+  home_assistant_stable:
     runs-on: ubuntu-latest
     container:
-      image: homeassistant/home-assistant:latest
+      image: homeassistant/home-assistant:stable
     steps:
       - name: Get configuration from GitHub
         uses: actions/checkout@v1
