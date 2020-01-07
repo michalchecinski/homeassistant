@@ -93,7 +93,7 @@ jobs:
 
   deploy:
     if: success() && contains(github.ref, 'master')
-    needs: [ home_assistant_latest, docker-compose, shellcheck, python, yamllint ]
+    needs: [ home_assistant_stable, docker-compose, shellcheck, python, yamllint ]
     runs-on: ubuntu-latest
     steps:
       - name: Deploy config
