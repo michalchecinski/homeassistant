@@ -136,7 +136,7 @@ services:
     restart: always
     networks:
       serv_network:
-        ipv4_address: 172.16.0.70
+        ipv4_address: 172.19.0.70
 
 networks:
   serv_network:
