@@ -3,7 +3,7 @@
 ###########################
 
 project_id: !secret google_assistant_project_id
-api_key: !secret google_assistant_opengraph
+# service_account: !include google_assistant_account.json
 exposed_domains:
   - switch
   - light
