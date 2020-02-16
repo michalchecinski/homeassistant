@@ -112,7 +112,7 @@ services:
   glances:
     container_name: glances
     restart: always
-    build: https://github.com/nicolargo/glances.git#develop:/docker-files/devel-arm/
+    build: ./docker/glances
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
@@ -123,6 +123,20 @@ services:
     networks:
       serv_network:
         ipv4_address: 172.19.0.60
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    volumes:
+      - ./docker_files/nginx_conf:/etc/nginx
+      - /etc/ssl:/etc/ssl
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: always
+    networks:
+      serv_network:
+        ipv4_address: 172.16.0.70
 
 networks:
   serv_network:
