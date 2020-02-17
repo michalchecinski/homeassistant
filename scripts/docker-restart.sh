@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euxo pipefail
 
 REPO_PATH="/home/pi/homeassistant"
 

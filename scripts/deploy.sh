@@ -1,5 +1,4 @@
 #!/bin/bash
-set -euxo pipefail
 
 # pi settings
 HASS_PATH="/home/pi/homeassistant"
@@ -39,7 +38,7 @@ function docker_compose_changed() {
         return
     fi
 
-    filechanged=$(remote_git diff --name-only "$OLD_HEAD" "$NEW_HEAD" | grep -E 'docker-compose.yaml|build.sh|restart-hass.sh')
+    filechanged=$(remote_git diff --name-only "$OLD_HEAD" "$NEW_HEAD" | grep -E 'docker-compose.yaml|build.sh|restart.sh')
 
     if [ -f "$filechanged" ]
     then
@@ -66,21 +65,34 @@ fi
 
 NEW_HEAD="$(remote_git rev-parse HEAD)"
 
-send_slack_message \
-    "Deployment for build starting..." \
-    "$COLOR_BLUE"
-
-docker_recreate=$(docker_compose_changed "$OLD_HEAD" "$NEW_HEAD")
-
-if [ "$docker_recreate" == "true" ]
+if [ "$NEW_HEAD" != "$OLD_HEAD" ]
 then
-    bash "$HASS_PATH"/scripts/build.sh
+
+    send_slack_message \
+        "Deployment for build starting..." \
+        "$COLOR_BLUE"
+
+    docker_recreate=$(docker_compose_changed "$OLD_HEAD" "$NEW_HEAD")
+
+    if [ "$docker_recreate" == "true" ]
+    then
+        bash "$HASS_PATH"/scripts/build.sh
+    else
+        bash "$HASS_PATH"/scripts/restart.sh
+    fi
+
+    send_slack_message \
+        "Deployment for build completed" \
+        "$COLOR_GREEN"
+
+    echo "Build finished"
+
 else
-    bash "$HASS_PATH"/scripts/restart-hass.sh
+
+    send_slack_message \
+        "Deployment triggered, but not needed" \
+        "$COLOR_GREEN"
+
+    echo "Deployment not needed"
+
 fi
-
-send_slack_message \
-    "Deployment for build completed" \
-    "$COLOR_GREEN"
-
-echo "Build finished"
