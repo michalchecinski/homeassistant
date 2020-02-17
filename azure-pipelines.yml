@@ -4,7 +4,6 @@ trigger:
     include:
       - master
       - feature/*
-      - remodel-structure
 
 variables:
   - group: hass-secrets
