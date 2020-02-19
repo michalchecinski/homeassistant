@@ -3,7 +3,7 @@
 ############
 
 purge_keep_days: 2
-#db_url: !secret db_url
+db_url: !secret db_url
 include:
   domains:
     - input_boolean
@@ -16,61 +16,3 @@ include:
     - script
     - sensor
     - binary_sensor
-  # entities:
-# exclude:
-#   domains:
-#     - updater
-#     - automation
-#     - group
-#     - scene
-#     - script
-#     - calendar
-#     - zone
-#     - weblink
-#     - proximity
-#     - input_number
-#     - media_player
-#     - vacuum
-#   entities:
-#     - sun.sun
-#     - media_player.spotify
-#     - sensor.date
-#     - sensor.time
-#     - sensor.yr_weather_cloudiness
-#     - sensor.yr_weather_fog
-#     - sensor.yr_weather_humidity
-#     - sensor.yr_weather_precipitation
-#     - sensor.yr_weather_pressure
-#     - sensor.yr_weather_symbol
-#     - sensor.yr_weather_temperature
-#     - sensor.owm_condition
-#     - sensor.owm_rain
-#     - sensor.owm_snow
-#     - sensor.owm_temperature
-#     - sensor.owm_forecast
-#     - sensor.waqi_bydgoszczwarszawska_poland
-#     - sensor.waqi_komunikacyjna_warszawa_mazowieckie_poland
-#     - sensor.waqi_krucza_warszawa_mazowieckie_poland
-#     - sensor.waqi_puszczy_solskiej_warszawa_mazowieckie_poland
-#     - sensor.waqi_tostoja_warszawa_mazowieckie_poland
-#     - sensor.commute_to_home
-#     - sensor.processor_use
-#     - sensor.load_15m
-#     - sensor.load_5m
-#     - sensor.load_1m
-#     - sensor.memory_use_percent
-#     - sensor.swap_use_percent
-#     - binary_sensor.travis_status
-#     - binary_sensor.travis_build_push
-#     - binary_sensor.travis_branch_master
-#     - binary_sensor.needs_update
-#     - sensor.newest_commit
-#     - sensor.travis_build_commit
-#     - sensor.michal_to_home
-#     - sensor.git_last_commit
-#     - sensor.raspberry_cpu_temp
-#     - sensor.vacuum_status
-#     - sensor.vacuum_fan_speed
-#     - sensor.vacuum_battery
-#     - sensor.vacuum_cleaning_time
-#     - sensor.vacuum_cleaned_area
