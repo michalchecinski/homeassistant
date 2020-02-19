@@ -7,6 +7,7 @@ services:
     depends_on:
       # - influxdb
       - mqtt
+      - db
     restart: always
     privileged: true
     volumes:
@@ -139,7 +140,7 @@ services:
         ipv4_address: 172.19.0.70
   
   db:
-    image: mariadb
+    image: linuxserver/mariadb
     restart: always
     volumes:
       - ./docker_files/mariadb:/etc/mysql/conf.d
