@@ -9,7 +9,7 @@
       entity_id: vacuum.xiaomi_vacuum_cleaner
       state: 'cleaning'
   action:
-    - service: notify.michal_html
+    - service: notify.mobile_app_michal_s_oneplus_a6013
       data:
         message: "Odkurzacz nie skończył pracy, ale się wyłączył - ktoś jest w domu."
         data:

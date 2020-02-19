@@ -13,6 +13,6 @@
     condition: template
     value_template: "{{ (states.sensor.temperature_outside.state) | float >= (states.input_number.last_morning_temp.state) | float + 5 }}"
   action:
-    - service: notify.michal_html
+    - service: notify.mobile_app_michal_s_oneplus_a6013
       data:
         message: "Temperatura WZROSŁA znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}} C; dzisiaj {{(states.sensor.temperature_outside.state)}} C"

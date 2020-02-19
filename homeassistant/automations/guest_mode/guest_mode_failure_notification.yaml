@@ -16,7 +16,7 @@
         minutes: 0
         seconds: 0
   action:
-    - service: notify.michal_html
+    - service: notify.mobile_app_michal_s_oneplus_a6013
       data:
         message: "Nadal masz gości?"
         data:

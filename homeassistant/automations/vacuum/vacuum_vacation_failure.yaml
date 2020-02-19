@@ -18,7 +18,7 @@
         entity_id: automation.vacuum_vacation_on
         state: 'on'
   action:
-    - service: notify.michal_html
+    - service: notify.mobile_app_michal_s_oneplus_a6013
       data:
         message: "Odkurzacz nie chodził przez 2 dni (vacation mode)"
         data:

@@ -13,7 +13,7 @@
       entity_id: input_boolean.vacation_mode
       state: 'off'
   action:
-    - service: notify.michal_html
+    - service: notify.mobile_app_michal_s_oneplus_a6013
       data:
         message: "Odkurzacz nie uruchamiał się przez ostatnie 36 godzin."
         data:
