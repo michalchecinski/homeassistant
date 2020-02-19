@@ -137,6 +137,24 @@ services:
     networks:
       serv_network:
         ipv4_address: 172.19.0.70
+  
+  db:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./docker_files/mariadb:/etc/mysql/conf.d
+      - ./docker_files/mariadb:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - TZ=Europe/Warsaw
+      - DB_HOST=http://localhost/
+      - PGID=1000
+      - PUID=1000
+    restart: always
+    networks:
+      serv_network:
+        ipv4_address: 172.19.0.80
 
 networks:
   serv_network:
