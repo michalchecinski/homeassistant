@@ -118,3 +118,11 @@ pi_hole:
 speedtestdotnet: !include integrations/speedtest.yaml
 
 panel_iframe: !include integrations/panel_iframe.yaml
+
+webostv:
+  host: 192.168.1.30
+  name: TV
+  turn_on_action:
+    service: wake_on_lan.send_magic_packet
+    data:
+      mac: !secret lg_mac
