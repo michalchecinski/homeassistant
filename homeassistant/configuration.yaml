@@ -110,11 +110,6 @@ discovery:
   ignore:
     - yeelight
 
-pi_hole:
-  host: '172.19.0.50:6680'
-  ssl: false
-  verify_ssl: false
-
 speedtestdotnet: !include integrations/speedtest.yaml
 
 panel_iframe: !include integrations/panel_iframe.yaml
