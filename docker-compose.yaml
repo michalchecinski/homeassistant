@@ -154,6 +154,11 @@ services:
       - PGID=1000
       - PUID=1000
     restart: always
+    environment:
+      - MYSQL_DATABASE: "${DB_NAME}"
+      - MYSQL_USER: "${DB_USER}"
+      - MYSQL_ROOT_PASSWORD: "${DB_ROOT_PW}"
+      - MYSQL_PASSWORD: "${DB_PW}"
     networks:
       serv_network:
         ipv4_address: 172.19.0.80
