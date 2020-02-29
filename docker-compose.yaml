@@ -5,9 +5,8 @@ services:
     image: homeassistant/raspberrypi3-homeassistant:stable
     container_name: "hass"
     depends_on:
-      # - influxdb
       - mqtt
-      - db
+      # - db
     restart: always
     privileged: true
     volumes:
@@ -138,29 +137,29 @@ services:
     networks:
       serv_network:
         ipv4_address: 172.19.0.70
-  
-  db:
-    container_name: db
-    image: linuxserver/mariadb
-    restart: always
-    volumes:
-      - ./docker_files/mariadb:/etc/mysql/conf.d
-      - ./docker_files/mariadb:/var/lib/mysql
-    ports:
-      - 3306:3306
-    environment:
-      - TZ=Europe/Warsaw
-      - DB_HOST=http://localhost/
-      - PGID=1000
-      - PUID=1000
-      - MYSQL_DATABASE=${DB_NAME}
-      - MYSQL_USER=${DB_USER}
-      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PW}
-      - MYSQL_PASSWORD=${DB_PW}
-    restart: always
-    networks:
-      serv_network:
-        ipv4_address: 172.19.0.80
+
+  # db:
+  #   container_name: db
+  #   image: linuxserver/mariadb
+  #   restart: always
+  #   volumes:
+  #     - ./docker_files/mariadb:/etc/mysql/conf.d
+  #     - ./docker_files/mariadb:/var/lib/mysql
+  #   ports:
+  #     - 3306:3306
+  #   environment:
+  #     - TZ=Europe/Warsaw
+  #     - DB_HOST=http://localhost/
+  #     - PGID=1000
+  #     - PUID=1000
+  #     - MYSQL_DATABASE=${DB_NAME}
+  #     - MYSQL_USER=${DB_USER}
+  #     - MYSQL_ROOT_PASSWORD=${DB_ROOT_PW}
+  #     - MYSQL_PASSWORD=${DB_PW}
+  #   restart: always
+  #   networks:
+  #     serv_network:
+  #       ipv4_address: 172.19.0.80
 
 networks:
   serv_network:
