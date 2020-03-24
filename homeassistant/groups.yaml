@@ -4,7 +4,6 @@
 
 bedroom_lights:
   name: bedroom lights
-  view: no
   entities:
     - light.bed_lamp
     - light.monitor_led
@@ -12,7 +11,6 @@ bedroom_lights:
 
 all_lights:
   name: all lights
-  view: no
   entities:
     - light.bed_lamp
     - light.monitor_led
@@ -22,7 +20,6 @@ all_lights:
 
 all_switches:
   name: all switches
-  view: no
   entities:
     - switch.a1
     - switch.b1
