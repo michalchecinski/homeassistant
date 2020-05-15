@@ -52,7 +52,10 @@ function docker_compose_changed() {
 
 OLD_HEAD="$(remote_git rev-parse HEAD)"
 
+remote_git stash
+
 git_pull_result="$(remote_git pull > /dev/null 2>&1)"
+remote_git stash apply
 if [ "$git_pull_result" == "1" ]; then
     send_slack_message \
         "Deployment failed due to failed Git pull on target host" \
