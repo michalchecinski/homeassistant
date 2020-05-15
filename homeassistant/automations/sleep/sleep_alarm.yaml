@@ -20,11 +20,18 @@
       data:
         rgb_color: [255, 0, 0]
         brightness_pct: 1
-    - delay: 00:03
+    - delay: 00:01
     - service: light.turn_on
       entity_id: light.bed_lamp
       data:
         rgb_color: [255,100,0]
+        brightness_pct: 10
+        transition: 60
+    - delay: 00:01:30
+    - service: light.turn_on
+      entity_id: light.bed_lamp
+      data:
+        rgb_color: [255,230,200]
         brightness_pct: 1
         transition: 60
     - delay: 00:02
@@ -32,15 +39,10 @@
       entity_id: light.bed_lamp
       data:
         rgb_color: [255,230,200]
-        brightness_pct: 1
-        transition: 60
-    - delay: 00:03
-    - service: light.turn_on
-      entity_id: light.bed_lamp
-      data:
-        rgb_color: [255,230,200]
         brightness_pct: 50
         transition: 60
-    - service: light.turn_off
-      data:
-        entity_id: light.bed_lamp
+    - delay: 00:01
+    - service: light.turn_on
+      entity_id: light.desk_led
+    - service: light.turn_on
+      entity_id: light.monitor_led
