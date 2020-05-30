@@ -39,8 +39,8 @@
       data:
         entity_id: light.monitor_led
     - condition: state
-        entity_id: binary_sensor.auto_lights
-        state: 'on'
+      entity_id: binary_sensor.auto_lights
+      state: 'on'
     - delay: '00:00:02'
     - service: light.turn_on
       data:
