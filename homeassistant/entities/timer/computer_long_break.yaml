@@ -1,0 +1,4 @@
+computer_short_break:
+  duration: '00:59:00'
+  name: "Time until long break from computer"
+  icon: mdi:run

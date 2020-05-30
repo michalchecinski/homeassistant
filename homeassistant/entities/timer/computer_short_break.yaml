@@ -1,0 +1,4 @@
+computer_short_break:
+  duration: '00:15:00'
+  name: "Time until short break from computer"
+  icon: mdi:yoga
