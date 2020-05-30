@@ -1,0 +1,42 @@
+#########################################
+# Computer break - time for short break #
+#########################################
+
+- id: short_computer_break_time
+  alias: Computer break - time for short break
+  trigger:
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.computer_short_break
+  action:
+    - service: light.turn_on
+      data:
+        entity_id: light.monitor_led
+    - delay: '00:00:01'
+    - service: light.turn_off
+      data:
+        entity_id: light.monitor_led
+    - delay: '00:00:01'
+    - service: light.turn_on
+      data:
+        entity_id: light.monitor_led
+    - delay: '00:00:01'
+    - service: light.turn_off
+      data:
+        entity_id: light.monitor_led
+    - delay: '00:00:01'
+    - service: light.turn_on
+      data:
+        entity_id: light.monitor_led
+    - delay: '00:00:01'
+    - service: light.turn_off
+      data:
+        entity_id: light.monitor_led
+    - condition: state
+        entity_id: binary_sensor.auto_lights
+        state: 'on'
+    - delay: '00:00:01'
+    - service: light.turn_on
+      data:
+        entity_id: light.monitor_led
