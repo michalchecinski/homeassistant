@@ -33,6 +33,10 @@
     - service: light.turn_off
       data:
         entity_id: light.monitor_led
+    - service: timer.start
+      entity_id:
+        - timer.computer_long_break
+        - timer.computer_short_break
     - condition: state
       entity_id: binary_sensor.auto_lights
       state: 'on'
