@@ -14,7 +14,7 @@
             True
           {%- elif ( (states.sun.sun.attributes.elevation | int < 8) and (states.sensor.dark_sky_cloud_coverage.state | int > 50)) -%}
             True
-          # {%- elif (states.sensor.dark_sky_cloud_coverage.state | int > 95) -%}
+          # {%- elif (states.sensor.dark_sky_cloud_coverage.state | int > 90) -%}
           #   True
           {%- else -%}
             False
