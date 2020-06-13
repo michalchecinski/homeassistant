@@ -1,3 +1,0 @@
-platform: google_maps
-username: !secret gmaps_user
-max_gps_accuracy: 200
