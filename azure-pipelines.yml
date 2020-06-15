@@ -105,7 +105,21 @@ stages:
           inputs:
             sshEndpoint: 'ssh-pi'
             runOptions: inline
-            inline: 'bash /home/pi/homeassistant/scripts/deploy.sh 2> /dev/null'
+            inline: 'bash scripts/deploy.sh 2> /dev/null'
+        - task: Bash@3
+          inputs:
+            targetType: 'inline'
+            script: 'find . -name ''*'' -exec sed -i -e ''s/__DOMAIN__/$(domainName)/g'' {} \;'
+            
+        - task: CopyFilesOverSSH@0
+          inputs:
+            sshEndpoint: 'ssh-pi'
+            sourceFolder: '.'
+            contents: '**'
+            targetFolder: '/home/pi/homeassistant/'
+            readyTimeout: '20000'
+
+        
 
 
 
