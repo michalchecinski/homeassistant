@@ -146,6 +146,7 @@ services:
     environment:
       - SPOTIFY_NAME=stereo
       - DEVICE_NAME="hw:1,0"
+      - ALSA_SLAVE_PCM="plughw:1,0"
 
 networks:
   serv_network:
