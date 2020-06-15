@@ -145,7 +145,7 @@ services:
     restart: always
     environment:
       - SPOTIFY_NAME=stereo
-      - DEVICE_NAME=/dev/snd
+      - DEVICE_NAME="hw:1,0"
 
 networks:
   serv_network:
