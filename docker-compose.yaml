@@ -138,17 +138,14 @@ services:
       serv_network:
         ipv4_address: 172.19.0.70
 
-  dashmachine:
-    container_name: dashmachine
-    image: rmountjoy/dashmachine:latest
-    restart: unless-stopped
-    volumes:
-      - ./docker_files/dashmachine:/dashmachine/dashmachine/user_data
-    ports:
-      - "5000:5000"
-    networks:
-      serv_network:
-        ipv4_address: 172.19.0.80
+  rpi-spotify:
+    container_name: rpi-spotify
+    image: flaviostutz/rpi-spotify
+    network: host
+    restart: always
+    environment:
+      - SPOTIFY_NAME=stereo
+      - DEVICE_NAME=/dev/snd
 
 networks:
   serv_network:
