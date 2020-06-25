@@ -1,5 +1,0 @@
-- platform: template
-  sensors:
-    alarm_time:
-      friendly_name: "Alarm Time"
-      value_template: "{{ '%02i'% (states('input_number.alarm_hour')|int) }}:{{ '%02i'% (states('input_number.alarm_minute')|int) }}"
