@@ -4,7 +4,7 @@
   trigger:
     - platform: state
       entity_id: media_player.tv
-      to: 'playing'
+      to: 'on'
     - platform: state
       entity_id: binary_sensor.auto_lights
       to: 'on'
