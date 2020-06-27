@@ -5,11 +5,3 @@
 last_morning_temp:
   min: -30
   max: 60
-
-alarm_hour:
-  min: 0
-  max: 23
-
-alarm_minute:
-  min: 0
-  max: 59
