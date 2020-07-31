@@ -71,10 +71,6 @@ NEW_HEAD="$(remote_git rev-parse HEAD)"
 if [ "$NEW_HEAD" != "$OLD_HEAD" ]
 then
 
-    send_slack_message \
-        "Deployment for build starting..." \
-        "$COLOR_BLUE"
-
     docker_recreate=$(docker_compose_changed "$OLD_HEAD" "$NEW_HEAD")
 
     if [ "$docker_recreate" == "true" ]
@@ -84,18 +80,6 @@ then
         bash "$HASS_PATH"/scripts/restart.sh
     fi
 
-    send_slack_message \
-        "Deployment for build completed" \
-        "$COLOR_GREEN"
-
     echo "Build finished"
-
-else
-
-    send_slack_message \
-        "Deployment triggered, but not needed" \
-        "$COLOR_GREEN"
-
-    echo "Deployment not needed"
 
 fi
