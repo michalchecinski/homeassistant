@@ -4,10 +4,7 @@
 HASS_PATH="/home/pi/homeassistant"
 
 SLACK_HOOK_URL=$(cat "$HASS_PATH/scripts/slack_webhook.txt")
-COLOR_BLUE="#1539e0"
-COLOR_GREEN="good"
 COLOR_RED="danger"
-#COLOR_YELLOW="warning"
 
 function remote_git() {
     git --git-dir "$HASS_PATH"/.git --work-tree="$HASS_PATH" "$@"
