@@ -1,0 +1,49 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: homeassistant
+    env: prod
+  name: homeassistant
+  namespace: homeassistant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      env: prod
+  template:
+    metadata:
+      labels:
+        app: homeassistant
+        env: prod
+    spec:
+      volumes:
+       - name: storage-config-homeassistant
+         persistentVolumeClaim:
+          claimName: storage-config-homeassistant
+      containers:
+      - image: homeassistant/raspberrypi3-homeassistant:0.113.0
+        name: home-assistant
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8123
+        volumeMounts:
+         - mountPath: "/config"
+           name: storage-config-homeassistant
+        securityContext:
+          privileged: true
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8123
+          initialDelaySeconds: 15
+          periodSeconds: 5
+      nodeSelector:
+        env: prod
+      restartPolicy: Always

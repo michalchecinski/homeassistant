@@ -1,0 +1,25 @@
+# apiVersion: v1
+# kind: PersistentVolumeClaim
+# metadata:
+#  name: storage-config-mosquitto
+#  namespace: homeassistant
+# spec:
+#   storageClassName: storage-config-mosquitto
+#   accessModes:
+#   - ReadWriteOnce
+#   resources:
+#     requests:
+#       storage: 100Mi
+# ---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+ name: storage-data-mosquitto
+ namespace: homeassistant
+spec:
+  storageClassName: storage-data-mosquitto
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi

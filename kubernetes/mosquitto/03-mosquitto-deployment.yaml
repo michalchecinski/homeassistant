@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mosquitto
+  namespace: homeassistant
+  labels:
+    app: mosquitto
+    env: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      env: prod
+  template:
+    metadata:
+      labels:
+        app: mosquitto
+        env: prod
+    spec:
+      volumes:
+      - name: storage-data-mosquitto
+        persistentVolumeClaim:
+          claimName: storage-data-mosquitto
+      # - name: storage-config-mosquitto
+      #   persistentVolumeClaim:
+      #     claimName: storage-config-mosquitto
+      containers:
+      - name: mosquitto
+        image: eclipse-mosquitto:latest
+        ports:
+        - containerPort: 1883
+        - containerPort: 9001
+        volumeMounts:
+        - mountPath: /mosquitto/data
+          name: storage-data-mosquitto
+        # - mountPath: /mosquitto/config
+        #   name: storage-config-mosquitto
+        resources:
+          # requests:
+          #   memory: "64Mi"
+          #   cpu: "250m"
+          limits:
+            memory: "64Mi"
+            cpu: "200m"
+      nodeSelector:
+        env: prod
+      restartPolicy: Always

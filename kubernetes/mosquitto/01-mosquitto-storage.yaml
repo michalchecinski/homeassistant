@@ -1,0 +1,31 @@
+# kind: PersistentVolume
+# apiVersion: v1
+# metadata:
+#   name: storage-config-mosquitto
+#   namespace: homeassistant
+#   labels:
+#     type: local
+# spec:
+#   storageClassName: storage-config-mosquitto
+#   capacity:
+#     storage: 50Mi
+#   accessModes:
+#     - ReadWriteOnce
+#   hostPath:
+#     path: "/mnt/kubernetes/mosquitto/config"
+# ---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: storage-data-mosquitto
+  namespace: homeassistant
+  labels:
+    type: local
+spec:
+  storageClassName: storage-data-mosquitto
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/kubernetes/mosquitto/data"

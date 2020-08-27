@@ -1,0 +1,15 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: storage-config-homeassistant
+  namespace: homeassistant
+  labels:
+    type: local
+spec:
+  storageClassName: storage-config-homeassistant
+  capacity:
+    storage: 100Mi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/pi/homeassistant/homeassistant"
