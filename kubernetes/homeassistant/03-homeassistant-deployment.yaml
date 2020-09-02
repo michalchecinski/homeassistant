@@ -22,7 +22,7 @@ spec:
          persistentVolumeClaim:
           claimName: storage-config-homeassistant
       containers:
-      - image: homeassistant/raspberrypi3-homeassistant:0.113.0
+      - image: homeassistant/raspberrypi3-homeassistant:0.114.2
         name: home-assistant
         resources:
           requests:

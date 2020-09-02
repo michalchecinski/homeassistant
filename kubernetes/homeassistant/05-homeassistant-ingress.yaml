@@ -7,7 +7,7 @@ metadata:
   name: homeassistant
 spec:
   rules:
-  - host: homeassistant.192.168.1.200.nip.io
+  - host: homeassistant.192.168.1.100.nip.io
     http:
       paths:
       - backend:
