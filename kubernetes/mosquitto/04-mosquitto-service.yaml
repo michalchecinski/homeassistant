@@ -17,4 +17,4 @@ spec:
     targetPort: 9001
   selector:
     app: mosquitto
-  type: ClusterIP
+  type: LoadBalancer
