@@ -19,7 +19,6 @@ homeassistant:
 recorder: !include recorder.yaml
 
 frontend:
-  themes: !include themes.yaml
 
 config:
 

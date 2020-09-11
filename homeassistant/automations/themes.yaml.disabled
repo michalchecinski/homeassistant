@@ -12,7 +12,8 @@
   action:
     - service: frontend.set_theme
       data:
-        name: 'dark_theme'
+        name: 'default'
+        mode: 'dark'
 
 # Set default theme for the day
 - id: theme_day
@@ -25,6 +26,7 @@
     - service: frontend.set_theme
       data:
         name: 'default'
+        mode: 'light'
 
 - id: ha_start
   alias: Theme - HA started
@@ -41,4 +43,5 @@
   action:
     - service: frontend.set_theme
       data:
-        name: 'dark_theme'
+        name: 'default'
+        mode: 'dark'
