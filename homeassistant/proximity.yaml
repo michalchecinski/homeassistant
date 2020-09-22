@@ -4,7 +4,7 @@
 
 home:
   devices:
-    - device_tracker.google_maps_102169435937546415265
+    - device_tracker.oneplus_a6013
   tolerance: 30
   unit_of_measurement: m
   ignored_zones:
