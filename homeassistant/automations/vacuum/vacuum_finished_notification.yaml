@@ -8,6 +8,6 @@
       from: 'off'
       to: 'on'
   action:
-    - service: notify.mobile_app_michal_s_oneplus_a6013
+    - service: notify.mobile_app_oneplus_a6013
       data:
         message: "Odkurzacz zakończył odkurzanie"
