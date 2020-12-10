@@ -22,14 +22,14 @@ spec:
          persistentVolumeClaim:
           claimName: storage-config-homeassistant
       containers:
-      - image: homeassistant/raspberrypi3-homeassistant:0.114.2
+      - image: homeassistant/raspberrypi3-homeassistant:0.114.4
         name: home-assistant
         resources:
           requests:
-            memory: "64Mi"
+            memory: "128Mi"
             cpu: "250m"
           limits:
-            memory: "128Mi"
+            memory: "256Mi"
             cpu: "500m"
         ports:
         - containerPort: 8123
