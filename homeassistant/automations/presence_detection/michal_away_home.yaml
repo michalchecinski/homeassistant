@@ -11,6 +11,9 @@
       to: 'not_home'
     - platform: state
       entity_id: person.michal
+      to: 'away'
+    - platform: state
+      entity_id: person.michal
       to: 'extended home'
     - platform: state
       entity_id: person.michal
