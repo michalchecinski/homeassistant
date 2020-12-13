@@ -18,7 +18,6 @@ frontend:
 config:
 
 http:
-  base_url: !secret base_url
   use_x_forwarded_for: true
   trusted_proxies: !secret trusted_proxies
   ip_ban_enabled: true
