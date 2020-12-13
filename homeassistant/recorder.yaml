@@ -3,7 +3,7 @@
 ############
 
 purge_keep_days: 2
-purge_interval: 1
+commit_interval: 2
 db_url: 'sqlite:///:memory:'
 include:
   domains:
@@ -18,4 +18,5 @@ include:
     - sensor
     - binary_sensor
   entities:
-    - device_tracker
+    - device_tracker.oneplus6t
+    - device_tracker.oneplus_a6013
