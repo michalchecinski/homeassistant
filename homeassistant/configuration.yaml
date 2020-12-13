@@ -10,11 +10,6 @@ homeassistant:
 
   auth_providers:
     - type: homeassistant
-    - type: legacy_api_password
-      api_password: !secret http_password
-    - type: trusted_networks
-      trusted_networks:
-        - 192.168.1.0/24
 
 recorder: !include recorder.yaml
 
