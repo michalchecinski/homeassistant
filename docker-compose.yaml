@@ -141,7 +141,7 @@ services:
   rpi-spotify:
     container_name: rpi-spotify
     image: flaviostutz/rpi-spotify
-    network: host
+    network_mode: host
     restart: always
     environment:
       - SPOTIFY_NAME=stereo
