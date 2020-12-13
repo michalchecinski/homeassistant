@@ -47,8 +47,6 @@ wake_on_lan:
 
 person:
 
-notify: !include_dir_list integrations/notify
-
 tts:
   - platform: google_translate
     service_name: google_say
