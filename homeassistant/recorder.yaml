@@ -17,3 +17,5 @@ include:
     - script
     - sensor
     - binary_sensor
+  entities:
+    - device_tracker
