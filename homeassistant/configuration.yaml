@@ -47,8 +47,6 @@ tts:
     service_name: google_say
     language: 'pl'
 
-device_tracker: !include_dir_list integrations/device_tracker
-
 ifttt:
   key: !secret ifttt_key
 
