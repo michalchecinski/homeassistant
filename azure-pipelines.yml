@@ -100,6 +100,20 @@ stages:
     jobs:
       - job: Deployment
         steps:
+        - task: CopyFilesOverSSH@0
+          inputs:
+            sshEndpoint: 'ssh-pi'
+            sourceFolder: '.'
+            contents: |
+              **
+              !.git/**
+              !.gitignore
+              !azure-pipelines.yml
+              !README.md
+              !README_PL.md
+            targetFolder: '/home/pi/homeassistant'
+            readyTimeout: '200000'
+
         - task: SSH@0
           displayName: 'Run shell inline on remote machine'
           inputs:
