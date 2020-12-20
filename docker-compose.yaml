@@ -6,7 +6,6 @@ services:
     container_name: "hass"
     depends_on:
       - mqtt
-      # - db
     restart: always
     privileged: true
     volumes:
@@ -42,30 +41,30 @@ services:
       serv_network:
         ipv4_address: 172.19.0.20
 
-  unifi:
-    image: ryansch/unifi-rpi:latest
-    container_name: "unifi"
-    restart: always
-    volumes:
-      - ./docker_files/unifi/config:/var/lib/unifi
-      - ./docker_files/unifi/log:/usr/lib/unifi/logs
-      - ./docker_files/unifi/log2:/var/log/unifi
-      - ./docker_files/unifi/run:/usr/lib/unifi/run
-      - ./docker_files/unifi/run2:/run/unifi
-      - ./docker_files/unifi/work:/usr/lib/unifi/work
-    ports:
-      - 3478:3478/udp
-      - 10001:10001/udp
-      - 6789:6789/tcp
-      - 8080:8080/tcp
-      - 8880:8880/tcp
-      - 8443:8443/tcp
-      - 8843:8843/tcp
-    environment:
-      - TZ=Europe/Warsaw
-    networks:
-      serv_network:
-        ipv4_address: 172.19.0.30
+  # unifi:
+  #   image: ryansch/unifi-rpi:latest
+  #   container_name: "unifi"
+  #   restart: always
+  #   volumes:
+  #     - ./docker_files/unifi/config:/var/lib/unifi
+  #     - ./docker_files/unifi/log:/usr/lib/unifi/logs
+  #     - ./docker_files/unifi/log2:/var/log/unifi
+  #     - ./docker_files/unifi/run:/usr/lib/unifi/run
+  #     - ./docker_files/unifi/run2:/run/unifi
+  #     - ./docker_files/unifi/work:/usr/lib/unifi/work
+  #   ports:
+  #     - 3478:3478/udp
+  #     - 10001:10001/udp
+  #     - 6789:6789/tcp
+  #     - 8080:8080/tcp
+  #     - 8880:8880/tcp
+  #     - 8443:8443/tcp
+  #     - 8843:8843/tcp
+  #   environment:
+  #     - TZ=Europe/Warsaw
+  #   networks:
+  #     serv_network:
+  #       ipv4_address: 172.19.0.30
 
   portainer:
     image: portainer/portainer
@@ -138,14 +137,14 @@ services:
       serv_network:
         ipv4_address: 172.19.0.70
 
-  rpi-spotify:
-    container_name: rpi-spotify
-    image: flaviostutz/rpi-spotify
-    network_mode: host
-    restart: always
-    environment:
-      - SPOTIFY_NAME=stereo
-      - DEVICE_NAME=/dev/snd
+  # rpi-spotify:
+  #   container_name: rpi-spotify
+  #   image: flaviostutz/rpi-spotify
+  #   network_mode: host
+  #   restart: always
+  #   environment:
+  #     - SPOTIFY_NAME=stereo
+  #     - DEVICE_NAME=/dev/snd
 
 networks:
   serv_network:
