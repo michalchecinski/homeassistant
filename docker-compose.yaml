@@ -108,20 +108,20 @@ services:
   #     serv_network:
   #       ipv4_address: 172.19.0.50
 
-  glances:
-    container_name: glances
-    restart: always
-    build: https://github.com/nicolargo/glances.git#develop:/docker-files/devel-arm/
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    ports:
-      - 61208:61208
-      - 61209:61209
-    environment:
-      - GLANCES_OPT=-w
-    networks:
-      serv_network:
-        ipv4_address: 172.19.0.60
+  # glances:
+  #   container_name: glances
+  #   restart: always
+  #   build: https://github.com/nicolargo/glances.git#develop:/docker-files/devel-arm/
+  #   volumes:
+  #     - /var/run/docker.sock:/var/run/docker.sock:ro
+  #   ports:
+  #     - 61208:61208
+  #     - 61209:61209
+  #   environment:
+  #     - GLANCES_OPT=-w
+  #   networks:
+  #     serv_network:
+  #       ipv4_address: 172.19.0.60
 
   nginx:
     container_name: nginx
