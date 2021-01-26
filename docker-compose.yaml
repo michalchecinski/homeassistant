@@ -2,7 +2,7 @@ version: '3'
 
 services:
   hass:
-    image: homeassistant/raspberrypi3-homeassistant:0.118.5
+    image: homeassistant/raspberrypi3-homeassistant:2021.1.5
     container_name: "hass"
     depends_on:
       - mqtt
