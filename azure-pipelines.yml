@@ -115,10 +115,12 @@ stages:
             contents: |
               **
               !.git/**
+              !.github/**
               !.gitignore
               !azure-pipelines.yml
               !README.md
               !README_PL.md
+              !docker_files/mqtt/config/mosquitto.conf
             targetFolder: '/home/pi/homeassistant'
             readyTimeout: '200000'
 
