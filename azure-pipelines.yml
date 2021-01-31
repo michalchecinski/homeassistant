@@ -131,7 +131,7 @@ stages:
           inputs:
             sshEndpoint: 'ssh-pi'
             runOptions: inline
-            inline: 'cd /home/pi/homeassistant && docker-compose up -d && docker-compose restart hass 2> /dev/null'
+            inline: 'cd /home/pi/homeassistant && docker-compose up -d 2> /dev/null && docker-compose restart hass 2> /dev/null'
 
 
 
