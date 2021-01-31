@@ -50,12 +50,14 @@ stages:
             displayName: 'Install shellcheck'
           - script: find . -not -name 'fix-routes.sh' -name '*.sh' -exec shellcheck {} +
             displayName: 'Validate bash scripts'
-      # - job: Nginx
-      #   steps:
-      #     - script: sudo apt-get update && sudo apt-get -y install nginx
-      #       displayName: 'Install nginx'
-      #     - script: nginx -t -c ./docker_files/nginx_conf/nginx.conf -g 'pid /tmp/nginx.pid; daemon off;'
-      #       displayName: 'Validate nginx'
+      - job: Nginx
+        steps:
+          - script: sudo apt-get update && sudo apt-get -y install nginx
+            displayName: 'Install nginx'
+          - script: sed -i 's/__DOMAIN__/$(domainName)/g' ./docker_files/nginx_conf/nginx.conf
+            displayName: 'Replace domain name'
+          - script: nginx -t -c ./docker_files/nginx_conf/nginx.conf -g 'pid /tmp/nginx.pid; daemon off;'
+            displayName: 'Validate nginx'
   - stage: HomeAssistant
     displayName: Home Assistant
     dependsOn: []
@@ -100,6 +102,14 @@ stages:
     jobs:
       - job: Deployment
         steps:
+        
+        - task: SSH@0
+          displayName: 'Stop docker'
+          inputs:
+            sshEndpoint: 'ssh-pi'
+            runOptions: inline
+            inline: 'cd /home/pi/homeassistant && docker-compose down 2> /dev/null'
+
         - task: CopyFilesOverSSH@0
           inputs:
             sshEndpoint: 'ssh-pi'
@@ -107,15 +117,17 @@ stages:
             contents: |
               **
               !.git/**
+              !.github/**
               !.gitignore
               !azure-pipelines.yml
               !README.md
               !README_PL.md
+              !docker_files/mqtt/config/mosquitto.conf
             targetFolder: '/home/pi/homeassistant'
             readyTimeout: '200000'
 
         - task: SSH@0
-          displayName: 'Run shell inline on remote machine'
+          displayName: 'Docker compose up'
           inputs:
             sshEndpoint: 'ssh-pi'
             runOptions: inline
