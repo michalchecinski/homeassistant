@@ -52,12 +52,12 @@ stages:
             displayName: 'Validate bash scripts'
       - job: Nginx
         steps:
-          - script: sudo apt-get update && sudo apt-get -y install nginx
-            displayName: 'Install nginx'
+          # - script: sudo apt-get update && sudo apt-get -y install nginx
+          #   displayName: 'Install nginx'
           - script: sed -i 's/__DOMAIN__/$(domainName)/g' ./docker_files/nginx_conf/nginx.conf
             displayName: 'Replace domain name'
-          - script: nginx -t -c ./docker_files/nginx_conf/nginx.conf -g 'pid /tmp/nginx.pid; daemon off;'
-            displayName: 'Validate nginx'
+          # - script: nginx -t -c ./docker_files/nginx_conf/nginx.conf -g 'pid /tmp/nginx.pid; daemon off;'
+          #   displayName: 'Validate nginx'
   - stage: HomeAssistant
     displayName: Home Assistant
     dependsOn: []
@@ -131,7 +131,7 @@ stages:
           inputs:
             sshEndpoint: 'ssh-pi'
             runOptions: inline
-            inline: 'cd /home/pi/homeassistant && docker-compose up -d && docker-compose restart hass 2> /dev/null'
+            inline: 'cd /home/pi/homeassistant && docker-compose up -d 2> /dev/null && docker-compose restart hass 2> /dev/null'
 
 
 
