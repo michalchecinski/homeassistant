@@ -50,12 +50,11 @@ stages:
             displayName: 'Install shellcheck'
           - script: find . -not -name 'fix-routes.sh' -name '*.sh' -exec shellcheck {} +
             displayName: 'Validate bash scripts'
-      - job: Nginx
-        steps:
+      # - job: Nginx
+      #   steps:
           # - script: sudo apt-get update && sudo apt-get -y install nginx
           #   displayName: 'Install nginx'
-          - script: sed -i 's/__DOMAIN__/$(domainName)/g' ./docker_files/nginx_conf/nginx.conf
-            displayName: 'Replace domain name'
+
           # - script: nginx -t -c ./docker_files/nginx_conf/nginx.conf -g 'pid /tmp/nginx.pid; daemon off;'
           #   displayName: 'Validate nginx'
   - stage: HomeAssistant
@@ -102,7 +101,10 @@ stages:
     jobs:
       - job: Deployment
         steps:
-        
+
+        - script: sed -i 's/__DOMAIN__/$(domainName)/g' ./docker_files/nginx_conf/nginx.conf
+          displayName: 'Replace domain name in nginx config'
+
         - task: SSH@0
           displayName: 'Stop docker'
           inputs:
