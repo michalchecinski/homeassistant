@@ -125,7 +125,7 @@ services:
 
   nginx:
     container_name: nginx
-    image: nginx
+    image: nginx:1.17.8
     volumes:
       - ./docker_files/nginx_conf:/etc/nginx
       - /etc/ssl:/etc/ssl
