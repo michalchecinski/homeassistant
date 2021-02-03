@@ -4,7 +4,7 @@
   trigger:
     - event_data:
         action: iam_home
-      event_type: html5_notification.clicked
+      event_type: mobile_app_notification_action
       platform: event
     - platform: state
       entity_id: person.michal

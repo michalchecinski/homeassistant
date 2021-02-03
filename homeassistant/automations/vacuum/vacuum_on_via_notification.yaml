@@ -2,7 +2,7 @@
   trigger:
     - event_data:
         action: vacuum_on
-      event_type: html5_notification.clicked
+      event_type: mobile_app_notification_action
       platform: event
   action:
     - service: homeassistant.turn_off
