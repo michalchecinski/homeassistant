@@ -7,6 +7,10 @@
 	"generic": {
 		"timezone": "Europe/Berlin"
 	},
-	"protocol": "https",
-	"port": 443
+	"security": {
+		"basicAuth": {
+			"active": true,
+			"user": "admin"
+		}
+	}
 }
