@@ -148,7 +148,7 @@ services:
 
   n8n:
     container_name: n8n
-    image: n8nio/n8n:latest
+    image: n8nio/n8n:latest-rpi
     volumes:
      - ./docker_files/n8n/.n8n:/home/node/.n8n
      - ./docker_files/n8n/config:/config
