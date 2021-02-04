@@ -1,0 +1,10 @@
+{
+	"executions": {
+		"process": "main",
+        "saveDataOnSuccess": "none",
+        "pruneData": true
+	},
+	"generic": {
+		"timezone": "Europe/Berlin"
+	}
+}
