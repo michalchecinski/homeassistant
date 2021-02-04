@@ -6,5 +6,7 @@
 	},
 	"generic": {
 		"timezone": "Europe/Berlin"
-	}
+	},
+	"protocol": "https",
+	"port": 443
 }
