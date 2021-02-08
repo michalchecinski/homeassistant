@@ -111,9 +111,3 @@ timer: !include_dir_merge_named entities/timer
 spotify:
   client_id: !secret spotify_client
   client_secret: !secret spotify_secret
-  
-  
-lovelace:
-  resources:
-    - url: /local/xiaomi-vacuum-card.js?v=4.1.0
-      type: module
