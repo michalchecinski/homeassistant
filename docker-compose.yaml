@@ -146,23 +146,21 @@ services:
   #     - SPOTIFY_NAME=stereo
   #     - DEVICE_NAME=/dev/snd
 
-  n8n:
-    container_name: n8n
-    image: n8nio/n8n:latest-rpi
-    volumes:
-     - ./docker_files/n8n/.n8n:/home/node/.n8n
-     - ./docker_files/n8n/config:/config
-    ports:
-      - "5678:5678"
-    restart: always
-    environment:
-      - N8N_CONFIG_FILES=/config/config.json
-      - N8N_BASIC_AUTH_PASSWORD
-      # - WEBHOOK_TUNNEL_URL
-      # - VUE_APP_URL_BASE_API
-    networks:
-      serv_network:
-        ipv4_address: 172.19.0.80
+  # n8n:
+  #   container_name: n8n
+  #   image: n8nio/n8n:latest-rpi
+  #   volumes:
+  #    - ./docker_files/n8n/.n8n:/home/node/.n8n
+  #    - ./docker_files/n8n/config:/config
+  #   ports:
+  #     - "5678:5678"
+  #   restart: always
+  #   environment:
+  #     - N8N_CONFIG_FILES=/config/config.json
+  #     - N8N_BASIC_AUTH_PASSWORD
+  #   networks:
+  #     serv_network:
+  #       ipv4_address: 172.19.0.80
 
 networks:
   serv_network:
