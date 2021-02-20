@@ -25,7 +25,7 @@ services:
         ipv4_address: 172.19.0.10
 
   mqtt:
-    image: eclipse-mosquitto:2.0.1
+    image: eclipse-mosquitto:1.6.12
     container_name: "mqtt"
     restart: always
     ports:
