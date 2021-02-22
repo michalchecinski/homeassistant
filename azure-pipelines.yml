@@ -85,8 +85,7 @@ stages:
 
           - script: |
               cp -a ./homeassistant/.stubs/. ./homeassistant/
-              touch ./homeassistant/google_assistant_account.json
-            displayName: 'Prepare files (move secrets, touch files)'
+            displayName: 'move stubs'
 
           - script: pip install --upgrade $(HASS_PACKAGE)
             displayName: 'install hass'
