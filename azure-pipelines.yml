@@ -83,8 +83,10 @@ stages:
           - script: pip install --upgrade netdisco
             displayName: 'Install python deps'
 
-          - script: cp -a ./homeassistant/.stubs/. ./homeassistant/
-            displayName: 'move secrets'
+          - script: |
+              cp -a ./homeassistant/.stubs/. ./homeassistant/
+              touch ./homeassistant/google_assistant_account.json
+            displayName: 'Prepare files (move secrets, touch files)'
 
           - script: pip install --upgrade $(HASS_PACKAGE)
             displayName: 'install hass'
