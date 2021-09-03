@@ -106,12 +106,12 @@ stages:
         - script: sed -i 's/__DOMAIN__/$(domainName)/g' ./docker_files/nginx_conf/nginx.conf
           displayName: 'Replace domain name in nginx config'
 
-        # - task: SSH@0
-        #   displayName: 'Stop docker'
-        #   inputs:
-        #     sshEndpoint: 'ssh-pi'
-        #     runOptions: inline
-        #     inline: 'cd /home/pi/homeassistant && docker-compose down 2> /dev/null'
+        - task: SSH@0
+          displayName: 'Stop docker'
+          inputs:
+            sshEndpoint: 'ssh-pi'
+            runOptions: inline
+            inline: 'cd /home/pi/homeassistant && docker-compose down 2> /dev/null'
 
         - task: CopyFilesOverSSH@0
           inputs:
