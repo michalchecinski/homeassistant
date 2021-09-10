@@ -85,14 +85,14 @@ google:
 
 proximity: !include proximity.yaml
 
-vacuum: !include_dir_list integrations/vacuum
+# vacuum: !include_dir_list integrations/vacuum
 
 mobile_app:
 
 tplink:
   discovery: false
   switch:
-    - host: 192.168.1.121
+    # - host: 192.168.1.121
     - host: 192.168.1.122
 
 yeelight:
