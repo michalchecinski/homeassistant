@@ -67,7 +67,7 @@ services:
     #     ipv4_address: 172.19.0.30
 
   portainer:
-    image: portainer/portainer-ce:2.1.0
+    image: portainer/portainer-ce:2.6.3-alpine
     container_name: "portainer"
     restart: always
     volumes:
