@@ -53,10 +53,6 @@ script.notify_temperature_dead:
 sensor.airly:
   hidden: true
 
-sensor.airly_caqi_level:
-  rgb_color: "if (state == 'LOW') return [124, 252, 0]; else if (state == 'HIGH') [255, 69, 0]; else return [255, 140, 0]"
-
-
 # SpaceX
 sensor.spacex_next_rocket:
   icon: mdi:rocket

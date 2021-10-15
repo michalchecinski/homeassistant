@@ -7,6 +7,3 @@ home:
     - device_tracker.oneplus_a6013
   tolerance: 30
   unit_of_measurement: m
-  ignored_zones:
-    - politechnika
-    - praca

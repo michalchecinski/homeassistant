@@ -9,7 +9,6 @@ homeassistant:
   internal_url: "http://192.168.1.100:8123"
 
   customize: !include customize.yaml
-  customize_glob: !include customize_glob.yaml
 
   auth_providers:
     - type: homeassistant
@@ -40,17 +39,12 @@ sun:
 
 system_health:
 
-wake_on_lan:
-
 person:
 
 tts:
   - platform: google_translate
     service_name: google_say
     language: 'pl'
-
-ifttt:
-  key: !secret ifttt_key
 
 media_player: !include_dir_list integrations/media_player
 
@@ -69,7 +63,6 @@ automation: !include_dir_merge_list automations
 script: !include scripts.yaml
 zone: !include zones.yaml
 scene: !include scenes.yaml
-climate: !include climate.yaml
 
 # input
 input_select: !include entities/input_select.yaml
@@ -84,8 +77,6 @@ google:
   client_secret: !secret google_client_secret
 
 proximity: !include proximity.yaml
-
-# vacuum: !include_dir_list integrations/vacuum
 
 mobile_app:
 
@@ -103,8 +94,6 @@ discovery:
     - yeelight
 
 webostv: !include integrations/webostv.yaml
-
-timer: !include_dir_merge_named entities/timer
 
 spotify:
   client_id: !secret spotify_client
