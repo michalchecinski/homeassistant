@@ -8,6 +8,7 @@ services:
       - mqtt
     restart: always
     privileged: true
+    user: pi
     volumes:
       - ./homeassistant:/config
       - /home/pi/ssh:/root/.ssh/
