@@ -71,11 +71,6 @@ input_boolean: !include entities/input_boolean.yaml
 
 google_assistant: !include google_assistant.yaml
 
-# Calendar
-google:
-  client_id: !secret google_client_id
-  client_secret: !secret google_client_secret
-
 proximity: !include proximity.yaml
 
 mobile_app:
