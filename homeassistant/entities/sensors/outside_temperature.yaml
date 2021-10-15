@@ -6,5 +6,5 @@
   sensors:
     temperature_outside:
       friendly_name: "Temperature outside"
-      value_template: "{{ states.sensor.airly_temperature.state }}"
+      value_template: "{{ states.sensor.dom_temperature.state }}"
       unit_of_measurement: "°C"
