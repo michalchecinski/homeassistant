@@ -1,0 +1,22 @@
+- id: failure_vacuum
+  alias: Failure - vacuum not run in 24 hours
+  trigger:
+    - platform: state
+      entity_id: script.vacuum_start
+      to: 'off'
+      for:
+        hours: 36
+        minutes: 0
+        seconds: 0
+  condition:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+  action:
+    - service: notify.mobile_app_oneplus_a6013
+      data:
+        message: "Odkurzacz nie uruchamiał się przez ostatnie 36 godzin."
+        data:
+          actions:
+            - action: vacuum_on
+              title: Run vacuum now

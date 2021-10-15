@@ -1,0 +1,21 @@
+############################
+#  Vacuum on notification  #
+############################
+
+- id: vacuum_on_notification
+  alias: Vacuum - notification - on
+  trigger:
+    - platform: state
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      from: 'docked'
+      to: 'cleaning'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
+  action:
+    - service: notify.mobile_app_oneplus_a6013
+      data:
+        message: "Odkurzacz wystartował"

@@ -93,6 +93,8 @@ discovery:
   ignore:
     - yeelight
 
+speedtestdotnet: !include integrations/speedtest.yaml
+
 webostv: !include integrations/webostv.yaml
 
 spotify:
