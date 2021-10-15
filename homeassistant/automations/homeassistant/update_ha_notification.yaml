@@ -26,7 +26,6 @@
         title: "Dostępna aktualizacja"
         message: "Nowa wersja Home Assistant: {{ states('updater.updater') }} - {{ as_timestamp(now()) | timestamp_custom('%I:%M:%S %p %d%b%Y', true) }}"
         notification_id: "update_available"
-    - service: notify.slack
+    - service: notify.mobile_app_oneplus_a6013
       data:
-        title: "Dostępna aktualizacja"
         message: "Nowa wersja Home Assistant: {{ states('updater.updater') }}"

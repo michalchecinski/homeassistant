@@ -6,13 +6,11 @@
     - condition: template
       value_template: "{{ trigger.to_state.state != 'None' }}"
   action:
-    - service: notify.slack
+    - service: notify.mobile_app_oneplus_a6013
       data:
         message: "{{ states.persistent_notification.httplogin.attributes.message }}"
-        target:
-          - '#hass'
     - service: persistent_notification.create
       data:
         title: "{{ states.persistent_notification.httplogin.attributes.message }}"
         message: 'url: https://whatismyipaddress.com/ip/{{ states.persistent_notification.httplogin.attributes.message.split ("from ") [1]}}'
-        notification_id: "update_available"
+        notification_id: "failed_login"
