@@ -2,7 +2,7 @@ version: '3'
 
 services:
   hass:
-    image: homeassistant/raspberrypi3-homeassistant:2021.1.5
+    image: homeassistant/raspberrypi3-homeassistant:2021.10.4
     container_name: "hass"
     depends_on:
       - mqtt
@@ -67,7 +67,7 @@ services:
     #     ipv4_address: 172.19.0.30
 
   portainer:
-    image: portainer/portainer-ce:2.6.3-alpine
+    image: portainer/portainer-ce:2.9.1-alpine
     container_name: "portainer"
     restart: always
     volumes:
