@@ -5,4 +5,4 @@
 - platform: template
   sensors:
     airly_caqi_level:
-      value_template: "{{ states.air_quality.airly.attributes.air_quality_index_level }}"
+      value_template: "{{ states.sensor.dom_caqi.attributes.level }}"
