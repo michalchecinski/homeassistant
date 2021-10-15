@@ -102,8 +102,6 @@ discovery:
   ignore:
     - yeelight
 
-speedtestdotnet: !include integrations/speedtest.yaml
-
 webostv: !include integrations/webostv.yaml
 
 timer: !include_dir_merge_named entities/timer
