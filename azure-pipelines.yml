@@ -5,6 +5,9 @@ trigger:
       - master
       - feature/*
 
+pool:
+  vmImage: ubuntu-latest
+
 variables:
   - group: hass-secrets
 
@@ -18,18 +21,6 @@ stages:
             displayName: 'Install docker-compose'
           - script: docker-compose config
             displayName: 'Validate docker-compose'
-      # - job: Yamllint
-      #   steps:
-      #     - task: UsePythonVersion@0
-      #       inputs:
-      #         versionSpec: '3.x'
-      #         addToPath: true
-      #         architecture: 'x64'
-      #       displayName: 'Use python 3.x'
-      #     - script: pip install --upgrade pip yamllint
-      #       displayName: 'Install yamllint'
-      #     - script: yamllint .
-      #       displayName: 'Validate yaml files'
       - job: Python
         steps:
           - task: UsePythonVersion@0
@@ -50,13 +41,6 @@ stages:
             displayName: 'Install shellcheck'
           - script: find . -not -name 'fix-routes.sh' -name '*.sh' -exec shellcheck {} +
             displayName: 'Validate bash scripts'
-      # - job: Nginx
-      #   steps:
-          # - script: sudo apt-get update && sudo apt-get -y install nginx
-          #   displayName: 'Install nginx'
-
-          # - script: nginx -t -c ./docker_files/nginx_conf/nginx.conf -g 'pid /tmp/nginx.pid; daemon off;'
-          #   displayName: 'Validate nginx'
   - stage: HomeAssistant
     displayName: Home Assistant
     dependsOn: []
