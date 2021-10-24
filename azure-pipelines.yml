@@ -71,7 +71,7 @@ stages:
               cp -a ./homeassistant/.stubs/. ./homeassistant/
             displayName: 'move stubs'
 
-          - script: touch /homeassistant/automations.yaml
+          - script: touch ./homeassistant/automations.yaml
             displayName: 'Create automations.yaml'
 
           - script: pip install --upgrade $(HASS_PACKAGE)
