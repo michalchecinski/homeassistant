@@ -8,6 +8,11 @@
     - platform: state
       entity_id: input_boolean.sleep_alarm
       to: 'on'
+    - platform: device
+      domain: sleep_as_android
+      device_id: 'ONEPLUS A6013'
+      type: alarm_alert_start
+      id: alarm_alert_start
   condition:
     condition: and
     conditions:
