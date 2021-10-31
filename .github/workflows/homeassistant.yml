@@ -17,5 +17,5 @@ jobs:
         uses: frenck/action-home-assistant@v1
         with:
           path: "./homeassistant"
-          secrets: ./.stubs/fake_secrets.yaml
+          secrets: ./homeassistant/.stubs/fake_secrets.yaml
           version: stable
