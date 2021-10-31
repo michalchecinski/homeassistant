@@ -14,7 +14,7 @@ jobs:
       - name: ⤵️ Check out configuration from GitHub
         uses: actions/checkout@v2
       - name: ➕ Move stubs
-        run: cp -r ./homeassistant/.stubs/ ./homeassistant/
+        run: cp -a ./homeassistant/.stubs/. ./homeassistant/
       - name: 🚀 Run Home Assistant Configuration Check
         uses: frenck/action-home-assistant@v1
         with:
