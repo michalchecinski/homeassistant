@@ -1,8 +1,0 @@
-Dockerfile
-.git
-.gitignore
-.travis.yml
-
-travis_secrets.yaml
-
-README.md

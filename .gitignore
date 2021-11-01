@@ -23,19 +23,11 @@ google_calendars.yaml
 html5_push_registrations.conf
 webostv.conf
 
-# Docker volumes
-docker_files/pihole
-docker_files/mqtt/config/passwd
-docker_files/mqtt/log
-docker_files/unifi
-
 # Secrets
 account_details_file.txt
 secrets.yaml
 known_devices.yaml
-slack_webhook.txt
-ddns_settings.json
 
-!/homeassistant/.stubs/*
+!/.stubs/*
 
 .pip_progress
