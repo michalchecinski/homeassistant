@@ -2,21 +2,6 @@
 # Scripts #
 ###########
 
-iron_turn_off:
-  alias: "Turn off iron after 20 minutes of use"
-  sequence:
-    - delay:
-        minutes: 20
-    - service: switch.turn_off
-      data:
-        entity_id: switch.b3
-    - service: script.turn_on
-      entity_id: script.say
-      data:
-        variables:
-          volume: '0.8'
-          what: 'Żelazko wyłączone'
-
 say:
   alias: Google Home TTS
   sequence:
@@ -34,40 +19,6 @@ say:
       data_template:
         entity_id: media_player.living_room_speaker
         volume_level: 0.5
-
-
-spotify_play_playlist:
-  alias: Spotify play playlist
-  sequence:
-    - service: switch.turn_on
-      data:
-        entity_id: switch.stereo
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.spotify
-        source: stereo
-    - service: media_player.play_media
-      data_template:
-        entity_id: media_player.spotify
-        media_content_type: playlist
-        media_content_id: "{{ playlist }}"
-
-
-spotify_play_song:
-  alias: Spotify play song
-  sequence:
-    - service: switch.turn_on
-      data:
-        entity_id: switch.stereo
-    - service: media_player.select_source
-      data:
-        entity_id: media_player.spotify
-        source: stereo
-    - service: media_player.play_media
-      data_template:
-        entity_id: media_player.spotify
-        media_content_type: music
-        media_content_id: "{{ song }}"
 
 
 stereo_on:
@@ -92,29 +43,6 @@ stereo_off:
         entity_id: switch.stereo_mqtt
 
 
-tv_start_x:
-  alias: "TV Start X"
-  sequence:
-    - service: media_player.turn_on
-      data_template:
-        entity_id: media_player.tv
-    - delay:
-        seconds: 15
-    - service: media_player.select_source
-      data_template:
-        entity_id: media_player.tv
-        source: >
-          {% if (title == "internet") %}
-            "Przeglądarka"
-          {% elif (title == "browser") %}
-            "Przeglądarka"
-          {% elif (title == "Spotify") %}
-            "Spotify Music - Słuchaj za darmo na telewizorze z systemem LG."
-          {% else %}
-            {{ title }}
-          {% endif %}
-
-
 vacuum_stop:
   sequence:
     - service: vacuum.pause
@@ -134,70 +62,86 @@ vacuum_stop:
 vacuum_kitchen:
   alias: "Odkurz kuchnię"
   sequence:
-    - service: vacuum.xiaomi_clean_zone
+    - service: vacuum.stop
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+    - delay: 00:00:01
+    - service: vacuum.send_command
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
-        repeats: 1
-        zone: [[24600, 23000, 27600, 25000]]
+        command: app_segment_clean
+        params: [17]
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: Auto
 
 
 vacuum_hall:
   alias: "Odkurz przedpokój"
   sequence:
-    - service: vacuum.xiaomi_clean_zone
+    - service: vacuum.stop
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+    - delay: 00:00:01
+    - service: vacuum.send_command
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
-        repeats: 1
-        zone: [[27600, 22400, 29500, 26100]]
+        command: app_segment_clean
+        params: [16]
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: Auto
 
 
 vacuum_livingroom:
   alias: "Odkurz salon"
   sequence:
-    - service: vacuum.xiaomi_clean_zone
+    - service: vacuum.stop
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+    - delay: 00:00:01
+    - service: vacuum.send_command
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
-        repeats: 1
-        zone: [[22600, 25000, 27300, 28800]]
+        command: app_segment_clean
+        params: [1]
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: Auto
 
 
 vacuum_bathroom:
   alias: "Odkurz łazienkę"
   sequence:
-    - service: vacuum.xiaomi_clean_zone
+    - service: vacuum.stop
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+    - delay: 00:00:01
+    - service: vacuum.send_command
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
-        repeats: 1
-        zone: [[27400, 26100, 295000, 27900]]
+        command: app_segment_clean
+        params: [2]
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: Auto
 
 
 vacuum_bedroom:
   alias: "Odkurz sypialnię"
   sequence:
-    - service: vacuum.xiaomi_clean_zone
+    - service: vacuum.stop
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+    - delay: 00:00:01
+    - service: vacuum.send_command
       data:
         entity_id: vacuum.xiaomi_vacuum_cleaner
-        repeats: 1
-        zone: [[23900, 19400, 28700, 22300]]
-
-
-vacuum_room:
-  alias: "Odkurz!"
-  sequence:
-    - service: script.turn_on
-      data_template:
-        entity_id: >
-          {% if is_state("input_select.vacuum_room_select", "Kuchnia") %}
-            script.vacuum_kitchen
-          {% elif is_state("input_select.vacuum_room_select", "Salon") %}
-            script.vacuum_living_room
-          {% elif is_state("input_select.vacuum_room_select", "Przedpokój") %}
-            script.vacuum_hall
-          {% elif is_state("input_select.vacuum_room_select", "Sypialnia") %}
-            script.vacuum_bedroom
-          {% elif is_state("input_select.vacuum_room_select", "Łazienka") %}
-            script.vacuum_bathroom
-          {% endif %}
+        command: app_segment_clean
+        params: [18]
+    - service: vacuum.set_fan_speed
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+        fan_speed: Auto
 
 
 vacuum_goto_bin:

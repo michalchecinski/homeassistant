@@ -1,5 +1,5 @@
 - id: vacuum_empty_dustbin
-  alias: Vacuum - notification audio - empty dustbin
+  alias: Vacuum - empty dustbin
   trigger:
     - platform: state
       entity_id: input_boolean.michal_home
@@ -15,7 +15,7 @@
     condition: and
     conditions:
       - condition: template
-        value_template: "{{ states.automation.vacuum_notification_audio_empty_dustbin.attributes.last_triggered.strftime('%Y-%m-%d') != now().strftime('%Y-%m-%d') }}"
+        value_template: "{{ as_timestamp(state_attr('automation.vacuum_empty_dustbin','last_triggered'))|timestamp_custom('%Y-%m-%d') != as_timestamp(now())|timestamp_custom('%Y-%m-%d') }}"
       - condition: state
         entity_id: input_boolean.vacuum_finished
         state: 'on'
@@ -25,6 +25,9 @@
       - condition: state
         entity_id: input_boolean.michal_home
         state: 'on'
+      - condition: state
+        entity_id: input_boolean.guest_mode
+        state: 'off'
       - condition: or
         conditions:
           - condition: state

@@ -1,0 +1,43 @@
+- id: outside_temp_up_significantly
+  alias: Temperature outside notification - significant up
+  trigger:
+    - platform: time_pattern
+      hours: 7
+      minutes: 20
+      seconds: 00
+  condition:
+    condition: template
+    value_template: "{{ (states.sensor.temperature_outside.state) | float >= (states.input_number.last_morning_temp.state) | float + 5 }}"
+  action:
+    - service: notify.mobile_app_michal_galaxy
+      data:
+        message: "Temperatura WZROSŁA znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}} C; dzisiaj {{(states.sensor.temperature_outside.state)}} C"
+
+- id: outside_temp_down_significantly
+  alias: Temperature outside notification - significant down
+  trigger:
+    - platform: time_pattern
+      hours: 7
+      minutes: 20
+      seconds: 00
+  condition:
+    condition: template
+    value_template: "{{ (states.sensor.temperature_outside.state) | float <= (states.input_number.last_morning_temp.state) | float - 5 }}"
+  action:
+    - service: notify.mobile_app_michal_galaxy
+      data:
+        message: "Temperatura SPADŁA znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}} C; dzisiaj {{(states.sensor.temperature_outside.state)}} C"
+
+
+- id: outside_temp_log
+  alias: Temperature outside notification - log
+  trigger:
+    - platform: time_pattern
+      hours: 7
+      minutes: 21
+      seconds: 00
+  action:
+    - service: input_number.set_value
+      data_template:
+        entity_id: input_number.last_morning_temp
+        value: "{{ (states.sensor.temperature_outside.state) | float }}"

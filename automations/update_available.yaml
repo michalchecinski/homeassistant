@@ -1,0 +1,10 @@
+- id: '1635250220818'
+  alias: Home Assistant Update Notification for Android
+  description: ''
+  use_blueprint:
+    path: fortepc/update-notif-for-android.yaml
+    input:
+      clickAction: https://my.home-assistant.io/redirect/supervisor/
+      delay: 0
+      notify_device: 7e69a1dc2151cec1d7974e7df61a8ac9
+      group: Available Updates

@@ -1,0 +1,29 @@
+esphome:
+  name: livingroom-stereo
+  platform: ESP8266
+  board: d1_mini
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: "c959854a88b56224ac18dadd4b298523"
+
+wifi:
+  ssid: "USS SZ"
+  password: "SIpqG01soG8FZr3"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Livingroom-Stereo"
+    password: "pft47XWsPND1"
+
+captive_portal:
+
+remote_transmitter:
+  pin: D1
+  # Infrared remotes use a 50% carrier signal
+  carrier_duty_percent: 50%

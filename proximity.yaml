@@ -4,6 +4,6 @@
 
 home:
   devices:
-    - device_tracker.oneplus_a6013
+    - person.michal
   tolerance: 30
   unit_of_measurement: m

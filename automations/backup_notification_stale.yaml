@@ -1,0 +1,13 @@
+- alias: Backup stale notification
+  id: 'backup_stale_notification'
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.backups_stale
+    from: 'off'
+    to: 'on'
+  condition: []
+  action:
+  - service: notify.mobile_app_michal_galaxy
+    data:
+      title: Backups are Stale
+      message: Please visit the 'Home Assistant Google Drive Backup ' add-on status page for details.

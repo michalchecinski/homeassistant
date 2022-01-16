@@ -20,7 +20,7 @@
       entity_id: 'sensor.temperature_outside'
       above: 13
   action:
-    - service: notify.mobile_app_oneplus_a6013
+    - service: notify.mobile_app_michal_galaxy
       data:
         title: "Otwórz okna"
         message: "Na zewnątrz jest chłodniej. Out: {{ (states.sensor.temperature_outside.state) | float }}. In: {{ (states.sensor.temperature_inside.state) | float }}"

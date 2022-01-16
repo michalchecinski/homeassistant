@@ -1,0 +1,38 @@
+#########################
+#  Vacuum notification  #
+#########################
+
+- id: vacuum_on_notification
+  alias: Vacuum notification started
+  trigger:
+    - platform: state
+      entity_id: vacuum.xiaomi_vacuum_cleaner
+      from: 'docked'
+      to: 'cleaning'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'off'
+  action:
+    - service: notify.mobile_app_michal_galaxy
+      data:
+        message: "Odkurzacz wystartował"
+        data:
+          actions:
+            - action: vacuum_off
+              title: Wyłącz
+
+
+- id: vacuum_finished_notification
+  alias: Vacuum finished notification
+  trigger:
+    - platform: state
+      entity_id: input_boolean.vacuum_finished
+      from: 'off'
+      to: 'on'
+  action:
+    - service: notify.mobile_app_michal_galaxy
+      data:
+        message: "Odkurzacz zakończył odkurzanie"

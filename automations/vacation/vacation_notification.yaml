@@ -6,9 +6,9 @@
       from: 'off'
       to: 'on'
   action:
-    - service: notify.mobile_app_oneplus_a6013
+    - service: notify.mobile_app_michal_galaxy
       data:
-        message: "HA wyjechałeś na wakacje"
+        message: "Wyjechałeś na wakacje"
 
 - id: vacation_off_notification
   alias: Vacation - notification - off
@@ -18,6 +18,6 @@
       from: 'on'
       to: 'off'
   action:
-    - service: notify.mobile_app_oneplus_a6013
+    - service: notify.mobile_app_michal_galaxy
       data:
-        message: "HA Wróciłeś z wakacji"
+        message: "Wróciłeś z wakacji"

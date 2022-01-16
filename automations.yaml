@@ -1,12 +1,33 @@
-# This file is used by the automations editor
-# in the Home Assistant frontend.
-#
-# I personally do not use it, mainly because I like doing this in YAML.
-# However, from time to time, it is helpful to click a bit and see
-# what the frontend makes of it.
-#
-# This file must exist for the frontend Automation editor to work.
-# Hence, it is here, empty. 
-#
-# If you are looking for my automations: See automations folder.
-[]
+- id: '1635255008792'
+  alias: Sleep as Android MQTT actions
+  description: ''
+  use_blueprint:
+    path: IATkachenko/blueprint.yaml
+    input:
+      state: home
+      person: person.michal
+      sleep_tracking_started:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.sleep
+      alarm_alert_start:
+      - service: input_boolean.turn_off
+        target:
+          entity_id: input_boolean.sleep
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.sleep_alarm
+      device: a147bca7ee38533399e7d3be8e6b5f73
+
+- id: '1636151939672'
+  alias: Sleep - Wake-up light alarm with sunrise effect
+  description: ''
+  use_blueprint:
+    path: sbyx/wake-up-light-alarm-with-sunrise-effect.yaml
+    input:
+      manual_time: 08:00:00
+      light_entity: light.bed_lamp
+      check_entity: person.michal
+      sunrise_duration: 5
+      pre_sunrise_actions: []
+      post_sunrise_actions: []

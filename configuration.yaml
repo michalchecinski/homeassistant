@@ -1,3 +1,5 @@
+default_config:
+
 homeassistant:
   name: Dom
   latitude: !secret home_lat
@@ -21,12 +23,10 @@ config:
 
 http:
   use_x_forwarded_for: true
-  trusted_proxies: !secret trusted_proxies
+  trusted_proxies:
+    - 172.30.33.0/24
   ip_ban_enabled: true
   login_attempts_threshold: 5
-
-
-my:
 
 updater:
 
@@ -49,14 +49,6 @@ tts:
     service_name: google_say
     language: 'pl'
 
-media_player: !include_dir_list integrations/media_player
-
-mqtt:
-  broker: 172.19.0.20
-  port: 1883
-  username: !secret mqtt_user
-  password: !secret mqtt_pass
-
 sensor: !include_dir_merge_list entities/sensors
 binary_sensor: !include_dir_merge_list entities/binary_sensors
 switch: !include_dir_merge_list entities/switch
@@ -67,6 +59,7 @@ automation ui: !include automations.yaml
 script: !include scripts.yaml
 zone: !include zones.yaml
 scene: !include scenes.yaml
+camera: !include camera.yaml
 
 # input
 input_select: !include entities/input_select.yaml
@@ -79,17 +72,17 @@ proximity: !include proximity.yaml
 
 mobile_app:
 
-yeelight:
-  devices: !include_dir_merge_named entities/yeelight
-
-discovery:
-  ignore:
-    - yeelight
-
-speedtestdotnet: !include integrations/speedtest.yaml
-
 webostv: !include integrations/webostv.yaml
+
+media_player:
 
 spotify:
   client_id: !secret spotify_client
   client_secret: !secret spotify_secret
+
+
+panel_iframe:
+  tasmoadmin:
+    title: TasmoAdmin
+    icon: mdi:lightbulb-on
+    url: https://hass.checinski.xyz:9541

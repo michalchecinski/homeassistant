@@ -1,0 +1,63 @@
+- id: vacuum_vacation_on
+  alias: Vacuum start vacation mode
+  trigger:
+    platform: time
+    at: '11:30:00'
+  condition:
+    condition: and
+    conditions:
+      - condition: state
+        entity_id: 'binary_sensor.vacuum_day'
+        state: 'on'
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'on'
+      # every two days
+      - condition: template
+        value_template: '{{ as_timestamp(now()) - as_timestamp(states.vacuum.xiaomi_vacuum_cleaner.attributes.clean_start) | int > 90000 }}'
+  action:
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner
+    - service: notify.mobile_app_michal_galaxy
+      data:
+        message: "Odkurzacz wystartował w trybie wakacyjnym"
+
+
+- id: vacuum_vacation_coming_home
+  alias: Vacuum start coming home from vacation
+  trigger:
+    - platform: numeric_state
+      entity_id: proximity.home
+      below: 100000
+      above: 20000
+  condition:
+    condition: and
+    conditions:
+      # Heading home
+      - condition: template
+        value_template: '{{ states.proximity.home.attributes.dir_of_travel == "towards" }}'
+      - condition: state
+        entity_id: input_boolean.michal_home
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.vacation_mode
+        state: 'on'
+      - condition: time
+        after: '07:40:00'
+        before: '20:00:00'
+  action:
+    - service: notify.mobile_app_michal_galaxy
+      data:
+        message: "Odkurzacz włączony - wracasz z wakacji"
+        data:
+          actions:
+            - action: vacuum_off
+              title: Wyłącz
+
+    - service: vacuum.start
+      data:
+        entity_id: vacuum.xiaomi_vacuum_cleaner

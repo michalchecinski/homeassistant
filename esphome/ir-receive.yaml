@@ -1,0 +1,28 @@
+esphome:
+  name: ir-receive
+  platform: ESP8266
+  board: d1_mini
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+  password: "e8bfd954b2c305d102381bd3d0a50490"
+
+wifi:
+  ssid: "USS SZ"
+  password: "SIpqG01soG8FZr3"
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Ir-Receive Fallback Hotspot"
+    password: "49mjbs6AHBXB"
+
+captive_portal:
+
+remote_receiver:
+  pin: D0
+  dump: all

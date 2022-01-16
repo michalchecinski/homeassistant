@@ -1,0 +1,12 @@
+- platform: burze_dzis_net
+  api_key: !secret burze_dzis_net.api_key
+  latitude: !secret home_lat
+  longitude: !secret home_lon
+  warnings:
+    - frost_warning
+    - heat_warning
+    - wind_warning
+    - precipitation_warning
+    - storm_warning
+  storms_nearby:
+    radius: 15

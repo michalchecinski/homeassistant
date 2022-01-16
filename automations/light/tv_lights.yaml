@@ -1,6 +1,6 @@
 # Turn on tv led when tv on after sunset
 - id: tv_led_on_tv_on
-  alias: 'Lights - turn on tv led when tv on and after sunset'
+  alias: 'Lights TV - turn on tv led when tv on and after sunset'
   trigger:
     - platform: state
       entity_id: media_player.tv
@@ -22,7 +22,7 @@
       entity_id: scene.movie
 
 - id: tv_led_off_tv_off
-  alias: 'Lights - turn off tv led when tv off'
+  alias: 'Lights TV - turn off tv led when tv off'
   trigger:
     - platform: state
       entity_id: media_player.tv
