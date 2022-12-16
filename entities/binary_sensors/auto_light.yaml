@@ -1,0 +1,22 @@
+######################
+# Auto lights sensor #
+######################
+
+- platform: template
+  sensors:
+    auto_lights:
+      friendly_name: 'Auto lights'
+      value_template: >
+        {%- if is_state("input_boolean.sleep","off") and is_state("person.michal","home") -%}
+          {%- if (states.sun.sun.attributes.elevation | int < 5 ) -%}
+            True
+          {%- elif ( states.sun.sun.attributes.elevation | int < 15 ) -%}
+            True
+          {%- elif ( states.sun.sun.attributes.elevation | int < 8 ) -%}
+            True
+          {%- else -%}
+            False
+          {%- endif -%}
+        {%- else -%}
+          False
+        {%- endif -%}

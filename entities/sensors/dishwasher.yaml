@@ -1,0 +1,14 @@
+- platform: template
+  sensors:
+    dishwasher:
+      friendly_name: "Dishwasher"
+      value_template: >-
+        {% if states('sensor.dishwascher_power') != ('unavailable' or 'unknown') %}
+          {% if states('sensor.dishwascher_power') | int > 3 %}
+            washing
+          {% else %}
+            disabled
+          {% endif %}
+        {% else %}
+          {{ states('sensor.dishwasher') }}
+        {% endif %}

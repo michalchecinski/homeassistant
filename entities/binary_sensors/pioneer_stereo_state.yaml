@@ -1,0 +1,18 @@
+- platform: template
+  sensors:
+    pioneer_stereo_state:
+      friendly_name: 'pioneer stereo state'
+      value_template: >
+        {%- if states("sensor.living_room_appliances_current_consumption")|float > 8 and states("sensor.living_room_appliances_current_consumption")|float < 10 -%}
+          True
+        {%- elif states("sensor.living_room_appliances_current_consumption")|float > 86 and states("sensor.living_room_appliances_current_consumption")|float < 92  -%}
+          True
+        {%- elif states("sensor.living_room_appliances_current_consumption")|float > 77 and states("sensor.living_room_appliances_current_consumption")|float < 83  -%}
+          True
+        {%- elif states("sensor.living_room_appliances_current_consumption")|float > 11.9 and states("sensor.living_room_appliances_current_consumption")|float < 18  -%}
+          True
+        {%- elif states("sensor.living_room_appliances_current_consumption")|float > 24 and states("sensor.living_room_appliances_current_consumption")|float < 29  -%}
+          True
+        {%- else -%}
+          False
+        {%- endif -%}
