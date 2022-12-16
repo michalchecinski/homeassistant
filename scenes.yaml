@@ -1,0 +1,36 @@
+- name: Normal livingroom
+  entities:
+    light.rtv_led:
+      friendly_name: RTV LED
+      state: 'off'
+    light.tv_led:
+      friendly_name: TV LED
+      state: 'off'
+  id: 8f9c9381004d41079ab7577a82866454
+- name: Movie
+  entities:
+    light.tv_led:
+      friendly_name: TV LED
+      state: 'on'
+    light.rtv_led:
+      friendly_name: RTV LED
+      state: 'off'
+  id: efee7fee05b44b3b9095c22dfd712ea1
+- id: '1650922706999'
+  name: work
+  entities:
+    light.desk_led:
+      friendly_name: Desk LED
+      state: 'on'
+    light.monitor_led:
+      friendly_name: Monitor LED
+      state: 'on'
+- id: '1650922749511'
+  name: work off
+  entities:
+    light.desk_led:
+      friendly_name: Desk LED
+      state: 'off'
+    light.monitor_led:
+      friendly_name: Monitor LED
+      state: 'off'

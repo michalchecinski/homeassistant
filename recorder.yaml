@@ -1,0 +1,19 @@
+############
+# recorder #
+############
+
+purge_keep_days: 2
+commit_interval: 15
+auto_purge: true
+exclude:
+  domains:
+    - automation
+    - updater
+  entity_globs:
+    - sensor.weather_*
+  entities:
+    - sun.sun
+    - sensor.uptime
+    - sensor.date
+  event_types:
+    - call_service

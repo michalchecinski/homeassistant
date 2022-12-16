@@ -1,0 +1,1045 @@
+- id: '1636151939672'
+  alias: Sleep - Wake-up light alarm with sunrise effect
+  description: ''
+  use_blueprint:
+    path: sbyx/wake-up-light-alarm-with-sunrise-effect.yaml
+    input:
+      manual_time: 08:30:00
+      light_entity: light.bed_lamp
+      check_entity: person.michal
+      sunrise_duration: 15
+      pre_sunrise_actions: []
+      post_sunrise_actions:
+      - service: input_boolean.turn_off
+        data: {}
+        target:
+          entity_id: input_boolean.sleep
+      timestamp_sensor: none
+      end_brightness: 144
+- id: '1644788754116'
+  alias: Humidifier - empty water
+  description: ''
+  trigger:
+  - platform: numeric_state
+    entity_id: sensor.zhimi_humidifier_ca4_water_level
+    below: 15
+  condition:
+  - condition: zone
+    entity_id: person.michal
+    zone: zone.home
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      message: Nawilżacz prawie pusty
+  mode: single
+- id: '1646750747714'
+  alias: Humidifier - below 50
+  description: ''
+  trigger:
+  - type: humidity
+    platform: device
+    device_id: ee38ec804f511d6d3fc8fb3a383eab24
+    entity_id: sensor.zhimi_humidifier_ca4_humidity
+    domain: sensor
+    below: 50
+  condition:
+  - condition: state
+    entity_id: input_boolean.sleep
+    state: 'off'
+  action:
+  - device_id: ee38ec804f511d6d3fc8fb3a383eab24
+    domain: humidifier
+    entity_id: humidifier.zhimi_humidifier_ca4
+    type: set_mode
+    mode: High
+  mode: single
+- id: '1646750796134'
+  alias: Humidifier - above 55
+  description: ''
+  trigger:
+  - type: humidity
+    platform: device
+    device_id: ee38ec804f511d6d3fc8fb3a383eab24
+    entity_id: sensor.zhimi_humidifier_ca4_humidity
+    domain: sensor
+    above: 55
+  condition: []
+  action:
+  - device_id: ee38ec804f511d6d3fc8fb3a383eab24
+    domain: humidifier
+    entity_id: humidifier.zhimi_humidifier_ca4
+    type: set_mode
+    mode: Auto
+  mode: single
+- id: '1650109780929'
+  alias: Notification Storm Nearby
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.burze_dzis_net_storms_nearby
+    from: 'off'
+    to: 'on'
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      title: Storm
+      message: Storm nearby
+      data:
+        push:
+          sound:
+            name: default
+            critical: 1
+            volume: 1
+- id: '1650109852194'
+  alias: Notification Storm Warning
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.burze_dzis_net_storm_warning
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.sleep
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      title: Weather
+      message: Storm warning
+      data:
+        push:
+          sound:
+            name: default
+            critical: 1
+            volume: 1
+- id: '1650109886728'
+  alias: Notification Wind Warning
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.burze_dzis_net_wind_warning
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.sleep
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      title: Weather
+      message: Wind warning
+      data:
+        push:
+          sound:
+            name: default
+            critical: 1
+            volume: 1
+- id: '1650109951244'
+  alias: Notification Heat Warning
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.burze_dzis_net_heat_warning
+    from: 'off'
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.sleep
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      title: Weather
+      message: Heat warning
+      data:
+        push:
+          sound:
+            name: default
+            critical: 1
+            volume: 1
+- id: outside_temp_open_window
+  alias: Temperature outside notification - is lower than indoors - open windows
+  trigger:
+  - platform: template
+    value_template: '{{ (states.sensor.dom_temperature.state) | float <= (states.sensor.temperature_inside.state)
+      | float - 5 }}'
+  condition:
+  - condition: state
+    entity_id: person.michal
+    state: home
+  - condition: state
+    entity_id: input_boolean.sleep
+    state: 'off'
+  - condition: template
+    value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.temperature_outside_notification_is_lower_than_indoors_open_windows.attributes.last_triggered)
+      | int > 3600 }}'
+  - condition: numeric_state
+    entity_id: sensor.dom_temperature
+    above: 13
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      title: Otwórz okna
+      message: 'Na zewnątrz jest chłodniej. Out: {{ (states.sensor.dom_temperature.state)
+        | float }}. In: {{ (states.sensor.temperature_inside.state) | float }}'
+- id: outside_temp_up_significantly
+  alias: Temperature outside notification - significant up
+  trigger:
+  - platform: time_pattern
+    hours: 7
+    minutes: 20
+    seconds: 0
+  condition:
+  - condition: template
+    value_template: '{{ (states.sensor.dom_temperature.state) | float >= (states.input_number.last_morning_temp.state)
+      | float + 5 }}'
+  action:
+  - service: notify.mobile_app_iphone
+    data:
+      message: 'Temperatura WZROSŁA znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}}
+        C; dzisiaj {{(states.sensor.dom_temperature.state)}} C'
+- id: outside_temp_down_significantly
+  alias: Temperature outside notification - significant down
+  trigger:
+  - platform: time_pattern
+    hours: 7
+    minutes: 20
+    seconds: 0
+  condition:
+  - condition: template
+    value_template: '{{ (states.sensor.dom_temperature.state) | float <= (states.input_number.last_morning_temp.state)
+      | float - 5 }}'
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      message: 'Temperatura SPADŁA znacznie: wczoraj {{(states.input_number.last_morning_temp.state)}}
+        C; dzisiaj {{(states.sensor.dom_temperature.state)}} C'
+- id: outside_temp_log
+  alias: Temperature outside notification - log
+  trigger:
+  - platform: time_pattern
+    hours: 7
+    minutes: 21
+    seconds: 0
+  action:
+  - service: input_number.set_value
+    data_template:
+      entity_id: input_number.last_morning_temp
+      value: '{{ (states.sensor.dom_temperature.state) | float }}'
+- id: 14f7610c132645b6884c946132cc8fa2
+  alias: Arriving - Turn on devices
+  trigger:
+  - platform: state
+    entity_id:
+    - group.family
+    to: home
+  action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      device_id:
+      - 60198ed0fb3fe5988ba1cabeee23f093
+      - f83fdd348865433dafc46c581907c50c
+      - 3e7bc69f486877d82e9b05deef9b7e5e
+  - service: humidifier.turn_on
+    target:
+      entity_id: humidifier.zhimi_humidifier_ca4
+    data: {}
+- alias: Leaving - Turn off devices
+  trigger:
+  - platform: state
+    entity_id: group.family
+    from: home
+  action:
+  - service: homeassistant.turn_off
+    data:
+      entity_id:
+      - group.all_switches
+      - group.all_lights
+  - service: humidifier.turn_off
+    target:
+      entity_id: humidifier.zhimi_humidifier_ca4
+  id: 4ae9c1a64bf847548b033cda4b6271a8
+- id: 87dec8f7e5124f22be98d3966cbf8a18
+  alias: Near home - prepare
+  trigger:
+  - platform: zone
+    entity_id: group.family
+    zone: zone.extended_home
+    event: enter
+  - platform: state
+    entity_id: group.family
+    to: home
+  condition:
+  - condition: state
+    entity_id: proximity.home
+    attribute: dir_of_travel
+    state: towards
+  action:
+  - service: humidifier.turn_on
+    target:
+      entity_id: humidifier.zhimi_humidifier_ca4
+    data: {}
+- id: '1650403777434'
+  alias: Update notification
+  description: ''
+  use_blueprint:
+    path: mdegat01/update_notifications.yaml
+    input:
+      reminder_hours: '24'
+      update_entities:
+      - update.home_assistant_operating_system_update
+      - update.home_assistant_core_update
+      - update.home_assistant_supervisor_update
+      - update.home_assistant_google_drive_backup_update
+      - update.mosquitto_broker_update
+      - update.nginx_home_assistant_ssl_proxy_update
+      - update.samba_share_update
+      - update.terminal_ssh_update
+      - update.zigbee2mqtt_update
+      - update.spotify_connect_update
+      mobile_app_device: 3619031bcf06947d2b2a46a5ba31b942
+      mobile_app_device_2: 68fbeb79da6f06ef5f7c62a3807c455a
+      only_after: 09:00:00
+      only_before: '22:00:00'
+      send_to_ha: true
+      run_config_check: true
+- id: '1650405358403'
+  alias: Sleep on
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.sleep
+    to: 'on'
+  condition: []
+  action:
+  - device_id: ee38ec804f511d6d3fc8fb3a383eab24
+    domain: humidifier
+    entity_id: humidifier.zhimi_humidifier_ca4
+    type: set_mode
+    mode: Auto
+  - device_id: ee38ec804f511d6d3fc8fb3a383eab24
+    domain: select
+    entity_id: select.zhimi_humidifier_ca4_led_brightness
+    type: select_option
+    option: 'off'
+  - service: homeassistant.turn_off
+    data: {}
+    target:
+      entity_id:
+      - group.all_lights
+      - group.all_switches
+  mode: single
+- id: '1650405632392'
+  alias: Sleep off
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: input_boolean.sleep
+    to: 'off'
+  condition:
+  - condition: state
+    entity_id: person.michal
+    state: home
+  action:
+  - device_id: ee38ec804f511d6d3fc8fb3a383eab24
+    domain: select
+    entity_id: select.zhimi_humidifier_ca4_led_brightness
+    type: select_option
+    option: bright
+  - type: turn_on
+    device_id: f83fdd348865433dafc46c581907c50c
+    entity_id: switch.living_room_appliances
+    domain: switch
+  - type: turn_on
+    device_id: 60198ed0fb3fe5988ba1cabeee23f093
+    entity_id: switch.desk
+    domain: switch
+  mode: single
+- id: '1650561444262'
+  alias: Low battery level detection & notification for all battery sensors
+  description: ''
+  use_blueprint:
+    path: sbyx/low-battery-level-detection-notification-for-all-battery-sensors.yaml
+    input:
+      time: '20:00:00'
+      day: 6
+      exclude:
+        entity_id:
+        - sensor.michals_iphone_battery_level
+        - sensor.michals_macbook_air_internal_battery_level
+      actions:
+      - service: notify.mobile_app_iphone
+        data:
+          message: 'Low battery warning for: {{sensors}}'
+- id: stereo_on_spotify
+  alias: Livingroom stereo - turn on when spotify on stereo starts to play
+  trigger:
+  - platform: state
+    entity_id: media_player.spotify
+    to: playing
+  - platform: state
+    entity_id: media_player.spotify
+    to: Home Assistant
+    attribute: source
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: switch.stereo
+      state: 'off'
+    - condition: template
+      value_template: '{{ state_attr(''media_player.spotify'', ''source'') == ''Home
+        Assistant'' }}'
+    - condition: state
+      entity_id: media_player.spotify
+      state: playing
+  action:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.stereo
+  - service: media_player.volume_set
+    data:
+      entity_id: media_player.spotify
+      volume_level: 0.4
+- id: stereo_off_2_minutes_no_spotify
+  alias: Livingroom stereo - turn off when spotify not playing on stereo for 2 minutes
+  trigger:
+  - platform: state
+    entity_id: media_player.spotify
+    to: paused
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+  - platform: state
+    entity_id: media_player.spotify
+    for:
+      hours: 0
+      minutes: 5
+      seconds: 0
+    attribute: source
+    from: Home Assistant
+  action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.stereo
+- id: '1650663814906'
+  alias: 'Sleep reset in case of failure '
+  description: ''
+  trigger:
+  - platform: time
+    at: 08:30:00
+  condition:
+  - condition: state
+    entity_id: person.michal
+    state: home
+  - condition: state
+    entity_id: input_boolean.sleep
+    state: 'on'
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.sleep
+  mode: single
+- id: desk_leds_on
+  alias: Lights - desk leds on Macbook Air
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.michals_macbook_air_active
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id: sensor.michals_macbook_air_primary_display_name
+    to: LG ULTRAWIDE
+  - platform: state
+    entity_id: binary_sensor.auto_lights
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.auto_lights
+      state: 'on'
+    - condition: state
+      entity_id: sensor.michals_macbook_air_primary_display_name
+      state: LG ULTRAWIDE
+    - type: is_on
+      condition: device
+      device_id: 68fbeb79da6f06ef5f7c62a3807c455a
+      entity_id: binary_sensor.michals_macbook_air_active
+      domain: binary_sensor
+  action:
+  - service: scene.turn_on
+    entity_id: scene.work
+- id: desk_leds_off
+  alias: Lights - turn off desk leds when computer off
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.michals_macbook_air_active
+    to: 'off'
+  - platform: state
+    entity_id:
+    - binary_sensor.michals_macbook_pro_active
+    to: 'off'
+  - platform: state
+    entity_id:
+    - sensor.michals_macbook_air_primary_display_name
+    from: LG ULTRAWIDE
+  - platform: state
+    entity_id:
+    - sensor.michals_macbook_pro_primary_display_name
+    from: LG ULTRAWIDE
+  condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: sensor.michals_macbook_air_primary_display_name
+      state: LG ULTRAWIDE
+    - condition: state
+      entity_id: sensor.michals_macbook_pro_primary_display_name
+      state: LG ULTRAWIDE
+  action:
+  - service: scene.turn_on
+    entity_id: scene.work_off
+- id: tv_led_on_tv_on
+  alias: Lights TV - turn on tv led when tv on and after sunset
+  trigger:
+  - platform: state
+    entity_id: media_player.tv
+    to: 'on'
+  - platform: state
+    entity_id: binary_sensor.auto_lights
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.auto_lights
+      state: 'on'
+    - condition: state
+      entity_id: media_player.tv
+      state: 'on'
+  action:
+  - service: scene.turn_on
+    entity_id: scene.movie
+- id: tv_led_off_tv_off
+  alias: Lights TV - turn off tv led when tv off
+  trigger:
+  - platform: state
+    entity_id: media_player.tv
+    to: 'off'
+  action:
+  - service: light.turn_off
+    entity_id: light.tv_led
+- id: went_dark_home
+  alias: Lights - turn on when entering dark house (after sunset)
+  trigger:
+  - platform: state
+    entity_id: person.michal
+    to: home
+  condition:
+  - condition: state
+    entity_id: binary_sensor.auto_lights
+    state: 'on'
+  action:
+  - service: homeassistant.turn_on
+    data:
+      entity_id: group.all_lights
+  - delay: 00:02:00
+  - service: homeassistant.turn_off
+    data:
+      entity_id: group.all_lights
+- id: '1650979607882'
+  alias: TV turn on with WakeOnLan
+  description: ''
+  trigger:
+  - platform: device
+    device_id: 8ce8493248aa1d0f95f39a2f7cde92dd
+    domain: webostv
+    type: webostv.turn_on
+  condition: []
+  action:
+  - service: wake_on_lan.send_magic_packet
+    data:
+      mac: 38:8C:50:F3:D4:60
+  mode: single
+- id: vacation_on
+  alias: Vacation turn on
+  trigger:
+  - platform: state
+    entity_id:
+    - group.family
+    to: away
+    for:
+      hours: 20
+      minutes: 0
+      seconds: 0
+  - platform: numeric_state
+    entity_id: proximity.home
+    above: 20000
+    for:
+      hours: 5
+      minutes: 0
+      seconds: 0
+  condition:
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'off'
+  action:
+  - service: homeassistant.turn_on
+    data:
+      entity_id: input_boolean.vacation_mode
+- id: vacation_off
+  alias: Vacation turn off
+  trigger:
+  - platform: state
+    entity_id:
+    - group.family
+    to: home
+  condition:
+  - condition: state
+    entity_id: input_boolean.vacation_mode
+    state: 'on'
+  action:
+  - service: homeassistant.turn_off
+    data:
+      entity_id: input_boolean.vacation_mode
+- id: vacation_on_notification
+  alias: Vacation - notification - on
+  trigger:
+  - platform: state
+    entity_id: input_boolean.vacation_mode
+    from: 'off'
+    to: 'on'
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      message: Wyjechałeś na wakacje
+- id: vacation_off_notification
+  alias: Vacation - notification - off
+  trigger:
+  - platform: state
+    entity_id: input_boolean.vacation_mode
+    from: 'on'
+    to: 'off'
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      message: Wróciłeś z wakacji
+- id: '1651065477343'
+  alias: Sleep turn on with button
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.bed_button_action
+    to: single
+  condition: []
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.sleep
+  mode: single
+- id: '1651072066089'
+  alias: Water leak kitchen
+  description: ''
+  trigger:
+  - type: moist
+    platform: device
+    device_id: 564dea6612d253afe9e3ee1696a5976a
+    entity_id: binary_sensor.leak_kitchen_water_leak
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      data:
+        push:
+          sound:
+            name: default
+            critical: 1
+            volume: 1
+      message: Leak in kitchen!
+      title: Leak!
+  - condition: state
+    entity_id: group.family
+    state: home
+  - service: light.turn_on
+    data:
+      brightness_pct: 100
+      color_name: red
+    target:
+      device_id: 361ba9ad6d6ecd55d61bc502ac030f70
+  - service: notify.tv
+    data:
+      message: Leak in kitchen
+  mode: single
+- id: '1651072174812'
+  alias: Water leak washing machine
+  description: ''
+  trigger:
+  - type: moist
+    platform: device
+    device_id: 0000e1924a210a0c08e1fc905f746efe
+    entity_id: binary_sensor.leak_waschingmachine_water_leak
+    domain: binary_sensor
+  condition: []
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      data:
+        push:
+          sound:
+            name: default
+            critical: 1
+            volume: 1
+      message: Leak in washing machine!
+      title: Leak!
+  - condition: state
+    entity_id: group.family
+    state: home
+  - service: light.turn_on
+    data:
+      brightness_pct: 100
+      color_name: red
+    target:
+      device_id: 361ba9ad6d6ecd55d61bc502ac030f70
+  - service: notify.tv
+    data:
+      message: Leak in washing machine
+  mode: single
+- id: '1651439702899'
+  alias: Bed button - bed lamp toggle
+  description: ''
+  trigger:
+  - platform: state
+    entity_id:
+    - sensor.bed_button_action
+    to: double
+  condition: []
+  action:
+  - choose:
+    - conditions:
+      - condition: device
+        type: is_off
+        device_id: 361ba9ad6d6ecd55d61bc502ac030f70
+        entity_id: light.bed_lamp
+        domain: light
+      sequence:
+      - type: turn_on
+        device_id: 361ba9ad6d6ecd55d61bc502ac030f70
+        entity_id: light.bed_lamp
+        domain: light
+        brightness_pct: 1
+    - conditions:
+      - condition: device
+        type: is_on
+        device_id: 361ba9ad6d6ecd55d61bc502ac030f70
+        entity_id: light.bed_lamp
+        domain: light
+      sequence:
+      - type: turn_off
+        device_id: 361ba9ad6d6ecd55d61bc502ac030f70
+        entity_id: light.bed_lamp
+        domain: light
+    default:
+    - type: toggle
+      device_id: 361ba9ad6d6ecd55d61bc502ac030f70
+      entity_id: light.bed_lamp
+      domain: light
+  mode: single
+- id: vacuum_empty_dustbin
+  alias: Vacuum - empty dustbin
+  trigger:
+  - platform: state
+    entity_id: person.michal
+    to: home
+    for:
+      minutes: 10
+  - platform: state
+    entity_id: input_boolean.vacuum_finished
+    from: 'off'
+    to: 'on'
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.vacuum_finished
+      state: 'on'
+    - condition: time
+      weekday:
+      - sat
+    - condition: state
+      entity_id: person.michal
+      state: home
+    - condition: or
+      conditions:
+      - condition: state
+        entity_id: vacuum.roborock_vacuum_s5
+        state: idle
+      - condition: state
+        entity_id: vacuum.roborock_vacuum_s5
+        state: docked
+  action:
+  - service: script.vacuum_goto_bin
+  - delay: 00:01:15
+  - service: script.turn_on
+    entity_id: script.say
+    data:
+      variables:
+        volume: '1'
+        what: Czas wypróżnić odkurzacz
+  - service: notify.mobile_app_michals_iphone
+    data:
+      message: Czas wypróżnić odkurzacz
+- id: 5eab611583004333b800c2fd5ab061f6
+  alias: Vacuum start via notification
+  trigger:
+  - event_data:
+      action: vacuum_on
+    event_type: mobile_app_notification_action
+    platform: event
+  action:
+  - service: script.turn_off
+    data: {}
+    target:
+      entity_id: script.vacuum_stop
+  - service: automation.trigger
+    data: {}
+    target:
+      entity_id: automation.vacuum_on
+- alias: Vacuum stop via notification
+  trigger:
+  - event_data:
+      action: vacuum_off
+    event_type: mobile_app_notification_action
+    platform: event
+  action:
+  - service: vacuum.stop
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+  - service: vacuum.return_to_base
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+  id: 0d6b721d0fc640cb86438ee0299db679
+- id: vacuum_on
+  alias: Vacuum start
+  trigger:
+  - platform: zone
+    entity_id: group.family
+    zone: zone.home
+    event: leave
+  condition:
+    condition: and
+    conditions:
+    - condition: state
+      entity_id: vacuum.roborock_vacuum_s5
+      state: docked
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.vacuum_finished
+      state: 'off'
+    - condition: time
+      after: 07:40:00
+      before: '20:00:00'
+  action:
+  - service: script.clean_home
+- id: vacuum_off_notification
+  alias: Vacuum stop sb home
+  trigger:
+  - platform: zone
+    entity_id: group.family
+    zone: zone.home
+    event: enter
+  condition:
+  - condition: state
+    entity_id: vacuum.roborock_vacuum_s5
+    state: cleaning
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      message: Odkurzacz nie skończył pracy, ale się wyłączył - ktoś jest w domu.
+      data:
+        actions:
+        - action: vacuum_on
+          title: Dokończ odkurzanie
+          activationMode: background
+          authenticationRequired: false
+          destructive: false
+  - service: script.turn_on
+    data: {}
+    target:
+      entity_id: script.vacuum_stop
+- id: vacuum_finished
+  alias: Vacuum finished
+  trigger:
+  - platform: state
+    entity_id: vacuum.roborock_vacuum_s5
+    from: returning
+    to: docked
+  - platform: state
+    entity_id: vacuum.roborock_vacuum_s5
+    from: cleaning
+    to: docked
+  condition:
+  - condition: and
+    conditions:
+    - condition: template
+      value_template: '{{ as_timestamp(now()) - as_timestamp(states.automation.vacuum_off.attributes.last_triggered)
+        | int > 40 }}'
+    - condition: numeric_state
+      entity_id: sensor.roborock_vacuum_s5_current_clean_area
+      above: 30
+  action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.vacuum_finished
+- id: vacuum_finished_off
+  alias: Vacuum finished input bool to off
+  trigger:
+  - platform: time
+    at: 00:01:00
+  action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.vacuum_finished
+- id: failure_vacuum_vacation
+  alias: Failure - vacuum not run in 2 days
+  trigger:
+  - platform: state
+    entity_id:
+    - vacuum.roborock_vacuum_s5
+    to: docked
+    for:
+      hours: 49
+      minutes: 0
+      seconds: 0
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'on'
+    - condition: state
+      entity_id: automation.vacuum_vacation_on
+      state: 'on'
+    enabled: false
+  action:
+  - service: notify.mobile_app_michals_iphone
+    data:
+      message: Odkurzacz nie chodził przez 2 dni (vacation mode)
+      data:
+        actions:
+        - action: vacuum_on
+          title: Run vacuum now
+- id: vacuum_vacation_on
+  alias: Vacuum start vacation mode
+  trigger:
+  - platform: time
+    at: '11:30:00'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: group.family
+      state: away
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'on'
+    - condition: template
+      value_template: '{{ as_timestamp(now()) - as_timestamp(states.sensor.roborock_vacuum_s5_last_clean_start.state)
+        | int > 90000 }}'
+  action:
+  - service: script.clean_home
+    data: {}
+  - service: notify.mobile_app_michals_iphone
+    data:
+      message: Odkurzacz wystartował w trybie wakacyjnym
+      data:
+        actions:
+        - action: vacuum_off
+          title: Wyłącz
+- id: vacuum_vacation_coming_home
+  alias: Vacuum start coming home from vacation
+  trigger:
+  - platform: numeric_state
+    entity_id: proximity.home
+    below: 100000
+    above: 20000
+  condition:
+  - condition: and
+    conditions:
+    - condition: template
+      value_template: '{{ states.proximity.home.attributes.dir_of_travel == "towards" }}'
+    - condition: state
+      entity_id: group.family
+      state: not_home
+    - condition: state
+      entity_id: input_boolean.vacation_mode
+      state: 'on'
+    - condition: time
+      after: 07:40:00
+      before: '20:00:00'
+  action:
+  - service: script.clean_home
+    data: {}
+  - service: notify.mobile_app_michals_iphone
+    data:
+      message: Odkurzacz włączony - wracasz z wakacji
+      data:
+        actions:
+        - action: vacuum_off
+          title: Wyłącz
+- id: '1671055400897'
+  alias: Lights - desk lights on macbook pro
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: binary_sensor.michals_macbook_pro_active
+    from: 'off'
+    to: 'on'
+  - platform: state
+    entity_id: sensor.michals_macbook_pro_primary_display_name
+    to: LG ULTRAWIDE
+  - platform: state
+    entity_id: binary_sensor.auto_lights
+    to: 'on'
+  condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: binary_sensor.auto_lights
+      state: 'on'
+    - condition: state
+      entity_id: sensor.michals_macbook_pro_primary_display_name
+      state: LG ULTRAWIDE
+    - type: is_on
+      condition: device
+      device_id: d36e6c8efa076f6b0fe3e0d37d8a867f
+      entity_id: binary_sensor.michals_macbook_pro_active
+      domain: binary_sensor
+  action:
+  - service: scene.turn_on
+    entity_id: scene.work
+  mode: single

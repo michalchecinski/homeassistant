@@ -1,0 +1,10 @@
+#####################
+# Proximity sensors #
+#####################
+
+home:
+  devices:
+    - person.michal
+    - person.ola
+  tolerance: 30
+  unit_of_measurement: m

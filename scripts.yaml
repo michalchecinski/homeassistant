@@ -1,0 +1,138 @@
+say:
+  alias: Google Home TTS
+  sequence:
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.living_room_speaker
+      volume_level: '{{ volume }}'
+  - service: tts.google_say
+    data_template:
+      entity_id: media_player.living_room_speaker
+      message: '{{ what }}'
+      cache: false
+  - delay: 00:00:30
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.living_room_speaker
+      volume_level: 0.5
+
+clean_home:
+  alias: Clean Home
+  icon: mdi:home
+  sequence:
+  - service: vacuum.stop
+    entity_id: vacuum.roborock_vacuum_s5
+  - delay: 00:00:01
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      command: app_segment_clean
+      params: [1,2,16,17,18]
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      fan_speed: Auto
+
+vacuum_stop:
+  sequence:
+  - service: vacuum.pause
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+  - delay:
+      minutes: 6
+  - service: vacuum.stop
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+  - service: vacuum.return_to_base
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+vacuum_kitchen:
+  alias: Odkurz kuchnię
+  sequence:
+  - service: vacuum.stop
+    entity_id: vacuum.roborock_vacuum_s5
+  - delay: 00:00:01
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      command: app_segment_clean
+      params:
+      - 17
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      fan_speed: Auto
+vacuum_hall:
+  alias: Odkurz przedpokój
+  sequence:
+  - service: vacuum.stop
+    entity_id: vacuum.roborock_vacuum_s5
+  - delay: 00:00:01
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      command: app_segment_clean
+      params:
+      - 16
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      fan_speed: Auto
+vacuum_livingroom:
+  alias: Odkurz salon
+  sequence:
+  - service: vacuum.stop
+    entity_id: vacuum.roborock_vacuum_s5
+  - delay: 00:00:01
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      command: app_segment_clean
+      params:
+      - 1
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      fan_speed: Auto
+vacuum_bathroom:
+  alias: Odkurz łazienkę
+  sequence:
+  - service: vacuum.stop
+    entity_id: vacuum.roborock_vacuum_s5
+  - delay: 00:00:01
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      command: app_segment_clean
+      params:
+      - 2
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      fan_speed: Auto
+vacuum_bedroom:
+  alias: Odkurz sypialnię
+  sequence:
+  - service: vacuum.stop
+    entity_id: vacuum.roborock_vacuum_s5
+  - delay: 00:00:01
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      command: app_segment_clean
+      params:
+      - 18
+  - service: vacuum.set_fan_speed
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      fan_speed: Auto
+vacuum_goto_bin:
+  alias: Jedź pod śmietnik!
+  sequence:
+  - service: vacuum.send_command
+    data:
+      entity_id: vacuum.roborock_vacuum_s5
+      command: app_goto_target
+      params:
+      - 24800
+      - 23800

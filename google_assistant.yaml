@@ -1,0 +1,54 @@
+###########################
+# Google Assistant config #
+###########################
+
+project_id: !secret google_assistant_project_id
+service_account: !include google_assistant_account.json
+report_state: true
+exposed_domains:
+  - switch
+  - light
+  - media_player
+  - climate
+entity_config:
+  input_boolean.sleep:
+    name: sleep
+    expose: true
+
+  # Switches
+  switch.stereo:
+    name: stereo
+    room: livingroom
+    aliases:
+      - stereo
+      - stereo switch
+  # Media players
+  media_player.spotify:
+    expose: false
+  media_player.tv:
+    expose: true
+  # Lights
+  light.bed_lamp:
+    room: bedroom
+    name: Bed lamp
+    aliases:
+      - Bed lamp
+      - bed light
+  light.rtv_led:
+    room: livingroom
+    name: RTV LED
+    aliases:
+      - RTV LED
+      - rtv light
+  light.tv_led:
+    room: livingroom
+    name: TV LED
+    aliases:
+      - TV LED
+      - tv light
+  light.desk_led:
+    room: bedroom
+    name: desk LED
+    aliases:
+      - desk LED
+      - desk light

@@ -1,0 +1,19 @@
+filter:
+  include_domains:
+    - light
+  include_entities:
+    - switch.desk
+    - switch.dishwascher
+    - switch.iron
+    - switch.living_room_appliances
+    - switch.stereo
+    - device_tracker.michals_iphone
+    - media_player.tv
+    - scene.movie
+    - scene.normal_livingroom
+    - scene.work
+    - scene.work_off
+    - binary_sensor.leak_waschingmachine_water_leak
+    - binary_sensor.leak_kitchen_water_leak
+    - automation.wake_up_light_alarm_with_sunrise_effect
+    - input_boolean.sleep

@@ -1,0 +1,97 @@
+default_config:
+
+homeassistant:
+  name: Dom
+  latitude: !secret home_lat
+  longitude: !secret home_lon
+  elevation: 110
+  unit_system: metric
+  currency: PLN
+  time_zone: Europe/Warsaw
+  external_url: !secret base_url
+
+  auth_providers:
+    - type: homeassistant
+
+recorder: !include recorder.yaml
+
+frontend:
+
+config:
+
+http:
+  use_x_forwarded_for: true
+  ip_ban_enabled: true
+  login_attempts_threshold: 5
+  trusted_proxies:
+    - 127.0.0.1
+    - 10.43.0.0/16
+    - 10.42.0.0/16
+
+conversation:
+
+history:
+
+logbook:
+
+map:
+
+sun:
+
+system_health:
+
+person:
+
+tts:
+  - platform: google_translate
+    service_name: google_say
+    language: 'pl'
+
+sensor: !include_dir_merge_list entities/sensors
+binary_sensor: !include_dir_merge_list entities/binary_sensors
+switch: !include_dir_merge_list entities/switch
+automation ui: !include automations.yaml
+script: !include scripts.yaml
+zone: !include zones.yaml
+scene: !include scenes.yaml
+camera: !include camera.yaml
+
+google_assistant: !include google_assistant.yaml
+
+proximity: !include proximity.yaml
+
+mobile_app:
+
+wake_on_lan:
+
+media_player:
+
+homekit: !include homekit.yaml
+
+notify:
+  - platform: group
+    name: "Michal"
+    services:
+      - service: mobile_app_iphone
+      - service: mobile_app_michals_macbook_air
+
+template:
+  - sensor:
+    - name: "All energy"
+      unique_id: C45BBE785AB501
+      state: >
+        {% set state1 = states('sensor.desk_energy') %}
+        {% set state2 = states('sensor.dishwascher_energy') %}
+        {% set state3 = states('sensor.iron_energy') %}
+        {% set state4 = states('sensor.living_room_appliances_total_consumption') %}
+        {{ ( state1|float + state2|float + state3|float + state4|float ) | float }}
+      state_class: total_increasing
+      unit_of_measurement: kWh
+      device_class: energy
+
+group:
+  family:
+    name: "Family"
+    entities:
+      - person.michal
+      - person.ola

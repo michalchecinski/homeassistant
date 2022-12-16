@@ -1,0 +1,574 @@
+{
+  "version": 1,
+  "minor_version": 1,
+  "key": "lovelace",
+  "data": {
+    "config": {
+      "title": "My Lovely Home Automation",
+      "views": [
+        {
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.michal",
+                      "hide_name": true,
+                      "use_entity_picture": true,
+                      "hide_state": false
+                    },
+                    {
+                      "type": "custom:mushroom-entity-card",
+                      "entity": "proximity.home"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "type": "custom:mushroom-person-card",
+                      "entity": "person.ola",
+                      "hide_name": true,
+                      "use_entity_picture": true,
+                      "hide_state": false
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "hours_to_show": 24,
+                      "graph": "line",
+                      "type": "sensor",
+                      "detail": 1,
+                      "entity": "sensor.temperature_inside",
+                      "icon": "mdi:thermometer",
+                      "name": "Inside"
+                    },
+                    {
+                      "hours_to_show": 24,
+                      "graph": "line",
+                      "type": "sensor",
+                      "entity": "sensor.humidity_inside",
+                      "detail": 1,
+                      "name": "Humidity"
+                    }
+                  ]
+                },
+                {
+                  "type": "horizontal-stack",
+                  "cards": [
+                    {
+                      "hours_to_show": 24,
+                      "graph": "line",
+                      "type": "sensor",
+                      "entity": "sensor.dom_temperature",
+                      "detail": 1,
+                      "icon": "mdi:home-thermometer",
+                      "name": "Outside"
+                    },
+                    {
+                      "hours_to_show": 24,
+                      "graph": "line",
+                      "type": "sensor",
+                      "entity": "sensor.dom_humidity",
+                      "detail": 1,
+                      "name": "Humidity"
+                    },
+                    {
+                      "hours_to_show": 24,
+                      "graph": "line",
+                      "type": "sensor",
+                      "entity": "sensor.dom_pressure",
+                      "detail": 1,
+                      "name": "Pressure"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "hours_to_show": 24,
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.outside_conditions_temperature",
+                  "detail": 1,
+                  "icon": "mdi:home-thermometer",
+                  "name": "Outside"
+                },
+                {
+                  "hours_to_show": 24,
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.outside_conditions_humidity",
+                  "detail": 1,
+                  "name": "Humidity"
+                },
+                {
+                  "hours_to_show": 24,
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.outside_conditions_pressure",
+                  "detail": 1,
+                  "name": "Pressure"
+                }
+              ]
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "binary_sensor.burze_dzis_net_storms_nearby",
+                  "name": "Burze w pobliżu"
+                },
+                {
+                  "entity": "binary_sensor.burze_dzis_net_wind_warning",
+                  "name": "Ostrzeżenie - Wiatr"
+                },
+                {
+                  "entity": "binary_sensor.burze_dzis_net_heat_warning",
+                  "name": "Ostrzeżenie - Upał"
+                },
+                {
+                  "entity": "binary_sensor.burze_dzis_net_precipitation_warning",
+                  "name": "Ostrzeżenie - Opad"
+                },
+                {
+                  "entity": "binary_sensor.burze_dzis_net_frost_warning",
+                  "name": "Ostrzeżenie - Mróz"
+                },
+                {
+                  "entity": "binary_sensor.burze_dzis_net_storm_warning",
+                  "name": "Ostrzeżenie - Burza"
+                }
+              ]
+            },
+            {
+              "entity": "sensor.airly_caqi_level",
+              "state_image": {
+                "high": "http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg",
+                "low": "https://vignette.wikia.nocookie.net/warszawa/images/7/7c/Warsaw6vb.jpg",
+                "medium": "https://ocs-pl.oktawave.com/v1/AUTH_2887234e-384a-4873-8bc5-405211db13a2/spidersweb/2017/12/smog-warszawa-polska-1.jpg",
+                "very high": "http://maciejmargas.com/wp-content/uploads/smog-w-warszawie-5.jpg",
+                "very low": "https://static.thousandwonders.net/Warsaw.640.18597.jpg"
+              },
+              "type": "picture-entity"
+            }
+          ],
+          "icon": "mdi:home",
+          "title": "Home"
+        },
+        {
+          "cards": [
+            {
+              "entity": "media_player.tv",
+              "type": "custom:mini-media-player"
+            },
+            {
+              "type": "custom:mini-media-player",
+              "entity": "media_player.spotify",
+              "group": false,
+              "volume_stateless": false,
+              "toggle_power": true
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "hours_to_show": 24,
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 1,
+                  "entity": "sensor.livingroom_temperature",
+                  "icon": "mdi:thermometer"
+                },
+                {
+                  "hours_to_show": 24,
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.livingroom_humidity",
+                  "detail": 1
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.tv_led",
+                  "icon": "mdi:led-strip-variant",
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.rtv_led",
+                  "icon": "mdi:led-strip-variant",
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.living_room_appliances",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "use_entity_picture": false
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.stereo",
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                }
+              ]
+            }
+          ],
+          "icon": "mdi:sofa",
+          "title": "Living room"
+        },
+        {
+          "icon": "mdi:bed",
+          "title": "Bedroom",
+          "badges": [],
+          "cards": [
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.bed_lamp",
+                  "show_brightness_control": true,
+                  "use_light_color": true,
+                  "show_color_temp_control": false,
+                  "show_color_control": false,
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "icon": ""
+                },
+                {
+                  "type": "custom:mushroom-light-card",
+                  "entity": "light.desk_led",
+                  "icon": "mdi:led-strip-variant",
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "hours_to_show": 24,
+                  "graph": "line",
+                  "type": "sensor",
+                  "detail": 1,
+                  "entity": "sensor.zhimi_humidifier_ca4_temperature",
+                  "name": "Temperature"
+                },
+                {
+                  "hours_to_show": 24,
+                  "graph": "line",
+                  "type": "sensor",
+                  "entity": "sensor.zhimi_humidifier_ca4_humidity",
+                  "detail": 1,
+                  "name": "Humidity"
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.sleep",
+                  "tap_action": {
+                    "action": "toggle"
+                  },
+                  "hold_action": {
+                    "action": "more-info"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "automation.wake_up_light_alarm_with_sunrise_effect",
+                  "icon": "mdi:weather-sunset",
+                  "name": "Wake up sunrise effect",
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "humidifier.zhimi_humidifier_ca4",
+                  "name": "Humidifier",
+                  "tap_action": {
+                    "action": "toggle"
+                  }
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.zhimi_humidifier_ca4_water_level",
+                  "name": "Water level"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.air_purifier"
+                }
+              ]
+            },
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "switch.desk"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.michals_macbook_air_active",
+                  "name": "Macbook Air Active"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:vacuum-card",
+              "entity": "vacuum.roborock_vacuum_s5",
+              "image": "default",
+              "actions": {
+                "start": {
+                  "service": "script.clean_home"
+                },
+                "cleaning": [
+                  {
+                    "attribute": "cleaned_area",
+                    "unit": "m2",
+                    "subtitle": "Cleaning area"
+                  },
+                  {
+                    "attribute": "cleaning_time",
+                    "unit": "minutes",
+                    "subtitle": "Cleaning time"
+                  }
+                ]
+              },
+              "shortcuts": [
+                {
+                  "name": "Clean living room",
+                  "service": "script.vacuum_livingroom",
+                  "icon": "mdi:sofa"
+                },
+                {
+                  "name": "Clean bedroom",
+                  "service": "script.vacuum_bedroom",
+                  "icon": "mdi:bed"
+                },
+                {
+                  "name": "Clean kitchen",
+                  "service": "script.vacuum_kitchen",
+                  "icon": "mdi:silverware-fork-knife"
+                },
+                {
+                  "name": "Clean bathroom",
+                  "service": "script.vacuum_bathroom",
+                  "icon": "mdi:shower"
+                },
+                {
+                  "name": "Clean hallway",
+                  "service": "script.vacuum_hall",
+                  "icon": "mdi:shoe-print"
+                },
+                {
+                  "name": "Go to dustbin",
+                  "service": "script.vacuum_goto_bin",
+                  "icon": "mdi:trash-can"
+                }
+              ]
+            },
+            {
+              "type": "picture-entity",
+              "camera_image": "camera.xiaomi_cloud_map_extractor",
+              "entity": "camera.xiaomi_cloud_map_extractor",
+              "name": "Vacuum"
+            },
+            {
+              "entities": [
+                {
+                  "entity": "input_boolean.vacuum_finished"
+                }
+              ],
+              "show_header_toggle": false,
+              "type": "entities"
+            },
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.xiaomi_vacuum_cleaner_last_clean_start",
+                  "name": "Last Clean Start"
+                },
+                {
+                  "entity": "sensor.xiaomi_vacuum_cleaner_last_clean_duration",
+                  "name": "Last Clean Duration"
+                },
+                {
+                  "entity": "sensor.xiaomi_vacuum_cleaner_last_clean_area",
+                  "name": "Last Clean Area"
+                }
+              ]
+            }
+          ],
+          "icon": "mdi:robot-vacuum-variant",
+          "title": "Vacuum"
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "KItchen",
+          "path": "kitchen",
+          "icon": "mdi:silverware-fork-knife",
+          "badges": [],
+          "cards": [
+            {
+              "type": "custom:mushroom-entity-card",
+              "entity": "binary_sensor.leak_kitchen_water_leak"
+            }
+          ]
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "Bathroom",
+          "path": "bathroom",
+          "icon": "mdi:shower",
+          "badges": [],
+          "cards": [
+            {
+              "type": "vertical-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "binary_sensor.leak_waschingmachine_water_leak"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "sensor.leak_waschingmachine_temperature"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "cards": [
+            {
+              "type": "horizontal-stack",
+              "cards": [
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.sleep"
+                },
+                {
+                  "type": "custom:mushroom-entity-card",
+                  "entity": "input_boolean.vacation_mode"
+                }
+              ]
+            },
+            {
+              "type": "custom:mushroom-entity-card",
+              "entity": "sensor.uptime"
+            },
+            {
+              "type": "markdown",
+              "content": "<h2> <ha-icon icon='mdi:shield-half-full'></ha-icon> Watchman report<h2> <h3>Missing Entities: {{ states.sensor.watchman_missing_entities.state }} </h3> {%- for item in state_attr(\"sensor.watchman_missing_entities\", \"entities\") %} <hr> <table><tr> <td> <ha-icon icon='mdi: {%- if item.state==\"missing\"-%}cloud-alert' {%- elif item.state==\"unavail\" -%}cloud-off-outline' {%- else-%}cloud-question' {%- endif -%} ></ha-icon> {{ item.id }} [{{item.state}}] <a title=\"{{item.occurrences}}\"> {{item.occurrences.split('/')[-1].split(':')[0]}}</a> </td></tr></table> {%- endfor %}",
+              "card_mod": {
+                "style": {
+                  "ha-markdown": {
+                    "$": "ha-markdown-element:first-of-type hr{\n  border-color: #303030;\n}\n"
+                  }
+                }
+              }
+            },
+            {
+              "type": "markdown",
+              "content": "<h2 class=\"some\"> <ha-icon icon='mdi:shield-half-full'></ha-icon> Watchman report<h2> <h3> Missing Services: {{ states.sensor.watchman_missing_services.state }} </h3> {%- for item in state_attr(\"sensor.watchman_missing_services\", \"services\") %} <hr><table><tr> <td>  <ha-icon icon='mdi:cloud-alert'></ha-icon> {{ item.id }} <a title=\"{{item.occurrences}}\">{{item.occurrences.split('/')[-1].split(':')[0]}}</a> </td></tr></table> {%- endfor %}",
+              "card_mod": {
+                "style": {
+                  "ha-markdown": {
+                    "$": "ha-markdown-element:first-of-type hr{\n  border-color: #303030;\n}\n"
+                  }
+                }
+              }
+            },
+            {
+              "type": "entities",
+              "entities": [
+                "input_number.power_price"
+              ]
+            }
+          ],
+          "icon": "mdi:home-assistant",
+          "title": "Config"
+        },
+        {
+          "theme": "Backend-selected",
+          "title": "zigbee",
+          "path": "zigbee",
+          "icon": "mdi:zigbee",
+          "badges": [],
+          "cards": [
+            {
+              "type": "entities",
+              "entities": [
+                {
+                  "entity": "sensor.leak_waschingmachine_battery"
+                },
+                {
+                  "entity": "sensor.leak_kitchen_battery"
+                },
+                {
+                  "entity": "sensor.bed_button_battery"
+                },
+                {
+                  "entity": "sensor.outside_conditions_battery"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
